@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E5DFDF"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D5CED5"
+        android:orientation="vertical">      
+          
+        <ImageSwitcher
+	        android:id="@+id/item_imageSwitcher"
+	        android:layout_width="match_parent"
+	        android:layout_height="70dp" />
+        
+    </LinearLayout> 
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">      
+        <TextView 
+            android:id="@+id/search_lable"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="@string/txt_location"
+	        android:layout_height= "wrap_content"
+	        android:layout_width= "80dp"/>       
+        <Spinner 
+            android:layout_height= "wrap_content"
+			android:layout_width= "fill_parent"
+	        android:id="@+id/search_location"/>
+    </LinearLayout>
+ 
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical">  	
+        <Button 
+            style="@style/Button"
+            android:id="@+id/send_button"
+            android:onClick="btnSearch"
+            android:text="@string/btn_search"/>    
+    </LinearLayout>     
+    <WebView
+        android:id="@+id/item_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />        
+</LinearLayout>

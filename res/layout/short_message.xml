@@ -1,0 +1,15 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5DFDF"
+	android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/yield_menu"
+        android:background="@android:drawable/btn_default_small"
+        android:onClick="btnMovie"
+        android:text="@string/btn_movie_theater" />
+</ScrollView>

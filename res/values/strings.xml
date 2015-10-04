@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InfoNegari</string>
+    <string name="wedding_app_name">የጋብቻ ቀኔ</string>
+    <string name="bussiness_app_name">ንግድና አስፈላጊ አገልግሎት</string>
+    <string name="rent_app_name">የሚከራይ</string>
+    <string name="sales_app_name">የሚሸጥ</string>
+    <string name="leisure_app_name">መዝናኛ</string>
+    <string name="wedding_menu_title1">የሠርግ አዳራሽ</string>
+    <string name="wedding_menu_title2">የሠርግ ልብስ</string>
+    <string name="wedding_menu_title3">ምግብ ዝግጂትና ኬክ</string>
+    <string name="wedding_menu_title4">የጫጉላ ሽርሽርና የጉዞ ወኪል</string>
+    <string name="wedding_menu_title5">ፎቶና ቪዲዮ</string>
+    <string name="wedding_menu_title6">የዉበት ሳሎን</string>
+    <string name="wedding_menu_title7">የሠርግ ካርድ/ቀለበት/ፕሮቶኮል</string>
+    <string name="wedding_menu_title8">የሠርግ ዕቃ አከራይ</string>
+    <string name="wedding_menu_title9">የዘፈን ባንድ</string>
+    <string name="wedding_menu_title10">ዲጀ</string>
+    <string name="wedding_menu_title11">አዳራሽ ማስጌጥ</string>
+    <string name="wedding_menu_title12">የሙሽራ መኪና</string>
+    <string name="bussiness_menu_title1">የእጅ ባለሙያ</string>
+    <string name="bussiness_menu_title2">የሽያጭ ጨረታ</string>
+    <string name="bussiness_menu_title3">የግዥ ጨረታ</string>
+    <string name="bussiness_menu_title4">የግንባታ አቅርቦትና አገልግሎቶች</string>
+    <string name="rent_menu_title1">የሚከራይ ቤት</string>
+    <string name="rent_menu_title2">የእንግዳ ማረፊያ</string>
+    <string name="rent_menu_title3">የሚከራይ መኪና</string>
+    <string name="rent_menu_title4">የሚከራይ ንግድ ቤት</string>
+    <string name="sale_menu_title1">ያገለገሉ ዕቃዎች</string>
+    <string name="sale_menu_title2">የሚሸጥ መኪና</string>
+    <string name="sale_menu_title3">የሚሸጥ ቤት</string>
+    <string name="sale_menu_title4">የሚሸጥ ንግድ</string>
+    <string name="leisure_menu_title1">የፊልምና ቲያትር ፕሮግራም</string>
+    <string name="leisure_menu_title2">ሬስቶራንት</string>
+    <string name="leisure_menu_title3">ስፖርት</string>
+    <string name="leisure_menu_title4">ጥበብና ባህል</string>
+    <string name="leisure_menu_title5">ከሰሞኑ ክንዉን</string>
+    <string name="leisure_menu_title6">ሳይንስና ቴክ</string>
+    <string name="leisure_menu_title7">እንዴት ተሰራ</string>
+    <string name="leisure_menu_title8">ጤና</string>
+    <string name="action_settings">ሴቲንግ</string>
+    <string name="txt_header_info">8142 ለአጭር የጽሁፍ መልእክት እዚህ ይጫኑ</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="btn_search">ፈልግ</string>
+    <string name="txt_type">አይነት</string>
+    <string name="txt_cinema">ሲኒማ</string>
+    <string name="txt_house_type">የቤቱ አይነት</string>
+    <string name="txt_source">ምንጭ</string>
+    <string name="txt_car_type">የመኪናው አይነት</string>
+    <string name="txt_item_type">የእቃው አይነት</string>
+    <string name="txt_location">አካባቢው</string>
+    <string name="txt_title">ርእስ</string>
+    <string name="txt_category">ምድብ</string>
+    <string name="btn_movie_theater">ፊልም ፕሮግራም</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>ዝርዝር</item>
+        <item>የጋብቻ ቀኔ</item>
+        <item>ንግድና አስፈላጊ አገልግሎት</item>
+        <item>የሚከራይ</item>
+        <item>የሚሸጥ</item>
+        <item>መዝናኛ</item>
+        <item>መረጃ አስገባ</item>
+    </string-array>
+
+    <!-- Nav Drawer My wedding Items -->
+    <string-array name="nav_wedding_items">
+        <item>የሠርግ አዳራሽ</item>
+        <item>የሠርግ ልብስ</item>
+        <item>ምግብ ዝግጂትና ኬክ</item>
+        <item>የጫጉላ ሽርሽርና የጉዞ ወኪል</item>
+        <item>ፎቶና ቪዲዮ</item>
+        <item>የዉበት ሳሎን</item>
+        <item>የሠርግ ካርድ/ቀለበት/ፕሮቶኮል</item>
+        <item>የሠርግ ዕቃ አከራይ</item>
+        <item>የዘፈን ባንድ</item>
+        <item>ዲጀ</item>
+        <item>አዳራሽ ማስጌጥ</item>
+        <item>የሙሽራ መኪና</item>
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Items -->
+    <string-array name="nav_bussiness_items">
+        <item>የእጅ ባለሙያ</item>
+        <item>የሽያጭ ጨረታ</item>
+        <item>የግዥ ጨረታ</item>
+        <item>የግንባታ አቅርቦትና አገልግሎቶች</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Items -->
+    <string-array name="nav_rent_items">
+        <item>የሚከራይ ቤት</item>
+        <item>የእንግዳ ማረፊያ</item>
+        <item>የሚከራይ መኪና</item>
+        <item>የሚከራይ ንግድ ቤት</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Items -->
+    <string-array name="nav_sales_items">
+        <item>ያገለገሉ ዕቃዎች</item>
+        <item>የሚሸጥ መኪና</item>
+        <item>የሚሸጥ ቤት</item>
+        <item>የሚሸጥ ንግድ</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Items -->
+    <string-array name="nav_leisure_items">
+        <item>የፊልምና ቲያትር ፕሮግራም</item>
+        <item>ሬስቶራንት</item>
+        <item>ስፖርት/Sport</item>
+        <item>ጥበብና ባህል </item>
+        <item>ከሰሞኑ ክንዉን</item>
+        <item>ሳይንስና ቴክ</item>
+        <item>እንዴት ተሰራ </item>
+        <item>ጤና</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons Amharic -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/wedding</item>
+        <item>@drawable/bussiness_needs</item>
+        <item>@drawable/for_rent</item>
+        <item>@drawable/for_sale</item>
+        <item>@drawable/ic_photos</item>
+    </array>
+
+    <!-- Nav Drawer List Item Icon -->
+    <string-array name="nav_wedding_icon">
+        <item>@drawable/wedding_hall</item>
+        <item>@drawable/wedding_dress</item>
+        <item>@drawable/cattering</item>
+        <item>@drawable/honey_moon</item>
+        <item>@drawable/photo_video</item>
+        <item>@drawable/beauty_salon</item>
+        <item>@drawable/wedding_protocol</item>
+        <item>@drawable/furniture_rent</item>
+        <item>@drawable/music_band</item>
+        <item>@drawable/dj_icon</item>
+        <item>@drawable/decorators</item>
+        <item>@drawable/wedding_car</item>
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Items -->
+    <string-array name="nav_bussiness_icon">
+        <item>@drawable/handy_man</item>
+        <item>@drawable/auction_house</item>
+        <item>@drawable/tender</item>
+        <item>@drawable/construction</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Items -->
+    <string-array name="nav_rent_icon">
+        <item>@drawable/rent_house</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/rent_car</item>
+        <item>@drawable/guest_house</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Items -->
+    <string-array name="nav_sales_icon">
+        <item>@drawable/furniture_rent</item>
+        <item>@drawable/sale_car</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/bussiness_needs</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Items -->
+    <string-array name="nav_leisure_icon">
+        <item>@drawable/movie</item>
+        <item>@drawable/restaurant</item>
+        <item>@drawable/sport_icon</item>
+        <item>@drawable/art_culture</item>
+        <item>@drawable/events</item>
+        <item>@drawable/science_techno</item>
+        <item>@drawable/how_made</item>
+        <item>@drawable/health_icon</item>
+    </string-array>
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_wedding_hall">WeddingHall</string>
+    <string name="title_activity_wedding_dress">WeddingDress</string>
+    <string name="title_activity_cater_pastery">CaterPastery</string>
+    <string name="title_activity_honey_moon">HoneyMoon</string>
+    <string name="title_activity_photo_video">PhotoVideo</string>
+    <string name="title_activity_beauty_salon">BeautySalon</string>
+    <string name="title_activity_wedding_card">WeddingCard</string>
+    <string name="title_activity_furniture_rent">FurnitureRent</string>
+    <string name="title_activity_music_band">MusicBand</string>
+    <string name="title_activity_music_dj">MusicDJ</string>
+    <string name="title_activity_decorators">Decorators</string>
+    <string name="title_activity_wedding_cars">WeddingCars</string>
+    <string name="title_activity_handy_man">HandyMan</string>
+    <string name="title_activity_sales_tender">SalesTender</string>
+    <string name="title_activity_purchase_tender">PurchaseTender</string>
+    <string name="title_activity_construction_supply">ConstructionSupply</string>
+    <string name="title_activity_rent_house">RentHouse</string>
+    <string name="title_activity_guest_house">GuestHouse</string>
+    <string name="title_activity_rent_car">RentCar</string>
+    <string name="title_activity_bussiness_for_lease">BussinessForLease</string>
+    <string name="title_activity_used_item">UsedItem</string>
+    <string name="title_activity_sales_car">SalesCar</string>
+    <string name="title_activity_sales_house">SalesHouse</string>
+    <string name="title_activity_bussiness_for_sale">BussinessForSale</string>
+    <string name="title_activity_movie_theater">MovieTheater</string>
+    <string name="title_activity_restaurant">Restaurant</string>
+    <string name="title_activity_sport">Sport</string>
+    <string name="title_activity_art_and_culture">ArtAndCulture</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_science_and_techno">ScienceAndTechno</string>
+    <string name="title_activity_how_it_made">HowItMade</string>
+    <string name="title_activity_health_tips">HealthTips</string>
+    <string name="title_activity_user_subscription">UserSubscription</string>
+    <string name="title_activity_short_message">አጭር የጽሁፍ መልእክት</string>
+
+</resources>

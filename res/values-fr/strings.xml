@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InfoNegari</string>
+    <string name="wedding_app_name">Mon mariage</string>
+    <string name="bussiness_app_name">Besoins de l\'entreprise</string>
+    <string name="rent_app_name">Pour louer</string>
+    <string name="sales_app_name">Pour la vente</string>
+    <string name="leisure_app_name">Loisirs</string>
+    <string name="wedding_menu_title1">Salle de mariage</string>
+    <string name="wedding_menu_title2">Robe mariage</string>
+    <string name="wedding_menu_title3">Traiteur/Des pâtisseries</string>
+    <string name="wedding_menu_title4">Honeymoon Destinations and Travel Agents</string>
+    <string name="wedding_menu_title5">photo/Vidéo</string>
+    <string name="wedding_menu_title6">Salon de beauté</string>
+    <string name="wedding_menu_title7">Carte mariage</string>
+    <string name="wedding_menu_title8">Mobilier</string>
+    <string name="txt_header_info">8142 Click here to send short code</string>
+    <string name="wedding_menu_title9">Bande de musique</string>
+    <string name="wedding_menu_title10">DJ</string>
+    <string name="wedding_menu_title11">Le décor</string>
+    <string name="wedding_menu_title12">Mariage voiture</string>
+    <string name="bussiness_menu_title1">Handy man</string>
+    <string name="bussiness_menu_title2">Vente aux enchères</string>
+    <string name="bussiness_menu_title3">Offres</string>
+    <string name="bussiness_menu_title4">Alimentation constriction</string>
+    <string name="rent_menu_title1">laisser</string>
+    <string name="rent_menu_title2">Chambre d\'hôtes</string>
+    <string name="rent_menu_title3">Location de voiture</string>
+    <string name="rent_menu_title4">Les entreprises de location</string>
+    <string name="sale_menu_title1">Utilisé point vente</string>
+    <string name="sale_menu_title2">Voiture à la vente</string>
+    <string name="sale_menu_title3">Chambre pour la vente</string>
+    <string name="sale_menu_title4">Entreprise de vente</string>
+    <string name="leisure_menu_title1">Cinéma/théâtre</string>
+    <string name="leisure_menu_title2">Restaurant</string>
+    <string name="leisure_menu_title3">ስፖርት/Sport</string>
+    <string name="leisure_menu_title4">ጥበብና ባህል</string>
+    <string name="leisure_menu_title5">ከሰሞኑ ክንዉን</string>
+    <string name="leisure_menu_title6">ሳይንስና ቴክ</string>
+    <string name="leisure_menu_title7">እንዴት ተሰራ</string>
+    <string name="leisure_menu_title8">ጤና</string>
+    <string name="action_settings">Paramètre</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="btn_search">Recherche</string>
+    <string name="btn_ok">Ok</string>
+    <string name="txt_type">Type</string>
+	<string name="txt_info">እንዴት ተሰራ</string>
+    <string name="txt_cinema">Cinéma/théâtre</string>
+    <string name="txt_house_type">Chambre genre</string>
+    <string name="txt_source">Source</string>
+    <string name="txt_car_type">Type de voiture</string>
+    <string name="txt_item_type">Type d\'élément</string>
+    <string name="txt_location">Emplacement</string>
+    <string name="txt_localization">Select Language</string>
+    <string name="txt_title">Title </string>
+    <string name="txt_category">Catégorie</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Menu</item>
+        <item>Mon mariage</item>
+        <item>Besoins de l\'entreprise</item>
+        <item>Pour louer</item>
+        <item>Pour la vente</item>
+        <item>Loisirs</item>
+        <item>Vous abonner</item>
+    </string-array>
+
+    <!-- Nav Drawer My wedding Items -->
+    <string-array name="nav_wedding_items">
+        <item>Salle de mariage</item>
+        <item>Robe mariage</item>
+        <item>Traiteur/Des pâtisseries</item>
+        <item>Honeymoon Destinations and Travel Agents</item>
+        <item>photo/Vidéo</item>
+        <item>Salon de beauté</item>
+        <item>Carte mariage</item>
+        <item>Mobilier</item>
+        <item>Bande de musique</item>
+        <item>DJ</item>
+        <item>Le décor</item>
+        <item>Mariage voiture</item>
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Items -->
+    <string-array name="nav_bussiness_items">
+        <item>Handy man</item>
+        <item>Vente aux enchères</item>
+        <item>Offres</item>
+        <item>Alimentation constriction</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Items -->
+    <string-array name="nav_rent_items">
+        <item>laisser</item>
+        <item>Chambre d\'hôtes</item>
+        <item>Location de voiture</item>
+        <item>Les entreprises de location</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Items -->
+    <string-array name="nav_sales_items">
+        <item>Utilisé point vente</item>
+        <item>Voiture à la vente</item>
+        <item>Chambre pour la vente</item>
+        <item>Entreprise de vente</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Items -->
+    <string-array name="nav_leisure_items">
+        <item>Cinéma/théâtre</item>
+        <item>Restaurant</item>
+        <item>Le Sport</item>
+        <item>Art</item>
+        <item>Événements</item>
+        <item>ሳይንስና ቴክ</item>
+        <item>እንዴት ተሰራ </item>
+        <item>ጤና</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/wedding</item>
+        <item>@drawable/bussiness_needs</item>
+        <item>@drawable/for_rent</item>
+        <item>@drawable/for_sale</item>
+        <item>@drawable/ic_photos</item>
+    </array>
+
+    <!-- Nav Drawer List Item Icon -->
+    <string-array name="nav_wedding_icon">
+        <item>@drawable/wedding_hall</item>
+        <item>@drawable/wedding_dress</item>
+        <item>@drawable/cattering</item>
+        <item>@drawable/honey_moon</item>
+        <item>@drawable/photo_video</item>
+        <item>@drawable/beauty_salon</item>
+        <item>@drawable/wedding_protocol</item>
+        <item>@drawable/furniture_rent</item>
+        <item>@drawable/music_band</item>
+        <item>@drawable/dj_icon</item>
+        <item>@drawable/decorators</item>
+        <item>@drawable/wedding_car</item>
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Items -->
+    <string-array name="nav_bussiness_icon">
+        <item>@drawable/handy_man</item>
+        <item>@drawable/auction_house</item>
+        <item>@drawable/tender</item>
+        <item>@drawable/construction</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Items -->
+    <string-array name="nav_rent_icon">
+        <item>@drawable/rent_house</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/rent_car</item>
+        <item>@drawable/guest_house</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Items -->
+    <string-array name="nav_sales_icon">
+        <item>@drawable/furniture_rent</item>
+        <item>@drawable/sale_car</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/bussiness_needs</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Items -->
+    <string-array name="nav_leisure_icon">
+        <item>@drawable/movie</item>
+        <item>@drawable/restaurant</item>
+        <item>@drawable/sport_icon</item>
+        <item>@drawable/art_culture</item>
+        <item>@drawable/events</item>
+        <item>@drawable/science_techno</item>
+        <item>@drawable/how_made</item>
+        <item>@drawable/health_icon</item>
+    </string-array>
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_wedding_hall">WeddingHall</string>
+    <string name="title_activity_wedding_dress">WeddingDress</string>
+    <string name="title_activity_cater_pastery">CaterPastery</string>
+    <string name="title_activity_honey_moon">HoneyMoon</string>
+    <string name="title_activity_photo_video">PhotoVideo</string>
+    <string name="title_activity_beauty_salon">BeautySalon</string>
+    <string name="title_activity_wedding_card">WeddingCard</string>
+    <string name="title_activity_furniture_rent">FurnitureRent</string>
+    <string name="title_activity_music_band">MusicBand</string>
+    <string name="title_activity_music_dj">MusicDJ</string>
+    <string name="title_activity_decorators">Decorators</string>
+    <string name="title_activity_wedding_cars">WeddingCars</string>
+    <string name="title_activity_handy_man">HandyMan</string>
+    <string name="title_activity_sales_tender">SalesTender</string>
+    <string name="title_activity_purchase_tender">PurchaseTender</string>
+    <string name="title_activity_construction_supply">ConstructionSupply</string>
+    <string name="title_activity_rent_house">RentHouse</string>
+    <string name="title_activity_guest_house">GuestHouse</string>
+    <string name="title_activity_rent_car">RentCar</string>
+    <string name="title_activity_bussiness_for_lease">BussinessForLease</string>
+    <string name="title_activity_used_item">UsedItem</string>
+    <string name="title_activity_sales_car">SalesCar</string>
+    <string name="title_activity_sales_house">SalesHouse</string>
+    <string name="title_activity_bussiness_for_sale">BussinessForSale</string>
+    <string name="title_activity_movie_theater">MovieTheater</string>
+    <string name="title_activity_restaurant">Restaurant</string>
+    <string name="title_activity_sport">Sport</string>
+    <string name="title_activity_art_and_culture">ArtAndCulture</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_science_and_techno">ScienceAndTechno</string>
+    <string name="title_activity_how_it_made">HowItMade</string>
+    <string name="title_activity_health_tips">HealthTips</string>
+    <string name="title_activity_localization">LocalizationActivity</string>
+	<string name="title_activity_user_subscription">UserSubscription</string>
+	<string name="title_activity_short_message">Short Message</string>
+</resources>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.infonegari.activity"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <application
+        android:name="com.orm.SugarApp"
+        android:allowBackup="false"
+        android:icon="@drawable/in_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.infonegari.activity.SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+       <meta-data
+            android:name="DATABASE"
+            android:value="infonegari.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="3" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+<!--         <meta-data -->
+<!--             android:name="ENCRYPTION_KEY" -->
+<!--             android:value="TEMP_DATA_ENCRYPTION_KEY" /> -->
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.infonegari.objects.db" />
+<!--         <meta-data -->
+<!--             android:name="com.google.android.gms.version" -->
+<!--             android:value="@integer/google_play_services_version" /> -->
+                
+        <activity
+            android:name="com.infonegari.activity.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.HomeActivity"
+            android:label="@string/leisure_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.MyWeddingActivity"
+            android:label="@string/wedding_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.BussinessActivity"
+            android:label="@string/bussiness_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ForRentActivity"
+            android:label="@string/rent_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ForSaleActivity"
+            android:label="@string/sales_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.LeisureActivity"
+            android:label="@string/leisure_app_name" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ItemActivity"
+            android:theme="@style/CustomTheme" >
+        </activity>
+
+        <activity
+            android:name="com.infonegari.activity.DashboardActivity"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.WeddingHall"
+            android:label="@string/title_activity_wedding_hall" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.WeddingDress"
+            android:label="@string/title_activity_wedding_dress" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.CaterPastery"
+            android:label="@string/title_activity_cater_pastery" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.HoneyMoon"
+            android:label="@string/title_activity_honey_moon" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.PhotoVideo"
+            android:label="@string/title_activity_photo_video" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.BeautySalon"
+            android:label="@string/title_activity_beauty_salon" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.WeddingCard"
+            android:label="@string/title_activity_wedding_card" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.FurnitureRent"
+            android:label="@string/title_activity_furniture_rent" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.MusicBand"
+            android:label="@string/title_activity_music_band" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.MusicDJ"
+            android:label="@string/title_activity_music_dj" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.Decorators"
+            android:label="@string/title_activity_decorators" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.WeddingCars"
+            android:label="@string/title_activity_wedding_cars" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.HandyMan"
+            android:label="@string/title_activity_handy_man" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.SalesTender"
+            android:label="@string/title_activity_sales_tender" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.PurchaseTender"
+            android:label="@string/title_activity_purchase_tender" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ConstructionSupply"
+            android:label="@string/title_activity_construction_supply" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.RentHouse"
+            android:label="@string/title_activity_rent_house" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.GuestHouse"
+            android:label="@string/title_activity_guest_house" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.RentCar"
+            android:label="@string/title_activity_rent_car" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.BussinessForLease"
+            android:label="@string/title_activity_bussiness_for_lease" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.UsedItem"
+            android:label="@string/title_activity_used_item" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.SalesCar"
+            android:label="@string/title_activity_sales_car" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.SalesHouse"
+            android:label="@string/title_activity_sales_house" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.BussinessForSale"
+            android:label="@string/title_activity_bussiness_for_sale" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.MovieTheater"
+            android:label="@string/title_activity_movie_theater" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.Restaurant"
+            android:label="@string/title_activity_restaurant" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.Sport"
+            android:label="@string/title_activity_sport" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ArtAndCulture"
+            android:label="@string/title_activity_art_and_culture" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.Events"
+            android:label="@string/title_activity_events" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ScienceAndTechno"
+            android:label="@string/title_activity_science_and_techno" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.HowItMade"
+            android:label="@string/title_activity_how_it_made" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.HealthTips"
+            android:label="@string/title_activity_health_tips" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.LocalizationActivity"
+            android:label="Language Setting" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.UserSubscription"
+            android:label="@string/title_activity_user_subscription" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.ShortMessage"
+            android:label="@string/title_activity_short_message" >
+        </activity>
+        <activity
+            android:name="com.infonegari.activity.DownloadDataActivity"
+            android:label="Download Data" >
+        </activity>        
+    </application>
+
+</manifest>
