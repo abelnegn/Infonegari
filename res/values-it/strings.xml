@@ -56,6 +56,19 @@
     <string name="txt_localization">Select Language</string>
     <string name="txt_title">Title</string>
     <string name="txt_category">Category</string>
+    <string name="m_back">Back</string>
+    <string name="documents">Document</string>
+    <string name="identifiers">Identifiers</string>
+    <string name="txt_cloth_type">Cloth Type</string>
+    <string name="txt_service_type">Service Type</string>
+    <string name="txt_service">Service</string>
+    <string name="txt_machine">Machine</string>
+    <string name="txt_material">Material</string>
+    <string name="txt_show_time">Show Time</string>
+    <string name="txt_show_date">Show Date</string>
+    <string name="txt_car_year">Year</string>
+    <string name="txt_city">City</string>
+    <string name="txt_main_category">Category</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -67,6 +80,7 @@
         <item>Leisure</item>
         <item>Shops</item>
         <item>Job Vacancy</item>
+        <item>Download</item>
     </string-array>
 
     <!-- Nav Drawer wedding Items -->
@@ -123,7 +137,7 @@
 
     <!-- Nav Drawer Shops Items -->
     <string-array name="nav_shop_items">
-        <item>Cloth</item>
+        <item>Cloths</item>
         <item>Electronics</item>
         <item>Furniture</item>
         <item>Computer Accessories</item>

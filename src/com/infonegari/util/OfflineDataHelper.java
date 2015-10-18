@@ -396,6 +396,7 @@ public class OfflineDataHelper {
     	newCinema.setShowDate(cinema.getShowDate());
     	newCinema.setDiscription(cinema.getDiscription());
     	newCinema.setPrice(cinema.getPrice());
+    	newCinema.setMovie_Type(cinema.getMovie_Type());
     	newCinema.setLocationId(cinema.getLocationId());
     	
     	newCinema.save();
@@ -542,7 +543,7 @@ public class OfflineDataHelper {
     
     public void saveHdntaData(Hdnta hdnta){
     	Hdnta newHdnta = new Hdnta();
-    	newHdnta.setHDnTAId(hdnta.getHDnTAId());
+    	newHdnta.setHdntaId(hdnta.getHdntaId());
     	newHdnta.setHDnTAName(hdnta.getHDnTAName());
     	newHdnta.setLocationId(hdnta.getLocationId());
     	newHdnta.setMemberId(hdnta.getMemberId());
@@ -556,6 +557,7 @@ public class OfflineDataHelper {
     public void saveHouseListingData(HouseListing houseListing){
     	HouseListing newHL = new HouseListing();
     	newHL.setHouseListingId(houseListing.getHouseListingId());
+    	newHL.setHouse_Name(houseListing.getHouse_Name());
     	newHL.setHouseDiscription(houseListing.getHouseDiscription());
     	newHL.setHousePrice(houseListing.getHousePrice());
     	newHL.setHouseTypeId(houseListing.getHouseTypeId());
@@ -750,6 +752,7 @@ public class OfflineDataHelper {
     	newUI.setUsedItemTypeId(usedItem.getUsedItemTypeId());
     	newUI.setLocationId(usedItem.getLocationId());
     	newUI.setPrice(usedItem.getPrice());
+    	newUI.setDiscription(usedItem.getDiscription());
     	newUI.setMemberId(usedItem.getMemberId());
     	
     	newUI.save();
@@ -817,7 +820,7 @@ public class OfflineDataHelper {
     
     public void saveWCRPData(WeddingCardRingProtocol wcrp){
     	WeddingCardRingProtocol newWCRP = new WeddingCardRingProtocol();
-    	newWCRP.setWeddingCRPId(wcrp.getWeddingCRPId());
+    	newWCRP.setWcrpId(wcrp.getWcrpId());
     	newWCRP.setWeddingCRPName(wcrp.getWeddingCRPName());
     	newWCRP.setLocationId(wcrp.getLocationId());
     	newWCRP.setPrice(wcrp.getPrice());

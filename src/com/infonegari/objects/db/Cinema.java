@@ -1,7 +1,5 @@
 package com.infonegari.objects.db;
 
-import java.util.Date;
-
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -12,8 +10,9 @@ public class Cinema extends SugarRecord<Cinema>{
 	private String CinemaTitle;
 	private long CinemaPlaceId;
 	private String ShowTime;
-	private Date ShowDate;
+	private String ShowDate;
 	private String Discription;
+	private long Movie_Type;
 	private float Price;
 	private long LocationId;
 	
@@ -62,14 +61,13 @@ public class Cinema extends SugarRecord<Cinema>{
 	public void setShowTime(String showTime) {
 		ShowTime = showTime;
 	}
+	
 
-
-	public Date getShowDate() {
+	public String getShowDate() {
 		return ShowDate;
 	}
 
-
-	public void setShowDate(Date showDate) {
+	public void setShowDate(String showDate) {
 		ShowDate = showDate;
 	}
 
@@ -82,6 +80,14 @@ public class Cinema extends SugarRecord<Cinema>{
 		Discription = discription;
 	}
 
+
+	public long getMovie_Type() {
+		return Movie_Type;
+	}
+
+	public void setMovie_Type(long movie_Type) {
+		Movie_Type = movie_Type;
+	}
 
 	public float getPrice() {
 		return Price;

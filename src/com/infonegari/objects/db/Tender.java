@@ -11,9 +11,9 @@ public class Tender extends SugarRecord<Tender>{
 	private long tender_id;
 	private String Company_Name;
 	private String Phone_Number;
-	private Date Post_Date;
-	private Date Submission_Deadline;
-	private Date Opening_Date;
+	private String Post_Date;
+	private String Submission_Deadline;
+	private String Opening_Date;
 	private String Tender_Catagory;
 	private String Discription;
 	private String Source;
@@ -47,27 +47,27 @@ public class Tender extends SugarRecord<Tender>{
 		Phone_Number = phone_Number;
 	}
 
-	public Date getPost_Date() {
+	public String getPost_Date() {
 		return Post_Date;
 	}
 
-	public void setPost_Date(Date post_Date) {
+	public void setPost_Date(String post_Date) {
 		Post_Date = post_Date;
 	}
 
-	public Date getSubmission_Deadline() {
+	public String getSubmission_Deadline() {
 		return Submission_Deadline;
 	}
 
-	public void setSubmission_Deadline(Date submission_Deadline) {
+	public void setSubmission_Deadline(String submission_Deadline) {
 		Submission_Deadline = submission_Deadline;
 	}
 
-	public Date getOpening_Date() {
+	public String getOpening_Date() {
 		return Opening_Date;
 	}
 
-	public void setOpening_Date(Date opening_Date) {
+	public void setOpening_Date(String opening_Date) {
 		Opening_Date = opening_Date;
 	}
 

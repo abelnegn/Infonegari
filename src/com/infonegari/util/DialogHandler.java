@@ -11,7 +11,7 @@ public class DialogHandler {
     // Dialog. --------------------------------------------------------------
 
     public boolean Confirm(Activity act, String Title, String ConfirmText,
-            String CancelBtn, String OkBtn, Runnable aProcedure, Runnable bProcedure) {
+    		String OkBtn, String CancelBtn, Runnable aProcedure, Runnable bProcedure) {
         ans_true = aProcedure;
         ans_false= bProcedure;
         AlertDialog dialog = new AlertDialog.Builder(act).create();

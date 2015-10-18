@@ -39,7 +39,7 @@
     </LinearLayout>
        
         <Button 
+            android:id="@+id/btn_ok"
             style="@style/Button"
-            android:onClick="onClick"
             android:text="Ok"/>  
 </LinearLayout>

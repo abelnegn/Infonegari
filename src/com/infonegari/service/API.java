@@ -8,6 +8,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Headers;
+import retrofit.http.Query;
 
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
@@ -278,271 +279,316 @@ public class API {
 	public interface AuctionCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.AUCTION_CATEGORY)
-        public void getAuctionCategories(Callback<List<AuctionCategory>> callback);
+        public void getAuctionCategories(@Query("ac_id") long acId, 
+        		Callback<List<AuctionCategory>> callback);
     }
 	
 	public interface CarTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CAR_TYPES)
-        public void getCarTypes(Callback<List<CarType>> callback);
+        public void getCarTypes(@Query("car_type_id") long acId, 
+        		Callback<List<CarType>> callback);
     }
 	
 	public interface CinemaPlaceService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CINEMA_PLACE)
-        public void getCinemaPlace(Callback<List<CinemaPlace>> callback);
+        public void getCinemaPlace(@Query("cp_id") long cpId, 
+        		Callback<List<CinemaPlace>> callback);
     }
 	
 	public interface CityService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CITY)
-        public void getCities(Callback<List<City>> callback);
+        public void getCities(@Query("city_id") long cityId, 
+        		Callback<List<City>> callback);
     }
 	
 	public interface ClinicService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CLINIC)
-        public void getClinics(Callback<List<Clinic>> callback);
+        public void getClinics(@Query("clinic_id") long clinicId, 
+        		Callback<List<Clinic>> callback);
     }
 	
 	public interface HouseTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.HOUSETYPE)
-        public void getHouseTypes(Callback<List<HouseType>> callback);
+        public void getHouseTypes(@Query("ht_id") long htId, 
+        		Callback<List<HouseType>> callback);
     }
 	
 	public interface JobCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.JOB_CATEGORY)
-        public void getJobCategories(Callback<List<JobCategory>> callback);
+        public void getJobCategories(@Query("jc_id") long jcId, 
+        		Callback<List<JobCategory>> callback);
     }
 	
 	public interface JobService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.JOB)
-        public void getJobs(Callback<List<Jobs>> callback);
+        public void getJobs(@Query("job_id") long jobId, 
+        		Callback<List<Jobs>> callback);
     }
 	
 	public interface LocationService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
-        @GET(APIEndPoint.LOCATION)
-        public void getLocations(Callback<List<Location>> callback);
+        @GET(APIEndPoint.LOCATION )
+        public void getLocations(@Query("loc_id") long locId,
+        		Callback<List<Location>> callback);
     }
 	
 	public interface MainCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.MAIN_CATEGORY)
-        public void getMainCategories(Callback<List<MainCategory>> callback);
+        public void getMainCategories(@Query("mc_id") long mcId, 
+        		Callback<List<MainCategory>> callback);
     }
 	
 	public interface MediaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.MEDIA)
-        public void getMedias(Callback<List<Media>> callback);
+        public void getMedias(@Query("media_id") long mediaId, 
+        		Callback<List<Media>> callback);
     }
 	
 	public interface MembersService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.MEMBERS)
-        public void getMembers(Callback<List<Members>> callback);
+        public void getMembers(@Query("member_id") long memberId, 
+        		Callback<List<Members>> callback);
     }
 	
 	public interface MovieTitleService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.MOVIE_TITLE)
-        public void getMovieTitles(Callback<List<MovieTitle>> callback);
+        public void getMovieTitles(@Query("mt_id") long mtId, 
+        		Callback<List<MovieTitle>> callback);
     }
 	
 	public interface MovieTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.MOVIE_TYPE)
-        public void getMovieTypes(Callback<List<MovieType>> callback);
+        public void getMovieTypes(@Query("mt_id") long mtId, 
+        		Callback<List<MovieType>> callback);
     }
 	
 	public interface NewsLetterService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.NEWS_LETTER)
-        public void getNewsLetter(Callback<List<NewsLetter>> callback);
+        public void getNewsLetter(@Query("nl_id") long nlId, 
+        		Callback<List<NewsLetter>> callback);
     }
 	
 	public interface NightClubService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.NIGHT_CLUB)
-        public void getNightClubs(Callback<List<NightClub>> callback);
+        public void getNightClubs(@Query("nc_id") long ncId, 
+        		Callback<List<NightClub>> callback);
     }
 	
 	public interface PharmacyService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.PHARMACY)
-        public void getPharmacy(Callback<List<Pharmacy>> callback);
+        public void getPharmacy(@Query("pharmacy_id") long pharmacyId, 
+        		Callback<List<Pharmacy>> callback);
     }
 	
 	public interface RestaurantTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.RESTAURANT_TYPE)
-        public void getRestaurantType(Callback<List<RestaurantType>> callback);
+        public void getRestaurantType(@Query("rt_id") long rtId, 
+        		Callback<List<RestaurantType>> callback);
     }
 	
 	public interface SubCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SUB_CATEGORY)
-        public void getSubCategories(Callback<List<SubCategory>> callback);
+        public void getSubCategories(@Query("sc_id") long scId, 
+        		Callback<List<SubCategory>> callback);
     }
 	
 	public interface TenderCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.TENDER_CATEGORY)
-        public void getTenderCategories(Callback<List<TenderCategory>> callback);
+        public void getTenderCategories(@Query("tc_id") long tcId, 
+        		Callback<List<TenderCategory>> callback);
     }
 	
 	public interface UsedItemTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.USED_ITEM_TYPE)
-        public void getUsedItemTypes(Callback<List<UsedItemType>> callback);
+        public void getUsedItemTypes(@Query("uit_id") long uitId, 
+        		Callback<List<UsedItemType>> callback);
     }
 	
 	public interface AuctionService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.AUCTION)
-        public void getAuctions(Callback<List<Auction>> callback);
+        public void getAuctions(@Query("auction_id") long auctionId, 
+        		Callback<List<Auction>> callback);
     }
 	
 	public interface BandService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.BAND)
-        public void getBands(Callback<List<Band>> callback);
+        public void getBands(@Query("band_id") long bandId, 
+        		Callback<List<Band>> callback);
     }
 	
 	public interface BankService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.BANK)
-        public void getBanKs(Callback<List<Bank>> callback);
+        public void getBanKs(@Query("bank_id") long bankId, 
+        		Callback<List<Bank>> callback);
     }
 	
 	public interface BeautySaloonService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.BEAUTY_SALOONS)
-        public void getBeautySaloons(Callback<List<BeautySaloon>> callback);
+        public void getBeautySaloons(@Query("bs_id") long bsId, 
+        		Callback<List<BeautySaloon>> callback);
     }
 	
 	public interface BusinessListingService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.BUSINESS_LISTING)
-        public void getBusinessListings(Callback<List<BusinessListing>> callback);
+        public void getBusinessListings(@Query("bl_id") long blId, 
+        		Callback<List<BusinessListing>> callback);
     }
 	
 	public interface CarListingService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CAR_LISTING)
-        public void getCarListings(Callback<List<CarListing>> callback);
+        public void getCarListings(@Query("cl_id") long clId, 
+        		Callback<List<CarListing>> callback);
     }
 	
 	public interface CaterersPasteriesService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CATERERS_PASTERIES)
-        public void getCaterersPasteries(Callback<List<CaterersPasteries>> callback);
+        public void getCaterersPasteries(@Query("cp_id") long cpId, 
+        		Callback<List<CaterersPasteries>> callback);
     }
 	
 	public interface CinemaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CINEMA)
-        public void getCinemas(Callback<List<Cinema>> callback);
+        public void getCinemas(@Query("cinema_id") long cinemaId, 
+        		Callback<List<Cinema>> callback);
     }
 	
 	public interface ConstructionService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CONSTRUCTION_SSNS)
-        public void getConstructions(Callback<List<Construction>> callback);
+        public void getConstructions(@Query("con_id") long conId, 
+        		Callback<List<Construction>> callback);
     }
 
 	public interface ConstructionMachineService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CONSTRUCTION_MACHINE)
-        public void getConstructionMachines(Callback<List<ConstructionMachine>> callback);
+        public void getConstructionMachines(@Query("cm_id") long cmId, 
+        		Callback<List<ConstructionMachine>> callback);
     }
 	
 	public interface ConstructionMaterialService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CONSTRUCTION_MATERIAL)
-        public void getConstructionMaterials(Callback<List<ConstructionMaterial>> callback);
+        public void getConstructionMaterials(@Query("cm_id") long cmId, 
+        		Callback<List<ConstructionMaterial>> callback);
     }
 	
 	public interface DecoratorsService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.DECORATORS)
-        public void getDecorators(Callback<List<Decorators>> callback);
+        public void getDecorators(@Query("decore_id") long decoreId, 
+        		Callback<List<Decorators>> callback);
     }
 	
 	public interface DJService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.DJ)
-        public void getDJ(Callback<List<DJ>> callback);
+        public void getDJ(@Query("dj_id") long djId, 
+        		Callback<List<DJ>> callback);
     }
 	
 	public interface EducationCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.EDUCATION_CATEGORY)
-        public void getEducationCategories(Callback<List<EducationCategory>> callback);
+        public void getEducationCategories(@Query("ec_id") long ecId, 
+        		Callback<List<EducationCategory>> callback);
     }
 	
 	public interface ElectronicsBrandService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.ELECTRONICS_BRAND)
-        public void getElectronicBrands(Callback<List<ElectronicsBrand>> callback);
+        public void getElectronicBrands(@Query("eb_id") long ebId, 
+        		Callback<List<ElectronicsBrand>> callback);
     }
 	
 	public interface EventService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.EVENT)
-        public void getEvents(Callback<List<Event>> callback);
+        public void getEvents(@Query("event_id") long eventId, 
+        		Callback<List<Event>> callback);
     }
 	
 	public interface FemaleClothService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.FEMALE_CLOTH)
-        public void getFemaleCloths(Callback<List<FemaleCloth>> callback);
+        public void getFemaleCloths(@Query("cloth_id") long clothId, 
+        		Callback<List<FemaleCloth>> callback);
     }
 	
 	public interface GuarageService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.GUARAGE)
-        public void getGuarages(Callback<List<Guarage>> callback);
+        public void getGuarages(@Query("garage_id") long garageId, 
+        		Callback<List<Guarage>> callback);
     }
 	
 	public interface GuestHouseService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.GUEST_HOUSE)
-        public void getGuestHouse(Callback<List<GuestHouse>> callback);
+        public void getGuestHouse(@Query("gh_id") long ghId, 
+        		Callback<List<GuestHouse>> callback);
     }
 	
 	public interface HallTypeService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.HALL_TYPE)
-        public void getHallTypes(Callback<List<HallType>> callback);
+        public void getHallTypes(@Query("ht_id") long htId, 
+        		Callback<List<HallType>> callback);
     }
 	
 	public interface HandyManService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.HANDY_MAN)
-        public void getHandyMan(Callback<List<HandyMan>> callback);
+        public void getHandyMan(@Query("hm_id") long hmId, 
+        		Callback<List<HandyMan>> callback);
     }	
 	
 	public interface HdntaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.HDNTA)
-        public void getHDNTA(Callback<List<Hdnta>> callback);
+        public void getHDNTA(@Query("hdnta_id") long hdntaId, 
+        		Callback<List<Hdnta>> callback);
     }
 	
 	public interface HouseListingService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.HOUSE_LISTING)
-        public void getHouseListing(Callback<List<HouseListing>> callback);
+        public void getHouseListing(@Query("hl_id") long hlId, 
+        		Callback<List<HouseListing>> callback);
     }
 	
 	public interface PhotoVideoService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.PHOTO_VIDEO)
-        public void getPhotoVideos(Callback<List<PhotoVideo>> callback);
+        public void getPhotoVideos(@Query("pv_id") long pvId, 
+        		Callback<List<PhotoVideo>> callback);
     }
 	
 	public interface RecaptchaService{
@@ -554,108 +600,126 @@ public class API {
 	public interface ResortService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.RESORT)
-        public void getResorts(Callback<List<Resort>> callback);
+        public void getResorts(@Query("resort_id") long resortId, 
+        		Callback<List<Resort>> callback);
     }
 	
 	public interface RestaurantService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.RESTAURANT)
-        public void getRestaurants(Callback<List<Restaurant>> callback);
+        public void getRestaurants(@Query("restaurant_id") long restaurantId, 
+        		Callback<List<Restaurant>> callback);
     }
 	
 	public interface SalesAuctionService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SALES_AUCTION)
-        public void getSalesAuction(Callback<List<SalesAuction>> callback);
+        public void getSalesAuction(@Query("sa_id") long saId, 
+        		Callback<List<SalesAuction>> callback);
     }
 	
 	public interface ShopService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP)
-        public void getShops(Callback<List<Shop>> callback);
+        public void getShops(@Query("shop_id") long shopId, 
+        		Callback<List<Shop>> callback);
     }
 	
 	public interface ShopCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP_CATEGORY)
-        public void getShopCategories(Callback<List<ShopCategory>> callback);
+        public void getShopCategories(@Query("sc_id") long scId, 
+        		Callback<List<ShopCategory>> callback);
     }
 	
 	public interface ShopClothService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP_CLOTH)
-        public void getShopCloth(Callback<List<ShopCloth>> callback);
+        public void getShopCloth(@Query("sc_id") long scId, 
+        		Callback<List<ShopCloth>> callback);
     }
 	
 	public interface ShopComputerService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP_COMPUTER)
-        public void getShopComputers(Callback<List<ShopComputer>> callback);
+        public void getShopComputers(@Query("sc_id") long scId, 
+        		Callback<List<ShopComputer>> callback);
     }
 	
 	public interface ShopElectronicService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP_ELECTRONIC)
-        public void getShopElectronics(Callback<List<ShopElectronic>> callback);
+        public void getShopElectronics(@Query("se_id") long seId, 
+        		Callback<List<ShopElectronic>> callback);
     }
 	
 	public interface ShopFurnitureService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.SHOP_FURNITURE)
-        public void getShopFurnitures(Callback<List<ShopFurniture>> callback);
+        public void getShopFurnitures(@Query("sf_id") long sfId, 
+        		Callback<List<ShopFurniture>> callback);
     }
 	
 	public interface TaxiService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.TAXI)
-        public void getTaxies(Callback<List<Taxi>> callback);
+        public void getTaxies(@Query("taxi_id") long taxiId, 
+        		Callback<List<Taxi>> callback);
     }
 	
 	public interface TravelAgentService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.TRAVEL_AGENT)
-        public void getTravelAgents(Callback<List<TravelAgent>> callback);
+        public void getTravelAgents(@Query("ta_id") long taId, 
+        		Callback<List<TravelAgent>> callback);
     }
 	
 	public interface TenderService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.TENDER)
-        public void getTenders(Callback<List<Tender>> callback);
+        public void getTenders(@Query("tender_id") long tenderId, 
+        		Callback<List<Tender>> callback);
     }
 	
 	public interface UsedItemService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.USED_ITEMS)
-        public void getUsedItem(Callback<List<UsedItem>> callback);
+        public void getUsedItem(@Query("ui_id") long uiId, 
+        		Callback<List<UsedItem>> callback);
     }
 	
 	public interface WeddingCarService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.WEDDING_CAR)
-        public void getWeddingCars(Callback<List<WeddingCar>> callback);
+        public void getWeddingCars(@Query("wc_id") long wcId, 
+        		Callback<List<WeddingCar>> callback);
     }
 	
 	public interface WeddingClothService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.WEDDING_CLOTH)
-        public void getWeddingCloths(Callback<List<WeddingCloth>> callback);
+        public void getWeddingCloths(@Query("wc_id") long wcId, 
+        		Callback<List<WeddingCloth>> callback);
     }
 	
 	public interface WeddingHallService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.WEDDING_HALL)
-        public void getWeddingHalls(Callback<List<WeddingHall>> callback);
+        public void getWeddingHalls(@Query("wh_id") long whId, 
+        		Callback<List<WeddingHall>> callback);
     }
 	
 	public interface WeddingItemRentService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.WEDDING_ITEMS_RENT)
-        public void getWeddingItemsRent(Callback<List<WeddingItemRent>> callback);
+        public void getWeddingItemsRent(@Query("wir_id") long wirId, 
+        		Callback<List<WeddingItemRent>> callback);
     }
 	
 	public interface WeddingCardRingProtocolService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.WEDDINGCARD_RINGPROTOCOLS)
-        public void getWeddingCardRingProtocols(Callback<List<WeddingCardRingProtocol>> callback);
+        public void getWeddingCardRingProtocols(@Query("wcrp_id") long wcrpId, 
+        		Callback<List<WeddingCardRingProtocol>> callback);
     }
 }

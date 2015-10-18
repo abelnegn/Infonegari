@@ -11,7 +11,7 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	private long WeddingHallId;
 	private String WeddingHallName;
 	private String ServiceType;
-	private Date dateAvailable;
+	private String dateAvailable;
 	private long LocationId;
 	private float Price;
 	private long MemberId;
@@ -49,12 +49,17 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	public void setServiceType(String serviceType) {
 		ServiceType = serviceType;
 	}
-	public Date getDateAvailable() {
+
+	public String getDateAvailable() {
 		return dateAvailable;
 	}
-	public void setDateAvailable(Date dateAvailable) {
+
+
+	public void setDateAvailable(String dateAvailable) {
 		this.dateAvailable = dateAvailable;
 	}
+
+
 	public long getLocationId() {
 		return LocationId;
 	}

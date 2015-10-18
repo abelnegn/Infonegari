@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/list_selector">
+    
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	  	<TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textColor="@color/list_item_title"
+	        android:text="Job Title"/>
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/job_title"/>
+  	</LinearLayout>
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Job Category"/>	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/job_category"/>
+	</LinearLayout>
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">	
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Location"/>    	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/job_location"/>
+	</LinearLayout>
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Education Level"/>	    	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/education_level"/>  
+	</LinearLayout> 
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Qualification"/>	    	      
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/qualification"/>
+	</LinearLayout>
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Responsibility"/>	    	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/responsibility"/>
+	</LinearLayout> 
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">	
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Experience"/>	    	       
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/experience"/>
+	</LinearLayout> 
+  	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">	
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Salary"/>    		       
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/salary"/> 
+    </LinearLayout>
+ 	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">  
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Address"/>     	   
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/address"/> 
+    </LinearLayout>
+ 	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"> 
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Work Place"/>    	   
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/work_place"/>
+    </LinearLayout>
+ 	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Dead Line"/>	           
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/dead_line"/> 
+    </LinearLayout>
+ 	<LinearLayout  android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">    
+	    <TextView
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text="Job Duration"/>    	 
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/list_item_title"
+	        android:text=""
+	        android:id="@+id/job_duration"/>  
+	</LinearLayout>            
+</LinearLayout>

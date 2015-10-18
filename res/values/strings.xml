@@ -55,6 +55,7 @@
     <string name="txt_title">ርእስ</string>
     <string name="txt_category">ምድብ</string>
     <string name="btn_movie_theater">ፊልም ፕሮግራም</string>
+	<string name="m_back">Back</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">

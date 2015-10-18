@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E5DFDF"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D5CED5"
+        android:orientation="vertical">      
+          
+        <ImageSwitcher
+	        android:id="@+id/item_imageSwitcher"
+	        android:layout_width="match_parent"
+	        android:layout_height="70dp" />
+        
+    </LinearLayout> 
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:orientation="horizontal">      
+        <TextView 
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:text="@string/txt_title"
+	        android:layout_height= "wrap_content"
+	        android:layout_width= "110dp"/>       
+        <EditText 
+            android:layout_height= "wrap_content"
+			android:layout_width= "fill_parent"
+			android:background="#FFFFFF"
+	        android:id="@+id/title"/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:orientation="horizontal">      
+        <TextView 
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:text="@string/txt_location"
+	        android:layout_height= "wrap_content"
+	        android:layout_width= "110dp"/>       
+        <Spinner 
+            android:layout_height= "wrap_content"
+			android:layout_width= "fill_parent"
+			android:background="#FFFFFF"
+	        android:id="@+id/location"/> 
+	</LinearLayout>  
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D5CED5"
+        android:orientation="vertical">  	
+
+        <Button
+            android:id="@+id/search_button"
+            style="@style/Button"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="#932929"
+            android:text="@string/btn_search"
+            android:textColor="#FFFFFF" />
+    
+    </LinearLayout>     
+    <ListView
+        android:id="@+id/list_hdnta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="#D5CED5"
+        android:dividerHeight="10dp"        
+        android:listSelector="@drawable/list_selector"
+        android:background="@color/list_background"/>       
+</LinearLayout>

@@ -7,6 +7,7 @@ import com.orm.query.Select;
 
 public class HouseListing extends SugarRecord<HouseListing>{
 	private long HouseListingId;
+	private String House_Name;
 	private String HouseDiscription;
 	private float HousePrice;
 	private long HouseTypeId;
@@ -30,6 +31,15 @@ public class HouseListing extends SugarRecord<HouseListing>{
 
 	public void setHouseListingId(long houseListingId) {
 		HouseListingId = houseListingId;
+	}
+
+	public String getHouse_Name() {
+		return House_Name;
+	}
+
+
+	public void setHouse_Name(String house_Name) {
+		House_Name = house_Name;
 	}
 
 

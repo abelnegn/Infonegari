@@ -11,6 +11,7 @@ public class UsedItem extends SugarRecord<UsedItem>{
 	private long UsedItemTypeId;
 	private long LocationId;
 	private float Price;
+	private String discription;
 	private long MemberId;
 	
     public boolean isNew() {
@@ -66,6 +67,16 @@ public class UsedItem extends SugarRecord<UsedItem>{
 
 	public void setPrice(float price) {
 		Price = price;
+	}
+
+
+	public String getDiscription() {
+		return discription;
+	}
+
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
 	}
 
 

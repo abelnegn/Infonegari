@@ -6,7 +6,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 public class WeddingCardRingProtocol extends SugarRecord<WeddingCardRingProtocol>{
-	private long WeddingCRPId;
+	private long wcrpId;
 	private String WeddingCRPName;
 	private long LocationId;
 	private float Price;
@@ -19,13 +19,13 @@ public class WeddingCardRingProtocol extends SugarRecord<WeddingCardRingProtocol
     }
 
 
-	public long getWeddingCRPId() {
-		return WeddingCRPId;
+	public long getWcrpId() {
+		return wcrpId;
 	}
 
 
-	public void setWeddingCRPId(long weddingCRPId) {
-		WeddingCRPId = weddingCRPId;
+	public void setWcrpId(long wcrpId) {
+		this.wcrpId = wcrpId;
 	}
 
 

@@ -6,7 +6,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 public class Hdnta extends SugarRecord<Hdnta>{
-	private long HDnTAId;
+	private long hdntaId;
 	private String HDnTAName;
 	private long LocationId;
 	private long MemberId;
@@ -18,20 +18,17 @@ public class Hdnta extends SugarRecord<Hdnta>{
         return count == 0;
     }
 
-	public long getHDnTAId() {
-		return HDnTAId;
+	public long getHdntaId() {
+		return hdntaId;
 	}
 
-
-	public void setHDnTAId(long hDnTAId) {
-		HDnTAId = hDnTAId;
+	public void setHdntaId(long hdntaId) {
+		this.hdntaId = hdntaId;
 	}
-
 
 	public String getHDnTAName() {
 		return HDnTAName;
 	}
-
 
 	public void setHDnTAName(String hDnTAName) {
 		HDnTAName = hDnTAName;
