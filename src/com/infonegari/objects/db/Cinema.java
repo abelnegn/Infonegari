@@ -8,13 +8,11 @@ import com.orm.query.Select;
 public class Cinema extends SugarRecord<Cinema>{
 	private long CinemaId;
 	private String CinemaTitle;
-	private long CinemaPlaceId;
-	private String ShowTime;
-	private String ShowDate;
+	private String Calendar;
 	private String Discription;
 	private long Movie_Type;
-	private float Price;
 	private long LocationId;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Cinema.class).where(Condition.prop("id").eq(id)).count();
@@ -31,55 +29,29 @@ public class Cinema extends SugarRecord<Cinema>{
 		CinemaId = cinemaId;
 	}
 
-
-
 	public String getCinemaTitle() {
 		return CinemaTitle;
 	}
-
 
 	public void setCinemaTitle(String cinemaTitle) {
 		CinemaTitle = cinemaTitle;
 	}
 
-
-	public long getCinemaPlaceId() {
-		return CinemaPlaceId;
+	public String getCalendar() {
+		return Calendar;
 	}
 
-
-	public void setCinemaPlaceId(long cinemaPlaceId) {
-		CinemaPlaceId = cinemaPlaceId;
-	}
-
-
-	public String getShowTime() {
-		return ShowTime;
-	}
-
-
-	public void setShowTime(String showTime) {
-		ShowTime = showTime;
-	}
-	
-
-	public String getShowDate() {
-		return ShowDate;
-	}
-
-	public void setShowDate(String showDate) {
-		ShowDate = showDate;
+	public void setCalendar(String calendar) {
+		Calendar = calendar;
 	}
 
 	public String getDiscription() {
 		return Discription;
 	}
 
-
 	public void setDiscription(String discription) {
 		Discription = discription;
 	}
-
 
 	public long getMovie_Type() {
 		return Movie_Type;
@@ -89,25 +61,21 @@ public class Cinema extends SugarRecord<Cinema>{
 		Movie_Type = movie_Type;
 	}
 
-	public float getPrice() {
-		return Price;
-	}
-
-
-	public void setPrice(float price) {
-		Price = price;
-	}
-
-
 	public long getLocationId() {
 		return LocationId;
 	}
-
 
 	public void setLocationId(long locationId) {
 		LocationId = locationId;
 	}
 
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
 
 	@Override
     public String toString() {

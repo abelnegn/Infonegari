@@ -24,12 +24,11 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class DownloadAdsImage {
-	private static final String SERVICE_URL = "http://www.infonegari.com/images/mobile/ads";
+	private static final String SERVICE_URL = "http://www.infonegari.com/img/ads/mobile";
 	private Context context;
 
 	public Context getContext() {
@@ -43,21 +42,11 @@ public class DownloadAdsImage {
 	public DownloadAdsImage(Context context){
 		this.context = context;
 		
-	    if(isInternetConnectionActive(context)) {
+		if (Network.isOnline(context)) {
 	        WebServiceTask wsAdsImage = new WebServiceTask(WebServiceTask.GET_TASK, context, "");
 	        String fileAddress = SERVICE_URL + "/" + "adsImageNames.txt";
 	        wsAdsImage.execute(new String[] { fileAddress });
 	    }	   
-	}
-    
-	private boolean isInternetConnectionActive(Context context) {
-		ConnectivityManager check = (ConnectivityManager) 
-				this.context.getSystemService(Context.CONNECTIVITY_SERVICE);  
-
-		  if(check.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED)
-		     return true;
-		  else
-		     return false;
 	}
 	
     public void writeToSDFile(String fileName, byte[] imageFile){
@@ -161,7 +150,7 @@ public class DownloadAdsImage {
                 	        }               	                       			
                 		}
                 	}
-                	downloadNotification();
+//                	downloadNotification();
                 } catch (Exception e) {      
                     Log.e(TAG, e.getLocalizedMessage(), e);    
                 }

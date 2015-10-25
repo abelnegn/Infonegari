@@ -13,6 +13,7 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 	private long MemberId;
 	private String WorkType;
 	private String Discription;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(PhotoVideo.class).where(Condition.prop("id").eq(id)).count();
@@ -87,6 +88,16 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 	public void setDiscription(String discription) {
 		Discription = discription;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

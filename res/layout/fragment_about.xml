@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/list_background"
 	android:orientation="vertical">
     
     <!-- Listview to display wedding menu -->
@@ -11,15 +12,84 @@
         android:orientation="vertical">      
           
         <ImageSwitcher
-	        android:id="@+id/shop_imageSwitcher"
+	        android:id="@+id/about_imageSwitcher"
 	        android:layout_width="match_parent"
 	        android:layout_height="70dp" />
         
     </LinearLayout>    
-    <TextView
-        android:id="@+id/about_view"
+    <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"      
-        android:background="@color/list_background"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">      
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp"
+	        android:text="Platform provided under licence by Infonegari"/>
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp"
+	        android:text="website: www.infonegari.com"/>	    	     
+	</LinearLayout>
+	<LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">   
+        <TextView
+	        android:id="@+id/about_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:text=""/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">      
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp"
+	        android:text="Developed by Abel Tadesse"/>
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp"
+	        android:text="Email: ps_abello@yahoo.com"/>	    
+	</LinearLayout>	
+	<LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">   
+        <TextView
+	        android:id="@+id/about_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:text=""/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">      
+	    <TextView
+	        android:id="@+id/about_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="start"  
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp"
+	        android:text="Version 1.0"/>
+	</LinearLayout>	
 </LinearLayout>

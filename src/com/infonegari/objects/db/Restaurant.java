@@ -12,6 +12,7 @@ public class Restaurant extends SugarRecord<Restaurant>{
 	private long RestaurantTypeId;
 	private String Discription;
 	private long MemberId;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(Restaurant.class).where(Condition.prop("id").eq(id)).count();
@@ -66,6 +67,14 @@ public class Restaurant extends SugarRecord<Restaurant>{
 
 	public void setDiscription(String discription) {
 		Discription = discription;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

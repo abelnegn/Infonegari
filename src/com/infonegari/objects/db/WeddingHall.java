@@ -1,7 +1,5 @@
 package com.infonegari.objects.db;
 
-import java.util.Date;
-
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -20,6 +18,7 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	private String Break_Fast;
 	private String Lunch;
 	private String Dinner;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(WeddingHall.class).where(Condition.prop("id").eq(id)).count();
@@ -118,6 +117,16 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	public void setDinner(String dinner) {
 		Dinner = dinner;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

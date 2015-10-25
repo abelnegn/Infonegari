@@ -12,6 +12,7 @@ public class Hdnta extends SugarRecord<Hdnta>{
 	private long MemberId;
 	private float Price;
 	private String Discription;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Hdnta.class).where(Condition.prop("id").eq(id)).count();
@@ -71,6 +72,14 @@ public class Hdnta extends SugarRecord<Hdnta>{
 
 	public void setDiscription(String discription) {
 		Discription = discription;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

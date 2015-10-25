@@ -13,6 +13,7 @@ public class UsedItem extends SugarRecord<UsedItem>{
 	private float Price;
 	private String discription;
 	private long MemberId;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(UsedItem.class).where(Condition.prop("id").eq(id)).count();
@@ -87,6 +88,14 @@ public class UsedItem extends SugarRecord<UsedItem>{
 
 	public void setMemberId(long memberId) {
 		MemberId = memberId;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 

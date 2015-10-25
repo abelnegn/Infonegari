@@ -13,6 +13,7 @@ public class BeautySaloon extends SugarRecord<BeautySaloon>{
 	private float Price;
 	private long MemberId;
 	private String Discription;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(BeautySaloon.class).where(Condition.prop("id").eq(id)).count();
@@ -86,6 +87,13 @@ public class BeautySaloon extends SugarRecord<BeautySaloon>{
 		Discription = discription;
 	}
 
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
 
 	@Override
     public String toString() {

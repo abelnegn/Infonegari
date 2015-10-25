@@ -12,6 +12,7 @@ public class Bank extends SugarRecord<Bank>{
 	private long LocationId;
 	private String Discription;
 	private String Branch_Name;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Bank.class).where(Condition.prop("id").eq(id)).count();
@@ -66,6 +67,14 @@ public class Bank extends SugarRecord<Bank>{
 		Branch_Name = branch_Name;
 	}
 	
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

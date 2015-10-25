@@ -69,6 +69,7 @@ import com.infonegari.objects.db.TenderCategory;
 import com.infonegari.objects.db.TravelAgent;
 import com.infonegari.objects.db.UsedItem;
 import com.infonegari.objects.db.UsedItemType;
+import com.infonegari.objects.db.UserSite;
 import com.infonegari.objects.db.WeddingCar;
 import com.infonegari.objects.db.WeddingCardRingProtocol;
 import com.infonegari.objects.db.WeddingCloth;
@@ -144,6 +145,7 @@ public class API {
     public static TravelAgentService travelAgentService;
     public static TenderService tenderService;
     public static UsedItemService usedItemService;
+    public static UserSiteService userSiteService;
     public static WeddingCarService weddingCarService;
     public static WeddingClothService weddingClothService;
     public static WeddingHallService weddingHallService;
@@ -220,6 +222,7 @@ public class API {
     	travelAgentService = sRestAdapter.create(TravelAgentService.class);
     	tenderService = sRestAdapter.create(TenderService.class);
     	usedItemService = sRestAdapter.create(UsedItemService.class);
+    	userSiteService = sRestAdapter.create(UserSiteService.class);
     	weddingCarService = sRestAdapter.create(WeddingCarService.class);
     	weddingClothService = sRestAdapter.create(WeddingClothService.class);
     	weddingHallService = sRestAdapter.create(WeddingHallService.class);
@@ -475,8 +478,7 @@ public class API {
 	public interface CinemaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CINEMA)
-        public void getCinemas(@Query("cinema_id") long cinemaId, 
-        		Callback<List<Cinema>> callback);
+        public void getCinemas(Callback<List<Cinema>> callback);
     }
 	
 	public interface ConstructionService{
@@ -686,6 +688,13 @@ public class API {
         @GET(APIEndPoint.USED_ITEMS)
         public void getUsedItem(@Query("ui_id") long uiId, 
         		Callback<List<UsedItem>> callback);
+    }
+
+	public interface UserSiteService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.USER_SITE)
+        public void getUserSite(@Query("us_id") long usId, 
+        		Callback<List<UserSite>> callback);
     }
 	
 	public interface WeddingCarService{

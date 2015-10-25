@@ -14,6 +14,7 @@ public class ShopElectronic extends SugarRecord<ShopElectronic>{
 	private String Brand_Name;
 	private String Service_Type;
 	private String Catagory;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(ShopElectronic.class).where(Condition.prop("id").eq(id)).count();
@@ -82,6 +83,14 @@ public class ShopElectronic extends SugarRecord<ShopElectronic>{
 
 	public void setCatagory(String catagory) {
 		Catagory = catagory;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

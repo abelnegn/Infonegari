@@ -17,6 +17,7 @@ public class HouseListing extends SugarRecord<HouseListing>{
 	private long MemberId;
 	private boolean isSale;
 	private boolean IsBusiness;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(HouseListing.class).where(Condition.prop("id").eq(id)).count();
@@ -115,6 +116,15 @@ public class HouseListing extends SugarRecord<HouseListing>{
 		IsBusiness = isBusiness;
 	}
 	
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

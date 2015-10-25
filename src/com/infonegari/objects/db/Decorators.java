@@ -12,6 +12,7 @@ public class Decorators extends SugarRecord<Decorators>{
 	private float Price;
 	private String Discription;
 	private long MemberId;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Decorators.class).where(Condition.prop("id").eq(id)).count();
@@ -77,6 +78,15 @@ public class Decorators extends SugarRecord<Decorators>{
 	public void setMemberId(long memberId) {
 		MemberId = memberId;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

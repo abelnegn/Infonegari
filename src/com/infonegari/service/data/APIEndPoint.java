@@ -72,6 +72,7 @@ public class APIEndPoint {
     public static final String TRAVEL_AGENT = "/travel_agent.php";
     public static final String TENDER = "/tender.php";
     public static final String USED_ITEMS = "/used_items.php";
+    public static final String USER_SITE = "/user_site.php";
     public static final String WEDDING_CAR = "/wedding_car.php";
     public static final String WEDDING_CLOTH = "/wedding_cloth.php";
     public static final String WEDDING_HALL = "/wedding_halls.php";

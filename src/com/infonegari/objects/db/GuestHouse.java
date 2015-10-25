@@ -12,6 +12,7 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 	private long LocationId;
 	private float Price;
 	private String GuestHouseDiscripton;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(GuestHouse.class).where(Condition.prop("id").eq(id)).count();
@@ -68,6 +69,15 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 	public void setGuestHouseDiscripton(String guestHouseDiscripton) {
 		GuestHouseDiscripton = guestHouseDiscripton;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

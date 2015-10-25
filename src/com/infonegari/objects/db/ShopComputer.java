@@ -14,6 +14,7 @@ public class ShopComputer extends SugarRecord<ShopComputer>{
 	private String Brand_Name;
 	private String Service_Type;
 	private String Item_Type;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(ShopComputer.class).where(Condition.prop("id").eq(id)).count();
@@ -84,6 +85,14 @@ public class ShopComputer extends SugarRecord<ShopComputer>{
 		Item_Type = item_Type;
 	}
     
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

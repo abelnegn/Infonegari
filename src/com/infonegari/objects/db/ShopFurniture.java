@@ -13,6 +13,7 @@ public class ShopFurniture extends SugarRecord<ShopFurniture>{
 	private String Discription;
 	private String Country;
 	private String Item_Type;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(ShopFurniture.class).where(Condition.prop("id").eq(id)).count();
@@ -75,6 +76,14 @@ public class ShopFurniture extends SugarRecord<ShopFurniture>{
 		Item_Type = item_Type;
 	}
 	
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

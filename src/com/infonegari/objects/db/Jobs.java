@@ -19,7 +19,7 @@ public class Jobs extends SugarRecord<Jobs>{
 	private String Work_Place;
 	private String Dead_Line;
 	private String Job_Duration;
-	private String jobscol;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Jobs.class).where(Condition.prop("id").eq(id)).count();
@@ -129,15 +129,15 @@ public class Jobs extends SugarRecord<Jobs>{
 	public void setJob_Duration(String job_Duration) {
 		Job_Duration = job_Duration;
 	}
-
-	public String getJobscol() {
-		return jobscol;
-	}
-
-	public void setJobscol(String jobscol) {
-		this.jobscol = jobscol;
-	}
     
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

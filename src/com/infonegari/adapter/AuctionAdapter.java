@@ -5,14 +5,18 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
+import com.infonegari.objects.db.UserSite;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -50,9 +54,12 @@ public class AuctionAdapter extends BaseAdapter{
 		AuctionCategory category = Select.from(AuctionCategory.class).
 				where(Condition.prop("acId").eq(auctions.get(position).
 						getAuction_Catagory())).first();
+
+		final UserSite userSite = Select.from(UserSite.class).
+				where(Condition.prop("UserName").eq(auctions.get(position).
+						getUser_Name())).first();
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
-        TextView txtPhoneNo = (TextView) convertView.findViewById(R.id.phone_no);
         TextView txtPostDate = (TextView) convertView.findViewById(R.id.post_date);
         TextView txtSubmissionDeadline = (TextView) convertView.findViewById(R.id.submission_deadline);
         TextView txtOpeningDate = (TextView) convertView.findViewById(R.id.opening_date);
@@ -60,9 +67,10 @@ public class AuctionAdapter extends BaseAdapter{
         TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
         TextView txtMinPrice = (TextView) convertView.findViewById(R.id.minimum_price);
         TextView txtSource = (TextView) convertView.findViewById(R.id.source);
+        TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
+        TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(auctions.get(position).getCompany_Name());
-        txtPhoneNo.setText(auctions.get(position).getPhone_Number());
         txtPostDate.setText(auctions.get(position).getPost_Date());
         txtSubmissionDeadline.setText(auctions.get(position).getSubmission_Deadline());
         txtOpeningDate.setText(auctions.get(position).getOpening_Date());
@@ -71,7 +79,18 @@ public class AuctionAdapter extends BaseAdapter{
         txtDiscription.setText(auctions.get(position).getDescription());
         txtMinPrice.setText(String.valueOf(auctions.get(position).getMinimum_Price()));    
         txtSource.setText(auctions.get(position).getSource());
-        
+        if(userSite != null){
+        	 txtPhoneNo.setText(userSite.getPhone_Number());
+           	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
+     			@Override
+     			public void onClick(View arg0) {
+     				Intent callIntent = new Intent(Intent.ACTION_CALL);
+     				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
+     				context.startActivity(callIntent);
+     			}
+     		});  
+        	 txtEmail.setText(userSite.getE_mail());
+        }
         return convertView;
 	}
 

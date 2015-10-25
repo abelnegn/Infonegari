@@ -9,6 +9,7 @@ import com.infonegari.adapter.WeddingCarAdapter;
 import com.infonegari.objects.db.CarType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.WeddingCar;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -44,6 +46,7 @@ public class WeddingCarFragment extends Fragment{
 	private Spinner sp_location, sp_carType;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -100,11 +103,14 @@ public class WeddingCarFragment extends Fragment{
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		sp_carType = (Spinner)rootView.findViewById(R.id.car_type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -113,7 +119,7 @@ public class WeddingCarFragment extends Fragment{
 			}
 		});
 		
-		saveWeddingCars();
+//		saveWeddingCars();
 		fetchLocation();
 		fetchCarType();
 		
@@ -171,7 +177,7 @@ public class WeddingCarFragment extends Fragment{
 	}
 	
 	private void init(){
-		weddingCarList = Select.from(WeddingCar.class).list();
+		weddingCarList = Select.from(WeddingCar.class).orderBy("id Desc").list();
 		adapter = new WeddingCarAdapter(getActivity(), weddingCarList);
 		mWeddingCarList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

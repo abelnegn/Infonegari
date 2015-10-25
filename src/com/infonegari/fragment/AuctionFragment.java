@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.AuctionAdapter;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -27,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -40,6 +42,7 @@ public class AuctionFragment extends Fragment{
 	private Spinner sp_location, sp_category;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -95,10 +98,13 @@ public class AuctionFragment extends Fragment{
 		sp_category = (Spinner)rootView.findViewById(R.id.category);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);	
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View arg0) {
@@ -106,7 +112,7 @@ public class AuctionFragment extends Fragment{
 			}
 		});
 		
-		saveAuction();
+//		saveAuction();
 		
 		fetchCategory();
 		
@@ -150,7 +156,7 @@ public class AuctionFragment extends Fragment{
 	}
 	
 	private void init(){
-		auctionList = Select.from(Auction.class).list();
+		auctionList = Select.from(Auction.class).orderBy("id Desc").list();
 		adapter = new AuctionAdapter(getActivity(), auctionList);
 		mAuctionList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

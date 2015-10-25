@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.ShopElectronicsAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopElectronic;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -38,9 +40,10 @@ public class ShopElectronicsFragment extends Fragment{
 	List<ShopElectronic> shopElectronicList;
 	private ListView mShopElectronicList;
 	private ShopElectronicsAdapter adapter;
-	private Spinner sp_location, sp_serviceType;
+	private Spinner sp_location, sp_type, sp_service;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -95,13 +98,17 @@ public class ShopElectronicsFragment extends Fragment{
 		
 		mShopElectronicList = (ListView)rootView.findViewById(R.id.list_shop_electronics);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
-		sp_serviceType = (Spinner)rootView.findViewById(R.id.service_type);
+		sp_service = (Spinner)rootView.findViewById(R.id.service_type);
+		sp_type = (Spinner)rootView.findViewById(R.id.type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -110,9 +117,10 @@ public class ShopElectronicsFragment extends Fragment{
 			}
 		});
 		
-		saveShopElectronic();
+//		saveShopElectronic();
 		fetchLocation();
-		fetchFurnitureType();
+		fetchElectronicType();
+		fetchService();
 		
 		init();
 		
@@ -151,7 +159,7 @@ public class ShopElectronicsFragment extends Fragment{
 		newE.save();
 	}
 	
-	private void fetchFurnitureType(){
+	private void fetchElectronicType(){
 		List<String> listOfElectronicType = new ArrayList<String>();
 
 		listOfElectronicType.add("Select Electronics");
@@ -163,12 +171,27 @@ public class ShopElectronicsFragment extends Fragment{
                 android.R.layout.simple_spinner_item, listOfElectronicType);
 
         serviceTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_serviceType.setAdapter(serviceTypeAdapter);
-        sp_serviceType.setSelection(0);
+        sp_type.setAdapter(serviceTypeAdapter);
+        sp_type.setSelection(0);
+	}
+	
+	private void fetchService(){
+		List<String> listOfService = new ArrayList<String>();
+
+		listOfService.add("Select Service");
+		listOfService.add("Buy");		
+		listOfService.add("Maintenance");
+
+        ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfService);
+
+        serviceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_service.setAdapter(serviceAdapter);
+        sp_service.setSelection(0);
 	}
 	
 	private void init(){
-		shopElectronicList = Select.from(ShopElectronic.class).list();
+		shopElectronicList = Select.from(ShopElectronic.class).orderBy("id Desc").list();
 		adapter = new ShopElectronicsAdapter(getActivity(), shopElectronicList);
 		mShopElectronicList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -177,7 +200,7 @@ public class ShopElectronicsFragment extends Fragment{
 	private void btnSearch(){
 		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
 		shopElectronicList = Select.from(ShopElectronic.class).where(Condition.prop("Category").
-				eq(sp_serviceType.getSelectedItem().toString())).and(Condition.
+				eq(sp_type.getSelectedItem().toString())).and(Condition.
 						prop("Location_Id").eq(locId)).list();
 		adapter = new ShopElectronicsAdapter(getActivity(), shopElectronicList);
 		mShopElectronicList.setAdapter(adapter);		

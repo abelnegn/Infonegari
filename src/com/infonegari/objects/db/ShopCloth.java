@@ -15,6 +15,7 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 	private float Price;
 	private String Color;
 	private String Size;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(ShopCloth.class).where(Condition.prop("id").eq(id)).count();
@@ -93,6 +94,14 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 		Size = size;
 	}
     
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

@@ -13,7 +13,7 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 	private float Price;
 	private long MemberId;
 	private String Discription;
-	
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(CaterersPasteries.class).where(Condition.prop("id").eq(id)).count();
@@ -88,6 +88,14 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 
 	public void setDiscription(String discription) {
 		Discription = discription;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 

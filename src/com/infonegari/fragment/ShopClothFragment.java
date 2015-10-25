@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.ShopClothAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopCloth;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -42,6 +44,7 @@ public class ShopClothFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
+	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public ShopClothFragment(){
@@ -98,10 +101,13 @@ public class ShopClothFragment extends Fragment{
 		sp_clothType = (Spinner)rootView.findViewById(R.id.cloth_type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -110,7 +116,7 @@ public class ShopClothFragment extends Fragment{
 			}
 		});
 		
-		saveClothType();
+//		saveClothType();
 		fetchLocation();
 		fetchClothType();
 		
@@ -169,7 +175,7 @@ public class ShopClothFragment extends Fragment{
 	}
 	
 	private void init(){
-		shopClothList = Select.from(ShopCloth.class).list();
+		shopClothList = Select.from(ShopCloth.class).orderBy("id Desc").list();
 		adapter = new ShopClothAdapter(getActivity(), shopClothList);
 		mShopClothList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

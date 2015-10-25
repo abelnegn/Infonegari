@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.ShopComputerAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopComputer;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -41,6 +43,7 @@ public class ShopComputerFragment extends Fragment{
 	private Spinner sp_location, sp_type, sp_service;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -91,7 +94,7 @@ public class ShopComputerFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shop_computer, container, false);
 		
-		getActivity().setTitle("Shop Furnitures"); 
+		getActivity().setTitle("Shop Computers"); 
 		
 		mShopComputerList = (ListView)rootView.findViewById(R.id.list_shop_computer);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
@@ -99,10 +102,13 @@ public class ShopComputerFragment extends Fragment{
 		sp_service = (Spinner)rootView.findViewById(R.id.service);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -111,7 +117,7 @@ public class ShopComputerFragment extends Fragment{
 			}
 		});
 		
-		saveShopFurniture();
+//		saveShopFurniture();
 		fetchLocation();
 		fetchType();
 		fetchService();
@@ -185,7 +191,7 @@ public class ShopComputerFragment extends Fragment{
 	}
 	
 	private void init(){
-		shopComputerList = Select.from(ShopComputer.class).list();
+		shopComputerList = Select.from(ShopComputer.class).orderBy("id Desc").list();
 		adapter = new ShopComputerAdapter(getActivity(), shopComputerList);
 		mShopComputerList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

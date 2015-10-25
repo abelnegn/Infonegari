@@ -32,4 +32,8 @@
     	<item name="android:windowTitleSize">40dip</item>
     	<item name="android:textSize">30dip</item>
 	</style>
+	
+    <style name="WindowTitleBackground">     
+        <item name="android:background">@color/titlebackgroundcolor</item>                   
+    </style>
 </resources>

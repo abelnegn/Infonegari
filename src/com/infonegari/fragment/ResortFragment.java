@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.ResortAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.Resort;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -42,6 +44,7 @@ public class ResortFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
+	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public ResortFragment(){
@@ -96,10 +99,13 @@ public class ResortFragment extends Fragment{
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -108,7 +114,7 @@ public class ResortFragment extends Fragment{
 			}
 		});
 		
-		saveResort();
+//		saveResort();
 		
 		fetchLocation();
 		
@@ -147,7 +153,7 @@ public class ResortFragment extends Fragment{
 	}
 	
 	private void init(){
-		resortList = Select.from(Resort.class).list();
+		resortList = Select.from(Resort.class).orderBy("id Desc").list();
 		adapter = new ResortAdapter(getActivity(), resortList);
 		mResortList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

@@ -15,6 +15,7 @@ public class CarListing extends SugarRecord<CarListing>{
 	private int Year;
 	private long MemberId;
 	private boolean isCarSale;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(CarListing.class).where(Condition.prop("id").eq(id)).count();
@@ -115,11 +116,19 @@ public class CarListing extends SugarRecord<CarListing>{
 		return isCarSale;
 	}
 
-
-
 	public void setCarSale(boolean isCarSale) {
 		this.isCarSale = isCarSale;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

@@ -21,50 +21,22 @@
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
+		        android:layout_gravity="center"
 		        android:text="@string/txt_header_info"
 		        android:textStyle="bold"
 		        android:textSize="20dp"/>
 	    </LinearLayout>	
 	    <LinearLayout 
 	        android:layout_width="match_parent"
-	        android:layout_height="100dp"
-	        android:background="@drawable/background_ads"
-	        android:orientation="vertical">     
-	        
-	        <TextView
-		        android:id="@+id/notification_text"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:textColor="#3B393E"
-		        android:textStyle="bold"
-		        android:textSize="20dp"
-		        android:layout_gravity="bottom"/>  
-		     
-
-	    </LinearLayout>	
-	    <LinearLayout 
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"	        
-	        android:background="@drawable/background_news"
-	        android:orientation="vertical">    
-	          
-	        <ImageSwitcher
-		        android:id="@+id/info_imageSwitcher"
-		        android:layout_width="match_parent"
-		        android:layout_height="300dp" 
-		        android:keepScreenOn="true"/>
-	        
-	    </LinearLayout>   
-	    <LinearLayout 
-	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:background="@drawable/background_ads"
-	        android:orientation="vertical">    
-	        
+	        android:background="#D5CED5"
+	        android:orientation="vertical">      
+	          
 	        <ImageSwitcher
 		        android:id="@+id/adi_imageSwitcher"
 		        android:layout_width="match_parent"
-		        android:layout_height="80dp"/>
-	    </LinearLayout>    	    
+		        android:layout_height="70dp" />
+	        
+	    </LinearLayout> 	    
     </LinearLayout>    
 </ScrollView>

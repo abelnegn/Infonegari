@@ -16,14 +16,12 @@ import com.infonegari.model.NavDrawerItem;
 import com.infonegari.util.DialogHandler;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -181,10 +179,10 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	private void downloadData(){
-    	DownloadDataFragment downloadDataFragment = new DownloadDataFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_container, downloadDataFragment);
-        fragmentTransaction.commit();
+		FragmentManager fragmentManager = getFragmentManager();
+		DownloadDataFragment fragment = new DownloadDataFragment();
+		fragmentManager.beginTransaction()
+				.replace(R.id.frame_container, fragment).commit();
 	}
 	
 	private Runnable cancel(){

@@ -9,6 +9,7 @@ import com.infonegari.adapter.GuestHouseAdapter;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -45,6 +47,7 @@ public class GuestHouseFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
+	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public GuestHouseFragment(){
@@ -100,10 +103,13 @@ public class GuestHouseFragment extends Fragment{
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -112,7 +118,7 @@ public class GuestHouseFragment extends Fragment{
 			}
 		});
 		
-		saveHouse();
+//		saveHouse();
 		
 		fetchHouseType();
 		fetchLocation();
@@ -171,7 +177,7 @@ public class GuestHouseFragment extends Fragment{
 	}
 	
 	private void init(){
-		houseList = Select.from(GuestHouse.class).list();
+		houseList = Select.from(GuestHouse.class).orderBy("id Desc").list();
 		adapter = new GuestHouseAdapter(getActivity(), houseList);
 		mHouseList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

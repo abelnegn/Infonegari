@@ -11,6 +11,7 @@ public class Resort extends SugarRecord<Resort>{
 	private float Price;
 	private long LocationId;
 	private String Discription;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Resort.class).where(Condition.prop("id").eq(id)).count();
@@ -55,6 +56,14 @@ public class Resort extends SugarRecord<Resort>{
 
 	public void setDiscription(String discription) {
 		Discription = discription;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ public class WeddingCardRingProtocol extends SugarRecord<WeddingCardRingProtocol
 	private float Price;
 	private String Discription;
 	private long MemberId;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(WeddingCardRingProtocol.class).where(Condition.prop("id").eq(id)).count();
@@ -68,6 +69,16 @@ public class WeddingCardRingProtocol extends SugarRecord<WeddingCardRingProtocol
 	public void setMemberId(long memberId) {
 		MemberId = memberId;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

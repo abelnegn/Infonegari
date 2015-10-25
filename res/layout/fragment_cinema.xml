@@ -61,14 +61,14 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="#FFFFFF"
-            android:text="@string/txt_show_time"
+            android:text="@string/txt_type"
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "110dp"/>       
-        <EditText 
+        <Spinner 
             android:layout_height= "wrap_content"
 			android:layout_width= "fill_parent"
 			android:background="#FFFFFF"
-	        android:id="@+id/show_time"/> 
+	        android:id="@+id/movie_type"/> 
 	</LinearLayout> 
     <LinearLayout 
         android:layout_width="match_parent"

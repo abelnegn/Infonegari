@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
-import com.infonegari.adapter.BusinessLeaseAdapter;
+import com.infonegari.adapter.HouseRentAdapter;
 import com.infonegari.objects.db.BusinessListing;
-import com.infonegari.objects.db.City;
+import com.infonegari.objects.db.HouseListing;
+import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
-import com.infonegari.objects.db.MainCategory;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -30,23 +31,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 public class BusinessForLeaseFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
-	List<City> cityList;
-	List<MainCategory> mainCatList;
+	List<HouseType> houseTypeList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> cityHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> mainCatHashMap = new HashMap<String, Long>();
-	List<BusinessListing> businessList;
+	HashMap<String, Long> houseTypeHashMap = new HashMap<String, Long>();
+	List<HouseListing> businessList;
 	private ListView mBusinessList;
-	private BusinessLeaseAdapter adapter;
-	private Spinner sp_location, sp_city, sp_mainCat;
+	private HouseRentAdapter adapter;
+	private Spinner sp_location, sp_houseType;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -99,15 +100,17 @@ public class BusinessForLeaseFragment extends Fragment{
 		getActivity().setTitle("Business for Lease");
 		
 		mBusinessList = (ListView)rootView.findViewById(R.id.list_business_lease);
-		sp_city = (Spinner)rootView.findViewById(R.id.city);
-		sp_mainCat = (Spinner)rootView.findViewById(R.id.main_category);
+		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -116,10 +119,9 @@ public class BusinessForLeaseFragment extends Fragment{
 			}
 		});
 		
-		saveBusiness();
+//		saveBusiness();
 		
-		fetchCity();
-		fetchMainCategory();
+		fetchHouseType();
 		fetchLocation();
 		
 		init();
@@ -145,40 +147,22 @@ public class BusinessForLeaseFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void fetchCity(){
-		List<String> listOfCity = new ArrayList<String>();
-		cityList = Select.from(City.class).list();
+	private void fetchHouseType(){
+		List<String> listOfHouseTypes = new ArrayList<String>();
+		houseTypeList = Select.from(HouseType.class).list();
 
-		listOfCity.add("Select City");
-		cityHashMap.put("Select City", 0L);
-		for (City city : cityList) {
-			listOfCity.add(city.getCityName());
-			cityHashMap.put(city.getCityName(), city.getCityId());
+		listOfHouseTypes.add("Select House Type");
+		houseTypeHashMap.put("Select House Type", 0L);
+		for (HouseType type : houseTypeList) {
+			listOfHouseTypes.add(type.getHouseTypeName());
+			houseTypeHashMap.put(type.getHouseTypeName(), type.getHouseTypeId());
         }
-        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, listOfCity);
+        ArrayAdapter<String> houseTypeAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfHouseTypes);
 
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_city.setAdapter(cityAdapter);
-        sp_city.setSelection(0);
-	}
-
-	private void fetchMainCategory(){
-		List<String> listOfMainCategory = new ArrayList<String>();
-		mainCatList = Select.from(MainCategory.class).list();
-
-		listOfMainCategory.add("Select Category");
-		cityHashMap.put("Select Category", 0L);
-		for (MainCategory category : mainCatList) {
-			listOfMainCategory.add(category.getCategoryName());
-			cityHashMap.put(category.getCategoryName(), category.getCategoryId());
-        }
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, listOfMainCategory);
-
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_mainCat.setAdapter(categoryAdapter);
-        sp_mainCat.setSelection(0);
+        houseTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_houseType.setAdapter(houseTypeAdapter);
+        sp_houseType.setSelection(0);
 	}
 	
 	private void saveBusiness(){
@@ -199,18 +183,19 @@ public class BusinessForLeaseFragment extends Fragment{
 	}
 	
 	private void init(){
-		businessList = Select.from(BusinessListing.class).list();
-		adapter = new BusinessLeaseAdapter(getActivity(), businessList);
+		businessList = Select.from(HouseListing.class).where(Condition.prop("is_Sale").
+				eq(0)).and(Condition.prop("Is_Business").eq(1)).orderBy("id Desc").list();
+		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 	
 	private void btnSearch(){
 		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		businessList = Select.from(BusinessListing.class).where(Condition.prop("CnPIdName").
+		businessList = Select.from(HouseListing.class).where(Condition.prop("CnPIdName").
 				eq(txtTitle.getText().toString())).and(Condition.
 						prop("Location_Id").eq(locId)).list();
-		adapter = new BusinessLeaseAdapter(getActivity(), businessList);
+		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);		
 	}
 

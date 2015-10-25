@@ -9,6 +9,7 @@ import com.infonegari.adapter.JobVacancyAdapter;
 import com.infonegari.objects.db.JobCategory;
 import com.infonegari.objects.db.Jobs;
 import com.infonegari.objects.db.Location;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -45,6 +47,7 @@ public class JobVacancyFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
+	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public JobVacancyFragment(){
@@ -99,11 +102,14 @@ public class JobVacancyFragment extends Fragment{
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		sp_category = (Spinner)rootView.findViewById(R.id.category);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -157,7 +163,7 @@ public class JobVacancyFragment extends Fragment{
 	}
 	
 	private void init(){
-		jobsList = Select.from(Jobs.class).list();
+		jobsList = Select.from(Jobs.class).orderBy("id Desc").list();
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
 		mJobList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

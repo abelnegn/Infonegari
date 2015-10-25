@@ -10,14 +10,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Locale;
 import com.infonegari.activity.R;
-import com.infonegari.activity.ShortMessage;
+import com.infonegari.util.AdsImageView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageSwitcher;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 

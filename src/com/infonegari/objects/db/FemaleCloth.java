@@ -13,6 +13,7 @@ public class FemaleCloth extends SugarRecord<FemaleCloth>{
 	private float Price;
 	private String Color;
 	private String Size;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(FemaleCloth.class).where(Condition.prop("id").eq(id)).count();
@@ -86,6 +87,14 @@ public class FemaleCloth extends SugarRecord<FemaleCloth>{
 
 	public void setSize(String size) {
 		Size = size;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 

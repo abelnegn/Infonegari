@@ -11,6 +11,7 @@ public class TravelAgent extends SugarRecord<TravelAgent>{
 	private String Discription;
 	private float Price;
 	private long LocationId;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(TravelAgent.class).where(Condition.prop("id").eq(id)).count();
@@ -55,6 +56,14 @@ public class TravelAgent extends SugarRecord<TravelAgent>{
 
 	public void setLocationId(long locationId) {
 		LocationId = locationId;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

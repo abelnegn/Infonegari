@@ -14,6 +14,7 @@ public class WeddingCloth extends SugarRecord<WeddingCloth>{
 	private String Discription;
 	private String Cloth_Type;
 	private String Service_Type;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(WeddingCloth.class).where(Condition.prop("id").eq(id)).count();
@@ -86,6 +87,16 @@ public class WeddingCloth extends SugarRecord<WeddingCloth>{
 	public void setService_Type(String service_Type) {
 		Service_Type = service_Type;
 	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 
 	@Override
     public String toString() {

@@ -9,6 +9,7 @@ import com.infonegari.adapter.WeddingHallAdapter;
 import com.infonegari.objects.db.HallType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.WeddingHall;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -44,6 +46,7 @@ public class WeddingHallFragment extends Fragment{
 	private Spinner sp_location, sp_type;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -101,10 +104,13 @@ public class WeddingHallFragment extends Fragment{
 		sp_type = (Spinner)rootView.findViewById(R.id.type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -113,7 +119,7 @@ public class WeddingHallFragment extends Fragment{
 			}
 		});
 		
-		saveWH();
+//		saveWH();
 		fetchLocation();
 		fetchType();
 		
@@ -178,7 +184,7 @@ public class WeddingHallFragment extends Fragment{
 	}
 	
 	private void init(){
-		weddingHallList = Select.from(WeddingHall.class).list();
+		weddingHallList = Select.from(WeddingHall.class).orderBy("id Desc").list();
 		adapter = new WeddingHallAdapter(getActivity(), weddingHallList);
 		mWeddingHallList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

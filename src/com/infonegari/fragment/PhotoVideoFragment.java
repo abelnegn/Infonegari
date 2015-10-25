@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.PhotoVideoAdapter;
-import com.infonegari.objects.db.Event;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.PhotoVideo;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -43,6 +44,7 @@ public class PhotoVideoFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
+	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public PhotoVideoFragment(){
@@ -97,10 +99,13 @@ public class PhotoVideoFragment extends Fragment{
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -109,7 +114,7 @@ public class PhotoVideoFragment extends Fragment{
 			}
 		});
 		
-		savePV();
+//		savePV();
 		
 		fetchLocation();
 		
@@ -150,7 +155,7 @@ public class PhotoVideoFragment extends Fragment{
 	}
 	
 	private void init(){
-		photoVideoList = Select.from(PhotoVideo.class).list();
+		photoVideoList = Select.from(PhotoVideo.class).orderBy("id Desc").list();
 		adapter = new PhotoVideoAdapter(getActivity(), photoVideoList);
 		mPhotoVideoList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

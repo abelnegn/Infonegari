@@ -14,6 +14,7 @@ public class Construction extends SugarRecord<Construction> {
 	private long ConstructionMaterialId;
 	private float Price;
 	private String Discription;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(Construction.class).where(Condition.prop("id").eq(id)).count();
@@ -86,6 +87,14 @@ public class Construction extends SugarRecord<Construction> {
 		Discription = discription;
 	}
     
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

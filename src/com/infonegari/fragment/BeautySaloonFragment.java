@@ -8,6 +8,7 @@ import com.infonegari.activity.R;
 import com.infonegari.adapter.BeautySaloonAdapter;
 import com.infonegari.objects.db.BeautySaloon;
 import com.infonegari.objects.db.Location;
+import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -41,6 +43,7 @@ public class BeautySaloonFragment extends Fragment{
 	private Spinner sp_location, sp_type;
 	private Button btnSearch;
 	private EditText txtTitle;
+	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
 	
@@ -98,10 +101,13 @@ public class BeautySaloonFragment extends Fragment{
 		sp_type = (Spinner)rootView.findViewById(R.id.type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
+		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -110,7 +116,7 @@ public class BeautySaloonFragment extends Fragment{
 			}
 		});
 		
-		saveSaloon();
+//		saveSaloon();
 		fetchLocation();
 		fetchType();
 		
@@ -165,7 +171,7 @@ public class BeautySaloonFragment extends Fragment{
 	}
 	
 	private void init(){
-		beautySaloonList = Select.from(BeautySaloon.class).list();
+		beautySaloonList = Select.from(BeautySaloon.class).orderBy("id Desc").list();
 		adapter = new BeautySaloonAdapter(getActivity(), beautySaloonList);
 		mBeautySaloonList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

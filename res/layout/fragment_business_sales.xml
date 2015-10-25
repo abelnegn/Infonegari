@@ -43,33 +43,15 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="#FFFFFF"
-            android:text="@string/txt_city"
+            android:text="@string/txt_house_type"
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "110dp"/>       
         <Spinner 
             android:layout_height= "wrap_content"
 			android:layout_width= "fill_parent"
 			android:background="#FFFFFF"
-	        android:id="@+id/city"/> 
-	</LinearLayout>   
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:orientation="horizontal">      
-        <TextView 
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"
-            android:text="@string/txt_main_category"
-	        android:layout_height= "wrap_content"
-	        android:layout_width= "110dp"/>       
-        <Spinner 
-            android:layout_height= "wrap_content"
-			android:layout_width= "fill_parent"
-			android:background="#FFFFFF"
-	        android:id="@+id/main_category"/> 
-	</LinearLayout>  	  
+	        android:id="@+id/house_type"/> 
+	</LinearLayout>     
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,24 +73,6 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:orientation="horizontal">      
-        <TextView 
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"
-            android:text="@string/txt_car_year"
-	        android:layout_height= "wrap_content"
-	        android:layout_width= "110dp"/>       
-        <EditText 
-            android:layout_height= "wrap_content"
-			android:layout_width= "fill_parent"
-			android:background="#FFFFFF"
-	        android:id="@+id/year"/>
-    </LinearLayout>	
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="#D5CED5"
         android:orientation="vertical">  	
 
@@ -123,7 +87,7 @@
     
     </LinearLayout>     
     <ListView
-        android:id="@+id/list_business_sales"
+        android:id="@+id/list_business_sale"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"

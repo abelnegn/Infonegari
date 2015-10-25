@@ -13,6 +13,7 @@ public class Clinic extends SugarRecord<Clinic>{
 	private String Discription;
 	private String Clinic_Type;
 	private String Job_Type;
+	private String User_Name;
 	
     public boolean isNew() {
         long count = Select.from(Clinic.class).where(Condition.prop("id").eq(id)).count();
@@ -84,6 +85,14 @@ public class Clinic extends SugarRecord<Clinic>{
 
 	public void setJob_Type(String job_Type) {
 		Job_Type = job_Type;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

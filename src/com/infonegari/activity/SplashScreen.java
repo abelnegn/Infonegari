@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -70,8 +69,8 @@ public class SplashScreen extends Activity {
 	       		String line;
 	       		while ((line = reader.readLine()) != null) {
 	       			String[] locValue = line.split(",");
-	       			if(locValue[1].equals("True")){
-	       				Configuration config = new Configuration();
+	       			Configuration config = new Configuration();
+	       			if(locValue[1].equals("True")){	       				
 					    if(locValue[0].equals("Amharic")){
 					    	config.locale = Locale.ENGLISH;
 					    }else if(locValue[0].equals("English")){
@@ -79,13 +78,12 @@ public class SplashScreen extends Activity {
 					    }else{
 					    	config.locale = Locale.FRENCH;
 					    }
-					    getResources().updateConfiguration(config, null);
-		    			Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-		    			startActivity(intent);
 					}else{
-		    			Intent intent = new Intent(SplashScreen.this, LocalizationActivity.class);
-		    			startActivity(intent);
+						config.locale = Locale.ITALIAN;
 					}
+				    getResources().updateConfiguration(config, null);
+	    			Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+	    			startActivity(intent);
 	       		}
         	}
 		} catch (FileNotFoundException e1) {

@@ -12,6 +12,7 @@ public class Band extends SugarRecord<Band>{
 	private long MemberId;
 	private String Discription;
 	private float Price;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(Band.class).where(Condition.prop("id").eq(id)).count();
@@ -67,6 +68,14 @@ public class Band extends SugarRecord<Band>{
 
 	public void setPrice(float price) {
 		Price = price;
+	}
+
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
 	@Override

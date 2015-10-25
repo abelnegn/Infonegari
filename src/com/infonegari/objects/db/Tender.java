@@ -1,7 +1,5 @@
 package com.infonegari.objects.db;
 
-import java.util.Date;
-
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -17,6 +15,7 @@ public class Tender extends SugarRecord<Tender>{
 	private String Tender_Catagory;
 	private String Discription;
 	private String Source;
+	private String User_Name;
 
     public boolean isNew() {
         long count = Select.from(Tender.class).where(Condition.prop("id").eq(id)).count();
@@ -95,6 +94,14 @@ public class Tender extends SugarRecord<Tender>{
 		Source = source;
 	}
     
+	public String getUser_Name() {
+		return User_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);
