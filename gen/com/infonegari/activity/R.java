@@ -83,14 +83,15 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f040000;
-        public static final int counter_text_bg=0x7f040005;
-        public static final int counter_text_color=0x7f040006;
-        public static final int list_background=0x7f040002;
-        public static final int list_background_pressed=0x7f040003;
-        public static final int list_divider=0x7f040004;
-        public static final int list_item_title=0x7f040001;
-        public static final int titlebackgroundcolor=0x7f040007;
-        public static final int titletextcolor=0x7f040008;
+        public static final int counter_text_bg=0x7f040006;
+        public static final int counter_text_color=0x7f040007;
+        public static final int list_background=0x7f040003;
+        public static final int list_background_pressed=0x7f040004;
+        public static final int list_divider=0x7f040005;
+        public static final int list_item_title=0x7f040002;
+        public static final int red=0x7f040001;
+        public static final int titlebackgroundcolor=0x7f040008;
+        public static final int titletextcolor=0x7f040009;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 

@@ -93,7 +93,7 @@ public class NightClubFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_night_club, container, false);
 		
-		getActivity().setTitle("Night Clubs");
+		getActivity().setTitle("Night Clubs");	
 		
 		mNightClubList = (ListView)rootView.findViewById(R.id.list_night_club);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

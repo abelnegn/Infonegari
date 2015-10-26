@@ -1,5 +1,4 @@
 package com.infonegari.fragment;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -16,11 +15,10 @@ import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 import com.orm.query.Condition;
 import com.orm.query.Select;
-
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -51,11 +49,9 @@ public class CinemaFragment extends Fragment{
 	private Button btnSearch;
 	private EditText txtTitle, txtShowDate;
 	private ImageSwitcher imageSwitcher;
-	private Calendar calendar;
-	private int year, month, day;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
-	
+
 	public CinemaFragment(){
 	}
 	
@@ -115,10 +111,6 @@ public class CinemaFragment extends Fragment{
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
-		calendar = Calendar.getInstance();
-	    year = calendar.get(Calendar.YEAR);
-	    month = calendar.get(Calendar.MONTH);
-	    day = calendar.get(Calendar.DAY_OF_MONTH);
 		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
 		imageView.startTimer();
 		btnSearch.setOnClickListener(new OnClickListener() {		
@@ -131,7 +123,9 @@ public class CinemaFragment extends Fragment{
 		txtShowDate.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
-			    new DatePickerDialog(getActivity(), myDateListener, year, month, day);
+			    DatePickerFragment dpf = new DatePickerFragment().newInstance();
+                dpf.setCallBack(onDate);
+                dpf.show(getFragmentManager().beginTransaction(), "DatePickerFragment");
 			}
 		});
 		
@@ -145,6 +139,15 @@ public class CinemaFragment extends Fragment{
 		return rootView;
 	}
 	
+	DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            txtShowDate.setText(String.valueOf(year) + "-" + String.valueOf(monthOfYear + 1)
+                    + "-" + String.valueOf(dayOfMonth));
+        }
+    };
+
 	private void fetchHall(){
 		List<String> listOfHall = new ArrayList<String>();
 		cinemaHallList = Select.from(CinemaPlace.class).list();
@@ -194,30 +197,6 @@ public class CinemaFragment extends Fragment{
 		newCinema.save();
 	}
 	
-	protected Dialog onCreateDialog(int id) {
-	    if (id == 999) {
-	    	return new DatePickerDialog(getActivity(), myDateListener, year, month, day);
-	    }
-	    return null;
-	}
-
-	private DatePickerDialog.OnDateSetListener myDateListener
-		 = new DatePickerDialog.OnDateSetListener() {
-		
-		 @Override
-		 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-		    showDate(arg1, arg2+1, arg3);
-		 }
-	   };
-
-	   private void showDate(int year, int month, int day) {
-		   if(txtShowDate.hasFocus()){
-			   txtShowDate.setText(new StringBuilder().append(year).append("-")
-					      .append(month).append("-").append(day));		   
-		   }
-
-	}	   
-	   
 	private void init(){
 		cinemaList = Select.from(Cinema.class).orderBy("id Desc").list();
 		adapter = new CinemaAdapter(getActivity(), cinemaList);
@@ -233,5 +212,4 @@ public class CinemaFragment extends Fragment{
 		adapter = new CinemaAdapter(getActivity(), cinemaList);
 		mCinemaList.setAdapter(adapter);		
 	}
-
 }

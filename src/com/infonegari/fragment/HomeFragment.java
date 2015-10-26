@@ -45,8 +45,6 @@ public class HomeFragment extends Fragment{
             Bundle savedInstanceState) {
   
 		getActivity().setTitle("Menu");
-		getActivity().setTheme(R.id.myTitle);
-		getActivity().setTitleColor(R.id.myTitle);
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         imageSwitcher = (ImageSwitcher) rootView.findViewById(R.id.adi_imageSwitcher);
