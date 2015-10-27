@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -114,7 +113,7 @@ public class EventFragment extends Fragment{
 			}
 		});
 		
-//		saveEvent();
+		saveEvent();
 		
 		fetchLocation();
 		
@@ -160,12 +159,25 @@ public class EventFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		eventList = Select.from(Event.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		eventList = Event.findWithQuery(Event.class, 
+    			"SELECT * FROM  Event WHERE ItemName LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new EventAdapter(getActivity(), eventList);
-		mEventList.setAdapter(adapter);		
+		mEventList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

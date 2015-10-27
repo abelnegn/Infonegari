@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.HDTAAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Hdnta;
 import com.infonegari.objects.db.Location;
 import com.infonegari.util.AdsImageView;
@@ -114,7 +115,7 @@ public class HmdtaFragment extends Fragment{
 			}
 		});
 		
-//		saveHM();
+		saveHM();
 		
 		fetchLocation();
 		
@@ -144,7 +145,7 @@ public class HmdtaFragment extends Fragment{
 	private void saveHM(){
 		Hdnta newH = new Hdnta();
 		newH.setDiscription("DJ Fastu");
-		newH.setHDnTAName("DJ Fastu");
+		newH.setHdtaName("DJ Fastu");
 		newH.setHdntaId(23);
 		newH.setLocationId(1);
 		newH.setPrice(324);
@@ -161,12 +162,25 @@ public class HmdtaFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		hdntaList = Select.from(Hdnta.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "hdta_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		hdntaList = Hdnta.findWithQuery(Hdnta.class, 
+    			"SELECT * FROM  Hdnta WHERE hdta_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new HDTAAdapter(getActivity(), hdntaList);
-		mHdntaList.setAdapter(adapter);		
+		mHdntaList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

@@ -51,13 +51,19 @@ public class BankAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_bank, null);
         }
 		
-		Location location = Select.from(Location.class).
-				where(Condition.prop("Location_Id").eq(banks.get(position).
-						getLocationId())).first();
+		Location location = null;
+		long locationId = banks.get(position).getLocationId();
+		if(locationId != 0){
+			location = Select.from(Location.class).
+					where(Condition.prop("Location_Id").eq(locationId)).first();			
+		}
 		
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(banks.get(position).
-						getUser_Name())).first();
+		UserSite userSite = null;
+		String userName = banks.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
@@ -74,16 +80,17 @@ public class BankAdapter extends BaseAdapter{
         txtPrice.setText(String.valueOf(banks.get(position).getPrice()));
         txtBranch.setText(banks.get(position).getBranch_Name());
         if(userSite != null){
-       	 txtPhoneNo.setText(userSite.getPhone_Number());
-       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
- 			@Override
- 			public void onClick(View arg0) {
- 				Intent callIntent = new Intent(Intent.ACTION_CALL);
- 				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
- 				context.startActivity(callIntent);
- 			}
- 		});  
-       	 txtEmail.setText(userSite.getE_mail());
+	       	 final String phoneNo = userSite.getPhone_Number();
+	       	 txtPhoneNo.setText(userSite.getPhone_Number());
+	       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
+	 			@Override
+	 			public void onClick(View arg0) {
+	 				Intent callIntent = new Intent(Intent.ACTION_CALL);
+	 				callIntent.setData(Uri.parse("tel:" + phoneNo));
+	 				context.startActivity(callIntent);
+	 			}
+	 		});  
+	       	 txtEmail.setText(userSite.getE_mail());
        }
         
         return convertView;

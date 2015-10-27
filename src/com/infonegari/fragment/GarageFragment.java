@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.GarageAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Guarage;
 import com.infonegari.objects.db.Location;
 import com.infonegari.util.AdsImageView;
@@ -114,7 +115,7 @@ public class GarageFragment extends Fragment{
 			}
 		});
 		
-//		saveGarage();
+		saveGarage();
 		
 		fetchLocation();
 		
@@ -162,12 +163,25 @@ public class GarageFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		garageList = Select.from(Guarage.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		garageList = Guarage.findWithQuery(Guarage.class, 
+    			"SELECT * FROM  Guarage WHERE ItemName LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new GarageAdapter(getActivity(), garageList);
-		mGarageList.setAdapter(adapter);		
+		mGarageList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.DJAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.DJ;
 import com.infonegari.objects.db.Location;
 import com.infonegari.util.AdsImageView;
@@ -114,7 +115,7 @@ public class DJFragment extends Fragment{
 			}
 		});
 		
-//		saveDJ();
+		saveDJ();
 		
 		fetchLocation();
 		
@@ -161,12 +162,25 @@ public class DJFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		djList = Select.from(DJ.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Dj_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		djList = DJ.findWithQuery(DJ.class, 
+    			"SELECT * FROM  DJ WHERE Dj_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new DJAdapter(getActivity(), djList);
-		mDJList.setAdapter(adapter);		
+		mDJList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();	
 	}
 
 }

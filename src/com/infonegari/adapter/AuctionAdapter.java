@@ -51,13 +51,19 @@ public class AuctionAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_auction, null);
         }
 		
-		AuctionCategory category = Select.from(AuctionCategory.class).
-				where(Condition.prop("acId").eq(auctions.get(position).
-						getAuction_Catagory())).first();
+		AuctionCategory category = null;
+		long acId = auctions.get(position).getAuction_Catagory();
+		if(acId != 0){
+			category = Select.from(AuctionCategory.class).
+					where(Condition.prop("acId").eq(acId)).first();			
+		}
 
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(auctions.get(position).
-						getUser_Name())).first();
+		UserSite userSite = null;
+		String userName = auctions.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         TextView txtPostDate = (TextView) convertView.findViewById(R.id.post_date);
@@ -79,13 +85,15 @@ public class AuctionAdapter extends BaseAdapter{
         txtDiscription.setText(auctions.get(position).getDescription());
         txtMinPrice.setText(String.valueOf(auctions.get(position).getMinimum_Price()));    
         txtSource.setText(auctions.get(position).getSource());
+        
         if(userSite != null){
-        	 txtPhoneNo.setText(userSite.getPhone_Number());
+        	 final String phoneNo = userSite.getPhone_Number();
+        	 txtPhoneNo.setText(phoneNo);
            	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
      			@Override
      			public void onClick(View arg0) {
      				Intent callIntent = new Intent(Intent.ACTION_CALL);
-     				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
+     				callIntent.setData(Uri.parse("tel:" + phoneNo));
      				context.startActivity(callIntent);
      			}
      		});  

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.DecoratorsAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Decorators;
 import com.infonegari.objects.db.Location;
 import com.infonegari.util.AdsImageView;
@@ -147,12 +148,26 @@ public class DecoratorsFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		decoratorList = Select.from(Decorators.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Decorator_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		decoratorList = Decorators.findWithQuery(Decorators.class, 
+    			"SELECT * FROM  Decorators WHERE Decorator_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new DecoratorsAdapter(getActivity(), decoratorList);
-		mDecoratorList.setAdapter(adapter);		
+		mDecoratorList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

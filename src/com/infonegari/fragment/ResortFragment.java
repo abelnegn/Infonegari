@@ -7,6 +7,7 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ResortAdapter;
 import com.infonegari.objects.db.Location;
+import com.infonegari.objects.db.Pharmacy;
 import com.infonegari.objects.db.Resort;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
@@ -114,7 +115,7 @@ public class ResortFragment extends Fragment{
 			}
 		});
 		
-//		saveResort();
+		saveResort();
 		
 		fetchLocation();
 		
@@ -160,12 +161,26 @@ public class ResortFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		resortList = Select.from(Resort.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		resortList = Resort.findWithQuery(Resort.class, 
+    			"SELECT * FROM  Resort WHERE ItemName LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new ResortAdapter(getActivity(), resortList);
-		mResortList.setAdapter(adapter);		
+		mResortList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.PharmacyAdapter;
 import com.infonegari.objects.db.Location;
+import com.infonegari.objects.db.NightClub;
 import com.infonegari.objects.db.Pharmacy;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
@@ -114,7 +115,7 @@ public class PharmacyFragment extends Fragment{
 			}
 		});
 		
-//		savePharmacy();
+		savePharmacy();
 		
 		fetchLocation();
 		
@@ -161,12 +162,26 @@ public class PharmacyFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		pharmacyList = Select.from(Pharmacy.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		pharmacyList = Pharmacy.findWithQuery(Pharmacy.class, 
+    			"SELECT * FROM  Pharmacy WHERE ItemName LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new PharmacyAdapter(getActivity(), pharmacyList);
-		mPharmacyList.setAdapter(adapter);		
+		mPharmacyList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

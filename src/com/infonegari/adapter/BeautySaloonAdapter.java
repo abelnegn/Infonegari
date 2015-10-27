@@ -51,13 +51,19 @@ public class BeautySaloonAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_beauty_saloon, null);
         }
 		
-		Location location = Select.from(Location.class).
-				where(Condition.prop("Location_Id").eq(beautySaloons.get(position).
-						getLocationId())).first();
+		Location location = null;
+		long locationId = beautySaloons.get(position).getLocationId();
+		if(locationId != 0){
+			location = Select.from(Location.class).
+					where(Condition.prop("Location_Id").eq(locationId)).first();			
+		}
          
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(beautySaloons.get(position).
-						getUser_Name())).first();
+		UserSite userSite = null;
+		String userName = beautySaloons.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         TextView txtType = (TextView)convertView.findViewById(R.id.saloon_type);
@@ -74,12 +80,13 @@ public class BeautySaloonAdapter extends BaseAdapter{
         	txtLocation.setText(location.getLocationName());
         txtPrice.setText(String.valueOf(beautySaloons.get(position).getPrice()));      
         if(userSite != null){
-       	 txtPhoneNo.setText(userSite.getPhone_Number());
-       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
+        	final String phoneNo = userSite.getPhone_Number();
+       	 	txtPhoneNo.setText(userSite.getPhone_Number());
+       	 	txtPhoneNo.setOnClickListener(new OnClickListener() {			
  			@Override
  			public void onClick(View arg0) {
  				Intent callIntent = new Intent(Intent.ACTION_CALL);
- 				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
+ 				callIntent.setData(Uri.parse("tel:" + phoneNo));
  				context.startActivity(callIntent);
  			}
  		});  

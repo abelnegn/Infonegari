@@ -39,7 +39,7 @@ public class AuctionFragment extends Fragment{
 	List<Auction> auctionList;
 	private ListView mAuctionList;
 	private AuctionAdapter adapter;
-	private Spinner sp_location, sp_category;
+	private Spinner sp_category;
 	private Button btnSearch;
 	private EditText txtTitle;
 	private ImageSwitcher imageSwitcher;
@@ -151,6 +151,7 @@ public class AuctionFragment extends Fragment{
 		newA.setPost_Date("01-02-2015");
 		newA.setSource("Addis Zemen");
 		newA.setSubmission_Deadline("21-04-2015");
+		newA.setUser_Name("tash");
 		
 		newA.save();
 	}
@@ -164,12 +165,23 @@ public class AuctionFragment extends Fragment{
 	
 	private void btnSearch(){
 		safeUIBlockingUtility.safelyBlockUI();
-//		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-//		auctionList = Select.from(Auction.class).where(Condition.prop("CnPIdName").
-//				eq(txtTitle.getText().toString())).and(Condition.
-//						prop("Location_Id").eq(locId)).list();
-//		adapter = new AuctionAdapter(getActivity(), auctionList);
-//		mAuctionList.setAdapter(adapter);	
+		String catId = String.valueOf(categoryHashMap.get(sp_category.getSelectedItem().toString()));
+		if(catId.equals("0")){
+			catId = "AuctionCatagory";
+		}
+		String auctionTitle = txtTitle.getText().toString();
+		if(auctionTitle.equals("")){
+			auctionTitle = "CompanyName";
+		}else{
+			auctionTitle = "'%" + auctionTitle + "%'";
+		}
+		
+		auctionList = Auction.findWithQuery(Auction.class, 
+    			"SELECT * FROM  Auction WHERE CompanyName LIKE " +
+    					auctionTitle + " AND AuctionCatagory = " + catId + " ORDER BY id Desc");
+		
+		adapter = new AuctionAdapter(getActivity(), auctionList);
+		mAuctionList.setAdapter(adapter);	
 		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 

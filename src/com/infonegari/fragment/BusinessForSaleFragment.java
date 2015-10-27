@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.HouseRentAdapter;
-import com.infonegari.objects.db.BusinessListing;
 import com.infonegari.objects.db.HouseListing;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
@@ -119,7 +118,7 @@ public class BusinessForSaleFragment extends Fragment{
 			}
 		});
 		
-//		saveBusiness();
+		saveBusiness();
 		
 		fetchHouseType();
 		fetchLocation();
@@ -166,20 +165,21 @@ public class BusinessForSaleFragment extends Fragment{
 	}
 	
 	private void saveBusiness(){
-		BusinessListing newB = new BusinessListing();
-		newB.setFullAddress("Addis Ababa");
-		newB.setListingCity(1);
-		newB.setListingDiscription("Business List Discription");
-		newB.setListingEmail("ps_abello@yahoo.com");
-		newB.setListingId(1);
-		newB.setListingLocation(1);
-		newB.setListingMainCategory(1);
-		newB.setListingName("Abel Listing");
-		newB.setListingPhone("0930099752");
-		newB.setListingSubCategory(1);
-		newB.setMemberId(2);
+		HouseListing newHL = new HouseListing();
+		newHL.setHouse_Name("Mamo for Business");
+		newHL.setHouseDiscription("House for business");
+		newHL.setHouseListingId(1);
+		newHL.setHousePrice(324);
+		newHL.setHouseTypeId(1);
+		newHL.setIsBusiness(true);
+		newHL.setLocationId(2);
+		newHL.setLotSize("32");
+		newHL.setMemberId(2);
+		newHL.setNoRooms(3);
+		newHL.setSale(true);
+		newHL.setUser_Name("kebede");
 		
-		newB.save();
+		newHL.save();
 	}
 	
 	private void init(){
@@ -191,12 +191,31 @@ public class BusinessForSaleFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		businessList = Select.from(HouseListing.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String typeId = String.valueOf(houseTypeHashMap.get(sp_houseType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "House_Type_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "HouseName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		businessList = HouseListing.findWithQuery(HouseListing.class, 
+    			"SELECT * FROM  House_Listing WHERE is_Sale = 0 AND Is_Business = 1 AND HouseName LIKE " +
+    					title + " AND House_Type_Id = " + typeId + " AND Location_Id = " + locationId +
+    					" ORDER BY id Desc");
+		
 		adapter = new HouseRentAdapter(getActivity(), businessList);
-		mBusinessList.setAdapter(adapter);		
+		mBusinessList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

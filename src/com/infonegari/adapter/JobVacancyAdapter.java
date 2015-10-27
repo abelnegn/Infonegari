@@ -3,6 +3,8 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.objects.db.EducationCategory;
+import com.infonegari.objects.db.JobCategory;
 import com.infonegari.objects.db.Jobs;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -51,13 +53,33 @@ public class JobVacancyAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_job_vacancy, null);
         }
 		
-		Location location = Select.from(Location.class).
-				where(Condition.prop("Location_Id").eq(jobVacancy.get(position).
-						getLocationId())).first();
-         
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(jobVacancy.get(position).
-						getUser_Name())).first();
+		JobCategory category = null;
+		String catId = jobVacancy.get(position).getCategory();
+		if(!catId.equals("")){
+			category = Select.from(JobCategory.class).
+					where(Condition.prop("jc_Id").eq(catId)).first();			
+		}
+
+		EducationCategory eduLevel = null;
+		String levelId = jobVacancy.get(position).getEducation_Level();
+		if(!levelId.equals("")){
+			eduLevel = Select.from(EducationCategory.class).
+					where(Condition.prop("ec_Id").eq(catId)).first();			
+		}
+		
+		Location location = null;
+		long locationId = jobVacancy.get(position).getLocationId();
+		if(locationId != 0){
+			location = Select.from(Location.class).
+					where(Condition.prop("Location_Id").eq(locationId)).first();			
+		}
+
+		UserSite userSite = null;
+		String userName = jobVacancy.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtTitle = (TextView) convertView.findViewById(R.id.job_title);
         TextView txtCategory = (TextView) convertView.findViewById(R.id.job_category);
@@ -75,10 +97,13 @@ public class JobVacancyAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
                  
         txtTitle.setText(jobVacancy.get(position).getJob_Title());
-        txtCategory.setText(jobVacancy.get(position).getCategory());
+        if(category != null){
+            txtCategory.setText(category.getCategory_Name());        	
+        }       
         if(location != null)
         	txtLocation.setText(location.getLocationName());
-        txtEducationLevel.setText(jobVacancy.get(position).getEducation_Level());
+        if(eduLevel != null)
+        	txtEducationLevel.setText(eduLevel.getEducation_Level());
         txtQualification.setText(jobVacancy.get(position).getQualification());
         txtResponsibility.setText(jobVacancy.get(position).getResponsibility());
         txtExperience.setText(jobVacancy.get(position).getExperiance());
@@ -88,16 +113,17 @@ public class JobVacancyAdapter extends BaseAdapter{
         txtDeadLine.setText(jobVacancy.get(position).getDead_Line());
         txtJobDuration.setText(jobVacancy.get(position).getJob_Duration());
         if(userSite != null){
-       	 txtPhoneNo.setText(userSite.getPhone_Number());
-       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
- 			@Override
- 			public void onClick(View arg0) {
- 				Intent callIntent = new Intent(Intent.ACTION_CALL);
- 				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
- 				context.startActivity(callIntent);
- 			}
- 		});  
-       	 txtEmail.setText(userSite.getE_mail());
+	       	 final String phoneNo = userSite.getPhone_Number();
+	       	 txtPhoneNo.setText(userSite.getPhone_Number());
+	       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
+	 			@Override
+	 			public void onClick(View arg0) {
+	 				Intent callIntent = new Intent(Intent.ACTION_CALL);
+	 				callIntent.setData(Uri.parse("tel:" + phoneNo ));
+	 				context.startActivity(callIntent);
+	 			}
+	 		});  
+	       	 txtEmail.setText(userSite.getE_mail());
        }        
         return convertView;
 	}

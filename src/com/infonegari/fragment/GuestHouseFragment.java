@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.GuestHouseAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
@@ -118,7 +119,7 @@ public class GuestHouseFragment extends Fragment{
 			}
 		});
 		
-//		saveHouse();
+		saveHouse();
 		
 		fetchHouseType();
 		fetchLocation();
@@ -184,12 +185,25 @@ public class GuestHouseFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		houseList = Select.from(GuestHouse.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Guest_House_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		houseList = GuestHouse.findWithQuery(GuestHouse.class, 
+    			"SELECT * FROM  Guest_House WHERE Guest_House_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new GuestHouseAdapter(getActivity(), houseList);
 		mHouseList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

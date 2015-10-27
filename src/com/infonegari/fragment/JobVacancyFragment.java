@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.JobVacancyAdapter;
+import com.infonegari.objects.db.EducationCategory;
 import com.infonegari.objects.db.JobCategory;
 import com.infonegari.objects.db.Jobs;
 import com.infonegari.objects.db.Location;
@@ -13,7 +14,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -38,12 +38,14 @@ public class JobVacancyFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	List<JobCategory> categoryList;
+	List<EducationCategory> levelList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> categoryHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> levelHashMap = new HashMap<String, Long>();
 	List<Jobs> jobsList;
 	private ListView mJobList;
 	private JobVacancyAdapter adapter;
-	private Spinner sp_location, sp_category;
+	private Spinner sp_location, sp_category, sp_level;
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
@@ -101,6 +103,7 @@ public class JobVacancyFragment extends Fragment{
 		mJobList = (ListView)rootView.findViewById(R.id.list_job_vacancy);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		sp_category = (Spinner)rootView.findViewById(R.id.category);
+		sp_level = (Spinner)rootView.findViewById(R.id.edu_level);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
@@ -120,6 +123,7 @@ public class JobVacancyFragment extends Fragment{
 		
 		fetchLocation();
 		fetchCategory();
+		fetchLevel();
 		
 		init();
 		
@@ -162,6 +166,24 @@ public class JobVacancyFragment extends Fragment{
         sp_category.setSelection(0);
 	}
 	
+	private void fetchLevel(){
+		List<String> listOfLevels = new ArrayList<String>();
+		levelList = Select.from(EducationCategory.class).list();
+
+		listOfLevels.add("Select Education Level");
+		levelHashMap.put("Select Education Level", 0L);
+		for (EducationCategory level : levelList) {
+			listOfLevels.add(level.getEducation_Level());
+			levelHashMap.put(level.getEducation_Level(), level.getEcId());
+        }
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfLevels);
+
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_level.setAdapter(levelAdapter);
+        sp_level.setSelection(0);
+	}
+	
 	private void init(){
 		jobsList = Select.from(Jobs.class).orderBy("id Desc").list();
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
@@ -170,12 +192,40 @@ public class JobVacancyFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		jobsList = Select.from(Jobs.class).where(Condition.prop("Category").
-				eq(sp_category.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String catId = String.valueOf(categoryHashMap.get(sp_category.getSelectedItem().toString()));
+		if(catId.equals("0")){
+			catId = "Category";
+		}else{
+			catId = "'" + catId + "'";
+		}
+
+		String levelId = String.valueOf(levelHashMap.get(sp_level.getSelectedItem().toString()));
+		if(levelId.equals("0")){
+			levelId = "EducationLevel";
+		}else{
+			levelId = "'" + levelId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "JobTitle";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		jobsList = Jobs.findWithQuery(Jobs.class, 
+    			"SELECT * FROM  Jobs WHERE JobTitle LIKE " + title + " AND Category = " + catId + 
+    			"AND EducationLevel = " + levelId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
 		mJobList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

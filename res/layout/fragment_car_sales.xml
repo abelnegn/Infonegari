@@ -83,6 +83,7 @@
 			android:layout_width= "fill_parent"
 			android:textColor="#000000"
 			android:background="#FFFFFF"
+			android:inputType="number"
 	        android:id="@+id/year"/>
     </LinearLayout>	
     <LinearLayout 

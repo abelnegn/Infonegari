@@ -119,7 +119,7 @@ public class CarSalesFragment extends Fragment{
 			}
 		});
 		
-//		saveCar();
+		saveCar();
 		
 		fetchCarType();
 		fetchLocation();
@@ -167,8 +167,8 @@ public class CarSalesFragment extends Fragment{
 	
 	private void saveCar(){
 		CarListing newC = new CarListing();
-		newC.setDiscription("Abel Car");
-		newC.setCarName("Lifan");
+		newC.setDiscription("Dagnachew Car");
+		newC.setCarName("Haundai");
 		newC.setLocationId(4);
 		newC.setCarPrice(432);
 		newC.setCarListingId(1);
@@ -189,12 +189,36 @@ public class CarSalesFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		carList = Select.from(CarListing.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String typeId = String.valueOf(carTypeHashMap.get(sp_carType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "Car_Type_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Car_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		String year = txtYear.getText().toString();
+		if(year.equals("")){
+			year = "Year";
+		}
+		
+		carList = CarListing.findWithQuery(CarListing.class, 
+    			"SELECT * FROM  Car_Listing WHERE is_Car_Sale = 1 AND Year = " + year + " AND Car_Name LIKE " + 
+    					title + " AND Car_Type_Id = " + typeId + " AND Location_Id = " + locationId +
+    					" ORDER BY id Desc");
+		
 		adapter = new CarRentAdapter(getActivity(), carList);
-		mCarList.setAdapter(adapter);		
+		mCarList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

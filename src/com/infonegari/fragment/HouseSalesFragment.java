@@ -118,7 +118,7 @@ public class HouseSalesFragment extends Fragment{
 			}
 		});
 		
-//		saveHouse();
+		saveHouse();
 		
 		fetchHouseType();
 		fetchLocation();
@@ -176,6 +176,7 @@ public class HouseSalesFragment extends Fragment{
 		newH.setLotSize("34");
 		newH.setNoRooms(3);
 		newH.setSale(true);
+		newH.setIsBusiness(false);
 		
 		newH.save();
 	}
@@ -189,12 +190,32 @@ public class HouseSalesFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		houseList = Select.from(HouseListing.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String typeId = String.valueOf(houseTypeHashMap.get(sp_houseType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "House_Type_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "HouseName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		houseList = HouseListing.findWithQuery(HouseListing.class, 
+    			"SELECT * FROM  House_Listing WHERE is_Sale = 1 AND Is_Business = 0 AND HouseName LIKE " +
+    					title + " AND House_Type_Id = " + typeId + " AND Location_Id = " + locationId +
+    					" ORDER BY id Desc");
+		
 		adapter = new HouseRentAdapter(getActivity(), houseList);
-		mHouseList.setAdapter(adapter);		
+		mHouseList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

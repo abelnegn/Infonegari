@@ -544,7 +544,7 @@ public class OfflineDataHelper {
     public void saveHdntaData(Hdnta hdnta){
     	Hdnta newHdnta = new Hdnta();
     	newHdnta.setHdntaId(hdnta.getHdntaId());
-    	newHdnta.setHDnTAName(hdnta.getHDnTAName());
+    	newHdnta.setHdtaName(hdnta.getHdtaName());
     	newHdnta.setLocationId(hdnta.getLocationId());
     	newHdnta.setMemberId(hdnta.getMemberId());
     	newHdnta.setPrice(hdnta.getPrice());

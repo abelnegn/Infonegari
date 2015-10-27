@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -161,12 +160,26 @@ public class BandFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		bandList = Select.from(Band.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Band_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		bandList = Band.findWithQuery(Band.class, 
+    			"SELECT * FROM  Band WHERE Band_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new BandAdapter(getActivity(), bandList);
-		mBandList.setAdapter(adapter);		
+		mBandList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();	
 	}
 
 }

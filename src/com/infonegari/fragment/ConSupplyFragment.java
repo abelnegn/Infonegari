@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ConSupplyAdapter;
+import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Construction;
 import com.infonegari.objects.db.ConstructionMachine;
 import com.infonegari.objects.db.ConstructionMaterial;
@@ -122,7 +123,7 @@ public class ConSupplyFragment extends Fragment{
 			}
 		});
 		
-		//saveCon();
+		saveCon();
 		
 		fetchLocation();
 		fetchMachine();
@@ -209,12 +210,37 @@ public class ConSupplyFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		constructionList = Select.from(Construction.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String machineId = String.valueOf(conMachineHashMap.get(sp_conMachine.getSelectedItem().toString()));
+		if(machineId.equals("0")){
+			machineId = "Construction_Machine_Id";
+		}
+
+		String materialId = String.valueOf(conMaterialHashMap.get(sp_conMaterial.getSelectedItem().toString()));
+		if(materialId.equals("0")){
+			materialId = "Construction_Material_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Construction_Title";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		constructionList = Construction.findWithQuery(Construction.class, 
+    			"SELECT * FROM  Construction WHERE Construction_Title LIKE " + title + 
+    			" AND Construction_Machine_Id = " + machineId + " AND Construction_Material_Id = " +
+    			materialId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+		
 		adapter = new ConSupplyAdapter(getActivity(), constructionList);
-		mConstructionList.setAdapter(adapter);		
+		mConstructionList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

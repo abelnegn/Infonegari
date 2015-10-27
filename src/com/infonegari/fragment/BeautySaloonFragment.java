@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -37,6 +36,7 @@ public class BeautySaloonFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> saloonTypeHashMap = new HashMap<String, Long>();
 	List<BeautySaloon> beautySaloonList;
 	private ListView mBeautySaloonList;
 	private BeautySaloonAdapter adapter;
@@ -161,7 +161,13 @@ public class BeautySaloonFragment extends Fragment{
 		listOfType.add("Select Type");		
 		listOfType.add("Female");
 		listOfType.add("Male");
+		listOfType.add("Both");
 			
+		saloonTypeHashMap.put("Select Type", 0L);
+		saloonTypeHashMap.put("Female", 1L);
+		saloonTypeHashMap.put("Male", 2L);
+		saloonTypeHashMap.put("Both", 3L);
+		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
@@ -178,12 +184,34 @@ public class BeautySaloonFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		beautySaloonList = Select.from(BeautySaloon.class).where(Condition.prop("Category").
-				eq(sp_type.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "beautysaloons_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		String saloonType = String.valueOf(saloonTypeHashMap.get(sp_type.getSelectedItem().toString()));
+		if(saloonType.equals("0")){
+			saloonType = "beautysaloons_Type";
+		}else{
+			saloonType = "'" + saloonType + "'";
+		}
+		
+		beautySaloonList = BeautySaloon.findWithQuery(BeautySaloon.class, 
+    			"SELECT * FROM  Beauty_Saloon WHERE beautysaloons_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " AND " +
+    							"beautysaloons_Type = " + saloonType + " ORDER BY id Desc");
+		
 		adapter = new BeautySaloonAdapter(getActivity(), beautySaloonList);
 		mBeautySaloonList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }
