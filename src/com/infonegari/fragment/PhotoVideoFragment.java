@@ -113,7 +113,7 @@ public class PhotoVideoFragment extends Fragment{
 			}
 		});
 		
-		savePV();
+//		savePV();
 		
 		fetchLocation();
 		

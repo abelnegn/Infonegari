@@ -47,7 +47,6 @@
         <Spinner 
             android:layout_height= "wrap_content"
 			android:layout_width= "fill_parent"
-			android:background="#424242"
 	        android:id="@+id/location"/> 
 	</LinearLayout>  
     <LinearLayout 

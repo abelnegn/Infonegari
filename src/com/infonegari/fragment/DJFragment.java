@@ -115,7 +115,7 @@ public class DJFragment extends Fragment{
 			}
 		});
 		
-		saveDJ();
+//		saveDJ();
 		
 		fetchLocation();
 		

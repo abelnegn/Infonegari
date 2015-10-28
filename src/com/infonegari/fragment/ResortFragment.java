@@ -115,7 +115,7 @@ public class ResortFragment extends Fragment{
 			}
 		});
 		
-		saveResort();
+//		saveResort();
 		
 		fetchLocation();
 		

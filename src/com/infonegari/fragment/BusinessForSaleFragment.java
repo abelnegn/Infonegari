@@ -118,7 +118,7 @@ public class BusinessForSaleFragment extends Fragment{
 			}
 		});
 		
-		saveBusiness();
+//		saveBusiness();
 		
 		fetchHouseType();
 		fetchLocation();

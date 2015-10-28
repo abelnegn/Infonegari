@@ -117,7 +117,7 @@ public class UsedItemFragment extends Fragment{
 			}
 		});
 		
-		saveUsedItem();
+//		saveUsedItem();
 		
 		fetchLocation();
 		fetchType();

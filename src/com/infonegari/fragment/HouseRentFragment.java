@@ -118,7 +118,7 @@ public class HouseRentFragment extends Fragment{
 			}
 		});
 		
-		saveHouse();
+//		saveHouse();
 		
 		fetchHouseType();
 		fetchLocation();

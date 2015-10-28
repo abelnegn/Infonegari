@@ -113,7 +113,7 @@ public class BankFragment extends Fragment{
 			}
 		});
 		
-		saveBank();
+//		saveBank();
 		
 		fetchLocation();
 		

@@ -119,7 +119,7 @@ public class ShopFurnitureFragment extends Fragment{
 			}
 		});
 		
-		saveShopFurniture();
+//		saveShopFurniture();
 		fetchLocation();
 		fetchType();
 		

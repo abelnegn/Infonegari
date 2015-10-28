@@ -118,7 +118,7 @@ public class ShopComputerFragment extends Fragment{
 			}
 		});
 		
-		saveShopComputer();
+//		saveShopComputer();
 		fetchLocation();
 		fetchType();
 		fetchService();

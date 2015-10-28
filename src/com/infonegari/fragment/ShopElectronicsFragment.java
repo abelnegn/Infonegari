@@ -118,7 +118,7 @@ public class ShopElectronicsFragment extends Fragment{
 			}
 		});
 		
-		saveShopElectronic();
+//		saveShopElectronic();
 		fetchLocation();
 		fetchElectronicCategory();
 		fetchService();

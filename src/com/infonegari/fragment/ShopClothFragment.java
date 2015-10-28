@@ -118,7 +118,7 @@ public class ShopClothFragment extends Fragment{
 			}
 		});
 		
-		saveClothType();
+//		saveClothType();
 		
 		fetchClothCategory();
 		fetchLocation();

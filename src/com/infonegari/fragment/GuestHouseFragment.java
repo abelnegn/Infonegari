@@ -119,7 +119,7 @@ public class GuestHouseFragment extends Fragment{
 			}
 		});
 		
-		saveHouse();
+//		saveHouse();
 		
 		fetchHouseType();
 		fetchLocation();

@@ -119,7 +119,7 @@ public class CarRentFragment extends Fragment{
 			}
 		});
 		
-		saveCar();
+//		saveCar();
 		
 		fetchCarType();
 		fetchLocation();

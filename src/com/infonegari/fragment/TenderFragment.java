@@ -115,7 +115,7 @@ public class TenderFragment extends Fragment{
 			}
 		});
 		
-		saveTender();
+//		saveTender();
 		
 		fetchCategory();
 		

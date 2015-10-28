@@ -115,7 +115,7 @@ public class HmdtaFragment extends Fragment{
 			}
 		});
 		
-		saveHM();
+//		saveHM();
 		
 		fetchLocation();
 		

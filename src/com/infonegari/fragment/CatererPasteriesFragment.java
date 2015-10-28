@@ -113,7 +113,7 @@ public class CatererPasteriesFragment extends Fragment{
 			}
 		});
 		
-		saveCatererPasteries();
+//		saveCatererPasteries();
 		
 		fetchLocation();
 		

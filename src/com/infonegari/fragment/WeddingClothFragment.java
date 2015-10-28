@@ -118,7 +118,7 @@ public class WeddingClothFragment extends Fragment{
 			}
 		});
 		
-		saveWeddingCloth();
+//		saveWeddingCloth();
 		
 		fetchLocation();
 		fetchClothType();

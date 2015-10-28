@@ -113,7 +113,7 @@ public class TaxiFragment extends Fragment{
 			}
 		});
 		
-		saveTaxi();
+//		saveTaxi();
 		
 		fetchLocation();
 		

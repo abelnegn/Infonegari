@@ -115,7 +115,7 @@ public class GarageFragment extends Fragment{
 			}
 		});
 		
-		saveGarage();
+//		saveGarage();
 		
 		fetchLocation();
 		

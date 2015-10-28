@@ -188,7 +188,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveAuctionData(auction);
                             }
                         }
-                        Toast.makeText(getActivity(), "Auction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Auction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -219,7 +219,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveAuctionGategoryData(auctionCategory);
                             }
                         }
-                        Toast.makeText(getActivity(), "Auction Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Auction Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -250,7 +250,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBandData(band);
                             }
                         }
-                        Toast.makeText(getActivity(), "Band data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Band data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -281,7 +281,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBankData(bank);
                             }
                         }
-                        Toast.makeText(getActivity(), "Bank data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Bank data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -312,7 +312,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBeautySaloonData(beautySaloon);
                             }
                         }
-                        Toast.makeText(getActivity(), "Beauty Saloon data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Beauty Saloon data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -343,7 +343,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCarListingData(carListing);
                             }
                         }
-                        Toast.makeText(getActivity(), "Car Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Car Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -374,7 +374,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCarTypeData(carType);
                             }
                         }
-                        Toast.makeText(getActivity(), "Car Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Car Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -405,7 +405,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCatererPasteriesData(caterersPastery);
                             }
                         }
-                        Toast.makeText(getActivity(), "Caterers and Pasteries data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Caterers and Pasteries data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -435,7 +435,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCinemaData(cinema);
                             }
                         }
-                        Toast.makeText(getActivity(), "Cinema data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Cinema data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -467,7 +467,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCinemaPlaceData(cinemaPlace);
                             }
                         }
-                        Toast.makeText(getActivity(), "Cinema Place data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Cinema Place data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -499,7 +499,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCityData(city);
                             }
                         }
-                        Toast.makeText(getActivity(), "City data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "City data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -531,7 +531,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveClinicData(clinic);
                             }
                         }
-                        Toast.makeText(getActivity(), "Clinic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Clinic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -563,7 +563,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConstructionData(construction);
                             }
                         }
-                        Toast.makeText(getActivity(), "Construction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Construction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -595,7 +595,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConMachineData(constructionMachine);
                             }
                         }
-                        Toast.makeText(getActivity(), "Construction Machine data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Construction Machine data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -627,7 +627,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConMaterialData(constructionMaterial);
                             }
                         }
-                        Toast.makeText(getActivity(), "Construction Material data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Construction Material data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -659,7 +659,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveDecoratorData(decorator);
                             }
                         }
-                        Toast.makeText(getActivity(), "Decorator data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Decorator data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -691,7 +691,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveDJData(dj);
                             }
                         }
-                        Toast.makeText(getActivity(), "DJ data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "DJ data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -723,7 +723,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveEducationCatData(educationCategory);
                             }
                         }
-                        Toast.makeText(getActivity(), "Electronic Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Electronic Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -755,7 +755,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveEventData(event);
                             }
                         }
-                        Toast.makeText(getActivity(), "Event data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Event data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -787,7 +787,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveGuarageData(guarage);
                             }
                         }
-                        Toast.makeText(getActivity(), "Guarage data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Guarage data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -819,7 +819,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveGuestHouseData(guestHouse);
                             }
                         }
-                        Toast.makeText(getActivity(), "Guest House data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Guest House data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -851,7 +851,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHallTypeData(hallType);
                             }
                         }
-                        Toast.makeText(getActivity(), "Hall Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Hall Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -883,7 +883,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHdntaData(hdnta);
                             }
                         }
-                        Toast.makeText(getActivity(), "HDNTA data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "HDNTA data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -915,7 +915,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHouseListingData(houseListing);
                             }
                         }
-                        Toast.makeText(getActivity(), "House Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "House Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -947,7 +947,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHouseTypeData(houseType);
                             }
                         }
-                        Toast.makeText(getActivity(), "House Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "House Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -979,7 +979,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveJobCategoryData(jobCategory);
                             }
                         }
-                        Toast.makeText(getActivity(), "Job Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Job Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1011,7 +1011,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveJobsData(job);
                             }
                         }
-                        Toast.makeText(getActivity(), "Job data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Job data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1043,7 +1043,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveLocationData(location);
                             }
                         }
-                        Toast.makeText(getActivity(), "Location data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Location data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1074,7 +1074,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveMovieTypeData(movieType);
                             }
                         }
-                        Toast.makeText(getActivity(), "Movie Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Movie Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1106,7 +1106,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveNightClubData(nightClub);
                             }
                         }
-                        Toast.makeText(getActivity(), "Night Club data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Night Club data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1138,7 +1138,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.savePharmacyData(pharmacy);
                             }
                         }
-                        Toast.makeText(getActivity(), "Pharmacy data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Pharmacy data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1170,7 +1170,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.savePhotoVideoData(photoVideo);
                             }
                         }
-                        Toast.makeText(getActivity(), "Photo and Video data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Photo and Video data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1202,7 +1202,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveResortData(resort);
                             }
                         }
-                        Toast.makeText(getActivity(), "Resort data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Resort data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1234,7 +1234,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveRestaurantTypeData(restaurantType);
                             }
                         }
-                        Toast.makeText(getActivity(), "Restaurant Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Restaurant Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1266,7 +1266,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveRestaurantData(restaurant);
                             }
                         }
-                        Toast.makeText(getActivity(), "Restaurant data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Restaurant data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1298,7 +1298,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopClothData(shopCloth);
                             }
                         }
-                        Toast.makeText(getActivity(), "Shop Cloth data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Shop Cloth data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1330,7 +1330,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopComputerData(shopComputer);
                             }
                         }
-                        Toast.makeText(getActivity(), "Shop Computer data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Shop Computer data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1362,7 +1362,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopElectronicData(shopElectronic);
                             }
                         }
-                        Toast.makeText(getActivity(), "Shop Electronic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Shop Electronic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1394,7 +1394,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopFurnitureData(shopFurniture);
                             }
                         }
-                        Toast.makeText(getActivity(), "Shop Furniture data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Shop Furniture data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1426,7 +1426,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTaxiData(taxi);
                             }
                         }
-                        Toast.makeText(getActivity(), "Taxi data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Taxi data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1458,7 +1458,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTenderData(tender);
                             }
                         }
-                        Toast.makeText(getActivity(), "Tender data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Tender data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1490,7 +1490,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTenderCategoryData(tenderCategory);
                             }
                         }
-                        Toast.makeText(getActivity(), "Tender Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Tender Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1586,7 +1586,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveUserSiteData(userSite);
                             }
                         }
-                        Toast.makeText(getActivity(), "User data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "User data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1618,7 +1618,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveUsedItemTypeData(usedItemType);
                             }
                         }
-                        Toast.makeText(getActivity(), "Used Item Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Used Item Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1650,7 +1650,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingCarData(weddingCar);
                             }
                         }
-                        Toast.makeText(getActivity(), "Wedding Car data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Wedding Car data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1682,7 +1682,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWCRPData(weddingCardRingProtocol);
                             }
                         }
-                        Toast.makeText(getActivity(), "Wedding Card, Ring and Protocol data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Wedding Card, Ring and Protocol data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1714,7 +1714,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingClothData(weddingCloth);
                             }
                         }
-                        Toast.makeText(getActivity(), "Wedding Closs data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Wedding Closs data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -1746,7 +1746,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingHall(weddingHall);
                             }
                         }
-                        Toast.makeText(getActivity(), "Wedding Hall data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                         mHome();
                     }
 

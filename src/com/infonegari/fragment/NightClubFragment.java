@@ -113,7 +113,7 @@ public class NightClubFragment extends Fragment{
 			}
 		});
 		
-		saveNightClub();
+//		saveNightClub();
 		
 		fetchLocation();
 		

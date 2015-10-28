@@ -113,7 +113,7 @@ public class EventFragment extends Fragment{
 			}
 		});
 		
-		saveEvent();
+//		saveEvent();
 		
 		fetchLocation();
 		

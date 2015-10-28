@@ -123,7 +123,7 @@ public class ConSupplyFragment extends Fragment{
 			}
 		});
 		
-		saveCon();
+//		saveCon();
 		
 		fetchLocation();
 		fetchMachine();

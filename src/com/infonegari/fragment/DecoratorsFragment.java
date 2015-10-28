@@ -115,7 +115,7 @@ public class DecoratorsFragment extends Fragment{
 			}
 		});
 		
-		fetchLocation();
+//		fetchLocation();
 		
 		init();
 		

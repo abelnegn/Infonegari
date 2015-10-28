@@ -115,7 +115,7 @@ public class WeddingCRPFragment extends Fragment{
 			}
 		});
 		
-		saveWCRP();
+//		saveWCRP();
 		
 		fetchLocation();
 		

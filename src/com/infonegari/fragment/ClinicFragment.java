@@ -113,7 +113,7 @@ public class ClinicFragment extends Fragment{
 			}
 		});
 		
-		saveClinic();
+//		saveClinic();
 		
 		fetchLocation();
 		

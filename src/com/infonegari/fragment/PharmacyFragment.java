@@ -115,7 +115,7 @@ public class PharmacyFragment extends Fragment{
 			}
 		});
 		
-		savePharmacy();
+//		savePharmacy();
 		
 		fetchLocation();
 		

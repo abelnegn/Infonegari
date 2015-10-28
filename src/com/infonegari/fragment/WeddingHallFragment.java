@@ -118,7 +118,7 @@ public class WeddingHallFragment extends Fragment{
 			}
 		});
 		
-		saveWH();
+//		saveWH();
 		fetchLocation();
 		fetchType();
 		

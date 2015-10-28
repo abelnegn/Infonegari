@@ -2,45 +2,8 @@
 <resources>
 
     <string name="app_name">InfoNegari</string>
-    <string name="wedding_app_name">My Wedding</string>
-    <string name="bussiness_app_name">Bussiness and Needs</string>
-    <string name="rent_app_name">For Rent</string>
-    <string name="sales_app_name">For Sale</string>
-    <string name="leisure_app_name">Leisure</string>
-    <string name="wedding_menu_title1">Wedding Halls</string>
-    <string name="wedding_menu_title2">Wedding Gown and Tuxedos</string>
-    <string name="wedding_menu_title3">Cater and Pastries</string>
-    <string name="wedding_menu_title4">Honeymoon Destinations and Travel Agents</string>
-    <string name="wedding_menu_title5">Photo and Video</string>
-    <string name="wedding_menu_title6">Beauty Salon</string>
-    <string name="wedding_menu_title7">Wedding Card/Ring/Protocol</string>
-    <string name="wedding_menu_title8">Furniture and Utencil Rent</string>
-    <string name="wedding_menu_title9">Music Band</string>
-    <string name="txt_header_info">8142 Click here to send short code</string>
-    <string name="wedding_menu_title10">DJ</string>
-    <string name="wedding_menu_title11">Decorators</string>
-    <string name="wedding_menu_title12">Wedding Cars</string>
-    <string name="bussiness_menu_title1">Handy Man</string>
-    <string name="bussiness_menu_title2">Auction House</string>
-    <string name="bussiness_menu_title3">Tender</string>
-    <string name="bussiness_menu_title4">Construction Supplies and Services</string>
-    <string name="rent_menu_title1">To Let</string>
-    <string name="rent_menu_title2">Guest House</string>
-    <string name="rent_menu_title3">Car Rental</string>
-    <string name="rent_menu_title4">Business for lease</string>
-    <string name="sale_menu_title1">Used Items For Sale</string>
-    <string name="sale_menu_title2">Car For Sale</string>
-    <string name="sale_menu_title3">House For Sale</string>
-    <string name="sale_menu_title4">Business For Sale</string>
-    <string name="leisure_menu_title1">Movies and Theaters Program</string>
-    <string name="leisure_menu_title2">Restaurant</string>
-    <string name="leisure_menu_title3">Sport</string>
-    <string name="leisure_menu_title4">Art and Culture</string>
-    <string name="leisure_menu_title5">Events</string>
-    <string name="leisure_menu_title6">Science and Technology</string>
-    <string name="leisure_menu_title7">How it is made</string>
-    <string name="leisure_menu_title8">Health tips</string>
     <string name="action_settings">Settings</string>
+    <string name="txt_header_info">8142 Click here to send short code</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
@@ -70,6 +33,9 @@
     <string name="txt_city">City</string>
     <string name="txt_main_category">Category</string>
     <string name="txt_level">Level</string>
+    <string name="title_activity_short_message">Short Message</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_user_subscription">UserSubscription</string>
 
 	<!--  Menu item name-->
 	<string name="menu_auction">Auction</string>
@@ -131,7 +97,6 @@
         <item>Leisure</item>
         <item>Shops</item>
         <item>Job Vacancy</item>
-        <item>Download</item>
     </string-array>
 
     <!-- Nav Drawer wedding Items -->
@@ -268,42 +233,4 @@
         <item>@drawable/comaccess</item>
         <item>@drawable/construction</item>
     </string-array>
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
-    <string name="title_activity_wedding_hall">WeddingHall</string>
-    <string name="title_activity_wedding_dress">WeddingDress</string>
-    <string name="title_activity_cater_pastery">CaterPastery</string>
-    <string name="title_activity_honey_moon">HoneyMoon</string>
-    <string name="title_activity_photo_video">PhotoVideo</string>
-    <string name="title_activity_beauty_salon">BeautySalon</string>
-    <string name="title_activity_wedding_card">WeddingCard</string>
-    <string name="title_activity_furniture_rent">FurnitureRent</string>
-    <string name="title_activity_music_band">MusicBand</string>
-    <string name="title_activity_music_dj">MusicDJ</string>
-    <string name="title_activity_decorators">Decorators</string>
-    <string name="title_activity_wedding_cars">WeddingCars</string>
-    <string name="title_activity_handy_man">HandyMan</string>
-    <string name="title_activity_sales_tender">SalesTender</string>
-    <string name="title_activity_purchase_tender">PurchaseTender</string>
-    <string name="title_activity_construction_supply">ConstructionSupply</string>
-    <string name="title_activity_rent_house">RentHouse</string>
-    <string name="title_activity_guest_house">GuestHouse</string>
-    <string name="title_activity_rent_car">RentCar</string>
-    <string name="title_activity_bussiness_for_lease">BussinessForLease</string>
-    <string name="title_activity_used_item">UsedItem</string>
-    <string name="title_activity_sales_car">SalesCar</string>
-    <string name="title_activity_sales_house">SalesHouse</string>
-    <string name="title_activity_bussiness_for_sale">BussinessForSale</string>
-    <string name="title_activity_movie_theater">MovieTheater</string>
-    <string name="title_activity_restaurant">Restaurant</string>
-    <string name="title_activity_sport">Sport</string>
-    <string name="title_activity_art_and_culture">ArtAndCulture</string>
-    <string name="title_activity_events">Events</string>
-    <string name="title_activity_science_and_techno">ScienceAndTechno</string>
-    <string name="title_activity_how_it_made">HowItMade</string>
-    <string name="title_activity_health_tips">HealthTips</string>
-    <string name="title_activity_localization">LocalizationActivity</string>
-    <string name="title_activity_user_subscription">UserSubscription</string>
-	<string name="title_activity_short_message">Short Message</string>
 </resources>

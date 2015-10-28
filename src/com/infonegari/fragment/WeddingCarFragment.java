@@ -118,7 +118,7 @@ public class WeddingCarFragment extends Fragment{
 			}
 		});
 		
-		saveWeddingCars();
+//		saveWeddingCars();
 		fetchLocation();
 		fetchCarType();
 		
