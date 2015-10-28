@@ -92,7 +92,7 @@ public class PhotoVideoFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_photo_video, container, false);
 		
-		getActivity().setTitle("Photo/Video");
+		getActivity().setTitle(getString(R.string.menu_photo_video));
 		
 		mPhotoVideoList = (ListView)rootView.findViewById(R.id.list_photo_video);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

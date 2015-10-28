@@ -33,7 +33,7 @@ public class HelpFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_help, container, false);
 		
-		getActivity().setTitle("Help");
+		getActivity().setTitle(getString(R.string.menu_help));
 		
 		return rootView;
 	}

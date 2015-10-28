@@ -425,7 +425,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
         	if(cinemaList.size() > 0)
         		cinemaId = cinemaList.get(0).getCinemaId();
         	
-            API.cinemaService.getCinemas(new Callback<List<Cinema>>() {
+            API.cinemaService.getCinemas(cinemaId, new Callback<List<Cinema>>() {
                     @Override
                     public void success(List<Cinema> cinemas, Response response) {
                         for (Cinema cinema : cinemas) {
@@ -440,7 +440,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
 
                     @Override
                     public void failure(RetrofitError error) {
-              
+                    	
                     }
 
                 });

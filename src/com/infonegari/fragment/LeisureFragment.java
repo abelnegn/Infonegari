@@ -81,7 +81,7 @@ public class LeisureFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_leisure, container, false);
-		getActivity().setTitle("Leisure");
+		getActivity().setTitle(getString(R.string.menu_leisure));
 		
 		// load sales menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_leisure_items);

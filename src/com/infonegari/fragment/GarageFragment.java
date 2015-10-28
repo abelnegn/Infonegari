@@ -94,7 +94,7 @@ public class GarageFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_garage, container, false);
 		
-		getActivity().setTitle("Garage");
+		getActivity().setTitle(getString(R.string.menu_garage));
 		
 		mGarageList = (ListView)rootView.findViewById(R.id.list_garage);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

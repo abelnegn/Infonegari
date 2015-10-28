@@ -96,7 +96,7 @@ public class HouseSalesFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_house_sales, container, false);
 		
-		getActivity().setTitle("House Sales");
+		getActivity().setTitle(getString(R.string.menu_house_sale));
 		
 		mHouseList = (ListView)rootView.findViewById(R.id.list_house_sales);
 		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);

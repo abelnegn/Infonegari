@@ -94,7 +94,7 @@ public class HmdtaFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_hmdta, container, false);
 		
-		getActivity().setTitle("Honeymoon Dest/Travel Agent");
+		getActivity().setTitle(getString(R.string.menu_hmdta));
 		
 		mHdntaList = (ListView)rootView.findViewById(R.id.list_hdnta);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

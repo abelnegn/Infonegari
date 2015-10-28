@@ -94,7 +94,7 @@ public class PharmacyFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_pharmacy, container, false);
 		
-		getActivity().setTitle("Pharmacy");
+		getActivity().setTitle(getString(R.string.menu_pharmacy));
 		
 		mPharmacyList = (ListView)rootView.findViewById(R.id.list_pharmacy);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

@@ -95,7 +95,7 @@ public class UsedItemFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_used_item, container, false);
 		
-		getActivity().setTitle("Used Items");
+		getActivity().setTitle(getString(R.string.menu_used_item));
 		
 		mUsedItemList = (ListView)rootView.findViewById(R.id.list_used_item);
 		sp_type = (Spinner)rootView.findViewById(R.id.type);

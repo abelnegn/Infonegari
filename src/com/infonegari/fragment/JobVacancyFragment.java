@@ -98,7 +98,7 @@ public class JobVacancyFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_job_vacancy, container, false);
-		getActivity().setTitle("Job Vacancy");
+		getActivity().setTitle(getString(R.string.menu_job));
 		
 		mJobList = (ListView)rootView.findViewById(R.id.list_job_vacancy);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

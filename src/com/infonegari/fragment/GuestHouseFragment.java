@@ -97,7 +97,7 @@ public class GuestHouseFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_guest_house, container, false);
 		
-		getActivity().setTitle("Guest House");
+		getActivity().setTitle(getString(R.string.menu_guest_house));
 		
 		mHouseList = (ListView)rootView.findViewById(R.id.list_guest_house);
 		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);

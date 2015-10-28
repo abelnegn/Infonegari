@@ -95,7 +95,7 @@ public class ShopClothFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shop_cloth, container, false);
 		
-		getActivity().setTitle("Shop Cloths"); 
+		getActivity().setTitle(getString(R.string.menu_shop_cloth)); 
 		
 		mShopClothList = (ListView)rootView.findViewById(R.id.list_shop_cloth);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

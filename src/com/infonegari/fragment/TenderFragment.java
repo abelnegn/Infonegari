@@ -94,7 +94,7 @@ public class TenderFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_tender, container, false);
 		
-		getActivity().setTitle("Tender");
+		getActivity().setTitle(getString(R.string.menu_tender));
 		
 		mTenderList = (ListView)rootView.findViewById(R.id.list_tender);
 		sp_category = (Spinner)rootView.findViewById(R.id.category);

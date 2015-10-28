@@ -94,7 +94,7 @@ public class ResortFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_resort, container, false);
 		
-		getActivity().setTitle("Resorts");
+		getActivity().setTitle(getString(R.string.menu_resort));
 		
 		mResortList = (ListView)rootView.findViewById(R.id.list_resort);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

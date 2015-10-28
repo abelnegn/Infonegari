@@ -94,7 +94,7 @@ public class BeautySaloonFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_beauty_saloon, container, false);
 		
-		getActivity().setTitle("Beauty Saloons"); 
+		getActivity().setTitle(getString(R.string.menu_beauty_saloon)); 
 		
 		mBeautySaloonList = (ListView)rootView.findViewById(R.id.list_beauty_saloon);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

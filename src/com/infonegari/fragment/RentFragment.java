@@ -81,7 +81,7 @@ public class RentFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_rent, container, false);
-		getActivity().setTitle("Rent");
+		getActivity().setTitle(getString(R.string.menu_rent));
 		
 		// load rent menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_rent_items);

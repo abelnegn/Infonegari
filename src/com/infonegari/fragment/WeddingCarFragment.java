@@ -96,7 +96,7 @@ public class WeddingCarFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_wedding_car, container, false);
 		
-		getActivity().setTitle("Wedding Cars"); 
+		getActivity().setTitle(getString(R.string.menu_wedding_Car)); 
 		
 		mWeddingCarList = (ListView)rootView.findViewById(R.id.list_wedding_car);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

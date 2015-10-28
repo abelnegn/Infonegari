@@ -96,7 +96,7 @@ public class CinemaFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_cinema, container, false);
 		
-		getActivity().setTitle("Cinema Schedule");
+		getActivity().setTitle(getString(R.string.menu_cinema));
 		
 		mCinemaList = (ListView)rootView.findViewById(R.id.list_cinema);
 		sp_hall = (Spinner)rootView.findViewById(R.id.cinema_hall);
@@ -248,6 +248,11 @@ public class CinemaFragment extends Fragment{
 		}
 
 		String calShowDate = txtShowDate.getText().toString();
+		if(calShowDate.equals("")){
+			calShowDate = "Calendar";
+		}else{
+			calShowDate = "'%" + calShowDate + "%'";
+		}
 		
 		String title = txtTitle.getText().toString();
 		if(title.equals("")){
@@ -258,7 +263,7 @@ public class CinemaFragment extends Fragment{
 		
 		cinemaList = Cinema.findWithQuery(Cinema.class, 
     			"SELECT * FROM  Cinema WHERE Cinema_Title LIKE " + title + 
-    			" AND MovieType = " + typeId + " ORDER BY id Desc");
+    			" AND Calendar LIKE " + calShowDate + " AND MovieType = " + typeId + " ORDER BY id Desc");
 
 		cinemaAllList = new ArrayList<Cinema>();
 		for(Cinema cinema : cinemaList){

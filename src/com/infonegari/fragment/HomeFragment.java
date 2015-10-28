@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
   
-		getActivity().setTitle("Menu");
+		getActivity().setTitle(getString(R.string.menu_home));
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         imageSwitcher = (ImageSwitcher) rootView.findViewById(R.id.adi_imageSwitcher);

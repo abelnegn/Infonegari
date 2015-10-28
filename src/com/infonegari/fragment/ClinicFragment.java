@@ -92,7 +92,7 @@ public class ClinicFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_clinic, container, false);
 		
-		getActivity().setTitle("Clinic");
+		getActivity().setTitle(getString(R.string.menu_clinic));
 		
 		mClinicList = (ListView)rootView.findViewById(R.id.list_clinic);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

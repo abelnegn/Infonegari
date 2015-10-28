@@ -96,7 +96,7 @@ public class BusinessForSaleFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_business_sales, container, false);
 		
-		getActivity().setTitle("Business for Sales");
+		getActivity().setTitle(getString(R.string.menu_business_sale));
 		
 		mBusinessList = (ListView)rootView.findViewById(R.id.list_business_sale);
 		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);

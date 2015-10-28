@@ -97,7 +97,7 @@ public class ShopFurnitureFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shop_furniture, container, false);
 		
-		getActivity().setTitle("Shop Furnitures"); 
+		getActivity().setTitle(getString(R.string.menu_shop_furniture)); 
 		
 		mShopFurnitureList = (ListView)rootView.findViewById(R.id.list_shop_furniture);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

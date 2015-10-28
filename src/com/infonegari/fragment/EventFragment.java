@@ -92,7 +92,7 @@ public class EventFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_event, container, false);
 		
-		getActivity().setTitle("Events");
+		getActivity().setTitle(getString(R.string.menu_event));
 		
 		mEventList = (ListView)rootView.findViewById(R.id.list_event);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

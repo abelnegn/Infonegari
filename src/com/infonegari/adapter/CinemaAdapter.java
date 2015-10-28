@@ -91,7 +91,7 @@ public class CinemaAdapter extends BaseAdapter{
         TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
-        txtName.setText(cinemas.get(position).getDiscription());
+        txtName.setText(cinemas.get(position).getCinemaTitle());
         if(location != null)
         	txtLocation.setText(location.getLocationName());
         txtDiscription.setText(cinemas.get(position).getDiscription());

@@ -92,7 +92,7 @@ public class CatererPasteriesFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_caterer_pasteries, container, false);
 		
-		getActivity().setTitle("Caterers and Pasteries");
+		getActivity().setTitle(getString(R.string.menu_caterer_pasteries));
 		
 		mCatererPasteriesList = (ListView)rootView.findViewById(R.id.list_caterer_pasteries);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

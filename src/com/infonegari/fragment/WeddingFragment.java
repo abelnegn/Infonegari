@@ -81,7 +81,7 @@ public class WeddingFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_wedding, container, false);
-		getActivity().setTitle("Wedding");
+		getActivity().setTitle(getString(R.string.menu_wedding));
 		
 		// load wedding menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_wedding_items);

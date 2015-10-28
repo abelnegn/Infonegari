@@ -96,7 +96,7 @@ public class HouseRentFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_house_rent, container, false);
 		
-		getActivity().setTitle("House Rent");
+		getActivity().setTitle(getString(R.string.menu_house_rent));
 		
 		mHouseList = (ListView)rootView.findViewById(R.id.list_house_rent);
 		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);

@@ -95,7 +95,7 @@ public class RestaurantFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_restaurant, container, false);
 		
-		getActivity().setTitle("Restaurants");
+		getActivity().setTitle(getString(R.string.menu_restaurant));
 		
 		mRestaurantList = (ListView)rootView.findViewById(R.id.list_restaurant);
 		sp_restaurantType = (Spinner)rootView.findViewById(R.id.type);

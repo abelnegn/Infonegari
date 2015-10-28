@@ -8,7 +8,7 @@ import com.orm.query.Select;
 
 public class Cinema extends SugarRecord<Cinema>{
 	private long CinemaId;
-	private String CinemaTitle;
+	private String cinemaTitle;
 	private String Calendar;
 	private String Discription;
 	private long Movie_Type;
@@ -37,11 +37,11 @@ public class Cinema extends SugarRecord<Cinema>{
 	}
 
 	public String getCinemaTitle() {
-		return CinemaTitle;
+		return cinemaTitle;
 	}
 
 	public void setCinemaTitle(String cinemaTitle) {
-		CinemaTitle = cinemaTitle;
+		this.cinemaTitle = cinemaTitle;
 	}
 
 	public String getCalendar() {

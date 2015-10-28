@@ -94,7 +94,7 @@ public class WeddingCRPFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_wcrp, container, false);
 		
-		getActivity().setTitle("Wedding Card/Ring/Protocol");
+		getActivity().setTitle(getString(R.string.menu_wedding_crp));
 		
 		mWcrpList = (ListView)rootView.findViewById(R.id.list_wcrp);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

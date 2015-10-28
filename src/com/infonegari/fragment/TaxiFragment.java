@@ -92,7 +92,7 @@ public class TaxiFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_taxi, container, false);
 		
-		getActivity().setTitle("Taxi");
+		getActivity().setTitle(getString(R.string.menu_taxi));
 		
 		mTaxiList = (ListView)rootView.findViewById(R.id.list_taxi);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

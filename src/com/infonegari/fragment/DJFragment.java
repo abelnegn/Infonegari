@@ -94,7 +94,7 @@ public class DJFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_dj, container, false);
 		
-		getActivity().setTitle("DJ");
+		getActivity().setTitle(getString(R.string.menu_dj));
 		
 		mDJList = (ListView)rootView.findViewById(R.id.list_dj);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

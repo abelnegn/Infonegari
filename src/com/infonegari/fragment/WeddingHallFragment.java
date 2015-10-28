@@ -96,7 +96,7 @@ public class WeddingHallFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_wedding_hall, container, false);
 		
-		getActivity().setTitle("Wedding Halls"); 
+		getActivity().setTitle(getString(R.string.menu_wedding_hall)); 
 		
 		mWeddingHallList = (ListView)rootView.findViewById(R.id.list_wedding_hall);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

@@ -81,7 +81,7 @@ public class ShopsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shops, container, false);
-		getActivity().setTitle("Shops");
+		getActivity().setTitle(getString(R.string.menu_shops));
 		
 //		// load shop menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_shop_items);

@@ -95,7 +95,7 @@ public class WeddingClothFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_wedding_cloth, container, false);
 		
-		getActivity().setTitle("Wedding Gown/Tuxedos"); 
+		getActivity().setTitle(getString(R.string.menu_wedding_cloths)); 
 		
 		mWeddingClothList = (ListView)rootView.findViewById(R.id.list_wedding_cloth);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

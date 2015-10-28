@@ -478,7 +478,7 @@ public class API {
 	public interface CinemaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.CINEMA)
-        public void getCinemas(Callback<List<Cinema>> callback);
+        public void getCinemas(@Query("cinema_id") long cinemaId, Callback<List<Cinema>> callback);
     }
 	
 	public interface ConstructionService{

@@ -96,7 +96,7 @@ public class CarSalesFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_car_sales, container, false);
 		
-		getActivity().setTitle("Car Sales");
+		getActivity().setTitle(getString(R.string.menu_car_sale));
 		
 		mCarList = (ListView)rootView.findViewById(R.id.list_car_sale);
 		sp_carType = (Spinner)rootView.findViewById(R.id.car_type);

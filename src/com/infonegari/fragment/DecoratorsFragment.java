@@ -94,7 +94,7 @@ public class DecoratorsFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_decorators, container, false);
 		
-		getActivity().setTitle("Decorators");
+		getActivity().setTitle(getString(R.string.menu_decorator));
 		
 		mDecoratorList = (ListView)rootView.findViewById(R.id.list_decorators);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

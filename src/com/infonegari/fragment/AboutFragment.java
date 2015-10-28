@@ -37,7 +37,7 @@ public class AboutFragment extends Fragment{
 		rootView = inflater.inflate(R.layout.fragment_about, container, false);
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.about_imageSwitcher);
 		
-		getActivity().setTitle("About");
+		getActivity().setTitle(getString(R.string.menu_about));
 		
 		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
 		imageView.startTimer();

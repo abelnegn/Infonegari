@@ -95,7 +95,7 @@ public class ShopElectronicsFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shop_electronics, container, false);
 		
-		getActivity().setTitle("Shop Electronics"); 
+		getActivity().setTitle(getString(R.string.menu_shop_electronics)); 
 		
 		mShopElectronicList = (ListView)rootView.findViewById(R.id.list_shop_electronics);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

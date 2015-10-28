@@ -95,7 +95,7 @@ public class ShopComputerFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_shop_computer, container, false);
 		
-		getActivity().setTitle("Shop Computers"); 
+		getActivity().setTitle(getString(R.string.menu_shop_computer)); 
 		
 		mShopComputerList = (ListView)rootView.findViewById(R.id.list_shop_computer);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

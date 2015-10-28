@@ -10,13 +10,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Locale;
 import com.infonegari.activity.R;
-import com.infonegari.util.AdsImageView;
+import com.infonegari.activity.SplashScreen;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,12 +30,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageSwitcher;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class LanguageFragment extends Fragment{
-	private String[] languages = {"Amharic", "English", "Francais" };
+	private String[] languages = {"English", "Amharic", "Francais" };
 	private CheckBox saveSetting;
 	private Spinner sLocal;
 	private Button btnOk;
@@ -52,7 +52,7 @@ public class LanguageFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
   
-		getActivity().setTitle("Language");
+		getActivity().setTitle(getString(R.string.menu_language));
         View rootView = inflater.inflate(R.layout.activity_localization, container, false);
         
 		sLocal = (Spinner)rootView.findViewById(R.id.localization);
@@ -65,7 +65,7 @@ public class LanguageFragment extends Fragment{
 			@Override
 			public void onClick(View arg0) {
 				saveSettingFile();
-				backMenu();
+				refreshMenu();
 			}
 		});
 	       
@@ -126,6 +126,11 @@ public class LanguageFragment extends Fragment{
 		HomeFragment fragment = new HomeFragment();
 		fragmentManager.beginTransaction()
 				.replace(R.id.frame_container, fragment).commit();
+    }
+    
+    private void refreshMenu(){
+		Intent backIntent = new Intent(getActivity(), SplashScreen.class);
+		startActivity(backIntent);
     }
     
     @Override

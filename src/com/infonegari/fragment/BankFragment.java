@@ -92,7 +92,7 @@ public class BankFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_bank, container, false);
 		
-		getActivity().setTitle("Bank");
+		getActivity().setTitle(getString(R.string.menu_bank));
 		
 		mBankList = (ListView)rootView.findViewById(R.id.list_bank);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

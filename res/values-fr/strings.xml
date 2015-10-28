@@ -68,6 +68,8 @@
         <item>Pour la vente</item>
         <item>Loisirs</item>
         <item>Vous abonner</item>
+        <item>Job Vacancy</item>
+        <item>Download</item>        
     </string-array>
 
     <!-- Nav Drawer My wedding Items -->
@@ -92,6 +94,9 @@
         <item>Vente aux enchères</item>
         <item>Offres</item>
         <item>Alimentation constriction</item>
+        <item>Pharmacy</item>
+        <item>Bank</item>
+        <item>Taxi</item>        
     </string-array>
 
     <!-- Nav Drawer For rent Items -->
@@ -122,6 +127,15 @@
         <item>ጤና</item>
     </string-array>
 
+    <!-- Nav Drawer Shops Items -->
+    <string-array name="nav_shop_items">
+        <item>Cloths</item>
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Computer Accessories</item>
+        <item>Construction Supplies</item>
+    </string-array>
+    
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
@@ -131,6 +145,8 @@
         <item>@drawable/for_rent</item>
         <item>@drawable/for_sale</item>
         <item>@drawable/ic_photos</item>
+        <item>@drawable/shop</item> 
+        <item>@drawable/job_vacancy</item>         
     </array>
 
     <!-- Nav Drawer List Item Icon -->
@@ -155,6 +171,9 @@
         <item>@drawable/auction_house</item>
         <item>@drawable/tender</item>
         <item>@drawable/construction</item>
+        <item>@drawable/pharmacy</item>
+        <item>@drawable/bank</item>
+        <item>@drawable/taxi</item>        
     </string-array>
 
     <!-- Nav Drawer For rent Items -->

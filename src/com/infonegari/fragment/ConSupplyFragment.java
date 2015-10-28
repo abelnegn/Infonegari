@@ -100,7 +100,7 @@ public class ConSupplyFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_construction_supply, container, false);
 		
-		getActivity().setTitle("Construction Supplies");
+		getActivity().setTitle(getString(R.string.menu_con_supply));
 		
 		mConstructionList = (ListView)rootView.findViewById(R.id.list_con_supply);
 		sp_conMachine = (Spinner)rootView.findViewById(R.id.machine);

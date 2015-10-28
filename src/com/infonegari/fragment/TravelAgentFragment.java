@@ -94,7 +94,7 @@ public class TravelAgentFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_travel_agent, container, false);
 		
-		getActivity().setTitle("Travel Agent");
+		getActivity().setTitle(getString(R.string.menu_travel_agent));
 		
 		mTravelAgentList = (ListView)rootView.findViewById(R.id.list_travel_agent);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

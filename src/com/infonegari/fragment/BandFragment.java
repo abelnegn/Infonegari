@@ -92,7 +92,7 @@ public class BandFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_band, container, false);
 		
-		getActivity().setTitle("Music Bands");
+		getActivity().setTitle(getString(R.string.menu_band));
 		
 		mBandList = (ListView)rootView.findViewById(R.id.list_band);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);

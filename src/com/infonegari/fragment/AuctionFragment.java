@@ -92,7 +92,7 @@ public class AuctionFragment extends Fragment{
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_auction, container, false);
 		
-		getActivity().setTitle("Auctions");
+		getActivity().setTitle(getString(R.string.menu_auction));
 		
 		mAuctionList = (ListView)rootView.findViewById(R.id.list_auction);
 		sp_category = (Spinner)rootView.findViewById(R.id.category);
