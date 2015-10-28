@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -37,10 +36,12 @@ public class WeddingClothFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, String> typeHashMap = new HashMap<String, String>();
+	HashMap<String, String> serviceHashMap = new HashMap<String, String>();
 	List<WeddingCloth> weddingClothList;
 	private ListView mWeddingClothList;
 	private WeddingClothAdapter adapter;
-	private Spinner sp_location, sp_clothType;
+	private Spinner sp_location, sp_clothType, sp_service;
 	private Button btnSearch;
 	private EditText txtTitle;
 	private ImageSwitcher imageSwitcher;
@@ -99,6 +100,7 @@ public class WeddingClothFragment extends Fragment{
 		mWeddingClothList = (ListView)rootView.findViewById(R.id.list_wedding_cloth);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		sp_clothType = (Spinner)rootView.findViewById(R.id.cloth_type);
+		sp_service = (Spinner)rootView.findViewById(R.id.service_type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
@@ -116,9 +118,11 @@ public class WeddingClothFragment extends Fragment{
 			}
 		});
 		
-//		saveWeddingCloth();
+		saveWeddingCloth();
+		
 		fetchLocation();
 		fetchClothType();
+		fetchService();
 		
 		init();
 		
@@ -161,15 +165,40 @@ public class WeddingClothFragment extends Fragment{
 		List<String> listOfClothType = new ArrayList<String>();
 
 		listOfClothType.add("Select Cloth Type");		
-		listOfClothType.add("Female Cloth");
-		listOfClothType.add("Male Cloth");
+		listOfClothType.add("Modern");
+		listOfClothType.add("Traditional");
 			
+		typeHashMap.put("Select Cloth Type", "0");
+		typeHashMap.put("Modern", "modern");
+		typeHashMap.put("Traditional", "traditional");
+		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);
 
         clothTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_clothType.setAdapter(clothTypeAdapter);
         sp_clothType.setSelection(0);
+	}
+
+	private void fetchService(){
+		List<String> listOfService = new ArrayList<String>();
+
+		listOfService.add("Select Service");		
+		listOfService.add("Buy");
+		listOfService.add("Rent");
+		listOfService.add("Sell");
+			
+		serviceHashMap.put("Select Service", "0");
+		serviceHashMap.put("Buy", "buy");
+		serviceHashMap.put("Rent", "rent");
+		serviceHashMap.put("Sell", "sell");
+		
+        ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfService);
+
+        serviceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_service.setAdapter(serviceAdapter);
+        sp_service.setSelection(0);
 	}
 	
 	private void init(){
@@ -180,12 +209,41 @@ public class WeddingClothFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		weddingClothList = Select.from(WeddingCloth.class).where(Condition.prop("Category").
-				eq(sp_clothType.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(typeHashMap.get(sp_clothType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "ClothType";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+
+		String serviceId = String.valueOf(serviceHashMap.get(sp_service.getSelectedItem().toString()));
+		if(serviceId.equals("0")){
+			serviceId = "ServiceType";
+		}else{
+			serviceId = "'" + serviceId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Wedding_Cloth_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		weddingClothList = WeddingCloth.findWithQuery(WeddingCloth.class, 
+    			"SELECT * FROM  Wedding_Cloth WHERE ClothType = " + typeId + 
+    			" AND Wedding_Cloth_Name LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" AND ServiceType = " + serviceId + " ORDER BY id Desc");
+		
 		adapter = new WeddingClothAdapter(getActivity(), weddingClothList);
 		mWeddingClothList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

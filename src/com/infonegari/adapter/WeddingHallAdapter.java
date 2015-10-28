@@ -52,17 +52,27 @@ public class WeddingHallAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_wedding_hall, null);
         }
 		
-		Location location = Select.from(Location.class).
-				where(Condition.prop("Location_Id").eq(weddingHalls.get(position).
-						getLocationId())).first();
+		Location location = null;
+		long locationId = weddingHalls.get(position).getLocationId();
+		if(locationId != 0){
+			location = Select.from(Location.class).
+					where(Condition.prop("Location_Id").eq(locationId)).first();			
+		}
 
-		HallType hallType = Select.from(HallType.class).
-				where(Condition.prop("ht_Id").eq(weddingHalls.get(position).
-						getHall_Type())).first();
+		HallType hallType = null;
+		String typeId = weddingHalls.get(position).getHall_Type();
+		if(typeId.equals("")){
+			hallType = Select.from(HallType.class).
+					where(Condition.prop("ht_Id").eq(weddingHalls.get(position).
+							getHall_Type())).first();			
+		}
 		
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(weddingHalls.get(position).
-						getUser_Name())).first();
+		UserSite userSite = null;
+		String userName = weddingHalls.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         TextView txtServiceType = (TextView)convertView.findViewById(R.id.service_type);
@@ -90,16 +100,17 @@ public class WeddingHallAdapter extends BaseAdapter{
         txtLunch.setText(weddingHalls.get(position).getLunch());
         txtDinner.setText(weddingHalls.get(position).getDinner());
         if(userSite != null){
-       	 txtPhoneNo.setText(userSite.getPhone_Number());
-       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
- 			@Override
- 			public void onClick(View arg0) {
- 				Intent callIntent = new Intent(Intent.ACTION_CALL);
- 				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
- 				context.startActivity(callIntent);
- 			}
- 		});  
-       	 txtEmail.setText(userSite.getE_mail());
+	       	 final String phoneNo = userSite.getPhone_Number();
+	       	 txtPhoneNo.setText(userSite.getPhone_Number());
+	       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
+	 			@Override
+	 			public void onClick(View arg0) {
+	 				Intent callIntent = new Intent(Intent.ACTION_CALL);
+	 				callIntent.setData(Uri.parse("tel:" + phoneNo));
+	 				context.startActivity(callIntent);
+	 			}
+	 		});  
+	       	 txtEmail.setText(userSite.getE_mail());
        }
         return convertView;
 	}

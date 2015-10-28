@@ -41,6 +41,23 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="#000000"
+            android:text="@string/txt_category"
+	        android:layout_height= "wrap_content"
+	        android:layout_width= "90dp"/>       
+        <Spinner 
+            android:layout_height= "wrap_content"
+			android:layout_width= "fill_parent"
+			android:background="#424242"
+	        android:id="@+id/category"/> 
+	</LinearLayout>             
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">      
+        <TextView 
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="#000000"
             android:text="@string/txt_cloth_type"
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "90dp"/>       

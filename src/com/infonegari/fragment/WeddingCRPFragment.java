@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.WeddingCRPAdapter;
+import com.infonegari.objects.db.Band;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.WeddingCardRingProtocol;
 import com.infonegari.util.AdsImageView;
@@ -114,7 +115,7 @@ public class WeddingCRPFragment extends Fragment{
 			}
 		});
 		
-//		saveWCRP();
+		saveWCRP();
 		
 		fetchLocation();
 		
@@ -161,12 +162,27 @@ public class WeddingCRPFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		wcrpList = Select.from(WeddingCardRingProtocol.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Wedding_CRP_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		wcrpList = WeddingCardRingProtocol.findWithQuery(WeddingCardRingProtocol.class, 
+    			"SELECT * FROM  Wedding_Card_Ring_Protocol WHERE Wedding_CRP_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+
+		
 		adapter = new WeddingCRPAdapter(getActivity(), wcrpList);
 		mWcrpList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

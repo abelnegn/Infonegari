@@ -41,7 +41,7 @@ public class TenderFragment extends Fragment{
 	List<Tender> tenderList;
 	private ListView mTenderList;
 	private TenderAdapter adapter;
-	private Spinner sp_location, sp_category;
+	private Spinner sp_category;
 	private Button btnSearch;
 	private EditText txtTitle;
 	private ImageSwitcher imageSwitcher;
@@ -115,7 +115,7 @@ public class TenderFragment extends Fragment{
 			}
 		});
 		
-//		saveTender();
+		saveTender();
 		
 		fetchCategory();
 		
@@ -165,12 +165,26 @@ public class TenderFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-//		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-//		tenderList = Select.from(Tender.class).where(Condition.prop("CnPIdName").
-//				eq(txtTitle.getText().toString())).and(Condition.
-//						prop("Location_Id").eq(locId)).list();
-//		adapter = new TenderAdapter(getActivity(), tenderList);
-//		mTenderList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyBlockUI();
+		String catId = String.valueOf(categoryHashMap.get(sp_category.getSelectedItem().toString()));
+		if(catId.equals("0")){
+			catId = "TenderCatagory";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "CompanyName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		tenderList = Tender.findWithQuery(Tender.class, 
+    			"SELECT * FROM  Tender WHERE TenderCatagory = " + catId + 
+    			" AND CompanyName LIKE " +	title + " ORDER BY id Desc");
+		
+		adapter = new TenderAdapter(getActivity(), tenderList);
+		mTenderList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();		
 	}
 
 }

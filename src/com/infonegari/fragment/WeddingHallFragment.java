@@ -13,7 +13,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -119,7 +118,7 @@ public class WeddingHallFragment extends Fragment{
 			}
 		});
 		
-//		saveWH();
+		saveWH();
 		fetchLocation();
 		fetchType();
 		
@@ -191,12 +190,34 @@ public class WeddingHallFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		weddingHallList = Select.from(WeddingHall.class).where(Condition.prop("Category").
-				eq(sp_type.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(hallTypeHashMap.get(sp_type.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "HallType";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Wedding_Hall_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		weddingHallList = WeddingHall.findWithQuery(WeddingHall.class, 
+    			"SELECT * FROM  Wedding_Hall WHERE Wedding_Hall_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + 
+    					" AND HallType = " + typeId + " ORDER BY id Desc");
+
 		adapter = new WeddingHallAdapter(getActivity(), weddingHallList);
-		mWeddingHallList.setAdapter(adapter);		
+		mWeddingHallList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();		
 	}
 
 }

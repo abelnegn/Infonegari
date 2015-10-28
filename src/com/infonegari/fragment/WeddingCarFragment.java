@@ -13,7 +13,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -119,7 +118,7 @@ public class WeddingCarFragment extends Fragment{
 			}
 		});
 		
-//		saveWeddingCars();
+		saveWeddingCars();
 		fetchLocation();
 		fetchCarType();
 		
@@ -184,12 +183,32 @@ public class WeddingCarFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		weddingCarList = Select.from(WeddingCar.class).where(Condition.prop("Category").
-				eq(sp_carType.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(carTypeHashMap.get(sp_carType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "Car_Type_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "wedding_Car_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		weddingCarList = WeddingCar.findWithQuery(WeddingCar.class, 
+    			"SELECT * FROM  Wedding_Car WHERE Car_Type_Id = " + typeId + 
+    			" AND wedding_Car_Name LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" ORDER BY id Desc");
+		
 		adapter = new WeddingCarAdapter(getActivity(), weddingCarList);
 		mWeddingCarList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

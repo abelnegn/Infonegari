@@ -13,7 +13,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -184,12 +183,32 @@ public class RestaurantFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		restaurantList = Select.from(Restaurant.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(typeHashMap.get(sp_restaurantType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "Restaurant_Type_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		restaurantList = Restaurant.findWithQuery(Restaurant.class, 
+    			"SELECT * FROM  Restaurant WHERE Restaurant_Type_Id = " + typeId + 
+    			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" ORDER BY id Desc");
+		
 		adapter = new RestaurantAdapter(getActivity(), restaurantList);
-		mRestaurantList.setAdapter(adapter);		
+		mRestaurantList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

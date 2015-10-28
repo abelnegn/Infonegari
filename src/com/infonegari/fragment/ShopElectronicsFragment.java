@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -37,6 +36,8 @@ public class ShopElectronicsFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> categoryHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> serviceHashMap = new HashMap<String, Long>();
 	List<ShopElectronic> shopElectronicList;
 	private ListView mShopElectronicList;
 	private ShopElectronicsAdapter adapter;
@@ -117,9 +118,9 @@ public class ShopElectronicsFragment extends Fragment{
 			}
 		});
 		
-//		saveShopElectronic();
+		saveShopElectronic();
 		fetchLocation();
-		fetchElectronicType();
+		fetchElectronicCategory();
 		fetchService();
 		
 		init();
@@ -159,16 +160,21 @@ public class ShopElectronicsFragment extends Fragment{
 		newE.save();
 	}
 	
-	private void fetchElectronicType(){
-		List<String> listOfElectronicType = new ArrayList<String>();
+	private void fetchElectronicCategory(){
+		List<String> listOfElectronicCat = new ArrayList<String>();
 
-		listOfElectronicType.add("Select Electronics");
-		listOfElectronicType.add("TV,DVD,Tape");		
-		listOfElectronicType.add("Refrigrator");
-		listOfElectronicType.add("Mobiles");
+		listOfElectronicCat.add("Select Electronics");
+		listOfElectronicCat.add("TV,DVD,Tape");		
+		listOfElectronicCat.add("Refrigrator");
+		listOfElectronicCat.add("Mobiles");
 
+		categoryHashMap.put("Select Electronics", 0L);
+		categoryHashMap.put("TV,DVD,Tape", 1L);
+		categoryHashMap.put("Refrigrator", 2L);
+		categoryHashMap.put("Mobiles", 3L);
+		
         ArrayAdapter<String> serviceTypeAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, listOfElectronicType);
+                android.R.layout.simple_spinner_item, listOfElectronicCat);
 
         serviceTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_type.setAdapter(serviceTypeAdapter);
@@ -182,6 +188,10 @@ public class ShopElectronicsFragment extends Fragment{
 		listOfService.add("Buy");		
 		listOfService.add("Maintenance");
 
+		serviceHashMap.put("Select Service", 0L);
+		serviceHashMap.put("Buy", 1L);
+		serviceHashMap.put("Maintenance", 2L);
+		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);
 
@@ -198,12 +208,41 @@ public class ShopElectronicsFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		shopElectronicList = Select.from(ShopElectronic.class).where(Condition.prop("Category").
-				eq(sp_type.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String categoryId = String.valueOf(categoryHashMap.get(sp_type.getSelectedItem().toString()));
+		if(categoryId.equals("0")){
+			categoryId = "Catagory";
+		}else{
+			categoryId = "'" + categoryId + "'";
+		}
+		
+		String typeId = String.valueOf(serviceHashMap.get(sp_service.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "ServiceType";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		shopElectronicList = ShopElectronic.findWithQuery(ShopElectronic.class, 
+    			"SELECT * FROM  Shop_Electronic WHERE ServiceType = " + typeId + 
+    			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" AND Catagory = " + categoryId + " ORDER BY id Desc");
+		
 		adapter = new ShopElectronicsAdapter(getActivity(), shopElectronicList);
-		mShopElectronicList.setAdapter(adapter);		
+		mShopElectronicList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

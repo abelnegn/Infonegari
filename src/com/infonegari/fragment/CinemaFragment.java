@@ -1,6 +1,5 @@
 package com.infonegari.fragment;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,12 +12,10 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,6 +40,7 @@ public class CinemaFragment extends Fragment{
 	HashMap<String, Long> cinemaHallHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> movieTypeHashMap = new HashMap<String, Long>();
 	List<Cinema> cinemaList;
+	List<Cinema> cinemaAllList;
 	private ListView mCinemaList;
 	private CinemaAdapter adapter;
 	private Spinner sp_movie_type, sp_hall;
@@ -143,8 +141,8 @@ public class CinemaFragment extends Fragment{
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            txtShowDate.setText(String.valueOf(year) + "-" + String.valueOf(monthOfYear + 1)
-                    + "-" + String.valueOf(dayOfMonth));
+            txtShowDate.setText(String.valueOf(monthOfYear + 1) + "/" + String.valueOf(dayOfMonth)
+                    + "/" + String.valueOf(year));
         }
     };
 
@@ -171,10 +169,10 @@ public class CinemaFragment extends Fragment{
 		movieTypeList = Select.from(MovieType.class).list();
 
 		listOfMovieType.add("Select Movie Type");
-		cinemaHallHashMap.put("Select Movie Type", 0L);
+		movieTypeHashMap.put("Select Movie Type", 0L);
 		for (MovieType movieType : movieTypeList) {
 			listOfMovieType.add(movieType.getMovie_Type());
-			cinemaHallHashMap.put(movieType.getMovie_Type(), movieType.getMtId());
+			movieTypeHashMap.put(movieType.getMovie_Type(), movieType.getMtId());
         }
         ArrayAdapter<String> movieTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMovieType);
@@ -197,19 +195,100 @@ public class CinemaFragment extends Fragment{
 		newCinema.save();
 	}
 	
+	private Cinema getCinema(Cinema cinema){
+		Cinema newCinema = new Cinema();
+		newCinema.setCinemaTitle(cinema.getCinemaTitle());
+		newCinema.setDiscription(cinema.getDiscription());
+		newCinema.setHallId(cinema.getHallId());
+		newCinema.setLocationId(cinema.getLocationId());
+		newCinema.setMovie_Type(cinema.getMovie_Type());
+		newCinema.setShowDate(cinema.getShowDate());
+		newCinema.setShowTime(cinema.getShowTime());
+		newCinema.setUser_Name(cinema.getUser_Name());
+		
+		return newCinema;
+	}
+	
 	private void init(){
-		cinemaList = Select.from(Cinema.class).orderBy("id Desc").list();
-		adapter = new CinemaAdapter(getActivity(), cinemaList);
+		cinemaList = Select.from(Cinema.class).orderBy("id Desc").list(); 
+		cinemaAllList = new ArrayList<Cinema>();
+		for(Cinema cinema : cinemaList){
+			String[] hallSeparated = cinema.getCalendar().split("@");
+			for(int i=1; i< hallSeparated.length; i++){
+				String[] schedule = hallSeparated[i].split(",");
+				String showDate = "";
+		        for(int j =3; j< schedule.length; j++){
+		        	if((schedule.length - j)==1){
+		        		if (schedule[j].charAt(schedule[j].length()-2)=='*'){
+		        			schedule[j] = schedule[j].replace(schedule[j].substring(schedule[j].length()-2), "");
+		        	    } 
+		        	}
+		        	showDate += schedule[j];
+		        }
+				cinema.setHallId(schedule[1]);
+				cinema.setShowTime(schedule[2]);
+				cinema.setShowDate(showDate);	
+				
+				cinemaAllList.add(getCinema(cinema));
+			}			
+		}
+
+		adapter = new CinemaAdapter(getActivity(), cinemaAllList);
 		mCinemaList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 	
 	private void btnSearch(){
-		long locId = cinemaHallHashMap.get(sp_movie_type.getSelectedItem().toString());
-		cinemaList = Select.from(Cinema.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
-		adapter = new CinemaAdapter(getActivity(), cinemaList);
-		mCinemaList.setAdapter(adapter);		
+		safeUIBlockingUtility.safelyBlockUI();
+		String calHall = String.valueOf(cinemaHallHashMap.get(sp_hall.getSelectedItem().toString()));
+
+		String typeId = String.valueOf(movieTypeHashMap.get(sp_movie_type.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "MovieType";
+		}
+
+		String calShowDate = txtShowDate.getText().toString();
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Cinema_Title";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		cinemaList = Cinema.findWithQuery(Cinema.class, 
+    			"SELECT * FROM  Cinema WHERE Cinema_Title LIKE " + title + 
+    			" AND MovieType = " + typeId + " ORDER BY id Desc");
+
+		cinemaAllList = new ArrayList<Cinema>();
+		for(Cinema cinema : cinemaList){
+			String[] hallSeparated = cinema.getCalendar().split("@");
+			for(int i=1; i< hallSeparated.length; i++){
+				String[] schedule = hallSeparated[i].split(",");
+				if(!calHall.equals("0") && calHall.equals(schedule[1])){
+					String showDate = "";
+			        for(int j =3; j< schedule.length; j++){
+			        	if((schedule.length - j)==1){
+			        		if (schedule[j].charAt(schedule[j].length()-2)=='*'){
+			        			schedule[j] = schedule[j].replace(schedule[j].substring(schedule[j].length()-2), "");
+			        	    } 
+			        	}		        	
+			        	showDate += schedule[j];
+			        }
+					cinema.setHallId(schedule[1]);
+					cinema.setShowTime(schedule[2]);
+					cinema.setShowDate(showDate);	
+					
+					cinemaAllList.add(getCinema(cinema));					
+				}else if(calHall.equals("0")){
+					
+				}
+			}			
+		}
+
+		adapter = new CinemaAdapter(getActivity(), cinemaAllList);
+		mCinemaList.setAdapter(adapter);
+		safeUIBlockingUtility.safelyUnBlockUI();
+	
 	}
 }

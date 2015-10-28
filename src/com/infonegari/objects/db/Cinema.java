@@ -2,6 +2,7 @@ package com.infonegari.objects.db;
 
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -13,6 +14,12 @@ public class Cinema extends SugarRecord<Cinema>{
 	private long Movie_Type;
 	private long LocationId;
 	private String User_Name;
+	@Ignore
+	private String hallId;
+	@Ignore
+	private String showTime;
+	@Ignore
+	private String showDate;
 	
     public boolean isNew() {
         long count = Select.from(Cinema.class).where(Condition.prop("id").eq(id)).count();
@@ -75,6 +82,30 @@ public class Cinema extends SugarRecord<Cinema>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getHallId() {
+		return hallId;
+	}
+
+	public void setHallId(String hallId) {
+		this.hallId = hallId;
+	}
+
+	public String getShowTime() {
+		return showTime;
+	}
+
+	public void setShowTime(String showTime) {
+		this.showTime = showTime;
+	}
+
+	public String getShowDate() {
+		return showDate;
+	}
+
+	public void setShowDate(String showDate) {
+		this.showDate = showDate;
 	}
 
 	@Override

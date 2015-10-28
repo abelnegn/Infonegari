@@ -7,6 +7,7 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ShopFurnitureAdapter;
 import com.infonegari.objects.db.Location;
+import com.infonegari.objects.db.ShopCloth;
 import com.infonegari.objects.db.ShopFurniture;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
@@ -17,6 +18,7 @@ import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ClipData.Item;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,6 +39,7 @@ public class ShopFurnitureFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> itemTypeHashMap = new HashMap<String, Long>();
 	List<ShopFurniture> shopFurnitureList;
 	private ListView mShopFurnitureList;
 	private ShopFurnitureAdapter adapter;
@@ -116,7 +119,7 @@ public class ShopFurnitureFragment extends Fragment{
 			}
 		});
 		
-//		saveShopFurniture();
+		saveShopFurniture();
 		fetchLocation();
 		fetchType();
 		
@@ -163,6 +166,10 @@ public class ShopFurnitureFragment extends Fragment{
 		listOfType.add("Home");		
 		listOfType.add("Office");
 
+		itemTypeHashMap.put("Select Furniture", 0L);
+		itemTypeHashMap.put("Home", 1L);
+		itemTypeHashMap.put("Office", 2L);
+		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
@@ -179,12 +186,34 @@ public class ShopFurnitureFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		shopFurnitureList = Select.from(ShopFurniture.class).where(Condition.prop("Category").
-				eq(sp_type.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(itemTypeHashMap.get(sp_type.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "ItemType";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		shopFurnitureList = ShopFurniture.findWithQuery(ShopFurniture.class, 
+    			"SELECT * FROM  Shop_Furniture WHERE ItemType = " + typeId + 
+    			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" ORDER BY id Desc");
+		
 		adapter = new ShopFurnitureAdapter(getActivity(), shopFurnitureList);
-		mShopFurnitureList.setAdapter(adapter);		
+		mShopFurnitureList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

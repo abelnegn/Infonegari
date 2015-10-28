@@ -13,7 +13,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -118,7 +117,7 @@ public class UsedItemFragment extends Fragment{
 			}
 		});
 		
-//		saveUsedItem();
+		saveUsedItem();
 		
 		fetchLocation();
 		fetchType();
@@ -185,12 +184,33 @@ public class UsedItemFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		usedItemList = Select.from(UsedItem.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(typeHashMap.get(sp_type.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "Used_Item_Type_Id";
+		}
+			
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "Used_Item_Name";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		usedItemList = UsedItem.findWithQuery(UsedItem.class, 
+    			"SELECT * FROM  Used_Item WHERE Used_Item_Name LIKE " +
+    					title + " AND Location_Id = " + locationId + 
+    					" AND Used_Item_Type_Id = " + typeId + " ORDER BY id Desc");
+
+		
 		adapter = new UsedItemAdapter(getActivity(), usedItemList);
-		mUsedItemList.setAdapter(adapter);		
+		mUsedItemList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -37,10 +36,12 @@ public class ShopClothFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, String> shopCatHashMap = new HashMap<String, String>();
+	HashMap<String, String> shopTypeHashMap = new HashMap<String, String>();
 	List<ShopCloth> shopClothList;
 	private ListView mShopClothList;
 	private ShopClothAdapter adapter;
-	private Spinner sp_location, sp_clothType;
+	private Spinner sp_location, sp_clothType, sp_category;
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
@@ -98,6 +99,7 @@ public class ShopClothFragment extends Fragment{
 		
 		mShopClothList = (ListView)rootView.findViewById(R.id.list_shop_cloth);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
+		sp_category = (Spinner)rootView.findViewById(R.id.category);
 		sp_clothType = (Spinner)rootView.findViewById(R.id.cloth_type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
@@ -116,7 +118,9 @@ public class ShopClothFragment extends Fragment{
 			}
 		});
 		
-//		saveClothType();
+		saveClothType();
+		
+		fetchClothCategory();
 		fetchLocation();
 		fetchClothType();
 		
@@ -146,26 +150,52 @@ public class ShopClothFragment extends Fragment{
 	private void saveClothType(){
 		ShopCloth newSC = new ShopCloth();
 		newSC.setItem_Name("New Cloths brand ");
-		newSC.setCatagory("New Category");
+		newSC.setCatagory("female_cloth");
 		newSC.setColor("Red");
 		newSC.setDiscription("New brand cloth come from USA");
 		newSC.setLocationId(1);
 		newSC.setPrice(350);
 		newSC.setScId(1);
 		newSC.setSize("XL");
-		newSC.setType("Medium size");
+		newSC.setType("traditional");
 		
 		newSC.save();
 	}
+	
+	private void fetchClothCategory(){
+		List<String> listOfClothCat = new ArrayList<String>();
+
+		listOfClothCat.add("Select Category");		
+		listOfClothCat.add("Female Cloth");
+		listOfClothCat.add("Male Cloth");
+		listOfClothCat.add("Kids Cloth");
+		listOfClothCat.add("Cloth Designer");
+			
+		shopCatHashMap.put("Select Category", "0");
+		shopCatHashMap.put("Female Cloth", "female_cloth");
+		shopCatHashMap.put("Male Cloth", "Male_cloth");
+		shopCatHashMap.put("Kids Cloth", "Kids_cloth");
+		shopCatHashMap.put("Cloth Designer", "cloth_designer");
+		
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfClothCat);
+
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_category.setAdapter(categoryAdapter);
+        sp_category.setSelection(0);
+	}
+	
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
 		listOfClothType.add("Select Cloth Type");		
-		listOfClothType.add("Female Cloth");
-		listOfClothType.add("Male Cloth");
-		listOfClothType.add("Kids Cloth");
-		listOfClothType.add("Cloth Designer");
+		listOfClothType.add("Modern");
+		listOfClothType.add("Traditional");
 			
+		shopTypeHashMap.put("Select Cloth Type", "0");
+		shopTypeHashMap.put("Modern", "modern");
+		shopTypeHashMap.put("Traditional", "traditional");
+		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);
 
@@ -182,12 +212,41 @@ public class ShopClothFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		shopClothList = Select.from(ShopCloth.class).where(Condition.prop("Category").
-				eq(sp_clothType.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String categoryId = String.valueOf(shopCatHashMap.get(sp_category.getSelectedItem().toString()));
+		if(categoryId.equals("0")){
+			categoryId = "Catagory";
+		}else{
+			categoryId = "'" + categoryId + "'";
+		}
+		
+		String typeId = String.valueOf(shopTypeHashMap.get(sp_clothType.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "Type";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		shopClothList = ShopCloth.findWithQuery(ShopCloth.class, 
+    			"SELECT * FROM  Shop_Cloth WHERE Type = " + typeId + 
+    			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" AND Catagory = " + categoryId + " ORDER BY id Desc");
+		
 		adapter = new ShopClothAdapter(getActivity(), shopClothList);
-		mShopClothList.setAdapter(adapter);		
+		mShopClothList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

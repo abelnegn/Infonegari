@@ -47,71 +47,74 @@ public class CinemaAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
+		if (convertView == null) {
+            LayoutInflater mInflater = (LayoutInflater)
+                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = mInflater.inflate(R.layout.row_cinema, null);
+        }
 		
-		String[] hallSeparated = cinemas.get(position).getCalendar().split("@");
-		for(int i=1; i< hallSeparated.length; i++){
-			if (convertView == null) {
-	            LayoutInflater mInflater = (LayoutInflater)
-	                    context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-	            convertView = mInflater.inflate(R.layout.row_cinema, null);
-	        }
-			String[] schedule = hallSeparated[i].split(",");
-			
-			Location location = Select.from(Location.class).
-					where(Condition.prop("Location_Id").eq(cinemas.get(position).
-							getLocationId())).first();
+		Location location = null;
+		long locationId = cinemas.get(position).getLocationId();
+		if(locationId != 0){
+			location = Select.from(Location.class).
+					where(Condition.prop("Location_Id").eq(locationId)).first();			
+		}
 
-			MovieType type = Select.from(MovieType.class).
-					where(Condition.prop("mt_Id").eq(cinemas.get(position).
-							getMovie_Type())).first();
+		MovieType type = null;
+		long typeId = cinemas.get(position).getMovie_Type();
+		if(typeId != 0){
+			type = Select.from(MovieType.class).
+					where(Condition.prop("mt_Id").eq(typeId)).first();			
+		}
 
-			CinemaPlace hall = Select.from(CinemaPlace.class).
-					where(Condition.prop("cpId").eq(schedule[1])).first();
-			
-			final UserSite userSite = Select.from(UserSite.class).
-					where(Condition.prop("UserName").eq(cinemas.get(position).
-							getUser_Name())).first();
-			
-	        TextView txtName = (TextView) convertView.findViewById(R.id.name);
-	        TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
-	        TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
-	        TextView txtType = (TextView) convertView.findViewById(R.id.movie_type);
-	        TextView txtShowTime = (TextView) convertView.findViewById(R.id.show_time);
-	        TextView txtShowDate = (TextView) convertView.findViewById(R.id.show_date);
-	        TextView txtHall = (TextView) convertView.findViewById(R.id.cinema);
-	        TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
-	        TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
-	        
-	        txtName.setText(cinemas.get(position).getDiscription());
-	        if(location != null)
-	        	txtLocation.setText(location.getLocationName());
-	        txtDiscription.setText(cinemas.get(position).getDiscription());
-	        if(type != null)
-	        	txtType.setText(type.getMovie_Type());
-	        txtShowTime.setText(schedule[2]);
-	        String showDate = "";
-	        for(int j =3; j< schedule.length; j++){
-	        	showDate += schedule[j];
-	        }
-	        txtShowDate.setText(showDate);
-	        if(hall != null)
-	        	txtHall.setText(hall.getCinema_Name());
-	        if(userSite != null){
+		CinemaPlace hall = null;
+		String hallId = cinemas.get(position).getHallId();
+		if(!hallId.equals("")){
+			hall = Select.from(CinemaPlace.class).
+					where(Condition.prop("cpId").eq(hallId)).first();			
+		}
+		
+		UserSite userSite = null;
+		String userName = cinemas.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
+		
+        TextView txtName = (TextView) convertView.findViewById(R.id.name);
+        TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
+        TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
+        TextView txtType = (TextView) convertView.findViewById(R.id.movie_type);
+        TextView txtShowTime = (TextView) convertView.findViewById(R.id.show_time);
+        TextView txtShowDate = (TextView) convertView.findViewById(R.id.show_date);
+        TextView txtHall = (TextView) convertView.findViewById(R.id.cinema);
+        TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
+        TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
+        
+        txtName.setText(cinemas.get(position).getDiscription());
+        if(location != null)
+        	txtLocation.setText(location.getLocationName());
+        txtDiscription.setText(cinemas.get(position).getDiscription());
+        if(type != null)
+        	txtType.setText(type.getMovie_Type());
+        txtShowTime.setText(cinemas.get(position).getShowTime());
+        txtShowDate.setText(cinemas.get(position).getShowDate());
+        if(hall != null)
+        	txtHall.setText(hall.getCinema_Name());
+        if(userSite != null){
+	       	 final String phoneNo = userSite.getPhone_Number();
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());
 	       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
 	 			@Override
 	 			public void onClick(View arg0) {
 	 				Intent callIntent = new Intent(Intent.ACTION_CALL);
-	 				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
+	 				callIntent.setData(Uri.parse("tel:" + phoneNo));
 	 				context.startActivity(callIntent);
 	 			}
 	 		});  
 	       	 txtEmail.setText(userSite.getE_mail());
-	       }
+       }
 	        
-		}		
-
         return convertView;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.Tender;
+import com.infonegari.objects.db.TenderCategory;
 import com.infonegari.objects.db.UserSite;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -51,13 +52,19 @@ public class TenderAdapter extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.row_tender, null);
         }
 		
-		AuctionCategory category = Select.from(AuctionCategory.class).
-				where(Condition.prop("acId").eq(tenders.get(position).
-						getTender_Catagory())).first();
+		TenderCategory category = null;
+		String catId = tenders.get(position).getTender_Catagory();
+		if(catId.equals("")){
+			category = Select.from(TenderCategory.class).
+					where(Condition.prop("tcId").eq(catId)).first();			
+		}
 		
-		final UserSite userSite = Select.from(UserSite.class).
-				where(Condition.prop("UserName").eq(tenders.get(position).
-						getUser_Name())).first();
+		UserSite userSite = null;
+		String userName = tenders.get(position).getUser_Name();
+		if(userName != null){
+			userSite = Select.from(UserSite.class).
+					where(Condition.prop("UserName").eq(userName)).first();			
+		}
 		
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         TextView txtPostDate = (TextView) convertView.findViewById(R.id.post_date);
@@ -79,12 +86,13 @@ public class TenderAdapter extends BaseAdapter{
         txtSource.setText(tenders.get(position).getSource());
 
        if(userSite != null){
+	       	 final String phoneNo = userSite.getPhone_Number();
          	 txtPhoneNo.setText(userSite.getPhone_Number());
            	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
      			@Override
      			public void onClick(View arg0) {
      				Intent callIntent = new Intent(Intent.ACTION_CALL);
-     				callIntent.setData(Uri.parse("tel:" + userSite.getPhone_Number()));
+     				callIntent.setData(Uri.parse("tel:" + phoneNo));
      				context.startActivity(callIntent);
      			}
      		});    	   

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.TravelAgentAdapter;
+import com.infonegari.objects.db.Band;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.TravelAgent;
 import com.infonegari.util.AdsImageView;
@@ -114,7 +115,7 @@ public class TravelAgentFragment extends Fragment{
 			}
 		});
 		
-//		saveTravelAgent();
+		saveTravelAgent();
 		
 		fetchLocation();
 		
@@ -160,12 +161,27 @@ public class TravelAgentFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		travelAgentList = Select.from(TravelAgent.class).where(Condition.prop("CnPIdName").
-				eq(txtTitle.getText().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		travelAgentList = TravelAgent.findWithQuery(TravelAgent.class, 
+    			"SELECT * FROM  Travel_Agent WHERE ItemName LIKE " +
+    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+
+		
 		adapter = new TravelAgentAdapter(getActivity(), travelAgentList);
-		mTravelAgentList.setAdapter(adapter);		
+		mTravelAgentList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }

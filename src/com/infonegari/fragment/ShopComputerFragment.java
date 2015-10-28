@@ -12,7 +12,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -37,6 +36,8 @@ public class ShopComputerFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> serviceTypeHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> itemTypeHashMap = new HashMap<String, Long>();
 	List<ShopComputer> shopComputerList;
 	private ListView mShopComputerList;
 	private ShopComputerAdapter adapter;
@@ -117,7 +118,7 @@ public class ShopComputerFragment extends Fragment{
 			}
 		});
 		
-//		saveShopFurniture();
+		saveShopComputer();
 		fetchLocation();
 		fetchType();
 		fetchService();
@@ -145,12 +146,12 @@ public class ShopComputerFragment extends Fragment{
         sp_location.setSelection(0);
 	}
  
-	private void saveShopFurniture(){
+	private void saveShopComputer(){
 		ShopComputer newC = new ShopComputer();
 		newC.setItem_Name("Toshiba american brand computers");
 		newC.setBrand_Name("New Category");
 		newC.setDiscription("Toshiba american brand computer");
-		newC.setItem_Type("Toshiba");
+		newC.setItem_Type("Used");
 		newC.setLocationId(1);
 		newC.setPrice(456);
 		newC.setScId(3);
@@ -167,6 +168,11 @@ public class ShopComputerFragment extends Fragment{
 		listOfType.add("Assembled");
 		listOfType.add("Used");
 
+		itemTypeHashMap.put("Select Type", 0L);
+		itemTypeHashMap.put("Brand New", 1L);
+		itemTypeHashMap.put("Assembled", 2L);
+		itemTypeHashMap.put("Used", 3L);
+		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
@@ -182,6 +188,10 @@ public class ShopComputerFragment extends Fragment{
 		listOfService.add("Buy");		
 		listOfService.add("Maintenance");
 
+		serviceTypeHashMap.put("Select Service", 0L);
+		serviceTypeHashMap.put("Buy", 1L);
+		serviceTypeHashMap.put("Maintenance", 2L);
+		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);
 
@@ -198,12 +208,41 @@ public class ShopComputerFragment extends Fragment{
 	}
 	
 	private void btnSearch(){
-		long locId = locationHashMap.get(sp_location.getSelectedItem().toString());
-		shopComputerList = Select.from(ShopComputer.class).where(Condition.prop("Category").
-				eq(sp_type.getSelectedItem().toString())).and(Condition.
-						prop("Location_Id").eq(locId)).list();
+		safeUIBlockingUtility.safelyBlockUI();
+		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+		if(locationId.equals("0")){
+			locationId = "Location_Id";
+		}
+
+		String typeId = String.valueOf(itemTypeHashMap.get(sp_type.getSelectedItem().toString()));
+		if(typeId.equals("0")){
+			typeId = "ItemType";
+		}else{
+			typeId = "'" + typeId + "'";
+		}
+		
+		String serviceId = String.valueOf(serviceTypeHashMap.get(sp_service.getSelectedItem().toString()));
+		if(serviceId.equals("0")){
+			serviceId = "ServiceType";
+		}else{
+			serviceId = "'" + serviceId + "'";
+		}
+		
+		String title = txtTitle.getText().toString();
+		if(title.equals("")){
+			title = "ItemName";
+		}else{
+			title = "'%" + title + "%'";
+		}
+		
+		shopComputerList = ShopComputer.findWithQuery(ShopComputer.class, 
+    			"SELECT * FROM  Shop_Computer WHERE ServiceType = " + serviceId + 
+    			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
+    			" AND ItemType = " + typeId + " ORDER BY id Desc");
+		
 		adapter = new ShopComputerAdapter(getActivity(), shopComputerList);
-		mShopComputerList.setAdapter(adapter);		
+		mShopComputerList.setAdapter(adapter);	
+		safeUIBlockingUtility.safelyUnBlockUI();
 	}
 
 }
