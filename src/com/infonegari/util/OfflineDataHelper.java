@@ -214,7 +214,8 @@ public class OfflineDataHelper {
     public void saveNewsLetterData(NewsLetter newsLetter) {
     	NewsLetter newNewsLetter = new NewsLetter();
     	newNewsLetter.setNewsLetterId(newsLetter.getNewsLetterId());
-    	newNewsLetter.setGuestEmail(newsLetter.getGuestEmail());
+    	newNewsLetter.setTitle(newsLetter.getTitle());
+    	newNewsLetter.setDetail(newsLetter.getDetail());
     	newNewsLetter.setRequestedDate(newsLetter.getRequestedDate());
 	  	
     	newNewsLetter.save();

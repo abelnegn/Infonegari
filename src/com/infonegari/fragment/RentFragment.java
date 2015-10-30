@@ -115,8 +115,8 @@ public class RentFragment extends Fragment{
 		mDrawerList.setAdapter(adapter);
 		
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.rent_imageSwitcher);
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
 		return rootView;
 	}
 

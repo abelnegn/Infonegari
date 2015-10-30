@@ -109,8 +109,8 @@ public class CinemaFragment extends Fragment{
 				"Progress", "Please Wait...");
 		safeUIBlockingUtility.safelyBlockUI();
 		
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
 		btnSearch.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View arg0) {

@@ -39,8 +39,8 @@ public class AboutFragment extends Fragment{
 		
 		getActivity().setTitle(getString(R.string.menu_about));
 		
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
 		
 		return rootView;
 	}

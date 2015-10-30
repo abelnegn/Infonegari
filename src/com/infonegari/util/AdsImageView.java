@@ -3,8 +3,6 @@ package com.infonegari.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -33,7 +31,7 @@ public class AdsImageView {
 	private Context context;
 	int imageSize = 0;
     int currentIndex=-1; 
-    private ArrayList<Drawable> adsImages = new ArrayList<Drawable>();
+    public static ArrayList<Drawable> adsImages;
     
 	public Context getContext() {
 		return context;
@@ -42,16 +40,35 @@ public class AdsImageView {
 	public void setContext(Context context) {
 		this.context = context;
 	}
-    
+
+	public AdsImageView(Context context){
+		this.context = context;
+	}
+	
+	public ImageSwitcher getImageSwitcher() {
+		return imageSwitcher;
+	}
+
+	public void setImageSwitcher(ImageSwitcher imageSwitcher) {
+		this.imageSwitcher = imageSwitcher;
+	}
+
 	public AdsImageView(Context context, ImageSwitcher imageSwitcher){
 		this.context = context;
 		this.imageSwitcher = imageSwitcher;
-		getImages();
-		imageSize = adsImages.size();
-		
+		if(adsImages != null)
+			imageSize = adsImages.size();
 	}
 	
-    public void startTimer() {
+    public void startTimer() {   	
+    	if(imageSize != 0){
+	        timer = new Timer();
+	        initializeTimerTask();
+	        timer.schedule(timerTask, 5000, 10000); //
+    	}
+    }
+    
+    public void startTimer(ArrayList<Drawable> adsImages) {
     	if(imageSize != 0){
 	        timer = new Timer();
 	        initializeTimerTask();
@@ -66,9 +83,10 @@ public class AdsImageView {
         }
     }
 	
-    private void getImages(){
+    public void getImages(){
     	try {
-			FileInputStream fileInputStream = context.openFileInput("adsImageNames.txt");
+			FileInputStream fileInputStream = context.openFileInput("adsImageNames.txt");		
+			adsImages = new ArrayList<Drawable>();
         	BufferedReader reader;
         	if(fileInputStream != null){
         		reader = new BufferedReader(new InputStreamReader(fileInputStream));
@@ -78,14 +96,12 @@ public class AdsImageView {
 	       			File imageFile = new File(imagePath);
 		      		if (imageFile.exists()) {
 		      			Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-		      	    	Drawable newsDrawable = new BitmapDrawable(myBitmap);
-		      	    	adsImages.add(newsDrawable);
+		      	    	Drawable adsDrawable = new BitmapDrawable(myBitmap);
+		      	    	adsImages.add(adsDrawable);
 		      		}	       			
 	       		}
         	}
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }

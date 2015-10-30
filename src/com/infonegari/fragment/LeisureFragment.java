@@ -118,8 +118,8 @@ public class LeisureFragment extends Fragment{
 		mDrawerList.setAdapter(adapter);
 		
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.leisure_imageSwitcher);
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
 		
 		return rootView;
 	}

@@ -146,6 +146,10 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
             downloadAds();
         }else{
             Toast.makeText(getActivity(), "There is no internet connection", Toast.LENGTH_SHORT).show();
+    		FragmentManager fragmentManager = getFragmentManager();
+    		HomeFragment fragment = new HomeFragment();
+    		fragmentManager.beginTransaction()
+    				.replace(R.id.frame_container, fragment).commit();	
         }
         return rootView;
     }

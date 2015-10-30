@@ -129,8 +129,8 @@ public class WeddingFragment extends Fragment{
 		mDrawerList.setAdapter(adapter);
 		
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.wedding_imageSwitcher);
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
 		
 		return rootView;
 	}

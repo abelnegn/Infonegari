@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Locale;
+
+import com.infonegari.util.AdsImageView;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +34,8 @@ public class SplashScreen extends Activity {
             @Override
             public void run() {
             	getLocalization();
+            	AdsImageView adsView = new AdsImageView(SplashScreen.this);
+            	adsView.getImages();
                 finish();
             }
         }, SPLASH_TIME_OUT);

@@ -1,6 +1,10 @@
 package com.infonegari.fragment;
+import java.util.List;
+
 import com.infonegari.activity.R;
 import com.infonegari.activity.ShortMessage;
+import com.infonegari.adapter.NewsAdapter;
+import com.infonegari.objects.db.NewsLetter;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.DialogHandler;
 
@@ -18,20 +22,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageSwitcher;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
+import com.orm.query.Select;
 
 public class HomeFragment extends Fragment{
 	final Handler handler = new Handler();
 	final Handler handlerNews = new Handler();
 	private ImageSwitcher imageSwitcher;
+	List<NewsLetter> newsList;
+	private ListView mNewsList;
+	private NewsAdapter adapter;
     private TextView txtShortNumber;
     private DialogHandler dlgHandler;
     private static final int MENU_ITEM_ABOUT = 2000;
     private static final int MENU_ITEM_HELP = 3000;
-    private static final int MENU_ITEM_LANGUAGE = 4000;
-    
+    private static final int MENU_ITEM_LANGUAGE = 4000;    
+    		
 	public HomeFragment(){}
 	
     @Override
@@ -47,6 +56,8 @@ public class HomeFragment extends Fragment{
 		getActivity().setTitle(getString(R.string.menu_home));
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        
+        mNewsList = (ListView)rootView.findViewById(R.id.list_news);
         imageSwitcher = (ImageSwitcher) rootView.findViewById(R.id.adi_imageSwitcher);
         txtShortNumber = (TextView)rootView.findViewById(R.id.short_number_txt);
         txtShortNumber.setMovementMethod(LinkMovementMethod.getInstance());
@@ -60,8 +71,12 @@ public class HomeFragment extends Fragment{
 			}
 		});
 
-		AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer();
+        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
+		imageView.startTimer(AdsImageView.adsImages);
+		
+		saveNews();
+		
+		init();
 		
         return rootView;
     }
@@ -114,10 +129,6 @@ public class HomeFragment extends Fragment{
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();
         }else if(id == MENU_ITEM_HELP){
-//			FragmentManager fragmentManager = getFragmentManager();
-//			HelpFragment fragment = new HelpFragment();
-//			fragmentManager.beginTransaction()
-//					.replace(R.id.frame_container, fragment).commit(); 
     		dlgHandler = new DialogHandler();
     		dlgHandler.Confirm(getActivity(), "Update now?", "Please update the information. The update requires internet connection", 
     				 "Cancel", "Ok", cancel(), ok());
@@ -129,6 +140,21 @@ public class HomeFragment extends Fragment{
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    private void saveNews(){
+    	NewsLetter newsLetter = new NewsLetter();
+    	newsLetter.setTitle("New release of android application");
+    	newsLetter.setDetail("A new release of android application is availabe for customers. you can download it from google play store");
+    	newsLetter.setRequestedDate("30-10-2015");
+    	
+    	newsLetter.save();
+    }
+    
+	private void init(){
+		newsList = Select.from(NewsLetter.class).orderBy("id Desc").list();
+		adapter = new NewsAdapter(getActivity(), newsList);
+		mNewsList.setAdapter(adapter);
+	}
     
 	private Runnable ok(){
 		Runnable runnable = new Runnable()
@@ -154,7 +180,7 @@ public class HomeFragment extends Fragment{
 	    {
 	        @Override
 	        public void run()
-	        {
+	        {        	
 	        }
 	    };
 	    return runnable;
