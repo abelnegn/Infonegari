@@ -132,8 +132,8 @@ public class BusinessForSaleFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -150,8 +150,8 @@ public class BusinessForSaleFragment extends Fragment{
 		List<String> listOfHouseTypes = new ArrayList<String>();
 		houseTypeList = Select.from(HouseType.class).list();
 
-		listOfHouseTypes.add("Select House Type");
-		houseTypeHashMap.put("Select House Type", 0L);
+		listOfHouseTypes.add("All House Type");
+		houseTypeHashMap.put("All House Type", 0L);
 		for (HouseType type : houseTypeList) {
 			listOfHouseTypes.add(type.getHouseTypeName());
 			houseTypeHashMap.put(type.getHouseTypeName(), type.getHouseTypeId());

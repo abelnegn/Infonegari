@@ -132,8 +132,8 @@ public class ShopComputerFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -163,12 +163,12 @@ public class ShopComputerFragment extends Fragment{
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Type");
+		listOfType.add("All Type");
 		listOfType.add("Brand New");		
 		listOfType.add("Assembled");
 		listOfType.add("Used");
 
-		itemTypeHashMap.put("Select Type", 0L);
+		itemTypeHashMap.put("All Type", 0L);
 		itemTypeHashMap.put("Brand New", 1L);
 		itemTypeHashMap.put("Assembled", 2L);
 		itemTypeHashMap.put("Used", 3L);
@@ -184,11 +184,11 @@ public class ShopComputerFragment extends Fragment{
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("Select Service");
+		listOfService.add("All Service");
 		listOfService.add("Buy");		
 		listOfService.add("Maintenance");
 
-		serviceTypeHashMap.put("Select Service", 0L);
+		serviceTypeHashMap.put("All Service", 0L);
 		serviceTypeHashMap.put("Buy", 1L);
 		serviceTypeHashMap.put("Maintenance", 2L);
 		

@@ -128,8 +128,8 @@ public class TenderFragment extends Fragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(TenderCategory.class).list();
 
-		listOfCategories.add("Select Category");
-		categoryHashMap.put("Select Category", 0L);
+		listOfCategories.add("All Category");
+		categoryHashMap.put("All Category", 0L);
 		for (TenderCategory cat : categoryList) {
 			listOfCategories.add(cat.getCatagory_Name());
 			categoryHashMap.put(cat.getCatagory_Name(), cat.getTc_id());

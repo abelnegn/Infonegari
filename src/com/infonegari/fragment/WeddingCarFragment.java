@@ -131,8 +131,8 @@ public class WeddingCarFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -161,8 +161,8 @@ public class WeddingCarFragment extends Fragment{
 		List<String> listOfCarType = new ArrayList<String>();
 		carTypeList = Select.from(CarType.class).list();
 
-		listOfCarType.add("Select Car Type");
-		carTypeHashMap.put("Select Car Type", 0L);
+		listOfCarType.add("All Car Type");
+		carTypeHashMap.put("All Car Type", 0L);
 		for (CarType carType : carTypeList) {
 			listOfCarType.add(carType.getCarTypeName());
 			carTypeHashMap.put(carType.getCarTypeName(), carType.getCarTypeId());

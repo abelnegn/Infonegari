@@ -132,8 +132,8 @@ public class ShopFurnitureFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -162,11 +162,11 @@ public class ShopFurnitureFragment extends Fragment{
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Furniture");
+		listOfType.add("All Furniture");
 		listOfType.add("Home");		
 		listOfType.add("Office");
 
-		itemTypeHashMap.put("Select Furniture", 0L);
+		itemTypeHashMap.put("All Furniture", 0L);
 		itemTypeHashMap.put("Home", 1L);
 		itemTypeHashMap.put("Office", 2L);
 		

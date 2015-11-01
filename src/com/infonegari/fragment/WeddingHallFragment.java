@@ -131,8 +131,8 @@ public class WeddingHallFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -167,8 +167,8 @@ public class WeddingHallFragment extends Fragment{
 
 		hallList = Select.from(HallType.class).list();
 
-		listOfType.add("Select Hall Type");
-		hallTypeHashMap.put("Select Hall Type", 0L);
+		listOfType.add("All Hall Type");
+		hallTypeHashMap.put("All Hall Type", 0L);
 		for (HallType type : hallList) {
 			listOfType.add(type.getHall_Type());
 			hallTypeHashMap.put(type.getHall_Type(), type.getHtId());

@@ -34,7 +34,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class LanguageFragment extends Fragment{
-	private String[] languages = {"English", "Amharic", "Francais" };
+	private String[] languages = {"English", "Amharic"};
 	private CheckBox saveSetting;
 	private Spinner sLocal;
 	private Button btnOk;
@@ -85,10 +85,7 @@ public class LanguageFragment extends Fragment{
 						     config.locale = Locale.ENGLISH;
 						     break;
 						    case 1:
-						     config.locale = Locale.ITALIAN;
-						     break;
-						    case 2:
-						     config.locale = Locale.FRENCH;
+						     config.locale = Locale.US;
 						     break;
 						    default:
 						     config.locale = Locale.ENGLISH;

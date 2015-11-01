@@ -1,11 +1,5 @@
 package com.infonegari.fragment;
-import java.util.List;
-
 import com.infonegari.activity.R;
-import com.infonegari.activity.ShortMessage;
-import com.infonegari.adapter.NewsAdapter;
-import com.infonegari.objects.db.NewsLetter;
-import com.infonegari.util.AdsImageView;
 import com.infonegari.util.DialogHandler;
 
 import android.app.Fragment;
@@ -21,20 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Select;
 
 public class HomeFragment extends Fragment{
 	final Handler handler = new Handler();
 	final Handler handlerNews = new Handler();
-	private ImageSwitcher imageSwitcher;
-	List<NewsLetter> newsList;
-	private ListView mNewsList;
-	private NewsAdapter adapter;
     private TextView txtShortNumber;
     private DialogHandler dlgHandler;
     private static final int MENU_ITEM_ABOUT = 2000;
@@ -57,28 +44,21 @@ public class HomeFragment extends Fragment{
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         
-        mNewsList = (ListView)rootView.findViewById(R.id.list_news);
-        imageSwitcher = (ImageSwitcher) rootView.findViewById(R.id.adi_imageSwitcher);
         txtShortNumber = (TextView)rootView.findViewById(R.id.short_number_txt);
         txtShortNumber.setMovementMethod(LinkMovementMethod.getInstance());
         txtShortNumber.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				Intent smsIntent = new Intent(getActivity(), ShortMessage.class);
-				startActivity(smsIntent);
+				FragmentManager fragmentManager = getFragmentManager();
+				ShortMessage fragment = new ShortMessage();
+				fragmentManager.beginTransaction()
+						.replace(R.id.frame_container, fragment).commit();
 				
 			}
 		});
 
-        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
-		
-		saveNews();
-		
-		init();
-		
-        return rootView;
+		return rootView;
     }
 	
     @Override
@@ -130,8 +110,8 @@ public class HomeFragment extends Fragment{
 					.replace(R.id.frame_container, fragment).commit();
         }else if(id == MENU_ITEM_HELP){
     		dlgHandler = new DialogHandler();
-    		dlgHandler.Confirm(getActivity(), "Update now?", "Please update the information. The update requires internet connection", 
-    				 "Cancel", "Ok", cancel(), ok());
+    		dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_detail_message), 
+    				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), ok());
         }else{
 			FragmentManager fragmentManager = getFragmentManager();
 			AboutFragment fragment = new AboutFragment();
@@ -140,21 +120,6 @@ public class HomeFragment extends Fragment{
         }
         return super.onOptionsItemSelected(item);
     }
-    
-    private void saveNews(){
-    	NewsLetter newsLetter = new NewsLetter();
-    	newsLetter.setTitle("New release of android application");
-    	newsLetter.setDetail("A new release of android application is availabe for customers. you can download it from google play store");
-    	newsLetter.setRequestedDate("30-10-2015");
-    	
-    	newsLetter.save();
-    }
-    
-	private void init(){
-		newsList = Select.from(NewsLetter.class).orderBy("id Desc").list();
-		adapter = new NewsAdapter(getActivity(), newsList);
-		mNewsList.setAdapter(adapter);
-	}
     
 	private Runnable ok(){
 		Runnable runnable = new Runnable()

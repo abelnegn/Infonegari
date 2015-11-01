@@ -138,8 +138,8 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -156,8 +156,8 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfMachines = new ArrayList<String>();
 		conMachineList = Select.from(ConstructionMachine.class).list();
 
-		listOfMachines.add("Select Machine");
-		conMachineHashMap.put("Select Machine", 0L);
+		listOfMachines.add("All Machine");
+		conMachineHashMap.put("All Machine", 0L);
 		for (ConstructionMachine machine : conMachineList) {
 			listOfMachines.add(machine.getMachine());
 			conMachineHashMap.put(machine.getMachine(), machine.getCmId());
@@ -174,8 +174,8 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfMaterials = new ArrayList<String>();
 		conMaterialList = Select.from(ConstructionMaterial.class).list();
 
-		listOfMaterials.add("Select Material");
-		conMaterialHashMap.put("Select Material", 0L);
+		listOfMaterials.add("All Material");
+		conMaterialHashMap.put("All Material", 0L);
 		for (ConstructionMaterial material : conMaterialList) {
 			listOfMaterials.add(material.getMaterials());
 			conMaterialHashMap.put(material.getMaterials(), material.getCm_id());

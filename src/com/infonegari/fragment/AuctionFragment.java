@@ -125,8 +125,8 @@ public class AuctionFragment extends Fragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(AuctionCategory.class).list();
 
-		listOfCategories.add("Select Category");
-		categoryHashMap.put("Select Category", 0L);
+		listOfCategories.add("All Category");
+		categoryHashMap.put("All Category", 0L);
 		for (AuctionCategory cat : categoryList) {
 			listOfCategories.add(cat.getCatagory_Name());
 			categoryHashMap.put(cat.getCatagory_Name(), cat.getAc_id());

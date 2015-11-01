@@ -134,8 +134,8 @@ public class JobVacancyFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -152,8 +152,8 @@ public class JobVacancyFragment extends Fragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(JobCategory.class).list();
 
-		listOfCategories.add("Select Category");
-		categoryHashMap.put("Select Category", 0L);
+		listOfCategories.add("All Category");
+		categoryHashMap.put("All Category", 0L);
 		for (JobCategory jobCategory : categoryList) {
 			listOfCategories.add(jobCategory.getCategory_Name());
 			categoryHashMap.put(jobCategory.getCategory_Name(), jobCategory.getJcId());
@@ -170,8 +170,8 @@ public class JobVacancyFragment extends Fragment{
 		List<String> listOfLevels = new ArrayList<String>();
 		levelList = Select.from(EducationCategory.class).list();
 
-		listOfLevels.add("Select Education Level");
-		levelHashMap.put("Select Education Level", 0L);
+		listOfLevels.add("All Education Level");
+		levelHashMap.put("All Education Level", 0L);
 		for (EducationCategory level : levelList) {
 			listOfLevels.add(level.getEducation_Level());
 			levelHashMap.put(level.getEducation_Level(), level.getEcId());
@@ -221,7 +221,7 @@ public class JobVacancyFragment extends Fragment{
 		
 		jobsList = Jobs.findWithQuery(Jobs.class, 
     			"SELECT * FROM  Jobs WHERE JobTitle LIKE " + title + " AND Category = " + catId + 
-    			"AND EducationLevel = " + levelId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    			" AND EducationLevel = " + levelId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
 		
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
 		mJobList.setAdapter(adapter);		

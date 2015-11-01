@@ -77,11 +77,9 @@ public class SplashScreen extends Activity {
 	       			Configuration config = new Configuration();
 	       			if(locValue[1].equals("True")){	       				
 					    if(locValue[0].equals("Amharic")){
-					    	config.locale = Locale.ITALIAN;					    	
+					    	config.locale = Locale.CANADA;					    	
 					    }else if(locValue[0].equals("English")){
 					    	config.locale = Locale.ENGLISH;
-					    }else{
-					    	config.locale = Locale.FRENCH;
 					    }
 					}else{
 						config.locale = Locale.ENGLISH;

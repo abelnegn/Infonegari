@@ -133,8 +133,8 @@ public class WeddingClothFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -164,11 +164,11 @@ public class WeddingClothFragment extends Fragment{
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("Select Cloth Type");		
+		listOfClothType.add("All Cloth Type");		
 		listOfClothType.add("Modern");
 		listOfClothType.add("Traditional");
 			
-		typeHashMap.put("Select Cloth Type", "0");
+		typeHashMap.put("All Cloth Type", "0");
 		typeHashMap.put("Modern", "modern");
 		typeHashMap.put("Traditional", "traditional");
 		
@@ -183,12 +183,12 @@ public class WeddingClothFragment extends Fragment{
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("Select Service");		
+		listOfService.add("All Service");		
 		listOfService.add("Buy");
 		listOfService.add("Rent");
 		listOfService.add("Sell");
 			
-		serviceHashMap.put("Select Service", "0");
+		serviceHashMap.put("All Service", "0");
 		serviceHashMap.put("Buy", "buy");
 		serviceHashMap.put("Rent", "rent");
 		serviceHashMap.put("Sell", "sell");

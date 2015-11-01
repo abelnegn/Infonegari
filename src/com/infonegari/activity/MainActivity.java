@@ -56,8 +56,9 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		dlgHandler = new DialogHandler();
-		dlgHandler.Confirm(this, "Update now?", "Please update the information. The update requires internet connection", 
-				 "Cancel", "Ok", cancel(), ok());
+		dlgHandler.Confirm(this, getString(R.string.dlg_header_update), getString(R.string.dlg_detail_message), 
+				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), ok());
+
 		
 		mTitle = mDrawerTitle = getTitle();
 
@@ -89,7 +90,7 @@ public class MainActivity extends FragmentActivity {
 		//Shops
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1), true, "5"));
 		//Job Vacancy
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1), true, "1"));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 		// Recycle the typed array
 		navMenuIcons.recycle();
 

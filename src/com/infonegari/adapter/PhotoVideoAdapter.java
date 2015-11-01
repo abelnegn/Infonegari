@@ -11,12 +11,9 @@ import com.orm.query.Select;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -80,16 +77,7 @@ public class PhotoVideoAdapter extends BaseAdapter{
         txtPrice.setText(String.valueOf(photoVideos.get(position).getPrice()));
         txtWorkType.setText(photoVideos.get(position).getWorkType());
         if(userSite != null){
-	       	 final String phoneNo = userSite.getPhone_Number();
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());
-	       	 txtPhoneNo.setOnClickListener(new OnClickListener() {			
-	 			@Override
-	 			public void onClick(View arg0) {
-	 				Intent callIntent = new Intent(Intent.ACTION_CALL);
-	 				callIntent.setData(Uri.parse("tel:" + phoneNo));
-	 				context.startActivity(callIntent);
-	 			}
-	 		});  
 	       	 txtEmail.setText(userSite.getE_mail());
        }
         return convertView;

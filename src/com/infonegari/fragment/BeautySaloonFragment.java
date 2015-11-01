@@ -129,8 +129,8 @@ public class BeautySaloonFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -158,12 +158,12 @@ public class BeautySaloonFragment extends Fragment{
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Type");		
+		listOfType.add("All Type");		
 		listOfType.add("Female");
 		listOfType.add("Male");
 		listOfType.add("Both");
 			
-		saloonTypeHashMap.put("Select Type", 0L);
+		saloonTypeHashMap.put("All Type", 0L);
 		saloonTypeHashMap.put("Female", 1L);
 		saloonTypeHashMap.put("Male", 2L);
 		saloonTypeHashMap.put("Both", 3L);

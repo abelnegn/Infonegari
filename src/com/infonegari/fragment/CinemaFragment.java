@@ -150,8 +150,8 @@ public class CinemaFragment extends Fragment{
 		List<String> listOfHall = new ArrayList<String>();
 		cinemaHallList = Select.from(CinemaPlace.class).list();
 
-		listOfHall.add("Select Cinema Hall");
-		cinemaHallHashMap.put("Select Cinema Hall", 0L);
+		listOfHall.add("All Cinema Hall");
+		cinemaHallHashMap.put("All Cinema Hall", 0L);
 		for (CinemaPlace hall : cinemaHallList) {
 			listOfHall.add(hall.getCinema_Name());
 			cinemaHallHashMap.put(hall.getCinema_Name(), hall.getCp_id());
@@ -168,8 +168,8 @@ public class CinemaFragment extends Fragment{
 		List<String> listOfMovieType = new ArrayList<String>();
 		movieTypeList = Select.from(MovieType.class).list();
 
-		listOfMovieType.add("Select Movie Type");
-		movieTypeHashMap.put("Select Movie Type", 0L);
+		listOfMovieType.add("All Movie Type");
+		movieTypeHashMap.put("All Movie Type", 0L);
 		for (MovieType movieType : movieTypeList) {
 			listOfMovieType.add(movieType.getMovie_Type());
 			movieTypeHashMap.put(movieType.getMovie_Type(), movieType.getMtId());

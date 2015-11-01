@@ -131,8 +131,8 @@ public class UsedItemFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -149,8 +149,8 @@ public class UsedItemFragment extends Fragment{
 		List<String> listOfType = new ArrayList<String>();
 		typeList = Select.from(UsedItemType.class).list();
 
-		listOfType.add("Select Type");
-		typeHashMap.put("Select Type", 0L);
+		listOfType.add("All Type");
+		typeHashMap.put("All Type", 0L);
 		for (UsedItemType type : typeList) {
 			listOfType.add(type.getUsedItemTypeName());
 			typeHashMap.put(type.getUsedItemTypeName(), type.getUsedItemTypeId());

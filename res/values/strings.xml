@@ -9,6 +9,10 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">Search</string>
     <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_No">No</string>
+    <string name="btn_later">Later</string>
     <string name="txt_type">Type</string>
     <string name="txt_cinema">Cinema</string>
     <string name="txt_house_type">House Type</string>
@@ -35,7 +39,9 @@
     <string name="txt_level">Level</string>
     <string name="title_activity_short_message">Short Message</string>
     <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_user_subscription">UserSubscription</string>
+    <string name="dlg_header_update">Update now?</string>
+    <string name="dlg_detail_message">Please update the information. The update requires internet connection.</string>
+    <string name="txt_sms_description">Try with the following option</string>
 
 	<!--  Menu item name-->
 	<string name="menu_auction">Auction</string>
@@ -86,6 +92,18 @@
 	<string name="menu_wedding_crp">Wedding Card/Ring/Protocol</string>
 	<string name="menu_wedding">Wedding</string>
 	<string name="menu_wedding_hall">Wedding Halls</string>
+	<string name="sms_request_header">Send SMS</string>
+	<string name="sms_request_detail">Are you shure you want to request name for</string>
+	
+	<!-- 	Short message -->	
+	<string-array name="nav_drawer_sms">
+		<item>Christian Girl(CG)</item>
+		<item>Christian Boy(CB)</item>
+		<item>Muslim Girl(MG)</item>
+		<item>Muslim Boy(MB)</item>
+		<item>Hagerigna Girl(HG)</item>
+		<item>Hagerigna Boy(HB)</item>	    
+	</string-array>
 	
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -233,4 +251,10 @@
         <item>@drawable/comaccess</item>
         <item>@drawable/construction</item>
     </string-array>
+    
+    <!-- Nav Drawer SMS Icons -->
+    <string-array name="nav_sms_icon">
+        <item>@drawable/boy</item>
+        <item>@drawable/girl</item>
+    </string-array>    
 </resources>

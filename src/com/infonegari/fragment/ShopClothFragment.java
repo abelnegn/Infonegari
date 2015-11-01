@@ -133,8 +133,8 @@ public class ShopClothFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -165,13 +165,13 @@ public class ShopClothFragment extends Fragment{
 	private void fetchClothCategory(){
 		List<String> listOfClothCat = new ArrayList<String>();
 
-		listOfClothCat.add("Select Category");		
+		listOfClothCat.add("All Category");		
 		listOfClothCat.add("Female Cloth");
 		listOfClothCat.add("Male Cloth");
 		listOfClothCat.add("Kids Cloth");
 		listOfClothCat.add("Cloth Designer");
 			
-		shopCatHashMap.put("Select Category", "0");
+		shopCatHashMap.put("All Category", "0");
 		shopCatHashMap.put("Female Cloth", "female_cloth");
 		shopCatHashMap.put("Male Cloth", "Male_cloth");
 		shopCatHashMap.put("Kids Cloth", "Kids_cloth");
@@ -188,11 +188,11 @@ public class ShopClothFragment extends Fragment{
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("Select Cloth Type");		
+		listOfClothType.add("All Cloth Type");		
 		listOfClothType.add("Modern");
 		listOfClothType.add("Traditional");
 			
-		shopTypeHashMap.put("Select Cloth Type", "0");
+		shopTypeHashMap.put("All Cloth Type", "0");
 		shopTypeHashMap.put("Modern", "modern");
 		shopTypeHashMap.put("Traditional", "traditional");
 		

@@ -133,8 +133,8 @@ public class CarRentFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
+		listOfLocations.add("All Location");
+		locationHashMap.put("All Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -151,8 +151,8 @@ public class CarRentFragment extends Fragment{
 		List<String> listOfCarTypes = new ArrayList<String>();
 		carTypeList = Select.from(CarType.class).list();
 
-		listOfCarTypes.add("Select Car Type");
-		carTypeHashMap.put("Select Car Type", 0L);
+		listOfCarTypes.add("All Car Type");
+		carTypeHashMap.put("All Car Type", 0L);
 		for (CarType type : carTypeList) {
 			listOfCarTypes.add(type.getCarTypeName());
 			carTypeHashMap.put(type.getCarTypeName(), type.getCarTypeId());
