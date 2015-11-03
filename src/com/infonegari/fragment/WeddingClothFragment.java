@@ -118,8 +118,6 @@ public class WeddingClothFragment extends Fragment{
 			}
 		});
 		
-//		saveWeddingCloth();
-		
 		fetchLocation();
 		fetchClothType();
 		fetchService();
@@ -146,21 +144,7 @@ public class WeddingClothFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-    
-	private void saveWeddingCloth(){
-		WeddingCloth newWC = new WeddingCloth();
-		newWC.setCloth_Type("Female Cloth");
-		newWC.setDiscription("New Category");
-		newWC.setLocationId(1);
-		newWC.setMemberId(1);
-		newWC.setPrice(3434);
-		newWC.setService_Type("New Service");
-		newWC.setWeddingClothId(2);
-		newWC.setWeddingClothName("Toxido");
-		
-		newWC.save();
-	}
-	
+
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 

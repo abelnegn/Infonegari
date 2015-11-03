@@ -9,7 +9,7 @@ public class WeddingItemRent extends SugarRecord<WeddingItemRent>{
 	private long WeddingItemId;
 	private String WeddingItemName;
 	private String WeddingItemDiscription;
-	private float WeddingItemPrice;
+	private String WeddingItemPrice;
 	private long LocationId;
 	private long MemberId;
 	
@@ -42,11 +42,11 @@ public class WeddingItemRent extends SugarRecord<WeddingItemRent>{
 		WeddingItemDiscription = weddingItemDiscription;
 	}
 
-	public float getWeddingItemPrice() {
+	public String getWeddingItemPrice() {
 		return WeddingItemPrice;
 	}
 
-	public void setWeddingItemPrice(float weddingItemPrice) {
+	public void setWeddingItemPrice(String weddingItemPrice) {
 		WeddingItemPrice = weddingItemPrice;
 	}
 

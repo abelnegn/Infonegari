@@ -164,27 +164,9 @@ public class BusinessForSaleFragment extends Fragment{
         sp_houseType.setSelection(0);
 	}
 	
-	private void saveBusiness(){
-		HouseListing newHL = new HouseListing();
-		newHL.setHouse_Name("Mamo for Business");
-		newHL.setHouseDiscription("House for business");
-		newHL.setHouseListingId(1);
-		newHL.setHousePrice(324);
-		newHL.setHouseTypeId(1);
-		newHL.setIsBusiness(true);
-		newHL.setLocationId(2);
-		newHL.setLotSize("32");
-		newHL.setMemberId(2);
-		newHL.setNoRooms(3);
-		newHL.setSale(true);
-		newHL.setUser_Name("kebede");
-		
-		newHL.save();
-	}
-	
 	private void init(){
 		businessList = Select.from(HouseListing.class).where(Condition.prop("is_Sale").
-				eq(1)).and(Condition.prop("Is_Business").eq(1)).orderBy("id Desc").list();
+				eq("1")).and(Condition.prop("Is_Business").eq("1")).orderBy("id Desc").list();
 		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();

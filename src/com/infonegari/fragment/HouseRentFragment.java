@@ -117,9 +117,7 @@ public class HouseRentFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveHouse();
-		
+
 		fetchHouseType();
 		fetchLocation();
 		
@@ -164,26 +162,9 @@ public class HouseRentFragment extends Fragment{
         sp_houseType.setSelection(0);
 	}
 	
-	private void saveHouse(){
-		HouseListing newH = new HouseListing();
-		newH.setHouse_Name("Abel House");
-		newH.setHouseDiscription("Villa house");
-		newH.setLocationId(4);
-		newH.setHousePrice(432);
-		newH.setHouseListingId(1);
-		newH.setHouseTypeId(1);
-		newH.setMemberId(1);
-		newH.setLotSize("34");
-		newH.setNoRooms(3);
-		newH.setSale(false);
-		newH.setIsBusiness(false);
-		
-		newH.save();
-	}
-	
 	private void init(){
 		houseList = Select.from(HouseListing.class).where(Condition.prop("is_Sale").
-				eq(0)).and(Condition.prop("Is_Business").eq(0)).orderBy("id Desc").list();
+				eq("0")).and(Condition.prop("Is_Business").eq("0")).orderBy("id Desc").list();
 		adapter = new HouseRentAdapter(getActivity(), houseList);
 		mHouseList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -209,7 +190,7 @@ public class HouseRentFragment extends Fragment{
 		}
 		
 		houseList = HouseListing.findWithQuery(HouseListing.class, 
-    			"SELECT * FROM  House_Listing WHERE is_Sale = 0 AND Is_Business = 0 AND HouseName LIKE " +
+    			"SELECT * FROM  House_Listing WHERE is_Sale = '0' AND Is_Business = '0' AND HouseName LIKE " +
     					title + " AND House_Type_Id = " + typeId + " AND Location_Id = " + locationId +
     					" ORDER BY id Desc");
 		

@@ -141,18 +141,6 @@ public class HmdtaFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-
-	private void saveHM(){
-		Hdnta newH = new Hdnta();
-		newH.setDiscription("DJ Fastu");
-		newH.setHdtaName("DJ Fastu");
-		newH.setHdntaId(23);
-		newH.setLocationId(1);
-		newH.setPrice(324);
-		newH.setMemberId(1);
-		
-		newH.save();
-	}
 	
 	private void init(){
 		hdntaList = Select.from(Hdnta.class).orderBy("id Desc").list();

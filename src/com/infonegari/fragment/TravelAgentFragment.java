@@ -6,14 +6,12 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.TravelAgentAdapter;
-import com.infonegari.objects.db.Band;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.TravelAgent;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -114,9 +112,7 @@ public class TravelAgentFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveTravelAgent();
-		
+			
 		fetchLocation();
 		
 		init();
@@ -140,17 +136,6 @@ public class TravelAgentFragment extends Fragment{
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
-	}
-
-	private void saveTravelAgent(){
-		TravelAgent newTA = new TravelAgent();
-		newTA.setDiscription("Adika tour and travel agent");
-		newTA.setItem_Name("Adika");
-		newTA.setLocationId(4);
-		newTA.setPrice(432);
-		newTA.setTaId(1);
-		
-		newTA.save();
 	}
 	
 	private void init(){

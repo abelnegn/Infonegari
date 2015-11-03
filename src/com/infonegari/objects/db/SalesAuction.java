@@ -12,7 +12,7 @@ public class SalesAuction extends SugarRecord<SalesAuction>{
 	private String SalesAuctionName;
 	private Date StartDate;
 	private String Category;
-	private int SalesItemType;
+	private String SalesItemType;
 	private long MemberId;
 	private String SalesAuctionSource;
 	
@@ -62,12 +62,12 @@ public class SalesAuction extends SugarRecord<SalesAuction>{
 	}
 
 
-	public int getSalesItemType() {
+	public String getSalesItemType() {
 		return SalesItemType;
 	}
 
 
-	public void setSalesItemType(int salesItemType) {
+	public void setSalesItemType(String salesItemType) {
 		SalesItemType = salesItemType;
 	}
 

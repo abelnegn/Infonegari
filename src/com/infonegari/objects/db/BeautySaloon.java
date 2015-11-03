@@ -10,7 +10,7 @@ public class BeautySaloon extends SugarRecord<BeautySaloon>{
 	private String beautysaloonsName;
 	private long LocationId;
 	private String beautysaloonsType;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String Discription;
 	private String User_Name;
@@ -57,16 +57,13 @@ public class BeautySaloon extends SugarRecord<BeautySaloon>{
 		this.beautysaloonsType = beautysaloonsType;
 	}
 
-
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
-
 
 	public long getMemberId() {
 		return MemberId;

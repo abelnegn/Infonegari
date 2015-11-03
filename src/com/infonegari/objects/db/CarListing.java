@@ -9,12 +9,12 @@ public class CarListing extends SugarRecord<CarListing>{
 	private long CarListingId;
 	private String CarName;
 	private long CarTypeId;
-	private float CarPrice;
+	private String CarPrice;
 	private String Discription;
 	private long LocationId;
-	private int Year;
+	private String Year;
 	private long MemberId;
-	private boolean isCarSale;
+	private String isCarSale;
 	private String User_Name;
 
     public boolean isNew() {
@@ -56,18 +56,14 @@ public class CarListing extends SugarRecord<CarListing>{
 		CarTypeId = carTypeId;
 	}
 
-
-
-	public float getCarPrice() {
+	public String getCarPrice() {
 		return CarPrice;
 	}
 
 
-
-	public void setCarPrice(float carPrice) {
+	public void setCarPrice(String carPrice) {
 		CarPrice = carPrice;
 	}
-
 
 
 	public String getDiscription() {
@@ -88,17 +84,15 @@ public class CarListing extends SugarRecord<CarListing>{
 		LocationId = locationId;
 	}
 
-
-
-	public int getYear() {
+	public String getYear() {
 		return Year;
 	}
 
 
-
-	public void setYear(int year) {
+	public void setYear(String year) {
 		Year = year;
 	}
+
 
 	public long getMemberId() {
 		return MemberId;
@@ -111,14 +105,15 @@ public class CarListing extends SugarRecord<CarListing>{
 	}
 
 
-
-	public boolean isCarSale() {
+	public String getIsCarSale() {
 		return isCarSale;
 	}
 
-	public void setCarSale(boolean isCarSale) {
+
+	public void setIsCarSale(String isCarSale) {
 		this.isCarSale = isCarSale;
 	}
+
 
 	public String getUser_Name() {
 		return User_Name;

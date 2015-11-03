@@ -117,8 +117,6 @@ public class UsedItemFragment extends Fragment{
 			}
 		});
 		
-//		saveUsedItem();
-		
 		fetchLocation();
 		fetchType();
 		
@@ -161,19 +159,6 @@ public class UsedItemFragment extends Fragment{
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_type.setAdapter(typeAdapter);
         sp_type.setSelection(0);
-	}
-
-	private void saveUsedItem(){
-		UsedItem newU = new UsedItem();
-		newU.setUsedItemName("Addis international item");
-		newU.setDiscription("Many traditional foods is ready");
-		newU.setLocationId(3);
-		newU.setMemberId(5);
-		newU.setUsedItemId(1);
-		newU.setUsedItemTypeId(2);
-		newU.setPrice(234);
-		
-		newU.save();
 	}
 	
 	private void init(){

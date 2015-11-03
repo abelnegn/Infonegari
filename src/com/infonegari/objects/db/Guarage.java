@@ -8,7 +8,7 @@ import com.orm.query.Select;
 public class Guarage extends SugarRecord<Guarage>{
 	private long guarageId;
 	private String Item_Name;
-	private float Price;
+	private String Price;
 	private long LocationId;
 	private String Discription;
 	private String Garage_Type;
@@ -36,11 +36,11 @@ public class Guarage extends SugarRecord<Guarage>{
 		Item_Name = item_Name;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

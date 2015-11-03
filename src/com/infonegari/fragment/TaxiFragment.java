@@ -113,8 +113,6 @@ public class TaxiFragment extends Fragment{
 			}
 		});
 		
-//		saveTaxi();
-		
 		fetchLocation();
 		
 		init();
@@ -140,17 +138,6 @@ public class TaxiFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveTaxi(){
-		Taxi newT = new Taxi();
-		newT.setDiscription("Kebede Tena ");
-		newT.setTaxiId(2);
-		newT.setItem_Name("Kebede Tena Guarage");
-		newT.setLocationId(2);
-		newT.setPrice(323);
-		
-		newT.save();
-	}
-	
 	private void init(){
 		taxiList = Select.from(Taxi.class).orderBy("id Desc").list();
 		adapter = new TaxiAdapter(getActivity(), taxiList);

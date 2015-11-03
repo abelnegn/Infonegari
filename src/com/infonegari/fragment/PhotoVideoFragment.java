@@ -113,8 +113,6 @@ public class PhotoVideoFragment extends Fragment{
 			}
 		});
 		
-//		savePV();
-		
 		fetchLocation();
 		
 		init();
@@ -138,19 +136,6 @@ public class PhotoVideoFragment extends Fragment{
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
-	}
-
-	private void savePV(){
-		PhotoVideo newPV = new PhotoVideo();
-		newPV.setDiscription("A New event held on monday");
-		newPV.setPhotoVideoName("Alazar Photo house");
-		newPV.setPhotoVideoId(23);
-		newPV.setWorkType("Monday Event");
-		newPV.setLocationId(1);
-		newPV.setPrice(324);
-		newPV.setMemberId(1);
-		
-		newPV.save();
 	}
 	
 	private void init(){

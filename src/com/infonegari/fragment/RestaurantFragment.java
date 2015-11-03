@@ -117,8 +117,6 @@ public class RestaurantFragment extends Fragment{
 			}
 		});
 		
-//		saveRestaurant();
-		
 		fetchLocation();
 		fetchType();
 		

@@ -115,8 +115,6 @@ public class PharmacyFragment extends Fragment{
 			}
 		});
 		
-//		savePharmacy();
-		
 		fetchLocation();
 		
 		init();
@@ -142,18 +140,6 @@ public class PharmacyFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void savePharmacy(){
-		Pharmacy newP = new Pharmacy();
-		newP.setDiscription("Kebede Tena Pharmacy");
-		newP.setPharma_Type("Vehicle Garage");
-		newP.setPharmacyId(2);
-		newP.setItem_Name("Kebede Tena Pharmacy");
-		newP.setLocationId(2);
-		newP.setPrice(323);
-		
-		newP.save();
-	}
-	
 	private void init(){
 		pharmacyList = Select.from(Pharmacy.class).orderBy("id Desc").list();
 		adapter = new PharmacyAdapter(getActivity(), pharmacyList);

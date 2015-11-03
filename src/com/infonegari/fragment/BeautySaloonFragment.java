@@ -142,19 +142,7 @@ public class BeautySaloonFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-    
-	private void saveSaloon(){
-		BeautySaloon newS = new BeautySaloon();
-		newS.setBeautysaloonsId(2);
-		newS.setBeautysaloonsName("Angle Beauty Saloon");
-		newS.setBeautysaloonsType("Male");
-		newS.setDiscription("Angle Beauty Saloon");
-		newS.setLocationId(1);
-		newS.setMemberId(2);
-		newS.setPrice(435);
-		
-		newS.save();
-	}
+
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 

@@ -9,7 +9,7 @@ public class Decorators extends SugarRecord<Decorators>{
 	private long DecoratorId;
 	private String DecoratorName;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private String Discription;
 	private long MemberId;
 	private String User_Name;
@@ -49,13 +49,12 @@ public class Decorators extends SugarRecord<Decorators>{
 		LocationId = locationId;
 	}
 
-
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

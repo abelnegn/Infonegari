@@ -140,18 +140,6 @@ public class BankFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveBank(){
-		Bank newB = new Bank();
-		newB.setDiscription("Commercial Bank of Ethiopia");
-		newB.setBranch_Name("Jemo Branch");
-		newB.setBankId(2);
-		newB.setItem_Name("Commercial Bank of Ethiopia");
-		newB.setLocationId(2);
-		newB.setPrice(323);
-		
-		newB.save();
-	}
-	
 	private void init(){
 		bankList = Select.from(Bank.class).orderBy("id Desc").list();
 		adapter = new BankAdapter(getActivity(), bankList);

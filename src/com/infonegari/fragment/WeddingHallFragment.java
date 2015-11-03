@@ -118,7 +118,6 @@ public class WeddingHallFragment extends Fragment{
 			}
 		});
 		
-//		saveWH();
 		fetchLocation();
 		fetchType();
 		
@@ -145,23 +144,6 @@ public class WeddingHallFragment extends Fragment{
         sp_location.setSelection(0);
 	}
     
-	private void saveWH(){
-		WeddingHall newWH = new WeddingHall();
-		newWH.setBreak_Fast("Ready");
-		newWH.setDateAvailable("02-01-2015");
-		newWH.setDinner("Available");
-		newWH.setDiscription("Shall Wedding Hall");
-		newWH.setHall_Type("Wedding Hall");
-		newWH.setLocationId(2);
-		newWH.setLunch("Available");
-		newWH.setMemberId(1);
-		newWH.setPrice(324);
-		newWH.setServiceType("Full Service");
-		newWH.setWeddingHallId(3);
-		newWH.setWeddingHallName("Shalla Wedding Hall");
-		
-		newWH.save();
-	}
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 

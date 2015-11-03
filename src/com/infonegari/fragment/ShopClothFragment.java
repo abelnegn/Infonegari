@@ -118,8 +118,6 @@ public class ShopClothFragment extends Fragment{
 			}
 		});
 		
-//		saveClothType();
-		
 		fetchClothCategory();
 		fetchLocation();
 		fetchClothType();
@@ -145,21 +143,6 @@ public class ShopClothFragment extends Fragment{
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
-	}
-    
-	private void saveClothType(){
-		ShopCloth newSC = new ShopCloth();
-		newSC.setItem_Name("New Cloths brand ");
-		newSC.setCatagory("female_cloth");
-		newSC.setColor("Red");
-		newSC.setDiscription("New brand cloth come from USA");
-		newSC.setLocationId(1);
-		newSC.setPrice(350);
-		newSC.setScId(1);
-		newSC.setSize("XL");
-		newSC.setType("traditional");
-		
-		newSC.save();
 	}
 	
 	private void fetchClothCategory(){

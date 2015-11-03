@@ -10,7 +10,7 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 	private String GuestHouseName;
 	private String NoRooms;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private String GuestHouseDiscripton;
 	private String User_Name;
 
@@ -54,13 +54,15 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 		LocationId = locationId;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+
+	public void setPrice(String price) {
 		Price = price;
 	}
+
 
 	public String getGuestHouseDiscripton() {
 		return GuestHouseDiscripton;

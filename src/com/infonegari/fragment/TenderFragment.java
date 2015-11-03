@@ -115,8 +115,6 @@ public class TenderFragment extends Fragment{
 			}
 		});
 		
-//		saveTender();
-		
 		fetchCategory();
 		
 		init();
@@ -140,21 +138,6 @@ public class TenderFragment extends Fragment{
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_category.setAdapter(categoryAdapter);
         sp_category.setSelection(0);
-	}
-	
-	private void saveTender(){
-		Tender newT = new Tender();
-		newT.setTender_Catagory("1");
-		newT.setTender_id(1);
-		newT.setCompany_Name("Ethiopian Road authority");
-		newT.setDiscription("Ethiopian road authority");
-		newT.setOpening_Date("21-02-2015");
-		newT.setPhone_Number("0912343234");
-		newT.setPost_Date("01-02-2015");
-		newT.setSource("Addis Zemen");
-		newT.setSubmission_Deadline("21-04-2015");
-		
-		newT.save();
 	}
 	
 	private void init(){

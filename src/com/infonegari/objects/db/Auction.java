@@ -14,7 +14,7 @@ public class Auction extends SugarRecord<Auction>{
 	private String Opening_Date;
 	private long Auction_Catagory;
 	private String Description;
-	private float Minimum_Price;
+	private String Minimum_Price;
 	private String Source;
 	private String User_Name;
 
@@ -103,12 +103,13 @@ public class Auction extends SugarRecord<Auction>{
 	}
 
 
-	public float getMinimum_Price() {
+
+	public String getMinimum_Price() {
 		return Minimum_Price;
 	}
 
 
-	public void setMinimum_Price(float minimum_Price) {
+	public void setMinimum_Price(String minimum_Price) {
 		Minimum_Price = minimum_Price;
 	}
 

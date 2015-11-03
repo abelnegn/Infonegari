@@ -139,19 +139,6 @@ public class ClinicFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-
-	private void saveClinic(){
-		Clinic newC = new Clinic();
-		newC.setDiscription("Kebede Tena Clinic");
-		newC.setClinic_Type("Higher Clinic");
-		newC.setClinicId(2);
-		newC.setItem_Name("Kebede Tena Clinic");
-		newC.setJob_Type("Maintenance");
-		newC.setLocationId(2);
-		newC.setPrice(323);
-		
-		newC.save();
-	}
 	
 	private void init(){
 		clinicList = Select.from(Clinic.class).orderBy("id Desc").list();

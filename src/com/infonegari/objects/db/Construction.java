@@ -12,7 +12,7 @@ public class Construction extends SugarRecord<Construction> {
 	private String Profession;
 	private long ConstructionMachineId;
 	private long ConstructionMaterialId;
-	private float Price;
+	private String Price;
 	private String Discription;
 	private String User_Name;
 
@@ -53,15 +53,13 @@ public class Construction extends SugarRecord<Construction> {
 		Profession = profession;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
-
-
 
 	public long getConstructionMachineId() {
 		return ConstructionMachineId;

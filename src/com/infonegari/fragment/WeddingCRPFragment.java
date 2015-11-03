@@ -6,14 +6,12 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.WeddingCRPAdapter;
-import com.infonegari.objects.db.Band;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.WeddingCardRingProtocol;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -115,8 +113,6 @@ public class WeddingCRPFragment extends Fragment{
 			}
 		});
 		
-//		saveWCRP();
-		
 		fetchLocation();
 		
 		init();
@@ -142,18 +138,6 @@ public class WeddingCRPFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveWCRP(){
-		WeddingCardRingProtocol newC = new WeddingCardRingProtocol();
-		newC.setDiscription("Card Ring Protocol");
-		newC.setWeddingCRPName("Card Ring Protocol");
-		newC.setWcrpId(23);
-		newC.setLocationId(1);
-		newC.setPrice(324);
-		newC.setMemberId(1);
-		
-		newC.save();
-	}
-	
 	private void init(){
 		wcrpList = Select.from(WeddingCardRingProtocol.class).orderBy("id Desc").list();
 		adapter = new WeddingCRPAdapter(getActivity(), wcrpList);

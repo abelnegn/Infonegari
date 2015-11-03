@@ -140,17 +140,6 @@ public class EventFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveEvent(){
-		Event newEvent = new Event();
-		newEvent.setDiscription("A New event held on monday");
-		newEvent.setEvent_Type("dfadf");
-		newEvent.setEventId(23);
-		newEvent.setItem_Name("Monday Event");
-		newEvent.setLocationId(1);
-		newEvent.setPrice(324);
-		newEvent.save();
-	}
-	
 	private void init(){
 		eventList = Select.from(Event.class).orderBy("id Desc").list();
 		adapter = new EventAdapter(getActivity(), eventList);

@@ -9,7 +9,7 @@ public class DJ extends SugarRecord<DJ>{
 	private long DjId;
 	private String DjName;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String Discription;
 	private String User_Name;
@@ -46,13 +46,15 @@ public class DJ extends SugarRecord<DJ>{
 		LocationId = locationId;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+
+	public void setPrice(String price) {
 		Price = price;
 	}
+
 
 	public long getMemberId() {
 		return MemberId;

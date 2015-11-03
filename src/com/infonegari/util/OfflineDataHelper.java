@@ -363,7 +363,7 @@ public class OfflineDataHelper {
     	newCarListing.setLocationId(carListing.getLocationId());
     	newCarListing.setYear(carListing.getYear());
     	newCarListing.setMemberId(carListing.getMemberId());
-    	newCarListing.setCarSale(carListing.isCarSale());
+    	newCarListing.setIsCarSale(carListing.getIsCarSale());
     	newCarListing.setUser_Name(carListing.getUser_Name());
     	
     	newCarListing.save();
@@ -566,8 +566,8 @@ public class OfflineDataHelper {
     	newHL.setNoRooms(houseListing.getNoRooms());
     	newHL.setLotSize(houseListing.getLotSize());
     	newHL.setMemberId(houseListing.getMemberId());
-    	newHL.setSale(houseListing.isSale());
-    	newHL.setIsBusiness(houseListing.isIsBusiness());
+    	newHL.setIsSale(houseListing.getIsSale());
+    	newHL.setIsBusiness(houseListing.getIsBusiness());
     	newHL.setUser_Name(houseListing.getUser_Name());
     	
     	newHL.save();
@@ -660,11 +660,11 @@ public class OfflineDataHelper {
     
     public void saveShopClothData(ShopCloth sc){
     	ShopCloth newSc = new ShopCloth();
-    	newSc.setScId(sc.getId());
+    	newSc.setScId(sc.getScId());
     	newSc.setItem_Name(sc.getItem_Name());
     	newSc.setCatagory(sc.getCatagory());
     	newSc.setDiscription(sc.getDiscription());
-    	newSc.setColor(sc.getCatagory());
+    	newSc.setColor(sc.getColor());
     	newSc.setLocationId(sc.getLocationId());
     	newSc.setPrice(sc.getPrice());
     	newSc.setSize(sc.getSize());

@@ -112,9 +112,7 @@ public class NightClubFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveNightClub();
-		
+
 		fetchLocation();
 		
 		init();
@@ -140,17 +138,6 @@ public class NightClubFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveNightClub(){
-		NightClub newNC = new NightClub();
-		newNC.setDiscription("Club H20 Nice place to enjoy");
-		newNC.setItem_Name("Club H20");
-		newNC.setLocationId(4);
-		newNC.setPrice(432);
-		newNC.setNcId(1);
-		
-		newNC.save();
-	}
-	
 	private void init(){
 		nightClubList = Select.from(NightClub.class).orderBy("id Desc").list();
 		adapter = new NightClubAdapter(getActivity(), nightClubList);

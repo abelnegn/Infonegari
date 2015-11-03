@@ -165,18 +165,6 @@ public class GuestHouseFragment extends Fragment{
         sp_houseType.setSelection(0);
 	}
 	
-	private void saveHouse(){
-		GuestHouse newH = new GuestHouse();
-		newH.setGuestHouseName("Abel House");
-		newH.setGuestHouseDiscripton("Villa house");
-		newH.setLocationId(4);
-		newH.setGuestHouseId(1);
-		newH.setNoRooms("3");
-		newH.setPrice(324);
-		
-		newH.save();
-	}
-	
 	private void init(){
 		houseList = Select.from(GuestHouse.class).orderBy("id Desc").list();
 		adapter = new GuestHouseAdapter(getActivity(), houseList);

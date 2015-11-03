@@ -7,18 +7,15 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ShopFurnitureAdapter;
 import com.infonegari.objects.db.Location;
-import com.infonegari.objects.db.ShopCloth;
 import com.infonegari.objects.db.ShopFurniture;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.ClipData.Item;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,7 +36,7 @@ public class ShopFurnitureFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> itemTypeHashMap = new HashMap<String, Long>();
+	HashMap<String, String> itemTypeHashMap = new HashMap<String, String>();
 	List<ShopFurniture> shopFurnitureList;
 	private ListView mShopFurnitureList;
 	private ShopFurnitureAdapter adapter;
@@ -119,7 +116,6 @@ public class ShopFurnitureFragment extends Fragment{
 			}
 		});
 		
-//		saveShopFurniture();
 		fetchLocation();
 		fetchType();
 		
@@ -145,20 +141,7 @@ public class ShopFurnitureFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-    
-	private void saveShopFurniture(){
-		ShopFurniture newF = new ShopFurniture();
-		newF.setItem_Name("Toshiba american brand computers");
-		newF.setCountry("New Category");
-		newF.setDiscription("Toshiba american brand computer");
-		newF.setItem_Type("Toshiba");
-		newF.setLocationId(1);
-		newF.setPrice(456);
-		newF.setSfId(3);
-		
-		newF.save();
-	}
-	
+
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
@@ -166,9 +149,9 @@ public class ShopFurnitureFragment extends Fragment{
 		listOfType.add("Home");		
 		listOfType.add("Office");
 
-		itemTypeHashMap.put("All Furniture", 0L);
-		itemTypeHashMap.put("Home", 1L);
-		itemTypeHashMap.put("Office", 2L);
+		itemTypeHashMap.put("All Furniture", "0");
+		itemTypeHashMap.put("Home", "home");
+		itemTypeHashMap.put("Office", "office");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);

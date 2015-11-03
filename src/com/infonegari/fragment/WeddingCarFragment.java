@@ -118,7 +118,6 @@ public class WeddingCarFragment extends Fragment{
 			}
 		});
 		
-//		saveWeddingCars();
 		fetchLocation();
 		fetchCarType();
 		
@@ -145,18 +144,6 @@ public class WeddingCarFragment extends Fragment{
         sp_location.setSelection(0);
 	}
     
-	private void saveWeddingCars(){
-		WeddingCar newWC = new WeddingCar();
-		newWC.setCarTypeId(1);
-		newWC.setDiscription("Wedding car like lemosin and different types of cars");
-		newWC.setLocationId(1);
-		newWC.setMemberId(1);
-		newWC.setPrice(323);
-		newWC.setWeddingCarId(32);
-		newWC.setWeddingCarName("Adika Tour and travel");
-		
-		newWC.save();
-	}
 	private void fetchCarType(){
 		List<String> listOfCarType = new ArrayList<String>();
 		carTypeList = Select.from(CarType.class).list();

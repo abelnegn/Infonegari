@@ -8,7 +8,7 @@ import com.orm.query.Select;
 public class Taxi extends SugarRecord<Taxi>{
 	private long taxiId;
 	private String Item_Name;
-	private float Price;
+	private String Price;
 	private long LocationId;
 	private String Discription;
 	private String User_Name;
@@ -34,11 +34,11 @@ public class Taxi extends SugarRecord<Taxi>{
 		Item_Name = item_Name;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

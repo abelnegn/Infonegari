@@ -119,8 +119,6 @@ public class CarRentFragment extends Fragment{
 			}
 		});
 		
-//		saveCar();
-		
 		fetchCarType();
 		fetchLocation();
 		
@@ -165,24 +163,9 @@ public class CarRentFragment extends Fragment{
         sp_carType.setSelection(0);
 	}
 	
-	private void saveCar(){
-		CarListing newC = new CarListing();
-		newC.setDiscription("Abel Car");
-		newC.setCarName("Lifan");
-		newC.setLocationId(4);
-		newC.setCarPrice(432);
-		newC.setCarListingId(1);
-		newC.setCarTypeId(1);
-		newC.setMemberId(1);
-		newC.setYear(1945);
-		newC.setCarSale(false);
-		
-		newC.save();
-	}
-	
 	private void init(){
 		carList = Select.from(CarListing.class).
-				where(Condition.prop("is_Car_Sale").eq(0)).
+				where(Condition.prop("is_Car_Sale").eq("0")).
 				orderBy("id Desc").list();
 		adapter = new CarRentAdapter(getActivity(), carList);
 		mCarList.setAdapter(adapter);
@@ -213,7 +196,7 @@ public class CarRentFragment extends Fragment{
 		}
 		
 		carList = CarListing.findWithQuery(CarListing.class, 
-    			"SELECT * FROM  Car_Listing WHERE is_Car_Sale = 0 AND Year = " + year + " AND Car_Name LIKE " + 
+    			"SELECT * FROM  Car_Listing WHERE is_Car_Sale = '0' AND Year = " + year + " AND Car_Name LIKE " + 
     					title + " AND Car_Type_Id = " + typeId + " AND Location_Id = " + locationId +
     					" ORDER BY id Desc");
 		

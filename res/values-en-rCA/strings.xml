@@ -42,6 +42,7 @@
     <string name="dlg_header_update">አዲስ መረጃ?</string>
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     
 
 	<!--  Menu item name-->

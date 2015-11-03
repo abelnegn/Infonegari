@@ -10,7 +10,7 @@ public class UsedItem extends SugarRecord<UsedItem>{
 	private String UsedItemName;
 	private long UsedItemTypeId;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private String discription;
 	private long MemberId;
 	private String User_Name;
@@ -60,13 +60,12 @@ public class UsedItem extends SugarRecord<UsedItem>{
 		LocationId = locationId;
 	}
 
-
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

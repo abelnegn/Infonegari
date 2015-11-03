@@ -10,7 +10,7 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 	private String CnPIdName;
 	private String ServiceType;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String Discription;
 	private String User_Name;
@@ -61,12 +61,12 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 	}
 
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

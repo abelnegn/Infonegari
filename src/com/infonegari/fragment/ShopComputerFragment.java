@@ -36,8 +36,8 @@ public class ShopComputerFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> serviceTypeHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> itemTypeHashMap = new HashMap<String, Long>();
+	HashMap<String, String> serviceTypeHashMap = new HashMap<String, String>();
+	HashMap<String, String> itemTypeHashMap = new HashMap<String, String>();
 	List<ShopComputer> shopComputerList;
 	private ListView mShopComputerList;
 	private ShopComputerAdapter adapter;
@@ -118,7 +118,6 @@ public class ShopComputerFragment extends Fragment{
 			}
 		});
 		
-//		saveShopComputer();
 		fetchLocation();
 		fetchType();
 		fetchService();
@@ -145,20 +144,6 @@ public class ShopComputerFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
- 
-	private void saveShopComputer(){
-		ShopComputer newC = new ShopComputer();
-		newC.setItem_Name("Toshiba american brand computers");
-		newC.setBrand_Name("New Category");
-		newC.setDiscription("Toshiba american brand computer");
-		newC.setItem_Type("Used");
-		newC.setLocationId(1);
-		newC.setPrice(456);
-		newC.setScId(3);
-		newC.setService_Type("Maintenance");
-		
-		newC.save();
-	}
 	
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
@@ -168,10 +153,10 @@ public class ShopComputerFragment extends Fragment{
 		listOfType.add("Assembled");
 		listOfType.add("Used");
 
-		itemTypeHashMap.put("All Type", 0L);
-		itemTypeHashMap.put("Brand New", 1L);
-		itemTypeHashMap.put("Assembled", 2L);
-		itemTypeHashMap.put("Used", 3L);
+		itemTypeHashMap.put("All Type", "0");
+		itemTypeHashMap.put("Brand New", "new");
+		itemTypeHashMap.put("Assembled", "assembled");
+		itemTypeHashMap.put("Used", "used");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -185,12 +170,12 @@ public class ShopComputerFragment extends Fragment{
 		List<String> listOfService = new ArrayList<String>();
 
 		listOfService.add("All Service");
-		listOfService.add("Buy");		
+		listOfService.add("Buy");
 		listOfService.add("Maintenance");
 
-		serviceTypeHashMap.put("All Service", 0L);
-		serviceTypeHashMap.put("Buy", 1L);
-		serviceTypeHashMap.put("Maintenance", 2L);
+		serviceTypeHashMap.put("All Service", "0");
+		serviceTypeHashMap.put("Buy", "buy");
+		serviceTypeHashMap.put("Maintenance", "maintenance");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

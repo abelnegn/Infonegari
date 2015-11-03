@@ -139,18 +139,6 @@ public class BandFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-
-	private void saveBand(){
-		Band newBand = new Band();
-		newBand.setDiscription("Balageru Band");
-		newBand.setBandName("Fastu Band");
-		newBand.setBandId(23);
-		newBand.setLocationId(1);
-		newBand.setPrice(324);
-		newBand.setMemberId(1);
-		
-		newBand.save();
-	}
 	
 	private void init(){
 		bandList = Select.from(Band.class).orderBy("id Desc").list();

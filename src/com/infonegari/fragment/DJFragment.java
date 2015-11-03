@@ -141,18 +141,6 @@ public class DJFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-
-	private void saveDJ(){
-		DJ newDj = new DJ();
-		newDj.setDiscription("DJ Fastu");
-		newDj.setDjName("DJ Fastu");
-		newDj.setDjId(23);
-		newDj.setLocationId(1);
-		newDj.setPrice(324);
-		newDj.setMemberId(1);
-		
-		newDj.save();
-	}
 	
 	private void init(){
 		djList = Select.from(DJ.class).orderBy("id Desc").list();

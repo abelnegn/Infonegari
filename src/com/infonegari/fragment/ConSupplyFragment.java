@@ -188,20 +188,6 @@ public class ConSupplyFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 	
-	private void saveCon(){
-		Construction newCon = new Construction();
-		newCon.setConstructionMachineId(1);
-		newCon.setConstructionMaterialId(2);
-		newCon.setConstructionSnSId(3);
-		newCon.setConstructionTitle("Hayat construction and dump truck service");
-		newCon.setDiscription("Hayat construction and dump truck service");
-		newCon.setLocationId(6);
-		newCon.setPrice(545);
-		newCon.setProfession("Engineer");
-		
-		newCon.save();
-	}
-	
 	private void init(){
 		constructionList = Select.from(Construction.class).orderBy("id Desc").list();
 		adapter = new ConSupplyAdapter(getActivity(), constructionList);

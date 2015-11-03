@@ -36,8 +36,8 @@ public class ShopElectronicsFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> categoryHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> serviceHashMap = new HashMap<String, Long>();
+	HashMap<String, String> categoryHashMap = new HashMap<String, String>();
+	HashMap<String, String> serviceHashMap = new HashMap<String, String>();
 	List<ShopElectronic> shopElectronicList;
 	private ListView mShopElectronicList;
 	private ShopElectronicsAdapter adapter;
@@ -118,7 +118,6 @@ public class ShopElectronicsFragment extends Fragment{
 			}
 		});
 		
-//		saveShopElectronic();
 		fetchLocation();
 		fetchElectronicCategory();
 		fetchService();
@@ -145,20 +144,6 @@ public class ShopElectronicsFragment extends Fragment{
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
 	}
-
-	private void saveShopElectronic(){
-		ShopElectronic newE = new ShopElectronic();
-		newE.setBrand_Name("Toshiba american brand computers");
-		newE.setCatagory("New Category");
-		newE.setDiscription("Toshiba american brand computer");
-		newE.setItem_Name("Toshiba");
-		newE.setLocationId(1);
-		newE.setPrice(456);
-		newE.setSeId(3);
-		newE.setService_Type("Maintenance");
-		
-		newE.save();
-	}
 	
 	private void fetchElectronicCategory(){
 		List<String> listOfElectronicCat = new ArrayList<String>();
@@ -168,10 +153,10 @@ public class ShopElectronicsFragment extends Fragment{
 		listOfElectronicCat.add("Refrigrator");
 		listOfElectronicCat.add("Mobiles");
 
-		categoryHashMap.put("All Electronics", 0L);
-		categoryHashMap.put("TV,DVD,Tape", 1L);
-		categoryHashMap.put("Refrigrator", 2L);
-		categoryHashMap.put("Mobiles", 3L);
+		categoryHashMap.put("All Electronics", "0");
+		categoryHashMap.put("TV,DVD,Tape", "tv");
+		categoryHashMap.put("Refrigrator", "refrigrator");
+		categoryHashMap.put("Mobiles", "mobile");
 		
         ArrayAdapter<String> serviceTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfElectronicCat);
@@ -188,9 +173,9 @@ public class ShopElectronicsFragment extends Fragment{
 		listOfService.add("Buy");		
 		listOfService.add("Maintenance");
 
-		serviceHashMap.put("All Service", 0L);
-		serviceHashMap.put("Buy", 1L);
-		serviceHashMap.put("Maintenance", 2L);
+		serviceHashMap.put("All Service", "0");
+		serviceHashMap.put("Buy", "sell");
+		serviceHashMap.put("Maintenance", "maintenance");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

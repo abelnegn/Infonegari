@@ -12,7 +12,7 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 	private String Type;
 	private String Discription;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private String Color;
 	private String Size;
 	private String User_Name;
@@ -70,11 +70,11 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 		LocationId = locationId;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

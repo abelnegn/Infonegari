@@ -7,13 +7,11 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ResortAdapter;
 import com.infonegari.objects.db.Location;
-import com.infonegari.objects.db.Pharmacy;
 import com.infonegari.objects.db.Resort;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -114,9 +112,7 @@ public class ResortFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveResort();
-		
+
 		fetchLocation();
 		
 		init();
@@ -142,17 +138,6 @@ public class ResortFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveResort(){
-		Resort newR = new Resort();
-		newR.setDiscription("Kuriftu resort and spa");
-		newR.setItem_Name("Kuriftu Resort and Spa");
-		newR.setLocationId(4);
-		newR.setPrice(432);
-		newR.setResortId(1);
-		
-		newR.save();
-	}
-	
 	private void init(){
 		resortList = Select.from(Resort.class).orderBy("id Desc").list();
 		adapter = new ResortAdapter(getActivity(), resortList);

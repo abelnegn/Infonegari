@@ -11,7 +11,7 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	private String ServiceType;
 	private String dateAvailable;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String Discription;
 	private String Hall_Type;
@@ -65,12 +65,17 @@ public class WeddingHall extends SugarRecord<WeddingHall>{
 	public void setLocationId(long locationId) {
 		LocationId = locationId;
 	}
-	public float getPrice() {
+
+	public String getPrice() {
 		return Price;
 	}
-	public void setPrice(float price) {
+
+
+	public void setPrice(String price) {
 		Price = price;
 	}
+
+
 	public long getMemberId() {
 		return MemberId;
 	}

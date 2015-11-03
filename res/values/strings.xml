@@ -94,6 +94,7 @@
 	<string name="menu_wedding_hall">Wedding Halls</string>
 	<string name="sms_request_header">Send SMS</string>
 	<string name="sms_request_detail">Are you shure you want to request name for</string>
+	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 	
 	<!-- 	Short message -->	
 	<string-array name="nav_drawer_sms">

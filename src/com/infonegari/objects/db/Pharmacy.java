@@ -8,7 +8,7 @@ import com.orm.query.Select;
 public class Pharmacy extends SugarRecord<Pharmacy>{
 	private long pharmacyId;
 	private String Item_Name;
-	private float Price;
+	private String Price;
 	private long LocationId;
 	private String Discription;
 	private String Pharma_Type;
@@ -35,11 +35,11 @@ public class Pharmacy extends SugarRecord<Pharmacy>{
 		Item_Name = item_Name;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

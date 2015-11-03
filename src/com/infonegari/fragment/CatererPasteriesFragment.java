@@ -140,20 +140,6 @@ public class CatererPasteriesFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 	
-	private void saveCatererPasteries(){
-		CaterersPasteries newCP = new CaterersPasteries();
-		newCP.setCnPId(1);
-		newCP.setCnPIdName("Shafe Demeke");
-		newCP.setDiscription("Demeke caterer and pasteries");
-		newCP.setLocationId(2);
-		newCP.setMemberId(2);
-		newCP.setPrice(434);
-		newCP.setServiceType("Contract");
-		newCP.setUser_Name("Kebede");
-		
-		newCP.save();
-	}
-	
 	private void init(){
 		catererPasteriesList = Select.from(CaterersPasteries.class).orderBy("id Desc").list();
 		adapter = new CatererPasteriesAdapter(getActivity(), catererPasteriesList);

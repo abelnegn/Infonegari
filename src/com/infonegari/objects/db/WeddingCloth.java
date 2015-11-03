@@ -9,7 +9,7 @@ public class WeddingCloth extends SugarRecord<WeddingCloth>{
 	private long WeddingClothId;
 	private String WeddingClothName;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String Discription;
 	private String Cloth_Type;
@@ -48,13 +48,15 @@ public class WeddingCloth extends SugarRecord<WeddingCloth>{
 		LocationId = locationId;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+
+	public void setPrice(String price) {
 		Price = price;
 	}
+
 
 	public long getMemberId() {
 		return MemberId;

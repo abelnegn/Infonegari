@@ -10,7 +10,7 @@ public class Hdnta extends SugarRecord<Hdnta>{
 	private String hdtaName;
 	private long LocationId;
 	private long MemberId;
-	private float Price;
+	private String Price;
 	private String Discription;
 	private String User_Name;
 	
@@ -54,16 +54,13 @@ public class Hdnta extends SugarRecord<Hdnta>{
 		MemberId = memberId;
 	}
 
-
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
-
 
 	public String getDiscription() {
 		return Discription;

@@ -164,27 +164,9 @@ public class BusinessForLeaseFragment extends Fragment{
         sp_houseType.setSelection(0);
 	}
 	
-	private void saveBusiness(){
-		HouseListing newHL = new HouseListing();
-		newHL.setHouse_Name("Abel for Business");
-		newHL.setHouseDiscription("House for business");
-		newHL.setHouseListingId(1);
-		newHL.setHousePrice(324);
-		newHL.setHouseTypeId(1);
-		newHL.setIsBusiness(true);
-		newHL.setLocationId(2);
-		newHL.setLotSize("32");
-		newHL.setMemberId(2);
-		newHL.setNoRooms(3);
-		newHL.setSale(false);
-		newHL.setUser_Name("kebede");
-		
-		newHL.save();
-	}
-	
 	private void init(){
 		businessList = Select.from(HouseListing.class).where(Condition.prop("is_Sale").
-				eq(0)).and(Condition.prop("Is_Business").eq(1)).orderBy("id Desc").list();
+				eq("0")).and(Condition.prop("Is_Business").eq("1")).orderBy("id Desc").list();
 		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -210,7 +192,7 @@ public class BusinessForLeaseFragment extends Fragment{
 		}
 		
 		businessList = HouseListing.findWithQuery(HouseListing.class, 
-    			"SELECT * FROM  House_Listing WHERE is_Sale = 0 AND Is_Business = 0 AND HouseName LIKE " +
+    			"SELECT * FROM  House_Listing WHERE is_Sale = '0' AND Is_Business = '0' AND HouseName LIKE " +
     					title + " AND House_Type_Id = " + typeId + " AND Location_Id = " + locationId +
     					" ORDER BY id Desc");
 		

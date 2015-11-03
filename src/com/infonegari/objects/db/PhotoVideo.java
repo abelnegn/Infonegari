@@ -9,7 +9,7 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 	private long PhotoVideoId;
 	private String PhotoVideoName;
 	private long LocationId;
-	private float Price;
+	private String Price;
 	private long MemberId;
 	private String WorkType;
 	private String Discription;
@@ -51,12 +51,12 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 	}
 
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

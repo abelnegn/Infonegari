@@ -111,9 +111,7 @@ public class AuctionFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveAuction();
-		
+
 		fetchCategory();
 		
 		init();
@@ -137,23 +135,6 @@ public class AuctionFragment extends Fragment{
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_category.setAdapter(categoryAdapter);
         sp_category.setSelection(0);
-	}
-	
-	private void saveAuction(){
-		Auction newA = new Auction();
-		newA.setAuction_Catagory(1);
-		newA.setAuction_id(1);
-		newA.setCompany_Name("Ethiopian Road authority");
-		newA.setDescription("Ethiopian road authority");
-		newA.setMinimum_Price(434);
-		newA.setOpening_Date("21-02-2015");
-		newA.setPhone_Number("0912343234");
-		newA.setPost_Date("01-02-2015");
-		newA.setSource("Addis Zemen");
-		newA.setSubmission_Deadline("21-04-2015");
-		newA.setUser_Name("tash");
-		
-		newA.save();
 	}
 	
 	private void init(){

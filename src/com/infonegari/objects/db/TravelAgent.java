@@ -9,7 +9,7 @@ public class TravelAgent extends SugarRecord<TravelAgent>{
 	private long taId;
 	private String Item_Name;
 	private String Discription;
-	private float Price;
+	private String Price;
 	private long LocationId;
 	private String User_Name;
 	
@@ -42,11 +42,11 @@ public class TravelAgent extends SugarRecord<TravelAgent>{
 		Discription = discription;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return Price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		Price = price;
 	}
 

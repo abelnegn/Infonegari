@@ -142,19 +142,6 @@ public class GarageFragment extends Fragment{
         sp_location.setSelection(0);
 	}
 
-	private void saveGarage(){
-		Guarage newG = new Guarage();
-		newG.setDiscription("Kebede Tena Guarage");
-		newG.setGarage_Type("Vehicle Garage");
-		newG.setGuarageId(2);
-		newG.setItem_Name("Kebede Tena Guarage");
-		newG.setJob_Type("Maintenance");
-		newG.setLocationId(2);
-		newG.setPrice(323);
-		
-		newG.save();
-	}
-	
 	private void init(){
 		garageList = Select.from(Guarage.class).orderBy("id Desc").list();
 		adapter = new GarageAdapter(getActivity(), garageList);

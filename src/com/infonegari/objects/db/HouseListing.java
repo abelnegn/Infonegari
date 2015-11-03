@@ -9,14 +9,14 @@ public class HouseListing extends SugarRecord<HouseListing>{
 	private long HouseListingId;
 	private String House_Name;
 	private String HouseDiscription;
-	private float HousePrice;
+	private String HousePrice;
 	private long HouseTypeId;
 	private long LocationId;
-	private int NoRooms;
+	private String NoRooms;
 	private String LotSize;
 	private long MemberId;
-	private boolean isSale;
-	private boolean IsBusiness;
+	private String isSale;
+	private String IsBusiness;
 	private String User_Name;
 	
     public boolean isNew() {
@@ -52,13 +52,15 @@ public class HouseListing extends SugarRecord<HouseListing>{
 		HouseDiscription = houseDiscription;
 	}
 
-	public float getHousePrice() {
+	public String getHousePrice() {
 		return HousePrice;
 	}
 
-	public void setHousePrice(float housePrice) {
+
+	public void setHousePrice(String housePrice) {
 		HousePrice = housePrice;
 	}
+
 
 	public long getHouseTypeId() {
 		return HouseTypeId;
@@ -76,13 +78,15 @@ public class HouseListing extends SugarRecord<HouseListing>{
 		LocationId = locationId;
 	}
 
-	public int getNoRooms() {
+	public String getNoRooms() {
 		return NoRooms;
 	}
 
-	public void setNoRooms(int noRooms) {
+
+	public void setNoRooms(String noRooms) {
 		NoRooms = noRooms;
 	}
+
 
 	public String getLotSize() {
 		return LotSize;
@@ -100,22 +104,26 @@ public class HouseListing extends SugarRecord<HouseListing>{
 		MemberId = memberId;
 	}
 
-	public boolean isSale() {
+	public String getIsSale() {
 		return isSale;
 	}
 
-	public void setSale(boolean isSale) {
+
+	public void setIsSale(String isSale) {
 		this.isSale = isSale;
 	}
 
-	public boolean isIsBusiness() {
+
+	public String getIsBusiness() {
 		return IsBusiness;
 	}
 
-	public void setIsBusiness(boolean isBusiness) {
+
+	public void setIsBusiness(String isBusiness) {
 		IsBusiness = isBusiness;
 	}
-	
+
+
 	public String getUser_Name() {
 		return User_Name;
 	}
