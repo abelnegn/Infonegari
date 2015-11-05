@@ -14,19 +14,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="50dp" />
         
-    </LinearLayout>     
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">      
-        <TextView 
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"
-            android:text="@string/txt_sms_description"
-	        android:layout_height= "wrap_content"
-	        android:layout_width= "match_parent"/>       
-    </LinearLayout>   
+    </LinearLayout>       
      <ListView
         android:id="@+id/list_sms_menu"
         android:layout_width="match_parent"

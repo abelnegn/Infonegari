@@ -124,7 +124,7 @@ public class TenderFragment extends Fragment{
 
 	private void fetchCategory(){
 		List<String> listOfCategories = new ArrayList<String>();
-		categoryList = Select.from(TenderCategory.class).list();
+		categoryList = Select.from(TenderCategory.class).orderBy("CatagoryName ASC").list();
 
 		listOfCategories.add("All Category");
 		categoryHashMap.put("All Category", 0L);

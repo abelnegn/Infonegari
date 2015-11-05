@@ -121,7 +121,7 @@ public class AuctionFragment extends Fragment{
 
 	private void fetchCategory(){
 		List<String> listOfCategories = new ArrayList<String>();
-		categoryList = Select.from(AuctionCategory.class).list();
+		categoryList = Select.from(AuctionCategory.class).orderBy("CatagoryName ASC").list();
 
 		listOfCategories.add("All Category");
 		categoryHashMap.put("All Category", 0L);

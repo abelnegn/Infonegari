@@ -1526,7 +1526,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTravelAgentData(travelAgent);
                             }
                         }
-                        Toast.makeText(getActivity(), "Travel Agent data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "Travel Agent data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override

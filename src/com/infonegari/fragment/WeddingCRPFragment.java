@@ -122,7 +122,7 @@ public class WeddingCRPFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);

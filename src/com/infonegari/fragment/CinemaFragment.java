@@ -148,7 +148,7 @@ public class CinemaFragment extends Fragment{
 
 	private void fetchHall(){
 		List<String> listOfHall = new ArrayList<String>();
-		cinemaHallList = Select.from(CinemaPlace.class).list();
+		cinemaHallList = Select.from(CinemaPlace.class).orderBy("CinemaName ASC").list();
 
 		listOfHall.add("All Cinema Hall");
 		cinemaHallHashMap.put("All Cinema Hall", 0L);
@@ -166,7 +166,7 @@ public class CinemaFragment extends Fragment{
 
 	private void fetchGener(){
 		List<String> listOfMovieType = new ArrayList<String>();
-		movieTypeList = Select.from(MovieType.class).list();
+		movieTypeList = Select.from(MovieType.class).orderBy("MovieType ASC").list();
 
 		listOfMovieType.add("All Movie Type");
 		movieTypeHashMap.put("All Movie Type", 0L);
@@ -180,19 +180,6 @@ public class CinemaFragment extends Fragment{
         movieTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_movie_type.setAdapter(movieTypeAdapter);
         sp_movie_type.setSelection(0);
-	}
-	
-	private void saveCinema(){
-		Cinema newCinema = new Cinema();
-		newCinema.setCinemaId(1);
-		newCinema.setCinemaTitle("Rebuni film");
-		newCinema.setDiscription("Rebuni film");
-		newCinema.setCalendar("*/@,1,12:45,10/26/2015, 10/28/2015,*/@,3,11:30,10/22/2015,");
-		newCinema.setLocationId(2);
-		newCinema.setMovie_Type(2);
-		newCinema.setUser_Name("developer");
-		
-		newCinema.save();
 	}
 	
 	private Cinema getCinema(Cinema cinema){

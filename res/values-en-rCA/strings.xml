@@ -3,7 +3,8 @@
 
     <string name="app_name">ኢንፎነጋሪ</string>
     <string name="action_settings">ሴቲንግ</string>
-    <string name="txt_header_info">8142 ለአጭር የጽሁፍ መልእክት እዚህ ይጫኑ</string>
+<!--     <string name="txt_header_info">8142 ለአጭር የጽሁፍ መልእክት እዚህ ይጫኑ</string> -->
+	<string name="txt_header_info">በእጅ ያለ መረጃ</string>	
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>

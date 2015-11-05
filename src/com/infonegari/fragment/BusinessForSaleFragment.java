@@ -118,8 +118,6 @@ public class BusinessForSaleFragment extends Fragment{
 			}
 		});
 		
-//		saveBusiness();
-		
 		fetchHouseType();
 		fetchLocation();
 		
@@ -130,7 +128,7 @@ public class BusinessForSaleFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -148,7 +146,7 @@ public class BusinessForSaleFragment extends Fragment{
 
 	private void fetchHouseType(){
 		List<String> listOfHouseTypes = new ArrayList<String>();
-		houseTypeList = Select.from(HouseType.class).list();
+		houseTypeList = Select.from(HouseType.class).orderBy("House_Type_Name ASC").list();
 
 		listOfHouseTypes.add("All House Type");
 		houseTypeHashMap.put("All House Type", 0L);

@@ -128,7 +128,7 @@ public class WeddingCarFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -146,7 +146,7 @@ public class WeddingCarFragment extends Fragment{
     
 	private void fetchCarType(){
 		List<String> listOfCarType = new ArrayList<String>();
-		carTypeList = Select.from(CarType.class).list();
+		carTypeList = Select.from(CarType.class).orderBy("Car_Type_Name ASC").list();
 
 		listOfCarType.add("All Car Type");
 		carTypeHashMap.put("All Car Type", 0L);

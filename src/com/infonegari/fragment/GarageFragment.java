@@ -6,14 +6,12 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.GarageAdapter;
-import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Guarage;
 import com.infonegari.objects.db.Location;
 import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -115,8 +113,6 @@ public class GarageFragment extends Fragment{
 			}
 		});
 		
-//		saveGarage();
-		
 		fetchLocation();
 		
 		init();
@@ -126,7 +122,7 @@ public class GarageFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);

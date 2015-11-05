@@ -611,7 +611,7 @@ public class OfflineDataHelper {
     
     public void saveRestaurantData(Restaurant restaurant){
     	Restaurant newRestaurant = new Restaurant();
-    	newRestaurant.setRestaurant_id(restaurant.getId());
+    	newRestaurant.setRestaurant_id(restaurant.getRestaurant_id());
     	newRestaurant.setItem_Name(restaurant.getItem_Name());
     	newRestaurant.setLocationId(restaurant.getLocationId());
     	newRestaurant.setRestaurantTypeId(restaurant.getRestaurantTypeId());

@@ -132,7 +132,7 @@ public class JobVacancyFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -150,7 +150,7 @@ public class JobVacancyFragment extends Fragment{
 	
 	private void fetchCategory(){
 		List<String> listOfCategories = new ArrayList<String>();
-		categoryList = Select.from(JobCategory.class).list();
+		categoryList = Select.from(JobCategory.class).orderBy("CategoryName ASC").list();
 
 		listOfCategories.add("All Category");
 		categoryHashMap.put("All Category", 0L);

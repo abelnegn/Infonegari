@@ -3,7 +3,8 @@
 
     <string name="app_name">InfoNegari</string>
     <string name="action_settings">Settings</string>
-    <string name="txt_header_info">8142 Click here to send short code</string>
+<!--     <string name="txt_header_info">8142 Click here to send short code</string> -->
+	<string name="txt_header_info">Information at hand</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>

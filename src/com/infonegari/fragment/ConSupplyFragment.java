@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.ConSupplyAdapter;
-import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.Construction;
 import com.infonegari.objects.db.ConstructionMachine;
 import com.infonegari.objects.db.ConstructionMaterial;
@@ -15,7 +14,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -123,8 +121,6 @@ public class ConSupplyFragment extends Fragment{
 			}
 		});
 		
-//		saveCon();
-		
 		fetchLocation();
 		fetchMachine();
 		fetchMaterial();
@@ -136,7 +132,7 @@ public class ConSupplyFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -154,7 +150,7 @@ public class ConSupplyFragment extends Fragment{
 	
 	private void fetchMachine(){
 		List<String> listOfMachines = new ArrayList<String>();
-		conMachineList = Select.from(ConstructionMachine.class).list();
+		conMachineList = Select.from(ConstructionMachine.class).orderBy("Machine ASC").list();
 
 		listOfMachines.add("All Machine");
 		conMachineHashMap.put("All Machine", 0L);
@@ -172,7 +168,7 @@ public class ConSupplyFragment extends Fragment{
 
 	private void fetchMaterial(){
 		List<String> listOfMaterials = new ArrayList<String>();
-		conMaterialList = Select.from(ConstructionMaterial.class).list();
+		conMaterialList = Select.from(ConstructionMaterial.class).orderBy("Materials ASC").list();
 
 		listOfMaterials.add("All Material");
 		conMaterialHashMap.put("All Material", 0L);

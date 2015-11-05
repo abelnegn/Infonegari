@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.infonegari.activity.R;
 import com.infonegari.adapter.GuestHouseAdapter;
-import com.infonegari.objects.db.Bank;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
@@ -14,7 +13,6 @@ import com.infonegari.util.AdsImageView;
 import com.infonegari.util.SafeUIBlockingUtility;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
@@ -119,8 +117,6 @@ public class GuestHouseFragment extends Fragment{
 			}
 		});
 		
-//		saveHouse();
-		
 		fetchHouseType();
 		fetchLocation();
 		
@@ -131,7 +127,7 @@ public class GuestHouseFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -149,7 +145,7 @@ public class GuestHouseFragment extends Fragment{
 
 	private void fetchHouseType(){
 		List<String> listOfHouseTypes = new ArrayList<String>();
-		houseTypeList = Select.from(HouseType.class).list();
+		houseTypeList = Select.from(HouseType.class).orderBy("House_Type_Name ASC").list();
 
 		listOfHouseTypes.add("All House Type");
 		houseTypeHashMap.put("All House Type", 0L);

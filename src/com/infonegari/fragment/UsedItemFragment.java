@@ -127,7 +127,7 @@ public class UsedItemFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -145,7 +145,7 @@ public class UsedItemFragment extends Fragment{
 	
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
-		typeList = Select.from(UsedItemType.class).list();
+		typeList = Select.from(UsedItemType.class).orderBy("Used_Item_Type_Name ASC").list();
 
 		listOfType.add("All Type");
 		typeHashMap.put("All Type", 0L);

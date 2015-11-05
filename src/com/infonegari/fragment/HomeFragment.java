@@ -4,29 +4,20 @@ import com.infonegari.util.DialogHandler;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import com.joanzapata.android.iconify.IconDrawable;
-import com.joanzapata.android.iconify.Iconify;
+import android.widget.Button;
 
 public class HomeFragment extends Fragment{
 	final Handler handler = new Handler();
 	final Handler handlerNews = new Handler();
-    private TextView txtShortNumber;
-    private DialogHandler dlgHandler;
-    private static final int MENU_ITEM_ABOUT = 2000;
-    private static final int MENU_ITEM_HELP = 3000;
-    private static final int MENU_ITEM_LANGUAGE = 4000;    
+    private DialogHandler dlgHandler;   
     		
 	public HomeFragment(){}
 	
@@ -44,20 +35,75 @@ public class HomeFragment extends Fragment{
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         
-        txtShortNumber = (TextView)rootView.findViewById(R.id.short_number_txt);
-        txtShortNumber.setMovementMethod(LinkMovementMethod.getInstance());
-        txtShortNumber.setOnClickListener(new View.OnClickListener() {
+        /**
+         * Creating all buttons instances
+         * */
+        // Dashboard News feed button
+        Button btn_newsfeed = (Button) rootView.findViewById(R.id.btn_news_feed);
+        
+        // Dashboard Friends button
+        Button btn_friends = (Button) rootView.findViewById(R.id.btn_friends);
+        
+        // Dashboard Messages button
+        Button btn_messages = (Button) rootView.findViewById(R.id.btn_messages);
+        
+        // Dashboard Places button
+        Button btn_places = (Button) rootView.findViewById(R.id.btn_places);
+        
+        // Dashboard Events button
+        Button btn_events = (Button) rootView.findViewById(R.id.btn_events);
+        
+        // Dashboard Photos button
+        Button btn_photos = (Button) rootView.findViewById(R.id.btn_photos);
+        
+        // Listening Messages button click
+        btn_messages.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View view) {
 				FragmentManager fragmentManager = getFragmentManager();
-				ShortMessage fragment = new ShortMessage();
+				ShortMessage smsFragment = new ShortMessage();
 				fragmentManager.beginTransaction()
-						.replace(R.id.frame_container, fragment).commit();
-				
+						.replace(R.id.frame_container, smsFragment).commit();
 			}
 		});
 
+        // Listening Language button click
+        btn_newsfeed.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				FragmentManager fragmentManager = getFragmentManager();
+				LanguageFragment fragment = new LanguageFragment();
+				fragmentManager.beginTransaction()
+						.replace(R.id.frame_container, fragment).commit();
+			}
+		});
+
+        // Listening Download button click
+        btn_events.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+	    		dlgHandler = new DialogHandler();
+	    		dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_detail_message), 
+	    				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), ok());
+
+			}
+		});
+        
+        // Listening About button click
+        btn_places.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				FragmentManager fragmentManager = getFragmentManager();
+				AboutFragment fragment = new AboutFragment();
+				fragmentManager.beginTransaction()
+						.replace(R.id.frame_container, fragment).commit();
+			}
+		});
+        
 		return rootView;
     }
 	
@@ -69,55 +115,11 @@ public class HomeFragment extends Fragment{
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.clear();
-        MenuItem mLanguge = menu.add(Menu.NONE, MENU_ITEM_LANGUAGE, Menu.NONE, "Language");
-        mLanguge.setIcon(new IconDrawable(getActivity(), Iconify.IconValue.fa_language)
-        .colorRes(R.color.black)
-        .actionBarSize());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        	mLanguge.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        }
-        
-        //Help Menu
-        MenuItem mHelp = menu.add(Menu.NONE, MENU_ITEM_HELP, Menu.NONE, "Update");
-        mHelp.setIcon(new IconDrawable(getActivity(), Iconify.IconValue.fa_download)
-        .colorRes(R.color.black)
-        .actionBarSize());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        	mHelp.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        }
-        
-        //About
-        MenuItem mAbout = menu.add(Menu.NONE, MENU_ITEM_ABOUT, Menu.NONE, "About");
-        mAbout.setTitle("About");
-        mAbout.setIcon(new IconDrawable(getActivity(), Iconify.IconValue.fa_adn)
-        .colorRes(R.color.black)
-        .actionBarSize());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        	mAbout.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        }
         super.onPrepareOptionsMenu(menu);
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == MENU_ITEM_LANGUAGE) {
-			FragmentManager fragmentManager = getFragmentManager();
-			LanguageFragment fragment = new LanguageFragment();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-        }else if(id == MENU_ITEM_HELP){
-    		dlgHandler = new DialogHandler();
-    		dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_detail_message), 
-    				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), ok());
-        }else{
-			FragmentManager fragmentManager = getFragmentManager();
-			AboutFragment fragment = new AboutFragment();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-        }
         return super.onOptionsItemSelected(item);
     }
     

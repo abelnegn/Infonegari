@@ -127,7 +127,7 @@ public class RestaurantFragment extends Fragment{
 	
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
-		locationList = Select.from(Location.class).list();
+		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
 		listOfLocations.add("All Location");
 		locationHashMap.put("All Location", 0L);
@@ -145,7 +145,7 @@ public class RestaurantFragment extends Fragment{
 	
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
-		typeList = Select.from(RestaurantType.class).list();
+		typeList = Select.from(RestaurantType.class).orderBy("Restaurant_Type_Name ASC").list();
 
 		listOfType.add("All Type");
 		typeHashMap.put("All Type", 0L);
@@ -159,18 +159,6 @@ public class RestaurantFragment extends Fragment{
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_restaurantType.setAdapter(typeAdapter);
         sp_restaurantType.setSelection(0);
-	}
-
-	private void saveRestaurant(){
-		Restaurant newR = new Restaurant();
-		newR.setItem_Name("Addis international Restaurant");
-		newR.setDiscription("Many traditional foods is ready");
-		newR.setLocationId(3);
-		newR.setMemberId(5);
-		newR.setRestaurant_id(1);
-		newR.setRestaurantTypeId(2);
-		
-		newR.save();
 	}
 	
 	private void init(){
