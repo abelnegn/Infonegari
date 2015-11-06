@@ -44,11 +44,19 @@
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    
+       
+   	<!--     Dashboard -->
+	<string name="db_notification">መልክት አሳውቀኝ</string>
+	<string name="db_addlist">ዝርዝር ጨምር</string>
+	<string name="db_short_message">ስም ለማውጣት </string>
+	<string name="db_language">ቋንቋ ቀይር</string>
+	<string name="db_download">አዲስ መረጃ አግኝ</string>
+	<string name="db_about">ስለ ፕሮግራሙ</string>
 
+	
 	<!--  Menu item name-->
 	<string name="menu_auction">የግዥ ጨረታ</string>
-	<string name="menu_about">About</string>
+	<string name="menu_about">ስለ ፕሮግራሙ</string>
 	<string name="menu_band">የዘፈን ባንድ</string>
 	<string name="menu_bank">ባንክ</string>
 	<string name="menu_beauty_saloon">የዉበት ሳሎን</string>

@@ -12,6 +12,8 @@ public class APIEndPoint {
 
     //This class contains all the Constants for API End Points
 
+	public static final String ADS = "/ads.php";
+	public static final String ALLCATEGORY = "/all_catagory.php";
     public static final String AUTHENTICATION = "/authentication";
     public static final String AUCTION_CATEGORY = "/auction_category.php";
     public static final String CAR_TYPES = "/car_type.php";
@@ -73,6 +75,7 @@ public class APIEndPoint {
     public static final String TENDER = "/tender.php";
     public static final String USED_ITEMS = "/used_items.php";
     public static final String USER_SITE = "/user_site.php";
+    public static final String UPDATE_USER_SITE = "/update_user_site.php";
     public static final String WEDDING_CAR = "/wedding_car.php";
     public static final String WEDDING_CLOTH = "/wedding_cloth.php";
     public static final String WEDDING_HALL = "/wedding_halls.php";

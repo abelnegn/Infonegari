@@ -4,46 +4,41 @@
     android:layout_height="fill_parent"
     android:layout_weight="1"
     android:background="#f8f9fe" >
-	<!--  News Feed Button -->
+
     <Button
-        android:id="@+id/btn_news_feed"
+        android:id="@+id/btn_notify"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_newsfeed"
-        android:text="News Feed" />
+        android:drawableTop="@drawable/btn_notification"
+        android:text="@string/db_notification" />
+
+    <Button
+        android:id="@+id/btn_add_list"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_addlist"
+        android:text="@string/db_addlist" />
     
-	<!--  Friends Button -->
     <Button
-        android:id="@+id/btn_friends"
+        android:id="@+id/btn_short_sms"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_friends"
-        android:text="Friends" />
-    
-	<!--  Messages Button -->
-    <Button
-        android:id="@+id/btn_messages"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_messages"
-        android:text="Messages" />
+        android:drawableTop="@drawable/btn_sms"
+        android:text="@string/db_short_message" />
 	
-    <!--  Places Button -->
     <Button
-        android:id="@+id/btn_places"
+        android:id="@+id/btn_language"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_places"
-        android:text="Places" />
+        android:drawableTop="@drawable/btn_language"
+        android:text="@string/db_language" />
 
-    <!--  Events Button -->
     <Button
-        android:id="@+id/btn_events"
+        android:id="@+id/btn_download"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_events"
-        android:text="Events" />
+        android:drawableTop="@drawable/btn_download"
+        android:text="@string/db_download" />
 
-    <!--  Photos Button -->
     <Button
-        android:id="@+id/btn_photos"
+        android:id="@+id/btn_about"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_photos"
-        android:text="Photos" />
+        android:drawableTop="@drawable/btn_about"
+        android:text="@string/db_about" />
 
 </com.infonegari.activity.DashboardLayout>

@@ -1,5 +1,7 @@
 package com.infonegari.util;
 
+import com.infonegari.objects.db.Ads;
+import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.Band;
@@ -76,6 +78,25 @@ public class OfflineDataHelper {
         this.offlineDataSaveListener = offlineDataSaveListener;
     }
 
+    public void saveAdsData(Ads ad) {
+    	Ads newAds = new Ads();
+    	newAds.setAdsId(ad.getAdsId());
+    	newAds.setCategory(ad.getCategory());
+    	newAds.setImage(ad.getImage());
+    	
+    	newAds.save();
+    }
+    
+    public void saveAllCategoryData(AllCategory ac){
+    	AllCategory newAC = new AllCategory();
+    	newAC.setAcId(ac.getAcId());
+    	newAC.setCategory(ac.getCategory());
+    	newAC.setDisplay(ac.getDisplay());
+    	newAC.setTable_Name(ac.getTable_Name());
+    	
+    	newAC.save();
+    }
+    
     public void saveAuctionGategoryData(AuctionCategory ac) {
     	AuctionCategory newAc = new AuctionCategory();
     	newAc.setAc_id(ac.getId());
@@ -781,6 +802,8 @@ public class OfflineDataHelper {
     	newUS.setE_mail(userSite.getE_mail());
     	newUS.setPhone_Number(userSite.getPhone_Number());
     	newUS.setUser_Name(userSite.getUser_Name());
+    	newUS.setPass_Word(userSite.getPass_Word());
+    	newUS.setNotification(userSite.getNotification());
     	newUS.setCompany_Name(userSite.getCompany_Name());
     	
     	newUS.save();

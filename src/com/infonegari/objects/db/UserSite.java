@@ -14,6 +14,8 @@ public class UserSite extends SugarRecord<UserSite>{
 	private String Phone_Number;
 	private String Company_Name;
 	private String User_Name;
+	private String Pass_Word;
+	private String Notification;
 	
     public boolean isNew() {
         long count = Select.from(UserSite.class).where(Condition.prop("id").eq(id)).count();
@@ -74,8 +76,24 @@ public class UserSite extends SugarRecord<UserSite>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
-	}
+	}	
     
+	public String getPass_Word() {
+		return Pass_Word;
+	}
+
+	public void setPass_Word(String pass_Word) {
+		Pass_Word = pass_Word;
+	}
+
+	public String getNotification() {
+		return Notification;
+	}
+
+	public void setNotification(String notification) {
+		Notification = notification;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

@@ -10,6 +10,8 @@ import retrofit.http.GET;
 import retrofit.http.Headers;
 import retrofit.http.Query;
 
+import com.infonegari.objects.db.Ads;
+import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.Band;
@@ -86,6 +88,8 @@ public class API {
     
     //This instance has more Data for Testing
     public static String mInstanceUrl = "http://www.infonegari.com/info_service";
+    public static AdsService adsService;
+    public static AllCategoryService allCategoryService;
     public static AuctionCategoryService auctionCategoryService;
     public static CarTypeService carTypeService;
     public static CinemaPlaceService cinemaPlaceService;
@@ -161,6 +165,8 @@ public class API {
     private static synchronized void init() {
     	//Lookup services initialization
     	sRestAdapter = createRestAdapter(getInstanceUrl());
+    	adsService = sRestAdapter.create(AdsService.class);
+    	allCategoryService = sRestAdapter.create(AllCategoryService.class);
     	auctionCategoryService = sRestAdapter.create(AuctionCategoryService.class);
     	carTypeService = sRestAdapter.create(CarTypeService.class);
     	cinemaPlaceService = sRestAdapter.create(CinemaPlaceService.class);
@@ -278,6 +284,18 @@ public class API {
         init();
     }
 
+	public interface AdsService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.ADS)
+        public void getAds(Callback<List<Ads>> callback);
+    }
+	
+	public interface AllCategoryService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.ALLCATEGORY)
+        public void getAllCategories(@Query("ac_id") long acId, 
+        		Callback<List<AllCategory>> callback);
+    }
 
 	public interface AuctionCategoryService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
@@ -695,6 +713,13 @@ public class API {
         @GET(APIEndPoint.USER_SITE)
         public void getUserSite(@Query("us_id") long usId, 
         		Callback<List<UserSite>> callback);
+    }
+	
+	public interface UpdateUserSiteService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.UPDATE_USER_SITE)
+        public void updateUserSite(@Query("user_id") long usId, 
+        		@Query("notification") String notification, Callback<String> callback);
     }
 	
 	public interface WeddingCarService{

@@ -35,29 +35,21 @@ public class HomeFragment extends Fragment{
 		
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         
-        /**
-         * Creating all buttons instances
-         * */
-        // Dashboard News feed button
-        Button btn_newsfeed = (Button) rootView.findViewById(R.id.btn_news_feed);
         
-        // Dashboard Friends button
-        Button btn_friends = (Button) rootView.findViewById(R.id.btn_friends);
+        Button btn_notify = (Button) rootView.findViewById(R.id.btn_notify);
         
-        // Dashboard Messages button
-        Button btn_messages = (Button) rootView.findViewById(R.id.btn_messages);
+        Button btn_add_list = (Button) rootView.findViewById(R.id.btn_add_list);
         
-        // Dashboard Places button
-        Button btn_places = (Button) rootView.findViewById(R.id.btn_places);
+        Button btn_short_sms = (Button) rootView.findViewById(R.id.btn_short_sms);
         
-        // Dashboard Events button
-        Button btn_events = (Button) rootView.findViewById(R.id.btn_events);
+        Button btn_language = (Button) rootView.findViewById(R.id.btn_language);
         
-        // Dashboard Photos button
-        Button btn_photos = (Button) rootView.findViewById(R.id.btn_photos);
+        Button btn_download = (Button) rootView.findViewById(R.id.btn_download);
         
-        // Listening Messages button click
-        btn_messages.setOnClickListener(new View.OnClickListener() {
+        Button btn_about = (Button) rootView.findViewById(R.id.btn_about);
+        
+        //Short sms button click
+        btn_short_sms.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
@@ -68,8 +60,8 @@ public class HomeFragment extends Fragment{
 			}
 		});
 
-        // Listening Language button click
-        btn_newsfeed.setOnClickListener(new View.OnClickListener() {
+        //Listening Language button click
+        btn_language.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
@@ -80,8 +72,8 @@ public class HomeFragment extends Fragment{
 			}
 		});
 
-        // Listening Download button click
-        btn_events.setOnClickListener(new View.OnClickListener() {
+        //Listening Download button click
+        btn_download.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
@@ -93,7 +85,7 @@ public class HomeFragment extends Fragment{
 		});
         
         // Listening About button click
-        btn_places.setOnClickListener(new View.OnClickListener() {
+        btn_about.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {

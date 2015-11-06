@@ -7,6 +7,8 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import com.infonegari.activity.R;
+import com.infonegari.objects.db.Ads;
+import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.Band;
@@ -93,6 +95,8 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
         safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity());
         if (Network.isOnline(this.getActivity())) {            
             safeUIBlockingUtility.safelyBlockUI();
+            saveAdsData();
+            saveAllCategoryData();
             saveAuctionData();
             saveAuctionCategoryData();
             saveBandData();
@@ -172,6 +176,58 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
         safeUIBlockingUtility.safelyUnBlockUI();
     }
 
+    private void saveAdsData(){
+    	if (Network.isOnline(this.getActivity())) {
+            API.adsService.getAds(new Callback<List<Ads>>() {
+                        @Override
+                        public void success(List<Ads> ads, Response response) {
+                            for (Ads ad : ads) {
+                                if (ad != null) {
+                                    OfflineDataHelper helper = new OfflineDataHelper();
+                                    helper.setOfflineDataSaveListener(DownloadDataFragment.this);
+                                    helper.saveAdsData(ad);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                        }
+
+                    }); 		
+    	}
+    }
+    
+    private void saveAllCategoryData(){
+    	if (Network.isOnline(this.getActivity())) {
+        	long acId = 0;
+        	List<AllCategory> acList= AllCategory.findWithQuery(AllCategory.class, 
+        			"SELECT * FROM  All_Category WHERE ac_Id = " +
+        			"(SELECT max(ac_Id) FROM  All_Category)");
+        	if(acList.size() > 0)
+        		acId = acList.get(0).getAcId();    
+        	
+            API.allCategoryService.getAllCategories(acId,
+                    new Callback<List<AllCategory>>() {
+                        @Override
+                        public void success(List<AllCategory> allCategories, Response response) {
+                            for (AllCategory allCategory : allCategories) {
+                                if (allCategory != null) {
+                                    OfflineDataHelper helper = new OfflineDataHelper();
+                                    helper.setOfflineDataSaveListener(DownloadDataFragment.this);
+                                    helper.saveAllCategoryData(allCategory);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                        }
+
+                    });        	
+    	}
+    }
+    
     private void saveAuctionData(){
         if (Network.isOnline(this.getActivity())) {
         	long auctionId = 0;
@@ -1590,7 +1646,6 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveUserSiteData(userSite);
                             }
                         }
-//                        Toast.makeText(getActivity(), "User data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                     }
 
                     @Override

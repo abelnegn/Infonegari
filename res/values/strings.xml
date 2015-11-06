@@ -44,6 +44,14 @@
     <string name="dlg_detail_message">Please update the information. The update requires internet connection.</string>
     <string name="txt_sms_description">Try with the following option</string>
 
+	<!--     Dashboard -->
+	<string name="db_notification">Notify Me</string>
+	<string name="db_addlist">Add List</string>
+	<string name="db_short_message">Short Message</string>
+	<string name="db_language">Language</string>
+	<string name="db_download">Syncronize</string>
+	<string name="db_about">About</string>
+	
 	<!--  Menu item name-->
 	<string name="menu_auction">Auction</string>
 	<string name="menu_about">About</string>
