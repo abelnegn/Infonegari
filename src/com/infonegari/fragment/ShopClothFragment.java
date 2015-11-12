@@ -109,7 +109,7 @@ public class ShopClothFragment extends Fragment{
 		safeUIBlockingUtility.safelyBlockUI();
 		
         AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
+		imageView.startTimer(AdsImageView.adsShopClothImages);
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override

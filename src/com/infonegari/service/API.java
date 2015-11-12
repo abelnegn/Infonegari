@@ -150,6 +150,7 @@ public class API {
     public static TenderService tenderService;
     public static UsedItemService usedItemService;
     public static UserSiteService userSiteService;
+    public static UpdateUserSiteService updateUserSiteService;
     public static WeddingCarService weddingCarService;
     public static WeddingClothService weddingClothService;
     public static WeddingHallService weddingHallService;
@@ -229,6 +230,7 @@ public class API {
     	tenderService = sRestAdapter.create(TenderService.class);
     	usedItemService = sRestAdapter.create(UsedItemService.class);
     	userSiteService = sRestAdapter.create(UserSiteService.class);
+    	updateUserSiteService = sRestAdapter.create(UpdateUserSiteService.class);
     	weddingCarService = sRestAdapter.create(WeddingCarService.class);
     	weddingClothService = sRestAdapter.create(WeddingClothService.class);
     	weddingHallService = sRestAdapter.create(WeddingHallService.class);

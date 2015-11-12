@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.infonegari.activity.R;
 import com.infonegari.adapter.NavDrawerListAdapter;
 import com.infonegari.model.NavDrawerItem;
-import com.infonegari.util.AdsImageView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
@@ -22,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageSwitcher;
 import android.widget.ListView;
 
 public class LeisureFragment extends Fragment{
@@ -32,7 +30,6 @@ public class LeisureFragment extends Fragment{
 	private TypedArray navMenuIcons;
 	private NavDrawerListAdapter adapter;
 	private ArrayList<NavDrawerItem> navDrawerItems;
-	private ImageSwitcher imageSwitcher;
 	private static final int MENU_ITEM_BACK = 2000;
 	
 	public LeisureFragment(){
@@ -116,10 +113,6 @@ public class LeisureFragment extends Fragment{
 		adapter = new NavDrawerListAdapter(getActivity(),
 				navDrawerItems);
 		mDrawerList.setAdapter(adapter);
-		
-		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.leisure_imageSwitcher);
-        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
 		
 		return rootView;
 	}

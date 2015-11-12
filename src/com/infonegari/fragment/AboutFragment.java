@@ -1,7 +1,6 @@
 package com.infonegari.fragment;
 
 import com.infonegari.activity.R;
-import com.infonegari.util.AdsImageView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
@@ -15,11 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
 
 public class AboutFragment extends Fragment{
 	private static final int MENU_ITEM_BACK = 2000;
-	private ImageSwitcher imageSwitcher;
 	View rootView;
 
 	public AboutFragment(){
@@ -37,12 +34,8 @@ public class AboutFragment extends Fragment{
 		rootView = inflater.inflate(R.layout.fragment_about, container, false);
 		
 		getActivity().setTitle(getString(R.string.menu_about));
-		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.about_imageSwitcher);
 		
 		getActivity().setTitle(getString(R.string.menu_about));
-		
-        AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
 		
 		return rootView;
 	}

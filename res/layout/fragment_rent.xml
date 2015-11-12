@@ -2,20 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:orientation="vertical">
-    
-    <!-- Listview to display wedding menu -->
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#D5CED5"
-        android:orientation="vertical">      
-          
-        <ImageSwitcher
-	        android:id="@+id/rent_imageSwitcher"
-	        android:layout_width="match_parent"
-	        android:layout_height="70dp" />
-        
-    </LinearLayout> 
+     
     <ListView
         android:id="@+id/list_rent_menu"
         android:layout_width="match_parent"

@@ -10,10 +10,13 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">ፈልግ</string>
     <string name="btn_ok">እሺ</string>
+    <string name="btn_login">Login</string>
     <string name="btn_cancel">ሰርዝ</string>
     <string name="btn_yes">አዎ</string>
     <string name="btn_No">አይደለም</string>
     <string name="btn_later">በኋላ</string>
+    <string name="txt_user_name">User Name</string>
+    <string name="txt_password">Password</string>
     <string name="txt_type">አይነት</string>
     <string name="txt_cinema">ሲኒማ</string>
     <string name="txt_house_type">የቤቱ አይነት</string>
@@ -55,6 +58,7 @@
 
 	
 	<!--  Menu item name-->
+	<string name="menu_login">Login</string>
 	<string name="menu_auction">የግዥ ጨረታ</string>
 	<string name="menu_about">ስለ ፕሮግራሙ</string>
 	<string name="menu_band">የዘፈን ባንድ</string>
@@ -116,7 +120,7 @@
 		<item>ሃገርኛ ሴት(HG)</item>
 		<item>ሃገርኛ ወንድ(HB)</item>	    
 	</string-array>
-	
+
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item>ዝርዝር</item> 

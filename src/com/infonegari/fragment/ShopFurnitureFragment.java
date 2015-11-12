@@ -107,7 +107,7 @@ public class ShopFurnitureFragment extends Fragment{
 		safeUIBlockingUtility.safelyBlockUI();
 		
         AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
+		imageView.startTimer(AdsImageView.adsShopFurnitureImages);
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override

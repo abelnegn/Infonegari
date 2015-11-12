@@ -1,17 +1,13 @@
 package com.infonegari.util;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -28,8 +24,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class DownloadAdsImage {
-	private static final String SERVICE_URL = "http://www.infonegari.com/img/ads/mobile";
+	private static final String SERVICE_URL = "http://www.infonegari.com/admin";
 	private Context context;
+	private String adsUrl;
 
 	public Context getContext() {
 		return context;
@@ -39,12 +36,21 @@ public class DownloadAdsImage {
 		this.context = context;
 	}
 	
-	public DownloadAdsImage(Context context){
+	public String getAdsUrl() {
+		return adsUrl;
+	}
+
+	public void setAdsUrl(String adsUrl) {
+		this.adsUrl = adsUrl;
+	}
+
+	public DownloadAdsImage(Context context, String adsUrl){
 		this.context = context;
 		
 		if (Network.isOnline(context)) {
 	        WebServiceTask wsAdsImage = new WebServiceTask(WebServiceTask.GET_TASK, context, "");
-	        String fileAddress = SERVICE_URL + "/" + "adsImageNames.txt";
+	        String fileAddress = SERVICE_URL + "/" + adsUrl;
+	        this.adsUrl = adsUrl;
 	        wsAdsImage.execute(new String[] { fileAddress });
 	    }	   
 	}
@@ -87,41 +93,6 @@ public class DownloadAdsImage {
         protected void onPreExecute() {
         }
         
-        private void downloadNotification(){
-        	byte[] resultFile = null;
-        	final String NOTIFICATION_URL = "http://www.infonegari.com/images/mobile/notification";
-        	String notAddress = NOTIFICATION_URL + "/" + "notification.txt";
-        	try { 
-		        HttpClient httpClient = new DefaultHttpClient();
-		        HttpGet httpGet = new HttpGet(notAddress);
-		        HttpResponse resp = httpClient.execute(httpGet);
-		        if(resp.getStatusLine().getStatusCode() == 200){
-		        	resultFile = inputStreamByteArray(resp.getEntity().getContent());
-		        	 writeToSDFile("notification.txt", resultFile);
-		        } 
-        	 } catch (Exception e) {      
-                 Log.e(TAG, e.getLocalizedMessage(), e);    
-             }     
-        }
-        private void getImageFile(byte[] resultFile){
-    		 FileOutputStream fileOutputStream = null;
-    		 File file = null;
-    		 
-			try {
-				file = context.getFilesDir();
-				fileOutputStream = context.openFileOutput("adsImageNames.txt", Context.MODE_PRIVATE);
-				fileOutputStream.write(resultFile);
-                PrintWriter pw = new PrintWriter(fileOutputStream);
-                pw.flush();
-                pw.close();
-				fileOutputStream.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) { 
-				e.printStackTrace();
-			}
-        }
-        
         protected String doInBackground(String... urls) {
         	 
             String url = urls[0];
@@ -131,26 +102,17 @@ public class DownloadAdsImage {
  
             if (response != null) {
                 try { 
-                	resultFile = inputStreamByteArray(response.getEntity().getContent());
-                	getImageFile(resultFile);
-                	FileInputStream fileInputStream = context.openFileInput("adsImageNames.txt");
-                	BufferedReader reader;
-
-                	if(fileInputStream != null){
-                		reader = new BufferedReader(new InputStreamReader(fileInputStream));
-                		 byte[] resultImage = null;
-                		String line;
-                		while ((line = reader.readLine()) != null) {
-                	        HttpClient httpClient = new DefaultHttpClient();
-                	        HttpGet httpGet = new HttpGet(SERVICE_URL + "/" + line);
-                	        HttpResponse resp = httpClient.execute(httpGet);
-                	        if(resp.getStatusLine().getStatusCode() == 200){
-                	        	resultImage = inputStreamByteArray(resp.getEntity().getContent());
-                	        	 writeToSDFile(line, resultImage);
-                	        }               	                       			
-                		}
-                	}
-//                	downloadNotification();
+            	    if(!adsUrl.equals("0")){
+            	    	String[]adsName = adsUrl.split("/");
+                		byte[] resultImage = null;
+            	        HttpClient httpClient = new DefaultHttpClient();
+            	        HttpGet httpGet = new HttpGet(SERVICE_URL + "/" + adsUrl);
+            	        HttpResponse resp = httpClient.execute(httpGet);
+            	        if(resp.getStatusLine().getStatusCode() == 200){
+            	        	resultImage = inputStreamByteArray(resp.getEntity().getContent());
+            	        	 writeToSDFile(adsName[2], resultImage);
+            	        }               	                       			            	    	
+            	    }
                 } catch (Exception e) {      
                     Log.e(TAG, e.getLocalizedMessage(), e);    
                 }
@@ -163,7 +125,6 @@ public class DownloadAdsImage {
         protected void onPostExecute(String response) {                   
         }
         
-        // Establish connection and socket (data retrieval) timeouts
         private HttpParams getHttpParams() {
              
             HttpParams htpp = new BasicHttpParams();
@@ -175,11 +136,7 @@ public class DownloadAdsImage {
         }
         
         private HttpResponse doResponse(String url) {
-            
-            // Use our connection and data timeouts as parameters for our
-            // DefaultHttpClient
-            HttpClient httpclient = new DefaultHttpClient(getHttpParams());
- 
+            HttpClient httpclient = new DefaultHttpClient(getHttpParams()); 
             HttpResponse response = null;
  
             try {

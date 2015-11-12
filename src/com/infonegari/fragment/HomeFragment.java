@@ -1,6 +1,11 @@
 package com.infonegari.fragment;
+import java.util.List;
+
 import com.infonegari.activity.R;
+import com.infonegari.objects.db.UserSite;
 import com.infonegari.util.DialogHandler;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -47,6 +52,23 @@ public class HomeFragment extends Fragment{
         Button btn_download = (Button) rootView.findViewById(R.id.btn_download);
         
         Button btn_about = (Button) rootView.findViewById(R.id.btn_about);
+        
+        //Short Notification button click
+        btn_notify.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				List<UserSite> userSite= Select.from(UserSite.class).
+		    			where(Condition.prop("is_Active").eq("1")).list();
+				if(userSite.size() > 0){
+			        NotificationFragment notifyFragment = new NotificationFragment().newInstance();
+			        notifyFragment.show(getFragmentManager().beginTransaction(), "NotificationFragment");					
+				}else{
+					LoginFragment login = new LoginFragment().newInstance();
+					login.show(getFragmentManager().beginTransaction(), "LoginFragment");
+				}
+			}
+		});
         
         //Short sms button click
         btn_short_sms.setOnClickListener(new View.OnClickListener() {

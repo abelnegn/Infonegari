@@ -10,10 +10,13 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">Search</string>
     <string name="btn_ok">Ok</string>
+    <string name="btn_login">Login</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_No">No</string>
     <string name="btn_later">Later</string>
+    <string name="txt_user_name">User Name</string>
+    <string name="txt_password">Password</string>
     <string name="txt_type">Type</string>
     <string name="txt_cinema">Cinema</string>
     <string name="txt_house_type">House Type</string>
@@ -49,10 +52,11 @@
 	<string name="db_addlist">Add List</string>
 	<string name="db_short_message">Short Message</string>
 	<string name="db_language">Language</string>
-	<string name="db_download">Syncronize</string>
+	<string name="db_download">Update</string>
 	<string name="db_about">About</string>
 	
 	<!--  Menu item name-->
+	<string name="menu_login">Login</string>
 	<string name="menu_auction">Auction</string>
 	<string name="menu_about">About</string>
 	<string name="menu_band">Music Band</string>
@@ -114,7 +118,7 @@
 		<item>Hagerigna Girl(HG)</item>
 		<item>Hagerigna Boy(HB)</item>	    
 	</string-array>
-	
+    
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item>Menu</item>

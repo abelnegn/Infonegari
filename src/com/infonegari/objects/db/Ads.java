@@ -9,7 +9,7 @@ public class Ads extends SugarRecord<Ads>{
 
 	private long adsId;
 	private String Category;
-	private String Image;
+	private String Image_mob;
 	
     public boolean isNew() {
         long count = Select.from(Ads.class).where(Condition.prop("id").eq(id)).count();
@@ -31,15 +31,15 @@ public class Ads extends SugarRecord<Ads>{
 	public void setCategory(String category) {
 		Category = category;
 	}
-
-	public String getImage() {
-		return Image;
-	}
-
-	public void setImage(String image) {
-		Image = image;
-	}
     
+	public String getImage_mob() {
+		return Image_mob;
+	}
+
+	public void setImage_mob(String image_mob) {
+		Image_mob = image_mob;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

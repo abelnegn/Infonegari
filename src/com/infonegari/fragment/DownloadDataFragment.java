@@ -1,5 +1,4 @@
 package com.infonegari.fragment;
-
 import java.util.List;
 
 import retrofit.Callback;
@@ -64,6 +63,8 @@ import com.infonegari.util.DownloadAdsImage;
 import com.infonegari.util.Network;
 import com.infonegari.util.OfflineDataHelper;
 import com.infonegari.util.SafeUIBlockingUtility;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -92,9 +93,10 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
         rootView = inflater.inflate(R.layout.fragment_home, null);
 
         activity = (FragmentActivity) getActivity();       
-        safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity());
+   		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
+				"Updating", "Please Wait...");
+   		safeUIBlockingUtility.safelyBlockUI();
         if (Network.isOnline(this.getActivity())) {            
-            safeUIBlockingUtility.safelyBlockUI();
             saveAdsData();
             saveAllCategoryData();
             saveAuctionData();
@@ -142,13 +144,14 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
             saveTravelAgentData();
             saveUsedItemData();
             saveUserSiteData();
+            updateUserSiteData();
             saveUsedItemTypeData();
             saveWeddingCarData();
             saveWeddingCRPData();
             saveWeddingClothData();
             saveWeddingHallData();
-            downloadAds();
         }else{
+        	safeUIBlockingUtility.safelyUnBlockUI();
             Toast.makeText(getActivity(), "There is no internet connection", Toast.LENGTH_SHORT).show();
     		FragmentManager fragmentManager = getFragmentManager();
     		HomeFragment fragment = new HomeFragment();
@@ -166,32 +169,51 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     @Override
     public void onPause() {   	
         super.onPause();
-        safeUIBlockingUtility.safelyUnBlockUI();
     }
     
     @Override
     public void onDetach() {
-
         super.onDetach();
-        safeUIBlockingUtility.safelyUnBlockUI();
     }
 
     private void saveAdsData(){
     	if (Network.isOnline(this.getActivity())) {
+        	final List<Ads> adsList= Select.from(Ads.class).list();
             API.adsService.getAds(new Callback<List<Ads>>() {
                         @Override
                         public void success(List<Ads> ads, Response response) {
-                            for (Ads ad : ads) {
-                                if (ad != null) {
+                        	if(adsList.size() > 0){
+                            	for (Ads ad : ads) {
+                            		boolean isExist = false;
+                            		for(Ads a : adsList){
+                            			if(a.getAdsId()==ad.getId()){
+                            				a.setCategory(ad.getCategory());
+                            				a.setImage_mob(ad.getImage_mob());
+                            				a.save();
+                            				DownloadAdsImage downloadAds = new DownloadAdsImage(getActivity(), a.getImage_mob());
+                            				isExist = true;
+                            			}
+                            		}
+                                    if (isExist == false) {
+                                        OfflineDataHelper helper = new OfflineDataHelper();
+                                        helper.setOfflineDataSaveListener(DownloadDataFragment.this);
+                                        helper.saveAdsData(ad);
+                                        DownloadAdsImage downloadAds = new DownloadAdsImage(getActivity(), ad.getImage_mob());
+                                    }                            		
+                            	}
+                            }else{
+                            	for (Ads ad : ads) {      
                                     OfflineDataHelper helper = new OfflineDataHelper();
                                     helper.setOfflineDataSaveListener(DownloadDataFragment.this);
-                                    helper.saveAdsData(ad);
-                                }
+                                    helper.saveAdsData(ad);	 
+                                    DownloadAdsImage downloadAds = new DownloadAdsImage(getActivity(), ad.getImage_mob());
+                            	}
                             }
                         }
 
                         @Override
                         public void failure(RetrofitError error) {
+                        	
                         }
 
                     }); 		
@@ -199,7 +221,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     }
     
     private void saveAllCategoryData(){
-    	if (Network.isOnline(this.getActivity())) {
+    	if (Network.isOnline(this.getActivity())) {   		
         	long acId = 0;
         	List<AllCategory> acList= AllCategory.findWithQuery(AllCategory.class, 
         			"SELECT * FROM  All_Category WHERE ac_Id = " +
@@ -218,10 +240,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                     helper.saveAllCategoryData(allCategory);
                                 }
                             }
+                            
                         }
 
                         @Override
                         public void failure(RetrofitError error) {
+                        	
                         }
 
                     });        	
@@ -229,7 +253,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     }
     
     private void saveAuctionData(){
-        if (Network.isOnline(this.getActivity())) {
+        if (Network.isOnline(this.getActivity())) {	
         	long auctionId = 0;
         	List<Auction> auctionList= Auction.findWithQuery(Auction.class, 
         			"SELECT * FROM  Auction WHERE auctionId = " +
@@ -248,11 +272,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveAuctionData(auction);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Auction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -260,7 +285,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     }
     
     private void saveAuctionCategoryData(){
-        if (Network.isOnline(this.getActivity())) {
+        if (Network.isOnline(this.getActivity())) {   		
         	long acId = 0;
         	List<AuctionCategory> acList= AuctionCategory.findWithQuery(AuctionCategory.class, 
         			"SELECT * FROM  Auction_Category WHERE acId = " +
@@ -279,11 +304,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveAuctionGategoryData(auctionCategory);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Auction Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -291,7 +317,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     }
 
     private void saveBandData(){
-        if (Network.isOnline(this.getActivity())) {
+        if (Network.isOnline(this.getActivity())) {  		
         	long bandId = 0;
         	List<Band> bandList= Band.findWithQuery(Band.class, 
         			"SELECT * FROM  Band WHERE Band_Id = " +
@@ -310,11 +336,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBandData(band);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Band data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -322,7 +349,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     }
 
     private void saveBankData(){
-        if (Network.isOnline(this.getActivity())) {
+        if (Network.isOnline(this.getActivity())) {  		
         	long bankId = 0;
         	List<Bank> bankList= Bank.findWithQuery(Bank.class, 
         			"SELECT * FROM  Bank WHERE bank_Id = " +
@@ -341,11 +368,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBankData(bank);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Bank data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -354,6 +382,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
 
     private void saveBeautySaloonData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long bsId = 0;
         	List<BeautySaloon> bsList= BeautySaloon.findWithQuery(BeautySaloon.class, 
         			"SELECT * FROM  Beauty_Saloon WHERE beautysaloons_Id = " +
@@ -372,11 +401,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveBeautySaloonData(beautySaloon);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Beauty Saloon data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) { 
+                    	
                     }
 
                 });
@@ -385,6 +415,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
 
     private void saveCarListingData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long clId = 0;
         	List<CarListing> clList= CarListing.findWithQuery(CarListing.class, 
         			"SELECT * FROM  Car_Listing WHERE Car_Listing_Id = " +
@@ -403,11 +434,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCarListingData(carListing);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Car Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -416,6 +448,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveCarTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long ctId = 0;
         	List<CarType> ctList= CarType.findWithQuery(CarType.class, 
         			"SELECT * FROM  Car_Type WHERE Car_Type_Id = " +
@@ -434,11 +467,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCarTypeData(carType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Car Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -447,6 +481,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveCaterersPasteriesData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cpId = 0;
         	List<CaterersPasteries> cpList= CaterersPasteries.findWithQuery(CaterersPasteries.class, 
         			"SELECT * FROM  Caterers_Pasteries WHERE Cn_P_Id = " +
@@ -465,11 +500,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCatererPasteriesData(caterersPastery);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Caterers and Pasteries data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -478,6 +514,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveCinemaData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cinemaId = 0;
         	List<Cinema> cinemaList= Cinema.findWithQuery(Cinema.class, 
         			"SELECT * FROM  Cinema WHERE Cinema_Id = " +
@@ -495,7 +532,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCinemaData(cinema);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Cinema data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
@@ -509,6 +546,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveCinemaPlaceData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cpId = 0;
         	List<CinemaPlace> cpList= CinemaPlace.findWithQuery(CinemaPlace.class, 
         			"SELECT * FROM  Cinema_Place WHERE cpId = " +
@@ -527,12 +565,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCinemaPlaceData(cinemaPlace);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Cinema Place data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-              
+                    	
                     }
 
                 });
@@ -541,6 +579,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveCityData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cityId = 0;
         	List<City> cityList= City.findWithQuery(City.class, 
         			"SELECT * FROM  City WHERE City_Id = " +
@@ -559,12 +598,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveCityData(city);
                             }
                         }
-//                        Toast.makeText(getActivity(), "City data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                
+                    	
                     }
 
                 });
@@ -573,6 +612,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveClinicData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long clinicId = 0;
         	List<Clinic> clinicList= Clinic.findWithQuery(Clinic.class, 
         			"SELECT * FROM  Clinic WHERE clinic_Id = " +
@@ -591,12 +631,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveClinicData(clinic);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Clinic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                   
+                    	
                     }
 
                 });
@@ -605,6 +645,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveConstructionData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long conId = 0;
         	List<Construction> conList= Construction.findWithQuery(Construction.class, 
         			"SELECT * FROM  Construction WHERE Construction_Sn_S_Id = " +
@@ -623,12 +664,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConstructionData(construction);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Construction data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                    
+                    	
                     }
 
                 });
@@ -637,6 +678,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveConstructionMachineData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cmId = 0;
         	List<ConstructionMachine> cmList= ConstructionMachine.findWithQuery(ConstructionMachine.class, 
         			"SELECT * FROM  Construction_Machine WHERE cm_Id = " +
@@ -655,12 +697,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConMachineData(constructionMachine);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Construction Machine data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                
+                    	
                     }
 
                 });
@@ -669,6 +711,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveConstructionMaterialData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long cmId = 0;
         	List<ConstructionMaterial> cmList= ConstructionMaterial.findWithQuery(ConstructionMaterial.class, 
         			"SELECT * FROM  Construction_Material WHERE cmId = " +
@@ -687,12 +730,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveConMaterialData(constructionMaterial);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Construction Material data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                
+                    	
                     }
 
                 });
@@ -701,6 +744,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveDecoratorsData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long decoreId = 0;
         	List<Decorators> decoreList= Decorators.findWithQuery(Decorators.class, 
         			"SELECT * FROM  Decorators WHERE Decorator_Id = " +
@@ -719,12 +763,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveDecoratorData(decorator);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Decorator data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                
+                    	
                     }
 
                 });
@@ -733,6 +777,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveDJData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long djId = 0;
         	List<DJ> djList= DJ.findWithQuery(DJ.class, 
         			"SELECT * FROM  DJ WHERE Dj_Id = " +
@@ -751,12 +796,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveDJData(dj);
                             }
                         }
-//                        Toast.makeText(getActivity(), "DJ data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                    
+                    	
                     }
 
                 });
@@ -765,6 +810,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveEducationCategoryData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long ecId = 0;
         	List<EducationCategory> ecList= EducationCategory.findWithQuery(EducationCategory.class, 
         			"SELECT * FROM  Education_Category WHERE ec_Id = " +
@@ -783,12 +829,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveEducationCatData(educationCategory);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Electronic Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                  
+                    	
                     }
 
                 });
@@ -797,6 +843,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveEventData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long eventId = 0;
         	List<Event> eventList= Event.findWithQuery(Event.class, 
         			"SELECT * FROM  Event WHERE event_Id = " +
@@ -815,12 +862,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveEventData(event);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Event data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                
+                    	
                     }
 
                 });
@@ -829,6 +876,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveGuarageData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long garageId = 0;
         	List<Guarage> garageList= Guarage.findWithQuery(Guarage.class, 
         			"SELECT * FROM  Guarage WHERE guarage_Id = " +
@@ -847,12 +895,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveGuarageData(guarage);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Guarage data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                     
+                    	
                     }
 
                 });
@@ -861,6 +909,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveGuestHouseData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long ghId = 0;
         	List<GuestHouse> ghList= GuestHouse.findWithQuery(GuestHouse.class, 
         			"SELECT * FROM  Guest_House WHERE Guest_House_Id = " +
@@ -879,12 +928,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveGuestHouseData(guestHouse);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Guest House data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                     
+                    	
                     }
 
                 });
@@ -893,6 +942,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveHallTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long htId = 0;
         	List<HallType> htList= HallType.findWithQuery(HallType.class, 
         			"SELECT * FROM  Hall_Type WHERE ht_Id = " +
@@ -911,12 +961,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHallTypeData(hallType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Hall Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                     
+                    	
                     }
 
                 });
@@ -925,6 +975,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveHdntaData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long hdntaId = 0;
         	List<Hdnta> hdntaList= Hdnta.findWithQuery(Hdnta.class, 
         			"SELECT * FROM  Hdnta WHERE hdnta_Id = " +
@@ -943,12 +994,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHdntaData(hdnta);
                             }
                         }
-//                        Toast.makeText(getActivity(), "HDNTA data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -957,6 +1008,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveHouseListingData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long hlId = 0;
         	List<HouseListing> hlList= HouseListing.findWithQuery(HouseListing.class, 
         			"SELECT * FROM  House_Listing WHERE House_Listing_Id = " +
@@ -975,12 +1027,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHouseListingData(houseListing);
                             }
                         }
-//                        Toast.makeText(getActivity(), "House Listing data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -989,6 +1041,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveHouseTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long htId = 0;
         	List<HouseType> htList= HouseType.findWithQuery(HouseType.class, 
         			"SELECT * FROM  House_Type WHERE House_Type_Id = " +
@@ -1007,12 +1060,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveHouseTypeData(houseType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "House Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1021,6 +1074,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveJobCategoryData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long jcId = 0;
         	List<JobCategory> jcList= JobCategory.findWithQuery(JobCategory.class, 
         			"SELECT * FROM  Job_Category WHERE jc_Id = " +
@@ -1039,12 +1093,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveJobCategoryData(jobCategory);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Job Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1053,6 +1107,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveJobData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long jobId = 0;
         	List<Jobs> jobList= Jobs.findWithQuery(Jobs.class, 
         			"SELECT * FROM  Jobs WHERE job_Id = " +
@@ -1071,12 +1126,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveJobsData(job);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Job data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1085,6 +1140,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveLocationData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long locId = 0;
         	List<Location> locList= Location.findWithQuery(Location.class, 
         			"SELECT * FROM  Location WHERE Location_Id = " +
@@ -1103,11 +1159,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveLocationData(location);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Location data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                    	
                     }
 
                 });
@@ -1116,6 +1173,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveMovieTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long mtId = 0;
         	List<MovieType> mtList= MovieType.findWithQuery(MovieType.class, 
         			"SELECT * FROM  Movie_Type WHERE mt_Id = " +
@@ -1134,12 +1192,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveMovieTypeData(movieType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Movie Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1148,6 +1206,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveNightClubData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long ncId = 0;
         	List<NightClub> ncList= NightClub.findWithQuery(NightClub.class, 
         			"SELECT * FROM  Night_Club WHERE nc_Id = " +
@@ -1166,12 +1225,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveNightClubData(nightClub);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Night Club data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                      
+                    	
                     }
 
                 });
@@ -1180,6 +1239,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void savePharmacyData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long pharmacyId = 0;
         	List<Pharmacy> pharmacyList= Pharmacy.findWithQuery(Pharmacy.class, 
         			"SELECT * FROM  Pharmacy WHERE pharmacy_Id = " +
@@ -1198,12 +1258,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.savePharmacyData(pharmacy);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Pharmacy data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1212,6 +1272,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void savePhotoVideoData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long pvId = 0;
         	List<PhotoVideo> pvList= PhotoVideo.findWithQuery(PhotoVideo.class, 
         			"SELECT * FROM  Photo_Video WHERE Photo_Video_Id = " +
@@ -1230,12 +1291,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.savePhotoVideoData(photoVideo);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Photo and Video data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1244,6 +1305,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveResortData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long resortId = 0;
         	List<Resort> resortList= Resort.findWithQuery(Resort.class, 
         			"SELECT * FROM  Resort WHERE resort_Id = " +
@@ -1262,12 +1324,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveResortData(resort);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Resort data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1276,6 +1338,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveRestaurantTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long rtId = 0;
         	List<RestaurantType> rtList= RestaurantType.findWithQuery(RestaurantType.class, 
         			"SELECT * FROM  Restaurant_Type WHERE Restaurant_Type_Id = " +
@@ -1294,12 +1357,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveRestaurantTypeData(restaurantType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Restaurant Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1308,6 +1371,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveRestaurantData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long restaurantId = 0;
         	List<Restaurant> restaurantList= Restaurant.findWithQuery(Restaurant.class, 
         			"SELECT * FROM  Restaurant WHERE restaurantId = " +
@@ -1326,12 +1390,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveRestaurantData(restaurant);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Restaurant data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1340,6 +1404,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveShopClothData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long scId = 0;
         	List<ShopCloth> scList= ShopCloth.findWithQuery(ShopCloth.class, 
         			"SELECT * FROM  Shop_Cloth WHERE sc_Id = " +
@@ -1358,12 +1423,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopClothData(shopCloth);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Shop Cloth data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1372,6 +1437,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveShopComputerData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long scId = 0;
         	List<ShopComputer> scList= ShopComputer.findWithQuery(ShopComputer.class, 
         			"SELECT * FROM  Shop_Computer WHERE sc_Id = " +
@@ -1390,12 +1456,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopComputerData(shopComputer);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Shop Computer data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1404,6 +1470,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveShopElectronicData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long seId = 0;
         	List<ShopElectronic> seList= ShopElectronic.findWithQuery(ShopElectronic.class, 
         			"SELECT * FROM  Shop_Electronic WHERE se_Id = " +
@@ -1422,12 +1489,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopElectronicData(shopElectronic);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Shop Electronic data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1436,6 +1503,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveShopFurnitureData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long sfId = 0;
         	List<ShopFurniture> sfList= ShopFurniture.findWithQuery(ShopFurniture.class, 
         			"SELECT * FROM  Shop_Furniture WHERE sf_Id = " +
@@ -1454,12 +1522,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveShopFurnitureData(shopFurniture);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Shop Furniture data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1468,6 +1536,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveTaxiData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long taxiId = 0;
         	List<Taxi> taxiList= Taxi.findWithQuery(Taxi.class, 
         			"SELECT * FROM  Taxi WHERE taxi_Id = " +
@@ -1486,12 +1555,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTaxiData(taxi);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Taxi data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                      
+                    	
                     }
 
                 });
@@ -1500,6 +1569,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveTenderData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long tenderId = 0;
         	List<Tender> tenderList= Tender.findWithQuery(Tender.class, 
         			"SELECT * FROM  Tender WHERE tenderId = " +
@@ -1518,12 +1588,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTenderData(tender);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Tender data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1532,6 +1602,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveTenderCategoryData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long tCId = 0;
         	List<TenderCategory> tCList= TenderCategory.findWithQuery(TenderCategory.class, 
         			"SELECT * FROM  Tender_Category WHERE tcId = " +
@@ -1550,12 +1621,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTenderCategoryData(tenderCategory);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Tender Category data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                      
+                    	
                     }
 
                 });
@@ -1564,6 +1635,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveTravelAgentData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long taId = 0;
         	List<TravelAgent> taList= TravelAgent.findWithQuery(TravelAgent.class, 
         			"SELECT * FROM  Travel_Agent WHERE ta_Id = " +
@@ -1582,12 +1654,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveTravelAgentData(travelAgent);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Travel Agent data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1596,6 +1668,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveUsedItemData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long uiId = 0;
         	List<UsedItem> uiList= UsedItem.findWithQuery(UsedItem.class, 
         			"SELECT * FROM  Used_Item WHERE Used_Item_Id = " +
@@ -1614,12 +1687,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveUsedItemData(usedItem);
                             }
                         }
-                        Toast.makeText(getActivity(), "Used Item data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1628,6 +1701,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveUserSiteData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long usId = 0;
         	List<UserSite> usList= UserSite.findWithQuery(UserSite.class, 
         			"SELECT * FROM  User_site WHERE us_Id = " +
@@ -1641,24 +1715,55 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                     public void success(List<UserSite> userSites, Response response) {
                         for (UserSite userSite : userSites) {
                             if (userSite != null) {
+                            	userSite.setIsActive("0");
+                            	userSite.setIsSync("1");
                                 OfflineDataHelper helper = new OfflineDataHelper();
                                 helper.setOfflineDataSaveListener(DownloadDataFragment.this);
                                 helper.saveUserSiteData(userSite);
                             }
                         }
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
         }
     }
-    
+
+    private void updateUserSiteData(){
+        if (Network.isOnline(this.getActivity())) {
+    		
+       	 	final List<UserSite> userSite= Select.from(UserSite.class).
+     			where(Condition.prop("is_Active").eq("1")).and(Condition.
+     					prop("is_Sync").eq("0")).list();
+       	 	if(userSite.size() > 0){
+                API.updateUserSiteService.updateUserSite(43, "'" + userSite.get(0).getNotification() + "'",
+                    new Callback<String>() {
+                        @Override
+                        public void success(String Updated, Response response) {
+                        	userSite.get(0).setIsSync("1");
+                        	userSite.get(0).save();
+                        	
+                        	Toast.makeText(getActivity(), "Notification sent successfuly", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                        	
+                        }
+
+                    });
+            }   		       	 		
+       	 }
+	}
+	
     private void saveUsedItemTypeData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long uitId = 0;
         	List<UsedItemType> uiList= UsedItemType.findWithQuery(UsedItemType.class, 
         			"SELECT * FROM  Used_Item_Type WHERE Used_Item_Type_Id = " +
@@ -1677,12 +1782,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveUsedItemTypeData(usedItemType);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Used Item Type data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1691,6 +1796,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveWeddingCarData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long wcId = 0;
         	List<WeddingCar> wcList= WeddingCar.findWithQuery(WeddingCar.class, 
         			"SELECT * FROM  Wedding_Car WHERE wedding_Car_Id = " +
@@ -1709,12 +1815,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingCarData(weddingCar);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Wedding Car data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                       
+                    	
                     }
 
                 });
@@ -1723,6 +1829,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveWeddingCRPData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long wcId = 0;
         	List<WeddingCardRingProtocol> wcList= WeddingCardRingProtocol.findWithQuery(WeddingCardRingProtocol.class, 
         			"SELECT * FROM  Wedding_Card_Ring_Protocol WHERE wcrp_Id = " +
@@ -1741,12 +1848,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWCRPData(weddingCardRingProtocol);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Wedding Card, Ring and Protocol data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                      
+                    	
                     }
 
                 });
@@ -1755,6 +1862,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveWeddingClothData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long wcId = 0;
         	List<WeddingCloth> wcList= WeddingCloth.findWithQuery(WeddingCloth.class, 
         			"SELECT * FROM  Wedding_Cloth WHERE Wedding_Cloth_Id = " +
@@ -1773,12 +1881,12 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingClothData(weddingCloth);
                             }
                         }
-//                        Toast.makeText(getActivity(), "Wedding Closs data Downloaded Successfuly", Toast.LENGTH_LONG).show();
+                        
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        
+                    	
                     }
 
                 });
@@ -1787,6 +1895,7 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
     
     private void saveWeddingHallData(){
         if (Network.isOnline(this.getActivity())) {
+    		
         	long whId = 0;
         	List<WeddingHall> whList= WeddingHall.findWithQuery(WeddingHall.class, 
         			"SELECT * FROM  Wedding_Hall WHERE Wedding_Hall_Id = " +
@@ -1805,7 +1914,6 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 helper.saveWeddingHall(weddingHall);
                             }
                         }
-                        Toast.makeText(getActivity(), "Data Downloaded Successfuly", Toast.LENGTH_LONG).show();
                         mHome();
                     }
 
@@ -1816,10 +1924,6 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
 
                 });
         }
-    }
-    
-    private void downloadAds(){
-    	DownloadAdsImage ads = new DownloadAdsImage(getActivity());
     }
     
     private void mHome(){

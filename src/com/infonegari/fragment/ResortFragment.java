@@ -104,7 +104,7 @@ public class ResortFragment extends Fragment{
 		safeUIBlockingUtility.safelyBlockUI();
 		
         AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
+		imageView.startTimer(AdsImageView.adsResortImages);
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override

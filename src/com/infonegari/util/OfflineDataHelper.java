@@ -80,16 +80,16 @@ public class OfflineDataHelper {
 
     public void saveAdsData(Ads ad) {
     	Ads newAds = new Ads();
-    	newAds.setAdsId(ad.getAdsId());
+    	newAds.setAdsId(ad.getId());
     	newAds.setCategory(ad.getCategory());
-    	newAds.setImage(ad.getImage());
+    	newAds.setImage_mob(ad.getImage_mob());
     	
     	newAds.save();
     }
     
     public void saveAllCategoryData(AllCategory ac){
     	AllCategory newAC = new AllCategory();
-    	newAC.setAcId(ac.getAcId());
+    	newAC.setAcId(ac.getId());
     	newAC.setCategory(ac.getCategory());
     	newAC.setDisplay(ac.getDisplay());
     	newAC.setTable_Name(ac.getTable_Name());
@@ -805,6 +805,8 @@ public class OfflineDataHelper {
     	newUS.setPass_Word(userSite.getPass_Word());
     	newUS.setNotification(userSite.getNotification());
     	newUS.setCompany_Name(userSite.getCompany_Name());
+    	newUS.setIsActive(userSite.getIsActive());
+    	newUS.setIsSync(userSite.getIsSync());
     	
     	newUS.save();
     	

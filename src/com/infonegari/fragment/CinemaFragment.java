@@ -110,7 +110,7 @@ public class CinemaFragment extends Fragment{
 		safeUIBlockingUtility.safelyBlockUI();
 		
         AdsImageView imageView = new AdsImageView(getActivity(), imageSwitcher);
-		imageView.startTimer(AdsImageView.adsImages);
+		imageView.startTimer(AdsImageView.adsCinemaImages);
 		btnSearch.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View arg0) {

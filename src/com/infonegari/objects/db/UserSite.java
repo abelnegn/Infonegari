@@ -2,6 +2,7 @@ package com.infonegari.objects.db;
 
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -16,6 +17,8 @@ public class UserSite extends SugarRecord<UserSite>{
 	private String User_Name;
 	private String Pass_Word;
 	private String Notification;
+	private String isSync;
+	private String isActive;
 	
     public boolean isNew() {
         long count = Select.from(UserSite.class).where(Condition.prop("id").eq(id)).count();
@@ -92,6 +95,22 @@ public class UserSite extends SugarRecord<UserSite>{
 
 	public void setNotification(String notification) {
 		Notification = notification;
+	}
+
+	public String getIsSync() {
+		return isSync;
+	}
+
+	public void setIsSync(String isSync) {
+		this.isSync = isSync;
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
