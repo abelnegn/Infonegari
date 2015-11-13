@@ -804,6 +804,8 @@ public class OfflineDataHelper {
     	newUS.setUser_Name(userSite.getUser_Name());
     	newUS.setPass_Word(userSite.getPass_Word());
     	newUS.setNotification(userSite.getNotification());
+    	newUS.setNotify_Job(userSite.getNotify_Job());
+    	newUS.setNotify_Job(userSite.getNotify_Job());
     	newUS.setCompany_Name(userSite.getCompany_Name());
     	newUS.setIsActive(userSite.getIsActive());
     	newUS.setIsSync(userSite.getIsSync());

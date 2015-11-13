@@ -813,7 +813,7 @@ public class AdsImageView {
     	try {
     		List<Ads> adsList = Ads.findWithQuery(Ads.class, 
         			"SELECT * FROM  Ads WHERE Category in ('shop_fh', 'shop_fo')"); 		 		
-    		adsAuctionImages = new ArrayList<Drawable>();
+    		adsShopFurnitureImages = new ArrayList<Drawable>();
         	if(adsList.size() > 0){
 	       		for(Ads ads : adsList) {
 	       			if(!ads.getImage_mob().equals("0")){
@@ -823,7 +823,7 @@ public class AdsImageView {
 			      		if (imageFile.exists()) {
 			      			Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 			      	    	Drawable adsDrawable = new BitmapDrawable(myBitmap);
-			      	    	adsAuctionImages.add(adsDrawable);
+			      	    	adsShopFurnitureImages.add(adsDrawable);
 			      		}	       				
 	       			}	       			
 	       		}

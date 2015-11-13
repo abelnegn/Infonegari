@@ -177,7 +177,7 @@ public class LanguageFragment extends Fragment{
     	if(saveSetting.isChecked()==true)
     		isSaved = "True";
     	else
-    		isSaved = "False";
+    		isSaved = "True";
     	
     	String txtLanguage = sLocal.getSelectedItem().toString();
     	

@@ -4,11 +4,14 @@ import java.util.List;
 import com.infonegari.activity.R;
 import com.infonegari.objects.db.UserSite;
 import com.infonegari.util.DialogHandler;
+import com.joanzapata.android.iconify.IconDrawable;
+import com.joanzapata.android.iconify.Iconify;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ public class HomeFragment extends Fragment{
 	final Handler handler = new Handler();
 	final Handler handlerNews = new Handler();
     private DialogHandler dlgHandler;   
+    private static final int MENU_ITEM_LOGIN = 2000;
     		
 	public HomeFragment(){}
 	
@@ -129,11 +133,23 @@ public class HomeFragment extends Fragment{
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.clear();
+        MenuItem mItemSearchClient = menu.add(Menu.NONE, MENU_ITEM_LOGIN, Menu.NONE, "Login");
+        mItemSearchClient.setIcon(new IconDrawable(getActivity(), Iconify.IconValue.fa_power_off)
+        .colorRes(R.color.black)
+        .actionBarSize());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            mItemSearchClient.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
         super.onPrepareOptionsMenu(menu);
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == MENU_ITEM_LOGIN) {
+        	loginAsDiffUser();
+        }
         return super.onOptionsItemSelected(item);
     }
     
@@ -165,5 +181,17 @@ public class HomeFragment extends Fragment{
 	        }
 	    };
 	    return runnable;
+	}
+	
+	private void loginAsDiffUser(){
+		List<UserSite> userList = Select.from(UserSite.class).where(Condition.prop("is_Active").eq("1")).list();
+		if(userList.size() > 0){
+			for(UserSite us : userList){
+				us.setIsActive("0");
+				us.save();
+			}
+		}
+		LoginFragment login = new LoginFragment().newInstance();
+		login.show(getFragmentManager().beginTransaction(), "LoginFragment");
 	}
 }

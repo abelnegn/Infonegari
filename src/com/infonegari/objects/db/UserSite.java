@@ -2,7 +2,6 @@ package com.infonegari.objects.db;
 
 import com.google.gson.Gson;
 import com.orm.SugarRecord;
-import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -17,6 +16,8 @@ public class UserSite extends SugarRecord<UserSite>{
 	private String User_Name;
 	private String Pass_Word;
 	private String Notification;
+	private String Notify_Job;
+	private String Notify_Loc;
 	private String isSync;
 	private String isActive;
 	
@@ -95,6 +96,22 @@ public class UserSite extends SugarRecord<UserSite>{
 
 	public void setNotification(String notification) {
 		Notification = notification;
+	}
+
+	public String getNotify_Job() {
+		return Notify_Job;
+	}
+
+	public void setNotify_Job(String notify_Job) {
+		Notify_Job = notify_Job;
+	}
+
+	public String getNotify_Loc() {
+		return Notify_Loc;
+	}
+
+	public void setNotify_Loc(String notify_Loc) {
+		Notify_Loc = notify_Loc;
 	}
 
 	public String getIsSync() {

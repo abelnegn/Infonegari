@@ -186,7 +186,7 @@ public class NotificationFragment extends DialogFragment{
         		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
         				"Updating", "Please Wait...");
         		safeUIBlockingUtility.safelyBlockUI();
-                API.updateUserSiteService.updateUserSite(43, "'" + notify + "'",
+                API.updateUserSiteService.updateUserSite(userSite.get(0).getUsId(), "'" + notify + "'",
                     new Callback<String>() {
                         @Override
                         public void success(String Updated, Response response) {
@@ -194,7 +194,6 @@ public class NotificationFragment extends DialogFragment{
                         	userSite.get(0).setIsSync("1");
                         	userSite.get(0).save();
                         	safeUIBlockingUtility.safelyUnBlockUI();
-                        	Toast.makeText(getActivity(), "Notification sent successfuly", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
