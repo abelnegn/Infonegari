@@ -721,7 +721,9 @@ public class API {
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
         @GET(APIEndPoint.UPDATE_USER_SITE)
         public void updateUserSite(@Query("user_id") long usId, 
-        		@Query("notification") String notification, Callback<String> callback);
+        		@Query("notification") String notification, 
+        		@Query("notify_category") String notifyCategory,
+        		@Query("notify_location") String notifyLocation, Callback<String> callback);
     }
 	
 	public interface WeddingCarService{

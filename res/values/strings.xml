@@ -3,13 +3,19 @@
 
     <string name="app_name">InfoNegari</string>
     <string name="action_settings">Settings</string>
-<!--     <string name="txt_header_info">8142 Click here to send short code</string> -->
+	<string name="album_name">InfonegariPic</string>
+	<string name="cannot">Cannot</string>
 	<string name="txt_header_info">Information at hand</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">Search</string>
+    <string name="btn_add_list">Add to My List</string>
     <string name="btn_ok">Ok</string>
+    <string name="btn_choose_photo">Choose Photo</string>
+    <string name="btn_take_photo">Take Photo</string>
+    <string name="btn_select">Select</string>
+    <string name="btn_back">Back</string>
     <string name="btn_login">Login</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
@@ -26,6 +32,7 @@
     <string name="txt_location">Location</string>
     <string name="txt_localization">Select Language</string>
     <string name="txt_title">Title</string>
+    <string name="txt_discription">Discription</string>
     <string name="txt_category">Category</string>
     <string name="m_back">Back</string>
     <string name="documents">Document</string>
@@ -46,6 +53,7 @@
     <string name="dlg_header_update">Update now?</string>
     <string name="dlg_detail_message">Please update the information. The update requires internet connection.</string>
     <string name="txt_sms_description">Try with the following option</string>
+    <string name="dlg_listing_category">Listing Categories</string>
 
 	<!--     Dashboard -->
 	<string name="db_notification">Notify Me</string>
@@ -108,7 +116,44 @@
 	<string name="sms_request_header">Send SMS</string>
 	<string name="sms_request_detail">Are you shure you want to request name for</string>
 	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-	
+
+	<!-- Add list category -->	
+	<string-array name="nav_drawer_add_list">
+		<item>Catering and Pastery</item>
+		<item>Wedding Decorators</item>
+		<item>Wedding Car</item>
+		<item>Music Band</item>
+		<item>Wedding Cards, Ring and Protocol</item>
+		<item>Wedding Cloths</item>	
+		<item>Wedding Halls</item>
+		<item>Beauty Saloons</item>
+		<item>Honey Moon Destination and Travel Agent</item>
+		<item>DJ</item>
+		<item>Photo and Video</item>
+		<item>Car for Sell</item>
+		<item>Used Items</item>
+		<item>House for Sell</item>
+		<item>Business for Sell</item>
+		<item>Rental Car</item>
+		<item>Rental House</item>
+		<item>Guest House</item>    
+		<item>Rental Buisness</item>
+		<item>Garage</item>
+		<item>Pharmacy</item>
+		<item>Clinic</item>
+		<item>Banks</item>
+		<item>Construction</item>
+		<item>Restaurant</item>
+		<item>Travel Agent</item> 
+		<item>Event</item>    
+		<item>Night Club</item>
+		<item>Resort</item>
+		<item>Cloths</item>
+		<item>Electronics</item>
+		<item>Furniture</item>
+		<item>Computer Accessories</item>			
+	</string-array>	
+			
 	<!-- 	Short message -->	
 	<string-array name="nav_drawer_sms">
 		<item>Christian Girl(CG)</item>

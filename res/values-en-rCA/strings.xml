@@ -3,13 +3,18 @@
 
     <string name="app_name">ኢንፎነጋሪ</string>
     <string name="action_settings">ሴቲንግ</string>
-<!--     <string name="txt_header_info">8142 ለአጭር የጽሁፍ መልእክት እዚህ ይጫኑ</string> -->
+	<string name="album_name">InfonegariPic</string>
+	<string name="cannot">Cannot</string>
 	<string name="txt_header_info">በእጅ ያለ መረጃ</string>	
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">ፈልግ</string>
     <string name="btn_ok">እሺ</string>    
+    <string name="btn_choose_photo">ፎቶ ምረጥ</string>
+    <string name="btn_take_photo">ፎቶ አንሳ</string>
+    <string name="btn_select">ምረጥ</string>
+    <string name="btn_back">ተመለስ</string>
     <string name="btn_login">ይግቡ</string>
     <string name="btn_cancel">ሰርዝ</string>
     <string name="btn_yes">አዎ</string>
@@ -26,6 +31,7 @@
     <string name="txt_location">አካባቢው</string>
     <string name="txt_localization">ቋንቋ ምረጥ</string>
     <string name="txt_title">ርእስ</string>
+    <string name="txt_discription">ማብራሪያ</string>
     <string name="txt_category">ምድብ</string>
 	<string name="m_back">ተመለስ</string>
 	<string name="documents">መረጃ</string>
@@ -46,8 +52,8 @@
     <string name="dlg_header_update">አዲስ መረጃ?</string>
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-       
+    <string name="dlg_listing_category">ዝርዝሮች</string>
+    
    	<!--     Dashboard -->
 	<string name="db_notification">መልክት አሳውቀኝ</string>
 	<string name="db_addlist">ዝርዝር ጨምር</string>
@@ -109,7 +115,43 @@
 	<string name="menu_wedding_hall">የሠርግ አዳራሽ</string>
 	<string name="sms_request_header">አጭር የፅሀፍ መልክት ላክ</string>
 	<string name="sms_request_detail">ስም መጠየቅ ይፈልጋሉ</string>
-	
+
+	<!-- Add list category -->	
+	<string-array name="nav_drawer_add_list">
+		<item>Catering and Pastery</item>
+		<item>Wedding Decorators</item>
+		<item>Wedding Car</item>
+		<item>Music Band</item>
+		<item>Wedding Cards, Ring and Protocol</item>
+		<item>Wedding Cloths</item>	
+		<item>Wedding Halls</item>
+		<item>Beauty Saloons</item>
+		<item>Honey Moon Destination and Travel Agent</item>
+		<item>DJ</item>
+		<item>Photo and Video</item>
+		<item>Car for Sell</item>
+		<item>Used Items</item>
+		<item>House for Sell</item>
+		<item>Business for Sell</item>
+		<item>Rental Car</item>
+		<item>Rental House</item>
+		<item>Guest House</item>    
+		<item>Rental Buisness</item>
+		<item>Garage</item>
+		<item>Pharmacy</item>
+		<item>Clinic</item>
+		<item>Banks</item>
+		<item>Construction</item>
+		<item>Restaurant</item>
+		<item>Travel Agent</item> 
+		<item>Event</item>    
+		<item>Night Club</item>
+		<item>Resort</item>
+		<item>Cloths</item>
+		<item>Electronics</item>
+		<item>Furniture</item>
+		<item>Computer Accessories</item>			
+	</string-array>	
 	
 	<!-- 	Short message -->	
 	<string-array name="nav_drawer_sms">

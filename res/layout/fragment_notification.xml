@@ -96,8 +96,20 @@
         android:text="@string/menu_event"
         android:textColor="#FFFFFF"
         android:id="@+id/cb_event"/>
-
-  	    <LinearLayout 
+  	
+    <Spinner 
+        android:layout_height= "wrap_content"
+		android:layout_width= "fill_parent"
+		android:background="@android:drawable/btn_dropdown"
+        android:id="@+id/location"/>  
+        
+    <Spinner 
+        android:layout_height= "wrap_content"
+		android:layout_width= "fill_parent"
+		android:background="@android:drawable/btn_dropdown"
+        android:id="@+id/job_category"/>    	
+        	
+  	<LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">   
@@ -117,8 +129,7 @@
         <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="horizontal"
-	        android:gravity="end">		
+	        android:orientation="horizontal">		
 		    <Button
 		        android:id="@+id/btn_cancel"
 		        style="@style/Button"
@@ -128,20 +139,6 @@
 		        android:text="@string/btn_cancel"
 		        android:layout_gravity="right"
 		        android:textColor="#FFFFFF" />
-	    </LinearLayout>
-        <LinearLayout 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="horizontal"
-	        android:gravity="end">		
-	        <Spinner 
-	            android:layout_height= "wrap_content"
-				android:layout_width= "fill_parent"
-		        android:id="@+id/location"/> 
-	        <Spinner 
-	            android:layout_height= "wrap_content"
-				android:layout_width= "fill_parent"
-		        android:id="@+id/job_category"/> 		        
-	    </LinearLayout>	    
+	    </LinearLayout>    
 	</LinearLayout>   	
 </LinearLayout>

@@ -1741,8 +1741,8 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
      			where(Condition.prop("is_Active").eq("1")).and(Condition.
      					prop("is_Sync").eq("0")).list();
        	 	if(userSite.size() > 0){
-                API.updateUserSiteService.updateUserSite(43, "'" + userSite.get(0).getNotification() + "'",
-                    new Callback<String>() {
+                API.updateUserSiteService.updateUserSite(userSite.get(0).getUsId(), "'" + userSite.get(0).getNotification() + "'",
+                    userSite.get(0).getNotify_Job(), userSite.get(0).getNotify_Loc(), new Callback<String>() {
                         @Override
                         public void success(String Updated, Response response) {
                         	userSite.get(0).setIsSync("1");

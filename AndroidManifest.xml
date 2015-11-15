@@ -54,6 +54,10 @@
         <activity
             android:name="com.infonegari.activity.MainActivity"
             android:label="@string/app_name">
-        </activity>      
+        </activity>   
+        <activity
+            android:name="com.infonegari.activity.AddListActivity"
+            android:label="@string/app_name">
+        </activity>    
     </application>
 </manifest>

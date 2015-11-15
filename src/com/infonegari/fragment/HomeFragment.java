@@ -69,8 +69,31 @@ public class HomeFragment extends Fragment{
 			        notifyFragment.show(getFragmentManager().beginTransaction(), "NotificationFragment");					
 				}else{
 					LoginFragment login = new LoginFragment().newInstance();
+					Bundle arguments = new Bundle();
+					arguments.putString("Menu_Id", "Notification");
+					login.setArguments(arguments);
 					login.show(getFragmentManager().beginTransaction(), "LoginFragment");
 				}
+			}
+		});
+
+        //Add List button click
+        btn_add_list.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				List<UserSite> userSite= Select.from(UserSite.class).
+		    			where(Condition.prop("is_Active").eq("1")).list();
+				if(userSite.size() > 0){
+					ListingCategoryDialog categoryDialog = new ListingCategoryDialog().newInstance();
+					categoryDialog.show(getFragmentManager().beginTransaction(), "ListingDialog");
+				}else{
+					LoginFragment login = new LoginFragment().newInstance();
+					Bundle arguments = new Bundle();
+					arguments.putString("Menu_Id", "AddList");
+					login.setArguments(arguments);
+					login.show(getFragmentManager().beginTransaction(), "LoginFragment");
+				}				
 			}
 		});
         
@@ -184,14 +207,10 @@ public class HomeFragment extends Fragment{
 	}
 	
 	private void loginAsDiffUser(){
-		List<UserSite> userList = Select.from(UserSite.class).where(Condition.prop("is_Active").eq("1")).list();
-		if(userList.size() > 0){
-			for(UserSite us : userList){
-				us.setIsActive("0");
-				us.save();
-			}
-		}
 		LoginFragment login = new LoginFragment().newInstance();
+		Bundle arguments = new Bundle();
+		arguments.putString("Menu_Id", "DifferentUser");
+		login.setArguments(arguments);
 		login.show(getFragmentManager().beginTransaction(), "LoginFragment");
 	}
 }

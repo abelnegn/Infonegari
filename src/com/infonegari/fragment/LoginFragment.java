@@ -61,8 +61,16 @@ public class LoginFragment extends DialogFragment implements OfflineDataHelper.O
         
         getDialog().setTitle(getString(R.string.menu_login));
         
-        btnLogin.setOnClickListener(new OnClickListener() {
-			
+        final String MenuId = getArguments().getString("Menu_Id");
+        if(MenuId.equals("DifferentUser")){
+    		List<UserSite> userList = Select.from(UserSite.class).where(Condition.prop("is_Active").eq("1")).list();
+    		if(userList.size() > 0){
+    			txtUserName.setText(userList.get(0).getUser_Name());
+    			txtPassword.setText(userList.get(0).getPass_Word());
+    		}
+        }
+        
+        btnLogin.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
 				if(txtUserName.getText().toString().equals("") || 
@@ -73,10 +81,18 @@ public class LoginFragment extends DialogFragment implements OfflineDataHelper.O
 				UserSite user = getUserInfo();
 		    	if(user != null){
 		    		if(user.getPass_Word().equals(txtPassword.getText().toString())){
+		    			List<UserSite> userList = Select.from(UserSite.class).where(Condition.prop("is_Active").eq("1")).list();
+		        		if(userList.size() > 0){			
+		        			userList.get(0).setIsActive("0");
+		        			userList.get(0).save();
+		        		}
 		    			user.setIsActive("1");
 		    			user.save();
 		    			getDialog().dismiss();
-		    			callNotify();
+		    			if(MenuId.equals("Notification"))
+		    				callNotify();
+		    			if(MenuId.equals("AddList"))
+		    				callAddList();
 		    		}else{
 		    			Toast.makeText(getActivity(), "Invalid Passowrd please try again.", Toast.LENGTH_LONG).show();
 		    		}
@@ -100,7 +116,11 @@ public class LoginFragment extends DialogFragment implements OfflineDataHelper.O
     private void callNotify(){
         NotificationFragment notifyFragment = new NotificationFragment().newInstance();
         notifyFragment.show(getFragmentManager().beginTransaction(), "NotificationFragment");					
+    }
 
+    private void callAddList(){
+        ListingCategoryDialog listFragment = new ListingCategoryDialog().newInstance();
+        listFragment.show(getFragmentManager().beginTransaction(), "ListDialogFragment");					
     }
     
     private UserSite getUserInfo(){
