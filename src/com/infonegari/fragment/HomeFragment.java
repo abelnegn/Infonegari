@@ -13,7 +13,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,8 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class HomeFragment extends Fragment{
-	final Handler handler = new Handler();
-	final Handler handlerNews = new Handler();
     private DialogHandler dlgHandler;   
     private static final int MENU_ITEM_LOGIN = 2000;
     		
@@ -86,6 +83,9 @@ public class HomeFragment extends Fragment{
 		    			where(Condition.prop("is_Active").eq("1")).list();
 				if(userSite.size() > 0){
 					ListingCategoryDialog categoryDialog = new ListingCategoryDialog().newInstance();
+					Bundle args = new Bundle();
+					args.putString("User_Name", userSite.get(0).getUser_Name());
+					categoryDialog.setArguments(args);
 					categoryDialog.show(getFragmentManager().beginTransaction(), "ListingDialog");
 				}else{
 					LoginFragment login = new LoginFragment().newInstance();

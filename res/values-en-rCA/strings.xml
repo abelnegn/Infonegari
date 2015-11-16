@@ -10,10 +10,13 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="btn_search">ፈልግ</string>
+    <string name="btn_add_list"> ዝርዝር ጨምር</string>
     <string name="btn_ok">እሺ</string>    
     <string name="btn_choose_photo">ፎቶ ምረጥ</string>
     <string name="btn_take_photo">ፎቶ አንሳ</string>
     <string name="btn_select">ምረጥ</string>
+    <string name="btn_upload_later">በኃላ ጫን</string>
+    <string name="btn_upload_now">አሁን ጫን</string>
     <string name="btn_back">ተመለስ</string>
     <string name="btn_login">ይግቡ</string>
     <string name="btn_cancel">ሰርዝ</string>
@@ -53,6 +56,7 @@
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
     <string name="dlg_listing_category">ዝርዝሮች</string>
+    <string name="txt_register">አዲስ ተጠቃሚ ከሆኑ እባክዎ www.infonegari.com/register.php ላይ ይመዝገቡ</string>
     
    	<!--     Dashboard -->
 	<string name="db_notification">መልክት አሳውቀኝ</string>
@@ -118,39 +122,39 @@
 
 	<!-- Add list category -->	
 	<string-array name="nav_drawer_add_list">
-		<item>Catering and Pastery</item>
-		<item>Wedding Decorators</item>
-		<item>Wedding Car</item>
-		<item>Music Band</item>
-		<item>Wedding Cards, Ring and Protocol</item>
-		<item>Wedding Cloths</item>	
-		<item>Wedding Halls</item>
-		<item>Beauty Saloons</item>
-		<item>Honey Moon Destination and Travel Agent</item>
-		<item>DJ</item>
-		<item>Photo and Video</item>
-		<item>Car for Sell</item>
-		<item>Used Items</item>
-		<item>House for Sell</item>
-		<item>Business for Sell</item>
-		<item>Rental Car</item>
-		<item>Rental House</item>
-		<item>Guest House</item>    
-		<item>Rental Buisness</item>
-		<item>Garage</item>
-		<item>Pharmacy</item>
-		<item>Clinic</item>
-		<item>Banks</item>
-		<item>Construction</item>
-		<item>Restaurant</item>
-		<item>Travel Agent</item> 
-		<item>Event</item>    
-		<item>Night Club</item>
-		<item>Resort</item>
-		<item>Cloths</item>
-		<item>Electronics</item>
-		<item>Furniture</item>
-		<item>Computer Accessories</item>			
+		<item>ምግብ ዝግጅትና ኬክ</item>
+		<item>አዳራሽ ማስጌጥ</item>
+		<item>የሙሽራ መኪና</item>
+		<item>የዘፈን ባንድ</item>
+		<item>የሠርግ ካርድ/ቀለበት/ፕሮቶኮል</item>
+		<item>የሠርግ ልብስ</item>	
+		<item>የሠርግ አዳራሽ</item>
+		<item>የዉበት ሳሎን</item>
+		<item>የጫጉላ ሽርሽርና የጉዞ ወኪል</item>
+		<item>ዲጄ</item>
+		<item>ፎቶና ቪዲዮ</item>
+		<item>የሚሸጥ መኪና</item>
+		<item>ያገለገሉ ዕቃዎች</item>
+		<item>የሚሸጥ ቤት</item>
+		<item>የሚሸጥ ንግድ ቤት</item>
+		<item>የሚከራይ መኪና</item>
+		<item>የሚከራይ ቤት</item>
+		<item>የእንግዳ ማረፊያ</item>    
+		<item>የሚከራይ ንግድ ቤት</item>
+		<item>ጋራዥ</item>
+		<item>ፋርማሲ</item>
+		<item>ክሊኒክ</item>
+		<item>ባንክ</item>
+		<item>የግንባታ አቅርቦትና አገልግሎቶች</item>
+		<item>ሬስቶራንት</item>
+		<item>የጉዞ ወኪል</item> 
+		<item>ልዩ ዝግጅቶች</item>    
+		<item>የምሽት ክበብ</item>
+		<item>ሪዞርት</item>
+		<item>የልብስ ሱቅ</item>
+		<item>ኤሌክትሮኒክስ</item>
+		<item>የቤትና የቢሮ እቃ</item>
+		<item>የኮምፒዩተር ዕቃዎች</item>			
 	</string-array>	
 	
 	<!-- 	Short message -->	

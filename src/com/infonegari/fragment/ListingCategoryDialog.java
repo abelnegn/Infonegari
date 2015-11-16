@@ -3,12 +3,11 @@ package com.infonegari.fragment;
 import java.util.HashMap;
 import java.util.List;
 
-import com.infonegari.activity.AddListActivity;
+import com.infonegari.activity.AddListFragment;
 import com.infonegari.activity.R;
 import com.infonegari.objects.db.AllCategory;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,9 +50,14 @@ public class ListingCategoryDialog extends DialogFragment{
 			
 			@Override
 			public void onClick(View arg0) {
-				Intent addListing = new Intent(getActivity(), AddListActivity.class);
-				addListing.putExtra("Add_Category", sp_category.getSelectedItem().toString());
-				startActivity(addListing);
+				FragmentManager fragmentManager = getFragmentManager();
+				AddListFragment fragment = new AddListFragment();
+				Bundle arguments = new Bundle();
+				arguments.putString("Add_Category", sp_category.getSelectedItem().toString());
+				arguments.putString("User_Name", getArguments().getString("User_Name"));
+				fragment.setArguments(arguments);
+				fragmentManager.beginTransaction()
+						.replace(R.id.frame_container, fragment).commit();
 				getDialog().dismiss();
 			}
 		});

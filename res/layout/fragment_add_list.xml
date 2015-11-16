@@ -31,6 +31,7 @@
         android:gravity="center">  
     	<Button
 	        android:id="@+id/choose_photo"
+	        android:layout_width="150dp"
 			style="@style/DashboardButton"
 			android:drawableTop="@drawable/btn_choose_photo"
 	        android:text="@string/btn_choose_photo"/>
@@ -42,6 +43,11 @@
 	        android:text="@string/btn_take_photo"/>
    	</LinearLayout>
  	
+  	<TextView 
+        android:layout_height= "wrap_content"
+		android:layout_width= "fill_parent"
+        android:id="@+id/image_name"/>	
+  	    
     <Button
         android:id="@+id/btn_add_list"
         style="@style/Button"
