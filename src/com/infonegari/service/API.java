@@ -8,7 +8,13 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Headers;
+import retrofit.http.Multipart;
+import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
+import retrofit.mime.TypedFile;
+
+import android.app.Application;
 
 import com.infonegari.objects.db.Ads;
 import com.infonegari.objects.db.AllCategory;
@@ -151,6 +157,7 @@ public class API {
     public static UsedItemService usedItemService;
     public static UserSiteService userSiteService;
     public static UpdateUserSiteService updateUserSiteService;
+    public static InsertAddListService insertAddListService;
     public static WeddingCarService weddingCarService;
     public static WeddingClothService weddingClothService;
     public static WeddingHallService weddingHallService;
@@ -231,6 +238,7 @@ public class API {
     	usedItemService = sRestAdapter.create(UsedItemService.class);
     	userSiteService = sRestAdapter.create(UserSiteService.class);
     	updateUserSiteService = sRestAdapter.create(UpdateUserSiteService.class);
+    	insertAddListService = sRestAdapter.create(InsertAddListService.class);
     	weddingCarService = sRestAdapter.create(WeddingCarService.class);
     	weddingClothService = sRestAdapter.create(WeddingClothService.class);
     	weddingHallService = sRestAdapter.create(WeddingHallService.class);
@@ -724,6 +732,17 @@ public class API {
         		@Query("notification") String notification, 
         		@Query("notify_category") String notifyCategory,
         		@Query("notify_location") String notifyLocation, Callback<String> callback);
+    }
+
+	public interface InsertAddListService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.INSERT_ADD_LIST)
+        public void insertAddList(@Query("add_list") String addList, Callback<String> callback);
+        
+	    @Multipart
+	    @POST(APIEndPoint.UPLOAD_IMAGE)
+	    public void uploadImage(@Query("folder") String folder,
+	    		@Part("pathImage") TypedFile file, Callback<String> callback);
     }
 	
 	public interface WeddingCarService{

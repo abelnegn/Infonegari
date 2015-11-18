@@ -10,6 +10,10 @@ public class AddList extends SugarRecord<AddList>{
 	private long LocationId;
 	private String discription;
 	private String category;
+	private String itemType1;
+	private String itemType2;
+	private String itemType3;
+	private String itemType4;
 	private String userId;
 	private String imageUrl;
 	
@@ -50,6 +54,38 @@ public class AddList extends SugarRecord<AddList>{
 		this.category = category;
 	}
 	
+	public String getItemType1() {
+		return itemType1;
+	}
+
+	public void setItemType1(String itemType1) {
+		this.itemType1 = itemType1;
+	}
+
+	public String getItemType2() {
+		return itemType2;
+	}
+
+	public void setItemType2(String itemType2) {
+		this.itemType2 = itemType2;
+	}
+
+	public String getItemType3() {
+		return itemType3;
+	}
+
+	public void setItemType3(String itemType3) {
+		this.itemType3 = itemType3;
+	}
+
+	public String getItemType4() {
+		return itemType4;
+	}
+
+	public void setItemType4(String itemType4) {
+		this.itemType4 = itemType4;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

@@ -76,6 +76,8 @@ public class APIEndPoint {
     public static final String USED_ITEMS = "/used_items.php";
     public static final String USER_SITE = "/user_site.php";
     public static final String UPDATE_USER_SITE = "/update_user_site.php";
+    public static final String INSERT_ADD_LIST = "/insert_add_list.php";
+    public static final String UPLOAD_IMAGE = "/fileUpload.php";
     public static final String WEDDING_CAR = "/wedding_car.php";
     public static final String WEDDING_CLOTH = "/wedding_cloth.php";
     public static final String WEDDING_HALL = "/wedding_halls.php";

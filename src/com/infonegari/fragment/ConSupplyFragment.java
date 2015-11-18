@@ -181,7 +181,7 @@ public class ConSupplyFragment extends Fragment{
 
         materialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_conMaterial.setAdapter(materialAdapter);
-        sp_location.setSelection(0);
+        sp_conMaterial.setSelection(0);
 	}
 	
 	private void init(){

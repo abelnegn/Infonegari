@@ -23,7 +23,7 @@ public class ListingCategoryDialog extends DialogFragment{
 	private Spinner sp_category;
 	private Button btnSelect, btnBack;
 	List<AllCategory> categoryList;
-	HashMap<String, Long> categoryHashMap = new HashMap<String, Long>();
+	HashMap<String, Integer> categoryHashMap = new HashMap<String, Integer>();
 	
     public static ListingCategoryDialog newInstance()
     {
@@ -53,6 +53,7 @@ public class ListingCategoryDialog extends DialogFragment{
 				FragmentManager fragmentManager = getFragmentManager();
 				AddListFragment fragment = new AddListFragment();
 				Bundle arguments = new Bundle();
+				arguments.putInt("Category_Id", categoryHashMap.get(sp_category.getSelectedItem().toString()));
 				arguments.putString("Add_Category", sp_category.getSelectedItem().toString());
 				arguments.putString("User_Name", getArguments().getString("User_Name"));
 				fragment.setArguments(arguments);
@@ -85,6 +86,10 @@ public class ListingCategoryDialog extends DialogFragment{
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfCategories);
 
+        for(int i=0; i< listOfCategories.length; i++){
+        	categoryHashMap.put(listOfCategories[i], i);
+        }
+        
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_category.setAdapter(categoryAdapter);
         sp_category.setSelection(0);

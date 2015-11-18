@@ -175,28 +175,39 @@ public class NotificationFragment extends DialogFragment{
     			if(notifyList[i].equals("34"))
     				cbEvent.setChecked(true);
     		}
-    		List<Location> locList = Select.from(Location.class).where(Condition.
-    				prop("Location_Id").eq(Long.valueOf(userSite.get(0).getNotify_Loc()))).list();
-    					
-    		if(locList.size() > 0){
-        		for (int i = 0; i < sp_location.getCount(); i++) {
-    		        String s = (String) sp_location.getItemAtPosition(i);
-    		        if (s.equalsIgnoreCase(locList.get(0).getLocationName())) {
-    		        	sp_location.setSelection(i);
-    		        }
-    		    }    			
+    		String notifyLoc = userSite.get(0).getNotify_Loc();
+    		if(notifyLoc != null){
+    			if(notifyLoc.equals("")){
+    				notifyLoc = "0";
+    			}
+	    		List<Location> locList = Select.from(Location.class).where(Condition.
+	    				prop("Location_Id").eq(Long.valueOf(notifyLoc))).list();
+	    					
+	    		if(locList.size() > 0){
+	        		for (int i = 0; i < sp_location.getCount(); i++) {
+	    		        String s = (String) sp_location.getItemAtPosition(i);
+	    		        if (s.equalsIgnoreCase(locList.get(0).getLocationName())) {
+	    		        	sp_location.setSelection(i);
+	    		        }
+	    		    }    			
+	    		}
     		}
-
-    		List<JobCategory> catList = Select.from(JobCategory.class).where(Condition.
-    				prop("jc_Id").eq(Long.valueOf(userSite.get(0).getNotify_Job()))).list();
-    					
-    		if(catList.size() > 0){
-        		for (int i = 0; i < sp_category.getCount(); i++) {
-    		        String s = (String) sp_category.getItemAtPosition(i);
-    		        if (s.equalsIgnoreCase(catList.get(0).getCategory_Name())) {
-    		        	sp_category.setSelection(i);
-    		        }
-    		    }    			
+    		String notifyJob = userSite.get(0).getNotify_Job();
+    		if(notifyJob != null){
+    			if(notifyJob.equals("")){
+    				notifyJob = "0";
+    			}
+        		List<JobCategory> catList = Select.from(JobCategory.class).where(Condition.
+        				prop("jc_Id").eq(Long.valueOf(notifyJob))).list();
+        					
+        		if(catList.size() > 0){
+            		for (int i = 0; i < sp_category.getCount(); i++) {
+        		        String s = (String) sp_category.getItemAtPosition(i);
+        		        if (s.equalsIgnoreCase(catList.get(0).getCategory_Name())) {
+        		        	sp_category.setSelection(i);
+        		        }
+        		    }    			
+        		}    			
     		}
     	}
     }
