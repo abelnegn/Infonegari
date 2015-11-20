@@ -186,7 +186,7 @@ public class WeddingClothFragment extends Fragment{
 	}
 	
 	private void init(){
-		weddingClothList = Select.from(WeddingCloth.class).orderBy("id Desc").list();
+		weddingClothList = Select.from(WeddingCloth.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new WeddingClothAdapter(getActivity(), weddingClothList);
 		mWeddingClothList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -223,7 +223,7 @@ public class WeddingClothFragment extends Fragment{
 		weddingClothList = WeddingCloth.findWithQuery(WeddingCloth.class, 
     			"SELECT * FROM  Wedding_Cloth WHERE ClothType = " + typeId + 
     			" AND Wedding_Cloth_Name LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" AND ServiceType = " + serviceId + " ORDER BY id Desc");
+    			" AND ServiceType = " + serviceId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new WeddingClothAdapter(getActivity(), weddingClothList);
 		mWeddingClothList.setAdapter(adapter);		

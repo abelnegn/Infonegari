@@ -197,7 +197,7 @@ public class CinemaFragment extends Fragment{
 	}
 	
 	private void init(){
-		cinemaList = Select.from(Cinema.class).orderBy("id Desc").list(); 
+		cinemaList = Select.from(Cinema.class).orderBy("is_Featured Desc, id Desc").list(); 
 		cinemaAllList = new ArrayList<Cinema>();
 		for(Cinema cinema : cinemaList){
 			String[] hallSeparated = cinema.getCalendar().split("@");
@@ -250,7 +250,7 @@ public class CinemaFragment extends Fragment{
 		
 		cinemaList = Cinema.findWithQuery(Cinema.class, 
     			"SELECT * FROM  Cinema WHERE Cinema_Title LIKE " + title + 
-    			" AND Calendar LIKE " + calShowDate + " AND MovieType = " + typeId + " ORDER BY id Desc");
+    			" AND Calendar LIKE " + calShowDate + " AND MovieType = " + typeId + " ORDER BY is_Featured Desc, id Desc");
 
 		cinemaAllList = new ArrayList<Cinema>();
 		for(Cinema cinema : cinemaList){

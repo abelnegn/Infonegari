@@ -139,7 +139,7 @@ public class PharmacyFragment extends Fragment{
 	}
 
 	private void init(){
-		pharmacyList = Select.from(Pharmacy.class).orderBy("id Desc").list();
+		pharmacyList = Select.from(Pharmacy.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new PharmacyAdapter(getActivity(), pharmacyList);
 		mPharmacyList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class PharmacyFragment extends Fragment{
 		
 		pharmacyList = Pharmacy.findWithQuery(Pharmacy.class, 
     			"SELECT * FROM  Pharmacy WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new PharmacyAdapter(getActivity(), pharmacyList);
 		mPharmacyList.setAdapter(adapter);

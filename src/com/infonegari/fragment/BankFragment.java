@@ -141,7 +141,7 @@ public class BankFragment extends Fragment{
 	}
 
 	private void init(){
-		bankList = Select.from(Bank.class).orderBy("id Desc").list();
+		bankList = Select.from(Bank.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new BankAdapter(getActivity(), bankList);
 		mBankList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -162,7 +162,7 @@ public class BankFragment extends Fragment{
 		
 		bankList = Bank.findWithQuery(Bank.class, 
     			"SELECT * FROM  Bank WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new BankAdapter(getActivity(), bankList);
 		mBankList.setAdapter(adapter);	

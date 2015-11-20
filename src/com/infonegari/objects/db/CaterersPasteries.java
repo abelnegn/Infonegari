@@ -14,6 +14,7 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 	private long MemberId;
 	private String Discription;
 	private String User_Name;
+	private String isFeatured;
 
     public boolean isNew() {
         long count = Select.from(CaterersPasteries.class).where(Condition.prop("id").eq(id)).count();
@@ -96,6 +97,16 @@ public class CaterersPasteries extends SugarRecord<CaterersPasteries> {
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 

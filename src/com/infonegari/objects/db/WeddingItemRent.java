@@ -12,6 +12,7 @@ public class WeddingItemRent extends SugarRecord<WeddingItemRent>{
 	private String WeddingItemPrice;
 	private long LocationId;
 	private long MemberId;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(WeddingItemRent.class).where(Condition.prop("id").eq(id)).count();
@@ -64,6 +65,14 @@ public class WeddingItemRent extends SugarRecord<WeddingItemRent>{
 
 	public void setMemberId(long memberId) {
 		MemberId = memberId;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	@Override

@@ -139,7 +139,7 @@ public class GarageFragment extends Fragment{
 	}
 
 	private void init(){
-		garageList = Select.from(Guarage.class).orderBy("id Desc").list();
+		garageList = Select.from(Guarage.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new GarageAdapter(getActivity(), garageList);
 		mGarageList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -160,7 +160,7 @@ public class GarageFragment extends Fragment{
 		
 		garageList = Guarage.findWithQuery(Guarage.class, 
     			"SELECT * FROM  Guarage WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new GarageAdapter(getActivity(), garageList);
 		mGarageList.setAdapter(adapter);	

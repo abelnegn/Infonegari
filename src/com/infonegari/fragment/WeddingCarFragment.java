@@ -163,7 +163,7 @@ public class WeddingCarFragment extends Fragment{
 	}
 	
 	private void init(){
-		weddingCarList = Select.from(WeddingCar.class).orderBy("id Desc").list();
+		weddingCarList = Select.from(WeddingCar.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new WeddingCarAdapter(getActivity(), weddingCarList);
 		mWeddingCarList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -191,7 +191,7 @@ public class WeddingCarFragment extends Fragment{
 		weddingCarList = WeddingCar.findWithQuery(WeddingCar.class, 
     			"SELECT * FROM  Wedding_Car WHERE Car_Type_Id = " + typeId + 
     			" AND wedding_Car_Name LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" ORDER BY id Desc");
+    			" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new WeddingCarAdapter(getActivity(), weddingCarList);
 		mWeddingCarList.setAdapter(adapter);		

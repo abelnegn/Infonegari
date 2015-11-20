@@ -237,7 +237,7 @@ public class AddListFragment extends Fragment {
        List<AddList> addList = Select.from(AddList.class).list();
        if(addList.size() > 0){
            dlgHandler = new DialogHandler();
-           dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_upload_message), 
+           dlgHandler.Confirm(getActivity(), getString(R.string.btn_upload_now) + "?", getString(R.string.dlg_upload_message), 
     				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), okUpload());    	   
        }
 	       
@@ -1287,9 +1287,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO garage(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Garage_Type, Job_Type)" + 
+    		insertStms = "INSERT INTO garage(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Garage_Type, Job_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1300,9 +1300,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO clinic(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Clinic_Type, Job_Type)" + 
+    		insertStms = "INSERT INTO clinic(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Clinic_Type, Job_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', 0)";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', 0)";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1313,9 +1313,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO pharma(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Pharma_Type)" + 
+    		insertStms = "INSERT INTO pharma(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Pharma_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1339,9 +1339,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO handy(Item_Name, LocationId, Discription, isFeatured, User_Name, Image, Category)" + 
+    		insertStms = "INSERT INTO handy(Item_Name, LocationId, Discription, User_Name, Image, Category)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1352,9 +1352,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO restaurant(Item_Name, LocationId, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, RestaurantTypeId)" + 
+    		insertStms = "INSERT INTO restaurant(Item_Name, LocationId, Discription, MemberId, Latitude, Longitude, User_Name, Image, RestaurantTypeId)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", '" + itemDiscription + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ")";
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ")";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1365,9 +1365,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO travel_agent(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    		insertStms = "INSERT INTO travel_agent(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1378,9 +1378,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO event(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Event_Type)" + 
+    		insertStms = "INSERT INTO event(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Event_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1391,9 +1391,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO night_club(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    		insertStms = "INSERT INTO night_club(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1404,9 +1404,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO resort(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    		insertStms = "INSERT INTO resort(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1430,9 +1430,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_electronics(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Catagory)" + 
+    		insertStms = "INSERT INTO shop_electronics(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Catagory)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1443,9 +1443,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_furniture(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Country, Item_Type)" + 
+    		insertStms = "INSERT INTO shop_furniture(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Country, Item_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1456,9 +1456,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_computer(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Item_Type)" + 
+    		insertStms = "INSERT INTO shop_computer(Item_Name, LocationId, Price, Discription, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Item_Type)" + 
     					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
+    					  "', '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();

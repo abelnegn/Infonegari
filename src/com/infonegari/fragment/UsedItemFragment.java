@@ -162,7 +162,7 @@ public class UsedItemFragment extends Fragment{
 	}
 	
 	private void init(){
-		usedItemList = Select.from(UsedItem.class).orderBy("id Desc").list();
+		usedItemList = Select.from(UsedItem.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new UsedItemAdapter(getActivity(), usedItemList);
 		mUsedItemList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -190,7 +190,7 @@ public class UsedItemFragment extends Fragment{
 		usedItemList = UsedItem.findWithQuery(UsedItem.class, 
     			"SELECT * FROM  Used_Item WHERE Used_Item_Name LIKE " +
     					title + " AND Location_Id = " + locationId + 
-    					" AND Used_Item_Type_Id = " + typeId + " ORDER BY id Desc");
+    					" AND Used_Item_Type_Id = " + typeId + " ORDER BY is_Featured Desc, id Desc");
 
 		
 		adapter = new UsedItemAdapter(getActivity(), usedItemList);

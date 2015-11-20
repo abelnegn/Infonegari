@@ -14,6 +14,7 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 	private String WorkType;
 	private String Discription;
 	private String User_Name;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(PhotoVideo.class).where(Condition.prop("id").eq(id)).count();
@@ -96,6 +97,16 @@ public class PhotoVideo extends SugarRecord<PhotoVideo>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 

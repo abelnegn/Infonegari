@@ -139,7 +139,7 @@ public class EventFragment extends Fragment{
 	}
 
 	private void init(){
-		eventList = Select.from(Event.class).orderBy("id Desc").list();
+		eventList = Select.from(Event.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new EventAdapter(getActivity(), eventList);
 		mEventList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -160,7 +160,7 @@ public class EventFragment extends Fragment{
 		
 		eventList = Event.findWithQuery(Event.class, 
     			"SELECT * FROM  Event WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new EventAdapter(getActivity(), eventList);
 		mEventList.setAdapter(adapter);	

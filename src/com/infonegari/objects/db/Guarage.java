@@ -14,6 +14,7 @@ public class Guarage extends SugarRecord<Guarage>{
 	private String Garage_Type;
 	private String Job_Type;
 	private String User_Name;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(Guarage.class).where(Condition.prop("id").eq(id)).count();
@@ -82,6 +83,14 @@ public class Guarage extends SugarRecord<Guarage>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	@Override

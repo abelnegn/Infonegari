@@ -188,7 +188,7 @@ public class ShopClothFragment extends Fragment{
 	}
 	
 	private void init(){
-		shopClothList = Select.from(ShopCloth.class).orderBy("id Desc").list();
+		shopClothList = Select.from(ShopCloth.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ShopClothAdapter(getActivity(), shopClothList);
 		mShopClothList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -225,7 +225,7 @@ public class ShopClothFragment extends Fragment{
 		shopClothList = ShopCloth.findWithQuery(ShopCloth.class, 
     			"SELECT * FROM  Shop_Cloth WHERE Type = " + typeId + 
     			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" AND Catagory = " + categoryId + " ORDER BY id Desc");
+    			" AND Catagory = " + categoryId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ShopClothAdapter(getActivity(), shopClothList);
 		mShopClothList.setAdapter(adapter);	

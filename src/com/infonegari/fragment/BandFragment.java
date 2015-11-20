@@ -141,7 +141,7 @@ public class BandFragment extends Fragment{
 	}
 	
 	private void init(){
-		bandList = Select.from(Band.class).orderBy("id Desc").list();
+		bandList = Select.from(Band.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new BandAdapter(getActivity(), bandList);
 		mBandList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -163,7 +163,7 @@ public class BandFragment extends Fragment{
 		
 		bandList = Band.findWithQuery(Band.class, 
     			"SELECT * FROM  Band WHERE Band_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new BandAdapter(getActivity(), bandList);
 		mBandList.setAdapter(adapter);

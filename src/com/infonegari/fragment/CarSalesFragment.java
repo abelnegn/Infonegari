@@ -165,7 +165,7 @@ public class CarSalesFragment extends Fragment{
 
 	private void init(){
 		carList = Select.from(CarListing.class).where(Condition.prop("is_Car_Sale").
-				eq("1")).orderBy("id Desc").list();
+				eq("1")).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new CarRentAdapter(getActivity(), carList);
 		mCarList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -197,7 +197,7 @@ public class CarSalesFragment extends Fragment{
 		carList = CarListing.findWithQuery(CarListing.class, 
     			"SELECT * FROM  Car_Listing WHERE is_Car_Sale = '1' AND Year = " + year + " AND Car_Name LIKE " + 
     					title + " AND Car_Type_Id = " + typeId + " AND Location_Id = " + locationId +
-    					" ORDER BY id Desc");
+    					" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new CarRentAdapter(getActivity(), carList);
 		mCarList.setAdapter(adapter);	

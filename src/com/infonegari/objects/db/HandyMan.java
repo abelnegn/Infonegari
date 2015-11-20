@@ -7,10 +7,12 @@ import com.orm.query.Select;
 
 public class HandyMan extends SugarRecord<HandyMan>{
 	private long handyManId;
-	private String HandyManName;
+	private String Item_Name;
+	private String Category;
 	private long LocationId;
-	private long MemberId;
-	private String HandyManProfession;
+	private String User_Name;
+	private String Discription;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(HandyMan.class).where(Condition.prop("id").eq(id)).count();
@@ -25,14 +27,20 @@ public class HandyMan extends SugarRecord<HandyMan>{
 		this.handyManId = handyManId;
 	}
 
-
-
-	public String getHandyManName() {
-		return HandyManName;
+	public String getItem_Name() {
+		return Item_Name;
 	}
 
-	public void setHandyManName(String handyManName) {
-		HandyManName = handyManName;
+	public void setItem_Name(String item_Name) {
+		Item_Name = item_Name;
+	}
+
+	public String getCategory() {
+		return Category;
+	}
+
+	public void setCategory(String category) {
+		Category = category;
 	}
 
 	public long getLocationId() {
@@ -43,22 +51,30 @@ public class HandyMan extends SugarRecord<HandyMan>{
 		LocationId = locationId;
 	}
 
-	public long getMemberId() {
-		return MemberId;
+	public String getUser_Name() {
+		return User_Name;
 	}
 
-	public void setMemberId(long memberId) {
-		MemberId = memberId;
+	public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
 	}
 
-	public String getHandyManProfession() {
-		return HandyManProfession;
+	public String getDiscription() {
+		return Discription;
 	}
 
-	public void setHandyManProfession(String handyManProfession) {
-		HandyManProfession = handyManProfession;
+	public void setDiscription(String discription) {
+		Discription = discription;
 	}
-    
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

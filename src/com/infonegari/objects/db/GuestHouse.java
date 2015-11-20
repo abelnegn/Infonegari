@@ -13,6 +13,7 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 	private String Price;
 	private String GuestHouseDiscripton;
 	private String User_Name;
+	private String isFeatured;
 
     public boolean isNew() {
         long count = Select.from(GuestHouse.class).where(Condition.prop("id").eq(id)).count();
@@ -78,6 +79,16 @@ public class GuestHouse extends SugarRecord<GuestHouse>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 

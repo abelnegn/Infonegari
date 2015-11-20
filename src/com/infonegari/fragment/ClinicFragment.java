@@ -112,9 +112,7 @@ public class ClinicFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveClinic();
-		
+
 		fetchLocation();
 		
 		init();
@@ -141,7 +139,7 @@ public class ClinicFragment extends Fragment{
 	}
 	
 	private void init(){
-		clinicList = Select.from(Clinic.class).orderBy("id Desc").list();
+		clinicList = Select.from(Clinic.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ClinicAdapter(getActivity(), clinicList);
 		mClinicList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -162,7 +160,7 @@ public class ClinicFragment extends Fragment{
 		
 		clinicList = Clinic.findWithQuery(Clinic.class, 
     			"SELECT * FROM  Clinic WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ClinicAdapter(getActivity(), clinicList);
 		mClinicList.setAdapter(adapter);	

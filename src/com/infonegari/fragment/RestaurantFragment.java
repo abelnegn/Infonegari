@@ -162,7 +162,7 @@ public class RestaurantFragment extends Fragment{
 	}
 	
 	private void init(){
-		restaurantList = Select.from(Restaurant.class).orderBy("id Desc").list();
+		restaurantList = Select.from(Restaurant.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new RestaurantAdapter(getActivity(), restaurantList);
 		mRestaurantList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -190,7 +190,7 @@ public class RestaurantFragment extends Fragment{
 		restaurantList = Restaurant.findWithQuery(Restaurant.class, 
     			"SELECT * FROM  Restaurant WHERE Restaurant_Type_Id = " + typeId + 
     			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" ORDER BY id Desc");
+    			" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new RestaurantAdapter(getActivity(), restaurantList);
 		mRestaurantList.setAdapter(adapter);

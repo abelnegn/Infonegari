@@ -13,6 +13,7 @@ public class Bank extends SugarRecord<Bank>{
 	private String Discription;
 	private String Branch_Name;
 	private String User_Name;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(Bank.class).where(Condition.prop("id").eq(id)).count();
@@ -73,6 +74,14 @@ public class Bank extends SugarRecord<Bank>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	@Override

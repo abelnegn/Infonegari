@@ -141,7 +141,7 @@ public class DJFragment extends Fragment{
 	}
 	
 	private void init(){
-		djList = Select.from(DJ.class).orderBy("id Desc").list();
+		djList = Select.from(DJ.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new DJAdapter(getActivity(), djList);
 		mDJList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -162,7 +162,7 @@ public class DJFragment extends Fragment{
 		
 		djList = DJ.findWithQuery(DJ.class, 
     			"SELECT * FROM  DJ WHERE Dj_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new DJAdapter(getActivity(), djList);
 		mDJList.setAdapter(adapter);

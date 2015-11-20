@@ -139,6 +139,7 @@ public class OfflineDataHelper {
     	newClinic.setClinic_Type(clinic.getClinic_Type());
     	newClinic.setJob_Type(clinic.getJob_Type());
     	newClinic.setUser_Name(clinic.getUser_Name());
+    	newClinic.setIsFeatured(clinic.getIsFeatured());
 	  	
     	newClinic.save();
     }
@@ -175,6 +176,7 @@ public class OfflineDataHelper {
     	newJobs.setDead_Line(jobs.getDead_Line());
     	newJobs.setJob_Duration(jobs.getJob_Duration());
     	newJobs.setUser_Name(jobs.getUser_Name());
+    	newJobs.setIsFeatured(jobs.getIsFeatured());
 	  	
     	newJobs.save();
     }
@@ -250,6 +252,7 @@ public class OfflineDataHelper {
     	newNc.setDiscription(nc.getDiscription());
     	newNc.setLocationId(nc.getLocationId());
     	newNc.setUser_Name(nc.getUser_Name());
+    	newNc.setIsFeatured(nc.getIsFeatured());
 	  	
     	newNc.save();
     }
@@ -263,6 +266,7 @@ public class OfflineDataHelper {
     	newPharmacy.setPharma_Type(pharmacy.getPharma_Type());
     	newPharmacy.setPrice(pharmacy.getPrice());
     	newPharmacy.setUser_Name(pharmacy.getUser_Name());
+    	newPharmacy.setIsFeatured(pharmacy.getIsFeatured());
 	  	
     	newPharmacy.save();
     }
@@ -326,6 +330,7 @@ public class OfflineDataHelper {
     	newBand.setDiscription(band.getDiscription());
     	newBand.setPrice(band.getPrice());
     	newBand.setUser_Name(band.getUser_Name());
+    	newBand.setIsFeatured(band.getIsFeatured());
     	
     	newBand.save();
     }
@@ -339,6 +344,7 @@ public class OfflineDataHelper {
     	newBank.setDiscription(bank.getDiscription());
     	newBank.setBranch_Name(bank.getBranch_Name());
     	newBank.setUser_Name(bank.getUser_Name());
+    	newBank.setIsFeatured(bank.getIsFeatured());
     	
     	newBank.save();
     }
@@ -353,6 +359,7 @@ public class OfflineDataHelper {
     	newBeautySaloon.setMemberId(beautySaloon.getMemberId());
     	newBeautySaloon.setDiscription(beautySaloon.getDiscription());
     	newBeautySaloon.setUser_Name(beautySaloon.getUser_Name());
+    	newBeautySaloon.setIsFeatured(beautySaloon.getIsFeatured());
     	
     	newBeautySaloon.save();
     }
@@ -386,6 +393,7 @@ public class OfflineDataHelper {
     	newCarListing.setMemberId(carListing.getMemberId());
     	newCarListing.setIsCarSale(carListing.getIsCarSale());
     	newCarListing.setUser_Name(carListing.getUser_Name());
+    	newCarListing.setIsFeatured(carListing.getIsFeatured());
     	
     	newCarListing.save();
     }
@@ -400,6 +408,7 @@ public class OfflineDataHelper {
     	newCp.setMemberId(caterersPasteries.getMemberId());
     	newCp.setDiscription(caterersPasteries.getDiscription());
     	newCp.setUser_Name(caterersPasteries.getUser_Name());
+    	newCp.setIsFeatured(caterersPasteries.getIsFeatured());
     	
     	newCp.save();
     }
@@ -413,6 +422,7 @@ public class OfflineDataHelper {
     	newCinema.setMovie_Type(cinema.getMovie_Type());
     	newCinema.setLocationId(cinema.getLocationId());
     	newCinema.setUser_Name(cinema.getUser_Name());
+    	newCinema.setIsFeatured(cinema.getIsFeatured());
     	
     	newCinema.save();
     }
@@ -428,6 +438,7 @@ public class OfflineDataHelper {
     	newConstruction.setPrice(construction.getPrice());
     	newConstruction.setDiscription(construction.getDiscription());
     	newConstruction.setUser_Name(construction.getUser_Name());
+    	newConstruction.setIsFeatured(construction.getIsFeatured());
     	
     	newConstruction.save();
     }
@@ -457,6 +468,7 @@ public class OfflineDataHelper {
     	newDecorator.setDiscription(decorator.getDiscription());
     	newDecorator.setMemberId(decorator.getMemberId());
     	newDecorator.setUser_Name(decorator.getUser_Name());
+    	newDecorator.setIsFeatured(decorator.getIsFeatured());
     	
     	newDecorator.save();
     }
@@ -470,6 +482,7 @@ public class OfflineDataHelper {
     	newDj.setMemberId(dj.getMemberId());
     	newDj.setDiscription(dj.getDiscription());
     	newDj.setUser_Name(dj.getUser_Name());
+    	newDj.setIsFeatured(dj.getIsFeatured());
     	
     	newDj.save();
     }
@@ -499,6 +512,7 @@ public class OfflineDataHelper {
     	newEvent.setLocationId(event.getLocationId());
     	newEvent.setEvent_Type(event.getEvent_Type());
     	newEvent.setUser_Name(event.getUser_Name());
+    	newEvent.setIsFeatured(event.getIsFeatured());
     	
     	newEvent.save();
     }
@@ -527,6 +541,7 @@ public class OfflineDataHelper {
     	newGuarage.setLocationId(guarage.getLocationId());
     	newGuarage.setPrice(guarage.getPrice());
     	newGuarage.setUser_Name(guarage.getUser_Name());
+    	newGuarage.setIsFeatured(guarage.getIsFeatured());
     	
     	newGuarage.save();
     }
@@ -540,6 +555,7 @@ public class OfflineDataHelper {
     	newGuestHouse.setPrice(guestHouse.getPrice());
     	newGuestHouse.setGuestHouseDiscripton(guestHouse.getGuestHouseDiscripton());
     	newGuestHouse.setUser_Name(guestHouse.getUser_Name());
+    	newGuestHouse.setIsFeatured(guestHouse.getIsFeatured());
     	
     	newGuestHouse.save();
     }
@@ -554,11 +570,14 @@ public class OfflineDataHelper {
     
     public void saveHandyManData(HandyMan handyMan){
     	HandyMan newHandyMan = new HandyMan();
-    	newHandyMan.setHandyManId(handyMan.getHandyManId());
-    	newHandyMan.setHandyManName(handyMan.getHandyManName());
-    	newHandyMan.setHandyManProfession(handyMan.getHandyManProfession());
+    	newHandyMan.setHandyManId(handyMan.getId());
+    	newHandyMan.setItem_Name(handyMan.getItem_Name());
+    	newHandyMan.setCategory(handyMan.getCategory());
     	newHandyMan.setLocationId(handyMan.getLocationId());
-    	newHandyMan.setMemberId(handyMan.getMemberId());
+    	newHandyMan.setDiscription(handyMan.getDiscription());
+    	newHandyMan.setIsFeatured(handyMan.getIsFeatured());
+    	newHandyMan.setUser_Name(handyMan.getUser_Name());
+    	newHandyMan.setIsFeatured(handyMan.getIsFeatured());
     	
     	newHandyMan.save();
     }
@@ -572,6 +591,7 @@ public class OfflineDataHelper {
     	newHdnta.setPrice(hdnta.getPrice());
     	newHdnta.setDiscription(hdnta.getDiscription());
     	newHdnta.setUser_Name(hdnta.getUser_Name());
+    	newHdnta.setIsFeatured(hdnta.getIsFeatured());
     	
     	newHdnta.save();
     }
@@ -590,6 +610,7 @@ public class OfflineDataHelper {
     	newHL.setIsSale(houseListing.getIsSale());
     	newHL.setIsBusiness(houseListing.getIsBusiness());
     	newHL.setUser_Name(houseListing.getUser_Name());
+    	newHL.setIsFeatured(houseListing.getIsFeatured());
     	
     	newHL.save();
     }
@@ -604,6 +625,7 @@ public class OfflineDataHelper {
     	newPV.setWorkType(photoVideo.getWorkType());
     	newPV.setDiscription(photoVideo.getDiscription());
     	newPV.setUser_Name(photoVideo.getUser_Name());
+    	newPV.setIsFeatured(photoVideo.getIsFeatured());
     	
     	newPV.save();
     	
@@ -626,6 +648,7 @@ public class OfflineDataHelper {
     	newResort.setLocationId(resort.getLocationId());
     	newResort.setPrice(resort.getPrice());
     	newResort.setUser_Name(resort.getUser_Name());
+    	newResort.setIsFeatured(resort.getIsFeatured());
     	
     	newResort.save();
     }
@@ -639,6 +662,7 @@ public class OfflineDataHelper {
     	newRestaurant.setDiscription(restaurant.getDiscription());
     	newRestaurant.setMemberId(restaurant.getMemberId());
     	newRestaurant.setUser_Name(restaurant.getUser_Name());
+    	newRestaurant.setIsFeatured(restaurant.getIsFeatured());
     	
     	newRestaurant.save();
     }
@@ -691,6 +715,7 @@ public class OfflineDataHelper {
     	newSc.setSize(sc.getSize());
     	newSc.setType(sc.getType());
     	newSc.setUser_Name(sc.getUser_Name());
+    	newSc.setIsFeatured(sc.getIsFeatured());
     	
     	newSc.save();
     }
@@ -706,6 +731,7 @@ public class OfflineDataHelper {
     	newSc.setPrice(sc.getPrice());
     	newSc.setService_Type(sc.getService_Type());
     	newSc.setUser_Name(sc.getUser_Name());
+    	newSc.setIsFeatured(sc.getIsFeatured());
     	
     	newSc.save();
     }
@@ -721,6 +747,7 @@ public class OfflineDataHelper {
     	newSe.setPrice(se.getPrice());
     	newSe.setService_Type(se.getService_Type());
     	newSe.setUser_Name(se.getUser_Name());
+    	newSe.setIsFeatured(se.getIsFeatured());
     	
     	newSe.save();
     }
@@ -735,6 +762,7 @@ public class OfflineDataHelper {
     	newSf.setLocationId(sf.getLocationId());
     	newSf.setPrice(sf.getPrice());
     	newSf.setUser_Name(sf.getUser_Name());
+    	newSf.setIsFeatured(sf.getIsFeatured());
     	
     	newSf.save();
     }
@@ -747,6 +775,7 @@ public class OfflineDataHelper {
     	newTaxi.setLocationId(taxi.getLocationId());
     	newTaxi.setPrice(taxi.getPrice());
     	newTaxi.setUser_Name(taxi.getUser_Name());
+    	newTaxi.setIsFeatured(taxi.getIsFeatured());
     	
     	newTaxi.save();
     }
@@ -775,6 +804,7 @@ public class OfflineDataHelper {
     	newTa.setLocationId(ta.getLocationId());
     	newTa.setPrice(ta.getPrice());
     	newTa.setUser_Name(ta.getUser_Name());
+    	newTa.setIsFeatured(ta.getIsFeatured());
     	
     	newTa.save();
     }
@@ -789,6 +819,7 @@ public class OfflineDataHelper {
     	newUI.setDiscription(usedItem.getDiscription());
     	newUI.setMemberId(usedItem.getMemberId());
     	newUI.setUser_Name(usedItem.getUser_Name());
+    	newUI.setIsFeatured(usedItem.getIsFeatured());
     	
     	newUI.save();
     	
@@ -824,6 +855,7 @@ public class OfflineDataHelper {
     	newWC.setMemberId(weddingCar.getMemberId());
     	newWC.setDiscription(weddingCar.getDiscription());
     	newWC.setUser_Name(weddingCar.getUser_Name());
+    	newWC.setIsFeatured(weddingCar.getIsFeatured());
     	
     	newWC.save();
     }
@@ -840,6 +872,7 @@ public class OfflineDataHelper {
     	newWC.setCloth_Type(weddingCloth.getCloth_Type());
     	newWC.setService_Type(weddingCloth.getService_Type());
     	newWC.setUser_Name(weddingCloth.getUser_Name());
+    	newWC.setIsFeatured(weddingCloth.getIsFeatured());
     	
     	newWC.save();
     }
@@ -859,6 +892,7 @@ public class OfflineDataHelper {
     	newWH.setLunch(weddingHall.getLunch());
     	newWH.setDinner(weddingHall.getDinner());
     	newWH.setUser_Name(weddingHall.getUser_Name());
+    	newWH.setIsFeatured(weddingHall.getIsFeatured());
     	
     	newWH.save();
     }
@@ -871,6 +905,7 @@ public class OfflineDataHelper {
     	newWIR.setWeddingItemPrice(weddingItemRent.getWeddingItemPrice());
     	newWIR.setLocationId(weddingItemRent.getLocationId());
     	newWIR.setMemberId(weddingItemRent.getMemberId());
+    	newWIR.setIsFeatured(weddingItemRent.getIsFeatured());
     	
     	newWIR.save();
     }
@@ -884,6 +919,7 @@ public class OfflineDataHelper {
     	newWCRP.setDiscription(wcrp.getDiscription());
     	newWCRP.setMemberId(wcrp.getMemberId());
     	newWCRP.setUser_Name(wcrp.getUser_Name());
+    	newWCRP.setIsFeatured(wcrp.getIsFeatured());
     	
     	newWCRP.save();
     	

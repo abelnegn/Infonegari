@@ -162,7 +162,7 @@ public class GuestHouseFragment extends Fragment{
 	}
 	
 	private void init(){
-		houseList = Select.from(GuestHouse.class).orderBy("id Desc").list();
+		houseList = Select.from(GuestHouse.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new GuestHouseAdapter(getActivity(), houseList);
 		mHouseList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -183,7 +183,7 @@ public class GuestHouseFragment extends Fragment{
 		
 		houseList = GuestHouse.findWithQuery(GuestHouse.class, 
     			"SELECT * FROM  Guest_House WHERE Guest_House_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new GuestHouseAdapter(getActivity(), houseList);
 		mHouseList.setAdapter(adapter);		

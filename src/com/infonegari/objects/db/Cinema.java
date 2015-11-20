@@ -14,6 +14,7 @@ public class Cinema extends SugarRecord<Cinema>{
 	private long Movie_Type;
 	private long LocationId;
 	private String User_Name;
+	private String isFeatured;
 	@Ignore
 	private String hallId;
 	@Ignore
@@ -82,6 +83,14 @@ public class Cinema extends SugarRecord<Cinema>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	public String getHallId() {

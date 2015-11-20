@@ -185,7 +185,7 @@ public class ConSupplyFragment extends Fragment{
 	}
 	
 	private void init(){
-		constructionList = Select.from(Construction.class).orderBy("id Desc").list();
+		constructionList = Select.from(Construction.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ConSupplyAdapter(getActivity(), constructionList);
 		mConstructionList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -218,7 +218,7 @@ public class ConSupplyFragment extends Fragment{
 		constructionList = Construction.findWithQuery(Construction.class, 
     			"SELECT * FROM  Construction WHERE Construction_Title LIKE " + title + 
     			" AND Construction_Machine_Id = " + machineId + " AND Construction_Material_Id = " +
-    			materialId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    			materialId + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ConSupplyAdapter(getActivity(), constructionList);
 		mConstructionList.setAdapter(adapter);	

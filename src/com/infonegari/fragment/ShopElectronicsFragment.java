@@ -186,7 +186,7 @@ public class ShopElectronicsFragment extends Fragment{
 	}
 	
 	private void init(){
-		shopElectronicList = Select.from(ShopElectronic.class).orderBy("id Desc").list();
+		shopElectronicList = Select.from(ShopElectronic.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ShopElectronicsAdapter(getActivity(), shopElectronicList);
 		mShopElectronicList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -223,7 +223,7 @@ public class ShopElectronicsFragment extends Fragment{
 		shopElectronicList = ShopElectronic.findWithQuery(ShopElectronic.class, 
     			"SELECT * FROM  Shop_Electronic WHERE ServiceType = " + typeId + 
     			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" AND Catagory = " + categoryId + " ORDER BY id Desc");
+    			" AND Catagory = " + categoryId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ShopElectronicsAdapter(getActivity(), shopElectronicList);
 		mShopElectronicList.setAdapter(adapter);

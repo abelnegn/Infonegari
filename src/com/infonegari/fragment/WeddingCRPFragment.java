@@ -139,7 +139,7 @@ public class WeddingCRPFragment extends Fragment{
 	}
 
 	private void init(){
-		wcrpList = Select.from(WeddingCardRingProtocol.class).orderBy("id Desc").list();
+		wcrpList = Select.from(WeddingCardRingProtocol.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new WeddingCRPAdapter(getActivity(), wcrpList);
 		mWcrpList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class WeddingCRPFragment extends Fragment{
 		
 		wcrpList = WeddingCardRingProtocol.findWithQuery(WeddingCardRingProtocol.class, 
     			"SELECT * FROM  Wedding_Card_Ring_Protocol WHERE Wedding_CRP_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 
 		
 		adapter = new WeddingCRPAdapter(getActivity(), wcrpList);

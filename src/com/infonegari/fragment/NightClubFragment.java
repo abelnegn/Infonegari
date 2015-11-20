@@ -139,7 +139,7 @@ public class NightClubFragment extends Fragment{
 	}
 
 	private void init(){
-		nightClubList = Select.from(NightClub.class).orderBy("id Desc").list();
+		nightClubList = Select.from(NightClub.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new NightClubAdapter(getActivity(), nightClubList);
 		mNightClubList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class NightClubFragment extends Fragment{
 		
 		nightClubList = NightClub.findWithQuery(NightClub.class, 
     			"SELECT * FROM  Night_Club WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new NightClubAdapter(getActivity(), nightClubList);
 		mNightClubList.setAdapter(adapter);

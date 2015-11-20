@@ -139,7 +139,7 @@ public class TaxiFragment extends Fragment{
 	}
 
 	private void init(){
-		taxiList = Select.from(Taxi.class).orderBy("id Desc").list();
+		taxiList = Select.from(Taxi.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new TaxiAdapter(getActivity(), taxiList);
 		mTaxiList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class TaxiFragment extends Fragment{
 		
 		taxiList = Taxi.findWithQuery(Taxi.class, 
     			"SELECT * FROM  Taxi WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 
 		
 		adapter = new TaxiAdapter(getActivity(), taxiList);

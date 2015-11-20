@@ -139,7 +139,7 @@ public class HmdtaFragment extends Fragment{
 	}
 	
 	private void init(){
-		hdntaList = Select.from(Hdnta.class).orderBy("id Desc").list();
+		hdntaList = Select.from(Hdnta.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new HDTAAdapter(getActivity(), hdntaList);
 		mHdntaList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -160,7 +160,7 @@ public class HmdtaFragment extends Fragment{
 		
 		hdntaList = Hdnta.findWithQuery(Hdnta.class, 
     			"SELECT * FROM  Hdnta WHERE hdta_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new HDTAAdapter(getActivity(), hdntaList);
 		mHdntaList.setAdapter(adapter);	

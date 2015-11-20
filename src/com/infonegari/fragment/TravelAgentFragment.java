@@ -139,7 +139,7 @@ public class TravelAgentFragment extends Fragment{
 	}
 	
 	private void init(){
-		travelAgentList = Select.from(TravelAgent.class).orderBy("id Desc").list();
+		travelAgentList = Select.from(TravelAgent.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new TravelAgentAdapter(getActivity(), travelAgentList);
 		mTravelAgentList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class TravelAgentFragment extends Fragment{
 		
 		travelAgentList = TravelAgent.findWithQuery(TravelAgent.class, 
     			"SELECT * FROM  Travel_Agent WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 
 		
 		adapter = new TravelAgentAdapter(getActivity(), travelAgentList);

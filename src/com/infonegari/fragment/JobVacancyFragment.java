@@ -185,7 +185,7 @@ public class JobVacancyFragment extends Fragment{
 	}
 	
 	private void init(){
-		jobsList = Select.from(Jobs.class).orderBy("id Desc").list();
+		jobsList = Select.from(Jobs.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
 		mJobList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -221,7 +221,7 @@ public class JobVacancyFragment extends Fragment{
 		
 		jobsList = Jobs.findWithQuery(Jobs.class, 
     			"SELECT * FROM  Jobs WHERE JobTitle LIKE " + title + " AND Category = " + catId + 
-    			" AND EducationLevel = " + levelId + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    			" AND EducationLevel = " + levelId + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new JobVacancyAdapter(getActivity(), jobsList);
 		mJobList.setAdapter(adapter);		

@@ -16,6 +16,7 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 	private String Color;
 	private String Size;
 	private String User_Name;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(ShopCloth.class).where(Condition.prop("id").eq(id)).count();
@@ -100,6 +101,14 @@ public class ShopCloth extends SugarRecord<ShopCloth>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	@Override

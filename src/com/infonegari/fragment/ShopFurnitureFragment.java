@@ -162,7 +162,7 @@ public class ShopFurnitureFragment extends Fragment{
 	}
 	
 	private void init(){
-		shopFurnitureList = Select.from(ShopFurniture.class).orderBy("id Desc").list();
+		shopFurnitureList = Select.from(ShopFurniture.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ShopFurnitureAdapter(getActivity(), shopFurnitureList);
 		mShopFurnitureList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -192,7 +192,7 @@ public class ShopFurnitureFragment extends Fragment{
 		shopFurnitureList = ShopFurniture.findWithQuery(ShopFurniture.class, 
     			"SELECT * FROM  Shop_Furniture WHERE ItemType = " + typeId + 
     			" AND ItemName LIKE " +	title + " AND Location_Id = " + locationId + 
-    			" ORDER BY id Desc");
+    			" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ShopFurnitureAdapter(getActivity(), shopFurnitureList);
 		mShopFurnitureList.setAdapter(adapter);	

@@ -139,7 +139,7 @@ public class PhotoVideoFragment extends Fragment{
 	}
 	
 	private void init(){
-		photoVideoList = Select.from(PhotoVideo.class).orderBy("id Desc").list();
+		photoVideoList = Select.from(PhotoVideo.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new PhotoVideoAdapter(getActivity(), photoVideoList);
 		mPhotoVideoList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class PhotoVideoFragment extends Fragment{
 		
 		photoVideoList = PhotoVideo.findWithQuery(PhotoVideo.class, 
     			"SELECT * FROM  Photo_Video WHERE Photo_Video_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new PhotoVideoAdapter(getActivity(), photoVideoList);
 		mPhotoVideoList.setAdapter(adapter);

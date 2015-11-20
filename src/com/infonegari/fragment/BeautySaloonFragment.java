@@ -165,7 +165,7 @@ public class BeautySaloonFragment extends Fragment{
 	}
 	
 	private void init(){
-		beautySaloonList = Select.from(BeautySaloon.class).orderBy("id Desc").list();
+		beautySaloonList = Select.from(BeautySaloon.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new BeautySaloonAdapter(getActivity(), beautySaloonList);
 		mBeautySaloonList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -195,7 +195,7 @@ public class BeautySaloonFragment extends Fragment{
 		beautySaloonList = BeautySaloon.findWithQuery(BeautySaloon.class, 
     			"SELECT * FROM  Beauty_Saloon WHERE beautysaloons_Name LIKE " +
     					title + " AND Location_Id = " + locationId + " AND " +
-    							"beautysaloons_Type = " + saloonType + " ORDER BY id Desc");
+    							"beautysaloons_Type = " + saloonType + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new BeautySaloonAdapter(getActivity(), beautySaloonList);
 		mBeautySaloonList.setAdapter(adapter);		

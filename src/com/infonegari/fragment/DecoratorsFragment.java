@@ -139,7 +139,7 @@ public class DecoratorsFragment extends Fragment{
 	}
 	
 	private void init(){
-		decoratorList = Select.from(Decorators.class).orderBy("id Desc").list();
+		decoratorList = Select.from(Decorators.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new DecoratorsAdapter(getActivity(), decoratorList);
 		mDecoratorList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class DecoratorsFragment extends Fragment{
 		
 		decoratorList = Decorators.findWithQuery(Decorators.class, 
     			"SELECT * FROM  Decorators WHERE Decorator_Name LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new DecoratorsAdapter(getActivity(), decoratorList);
 		mDecoratorList.setAdapter(adapter);	

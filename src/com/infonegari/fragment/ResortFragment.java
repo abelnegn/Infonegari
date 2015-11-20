@@ -139,7 +139,7 @@ public class ResortFragment extends Fragment{
 	}
 
 	private void init(){
-		resortList = Select.from(Resort.class).orderBy("id Desc").list();
+		resortList = Select.from(Resort.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new ResortAdapter(getActivity(), resortList);
 		mResortList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -161,7 +161,7 @@ public class ResortFragment extends Fragment{
 		
 		resortList = Resort.findWithQuery(Resort.class, 
     			"SELECT * FROM  Resort WHERE ItemName LIKE " +
-    					title + " AND Location_Id = " + locationId + " ORDER BY id Desc");
+    					title + " AND Location_Id = " + locationId + " ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new ResortAdapter(getActivity(), resortList);
 		mResortList.setAdapter(adapter);	

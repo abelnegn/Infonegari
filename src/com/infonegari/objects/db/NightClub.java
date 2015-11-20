@@ -12,6 +12,7 @@ public class NightClub extends SugarRecord<NightClub>{
 	private long LocationId;
 	private String Discription;
 	private String User_Name;
+	private String isFeatured;
 	
     public boolean isNew() {
         long count = Select.from(NightClub.class).where(Condition.prop("id").eq(id)).count();
@@ -65,6 +66,14 @@ public class NightClub extends SugarRecord<NightClub>{
 
 	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
+	}
+
+	public String getIsFeatured() {
+		return isFeatured;
+	}
+
+	public void setIsFeatured(String isFeatured) {
+		this.isFeatured = isFeatured;
 	}
 
 	@Override

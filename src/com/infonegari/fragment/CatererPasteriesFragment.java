@@ -141,7 +141,7 @@ public class CatererPasteriesFragment extends Fragment{
 	}
 	
 	private void init(){
-		catererPasteriesList = Select.from(CaterersPasteries.class).orderBy("id Desc").list();
+		catererPasteriesList = Select.from(CaterersPasteries.class).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new CatererPasteriesAdapter(getActivity(), catererPasteriesList);
 		mCatererPasteriesList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -162,7 +162,8 @@ public class CatererPasteriesFragment extends Fragment{
 		
 		catererPasteriesList = CaterersPasteries.findWithQuery(CaterersPasteries.class, 
     			"SELECT * FROM  Caterers_Pasteries WHERE Cn_P_Id_Name LIKE " +
-    					title + " AND Location_Id = " + locationId);
+    			title + " AND Location_Id = " + locationId +
+				" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new CatererPasteriesAdapter(getActivity(), catererPasteriesList);
 		mCatererPasteriesList.setAdapter(adapter);	

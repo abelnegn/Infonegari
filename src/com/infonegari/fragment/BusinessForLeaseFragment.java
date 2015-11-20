@@ -164,7 +164,7 @@ public class BusinessForLeaseFragment extends Fragment{
 	
 	private void init(){
 		businessList = Select.from(HouseListing.class).where(Condition.prop("is_Sale").
-				eq("0")).and(Condition.prop("Is_Business").eq("1")).orderBy("id Desc").list();
+				eq("0")).and(Condition.prop("Is_Business").eq("1")).orderBy("is_Featured Desc, id Desc").list();
 		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);
 		safeUIBlockingUtility.safelyUnBlockUI();
@@ -192,7 +192,7 @@ public class BusinessForLeaseFragment extends Fragment{
 		businessList = HouseListing.findWithQuery(HouseListing.class, 
     			"SELECT * FROM  House_Listing WHERE is_Sale = '0' AND Is_Business = '0' AND HouseName LIKE " +
     					title + " AND House_Type_Id = " + typeId + " AND Location_Id = " + locationId +
-    					" ORDER BY id Desc");
+    					" ORDER BY is_Featured Desc, id Desc");
 		
 		adapter = new HouseRentAdapter(getActivity(), businessList);
 		mBusinessList.setAdapter(adapter);	

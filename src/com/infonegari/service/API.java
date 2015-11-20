@@ -13,9 +13,6 @@ import retrofit.http.POST;
 import retrofit.http.Part;
 import retrofit.http.Query;
 import retrofit.mime.TypedFile;
-
-import android.app.Application;
-
 import com.infonegari.objects.db.Ads;
 import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
