@@ -5,7 +5,11 @@ import java.util.List;
 
 import com.infonegari.activity.AddListFragment;
 import com.infonegari.activity.R;
+import com.infonegari.objects.db.AddList;
 import com.infonegari.objects.db.AllCategory;
+import com.infonegari.util.DialogHandler;
+import com.orm.query.Select;
+
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -23,6 +27,7 @@ public class ListingCategoryDialog extends DialogFragment{
 	private Spinner sp_category;
 	private Button btnSelect, btnBack;
 	List<AllCategory> categoryList;
+	private DialogHandler dlgHandler;
 	HashMap<String, Integer> categoryHashMap = new HashMap<String, Integer>();
 	
     public static ListingCategoryDialog newInstance()
@@ -45,7 +50,7 @@ public class ListingCategoryDialog extends DialogFragment{
        btnBack = (Button)rootView.findViewById(R.id.btn_back);
 
        getDialog().setTitle(getString(R.string.dlg_listing_category));
- 
+		
        btnSelect.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -79,7 +84,7 @@ public class ListingCategoryDialog extends DialogFragment{
        
        return rootView;
    }
-   
+	
    private void fetchCategory(){
 		String[] listOfCategories = getResources().getStringArray(R.array.nav_drawer_add_list);
 

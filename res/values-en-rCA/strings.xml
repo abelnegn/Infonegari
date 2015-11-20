@@ -54,6 +54,7 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="dlg_header_update">አዲስ መረጃ?</string>
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
+    <string name="dlg_upload_message">Please upload the information. The upload requires internet connection.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
     <string name="dlg_listing_category">ዝርዝሮች</string>
     <string name="txt_register">አዲስ ተጠቃሚ ከሆኑ እባክዎ www.infonegari.com/register.php ላይ ይመዝገቡ</string>
@@ -119,7 +120,10 @@
 	<string name="menu_wedding_hall">የሠርግ አዳራሽ</string>
 	<string name="sms_request_header">አጭር የፅሀፍ መልክት ላክ</string>
 	<string name="sms_request_detail">ስም መጠየቅ ይፈልጋሉ</string>
-
+	
+		<!-- 	Error message -->
+	<string name="msg_mandatory_validation">እባክዎ ሁሉንም መረጃ ያስገቡ.</string>
+	
 	<!-- Add list category -->	
 	<string-array name="nav_drawer_add_list">
 		<item>ምግብ ዝግጅትና ኬክ</item>
@@ -144,7 +148,6 @@
 		<item>ጋራዥ</item>
 		<item>ፋርማሲ</item>
 		<item>ክሊኒክ</item>
-		<item>ባንክ</item>
 		<item>የግንባታ አቅርቦትና አገልግሎቶች</item>
 		<item>ሬስቶራንት</item>
 		<item>የጉዞ ወኪል</item> 

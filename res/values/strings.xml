@@ -15,7 +15,7 @@
     <string name="btn_choose_photo">Choose Photo</string>
     <string name="btn_take_photo">Take Photo</string>
     <string name="btn_select">Select</string>
-    <string name="btn_upload_later">Upload Later</string>
+    <string name="btn_upload_later">Save</string>
     <string name="btn_upload_now">Upload Now</string>
     <string name="btn_back">Back</string>
     <string name="btn_login">Login</string>
@@ -54,6 +54,7 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="dlg_header_update">Update now?</string>
     <string name="dlg_detail_message">Please update the information. The update requires internet connection.</string>
+    <string name="dlg_upload_message">Please upload the information. The upload requires internet connection.</string>
     <string name="txt_sms_description">Try with the following option</string>
     <string name="dlg_listing_category">Listing Categories</string>
     <string name="txt_register">If you are a new user please register at www.infonegari.com/register.php</string>
@@ -120,6 +121,10 @@
 	<string name="sms_request_detail">Are you shure you want to request name for</string>
 	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+	
+	<!-- 	Error message -->
+	<string name="msg_mandatory_validation">All Fields are mandatory please add all fields.</string>
+	
 	<!-- Add list category -->	
 	<string-array name="nav_drawer_add_list">
 		<item>Catering and Pastery</item>
@@ -144,7 +149,6 @@
 		<item>Garage</item>
 		<item>Pharmacy</item>
 		<item>Clinic</item>
-		<item>Banks</item>
 		<item>Construction</item>
 		<item>Restaurant</item>
 		<item>Travel Agent</item> 

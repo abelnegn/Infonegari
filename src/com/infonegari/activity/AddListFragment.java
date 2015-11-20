@@ -1,6 +1,9 @@
 package com.infonegari.activity;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +38,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,16 +74,21 @@ public class AddListFragment extends Fragment {
 
 	List<Location> locationList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	private Spinner sp_location, sp_type_one, sp_type_two, sp_type_thee;
+	private Spinner sp_location, sp_type_one, sp_type_two;
 	private TextView txtImageName;
 	private EditText txtTitle, txtDiscription, item_text_one, item_text_two;
 	private Button btnChoosePic, btnTakePhoto, btnAddList, btnBack;
 	private static final int MENU_ITEM_BACK = 2000;
 	private DialogHandler dlgHandler;  
+	private DialogHandler appdialog = new DialogHandler();
 	private String userName = "";
 	private String category = "";
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	long totalSize = 0;
+	private String itemTitle = "";
+	private String itemLocation = "";
+	private String itemDiscription = "";
+	private String itemImage = "";
 	private String itemType1 = "";
 	private String itemType2 = "";
 	private String itemType3 = "";
@@ -94,7 +103,7 @@ public class AddListFragment extends Fragment {
 	List<ConstructionMaterial> conMaterialList;
 	HashMap<String, Long> conMachineHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> conMaterialHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> typeHashMap = new HashMap<String, Long>();
+	HashMap<String, Long> restaurantTypeHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> houseTypeHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> hallTypeHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> carTypeHashMap = new HashMap<String, Long>();
@@ -111,12 +120,12 @@ public class AddListFragment extends Fragment {
 	HashMap<String, String> electronicCategoryHashMap = new HashMap<String, String>();
 	HashMap<String, String> accessoryTypeHashMap = new HashMap<String, String>();
 	HashMap<String, String> shopCatHashMap = new HashMap<String, String>();
+	HashMap<String, String> furniturePlaceHashMap = new HashMap<String, String>();
 	
 	/* Photo album for this application */
 	private String getAlbumName() {
 		return getString(R.string.album_name);
-	}
-
+	}	
 	
 	private File getAlbumDir() {
 		File storageDir = null;
@@ -225,7 +234,13 @@ public class AddListFragment extends Fragment {
 
 		initialize(inflater, container);
         
-        
+       List<AddList> addList = Select.from(AddList.class).list();
+       if(addList.size() > 0){
+           dlgHandler = new DialogHandler();
+           dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_upload_message), 
+    				getString(R.string.btn_later), getString(R.string.btn_ok), cancel(), okUpload());    	   
+       }
+	       
         userName = getArguments().getString("User_Name");
         
 		getActivity().setTitle("Add " + category);
@@ -281,15 +296,122 @@ public class AddListFragment extends Fragment {
 		return rootView;
 	}
 
+    private Runnable okUpload(){
+		Runnable runnable = new Runnable()
+	    {
+	        @Override
+	        public void run()
+	        {
+	        	uploadAddList();
+	        }
+	    };
+	    return runnable;
+    }
+   
+    private Runnable cancel(){
+		Runnable runnable = new Runnable()
+	    {
+	        @Override
+	        public void run()
+	        {
+	        }
+	    };
+	    return runnable;
+    }
+	   
+    private void uploadAddList(){
+    	List<AddList> addList = Select.from(AddList.class).list();
+    	if(addList.size() > 0){
+    		for(AddList adds : addList){
+    			itemTitle = adds.getTitle();
+    			itemDiscription = adds.getDiscription();
+    			itemImage = adds.getImageUrl();
+    			itemLocation = String.valueOf(adds.getLocationId());
+    			userName = adds.getUserId();
+        		itemType1 = adds.getItemType1();
+        		itemType2 = adds.getItemType2();
+        		itemType3 = adds.getItemType3();
+        		itemType4 = adds.getItemType4();
+        		
+    			if(adds.getCategory().equals("0")){
+    				uploadCatererPasteries();
+    			}else if(adds.getCategory().equals("1")){
+    				uploadDecorator();
+    			}else if(adds.getCategory().equals("2")){
+    				uploadWeddingCar();
+    			}else if(adds.getCategory().equals("3")){
+    				uploadBand();
+    			}else if(adds.getCategory().equals("4")){
+    				uploadWeddingCRP();
+    			}else if(adds.getCategory().equals("5")){
+    				uploadWeddingGownToxido();
+    			}else if(adds.getCategory().equals("6")){
+    				uploadWeddingHall();
+    			}else if(adds.getCategory().equals("7")){
+    				uploadBeautySaloon();
+    			}else if(adds.getCategory().equals("8")){
+    				uploadHoneyMoonDestination();
+    			}else if(adds.getCategory().equals("9")){
+    				uploadDJ();
+    			}else if(adds.getCategory().equals("10")){
+    				uploadPhotoVideo();
+    			}else if(adds.getCategory().equals("11")){
+    				uploadCarListing("1");
+    			}else if(adds.getCategory().equals("12")){
+    				uploadUsedItem();
+    			}else if(adds.getCategory().equals("13")){
+    				uploadHouseListing("1", "0");
+    			}else if(adds.getCategory().equals("14")){
+    				uploadHouseListing("1", "1");
+    			}else if(adds.getCategory().equals("15")){
+    				uploadCarListing("0");
+    			}else if(adds.getCategory().equals("16")){
+    				uploadHouseListing("0", "0");
+    			}else if(adds.getCategory().equals("17")){
+    				uploadGuestHouse();
+    			}else if(adds.getCategory().equals("18")){
+    				uploadHouseListing("0", "1");
+    			}else if(adds.getCategory().equals("19")){
+    				uploadGarage();
+    			}else if(adds.getCategory().equals("20")){
+    				uploadPharmacy();
+    			}else if(adds.getCategory().equals("21")){
+    				uploadClinic();
+    			}else if(adds.getCategory().equals("22")){
+    				uploadConstruction();
+    			}else if(adds.getCategory().equals("23")){
+    				uploadRestaurant();
+    			}else if(adds.getCategory().equals("24")){
+    				uploadTravelAgent();
+    			}else if(adds.getCategory().equals("25")){
+    				uploadEvent();
+    			}else if(adds.getCategory().equals("26")){
+    				uploadNightClub();
+    			}else if(adds.getCategory().equals("27")){
+    				uploadResort();
+    			}else if(adds.getCategory().equals("28")){
+    				uploadShopCloth();
+    			}else if(adds.getCategory().equals("29")){
+    				uploadShopElectronics();
+    			}else if(adds.getCategory().equals("30")){
+    				uploadShopFurniture();
+    			}else if(adds.getCategory().equals("31")){
+    				uploadShopComputers();
+    			}
+    			adds.delete();
+    		}
+    	}	   
+    }
+    
 	private void initialize(LayoutInflater inflater, ViewGroup container){
 		category = getArguments().getString("Add_Category");
 		categoryId = getArguments().getInt("Category_Id");
 		if(categoryId == 0 || categoryId == 1 || categoryId == 3 || categoryId == 4 || 
-				categoryId == 8 || categoryId == 9 || categoryId == 10 || categoryId == 25 ||
-				categoryId == 22 || categoryId == 27 || categoryId == 28){
+				categoryId == 8 || categoryId == 9 || categoryId == 10 || categoryId == 24 ||
+				categoryId == 22 || categoryId == 26 || categoryId == 27){
 			rootView = inflater.inflate(R.layout.fragment_add_list_one, container, false);
 		}else if(categoryId== 2 || categoryId == 6 || categoryId==7 || categoryId == 12 || categoryId == 17 || 
-				categoryId ==20 || categoryId == 21 || categoryId == 24 || categoryId == 26){
+				categoryId ==20 || categoryId == 21 || categoryId == 23 || categoryId == 25){
 			rootView = inflater.inflate(R.layout.fragment_add_list_two, container, false);
 			sp_type_one = (Spinner) rootView.findViewById(R.id.type_one);	
 			if(categoryId== 2)			
@@ -306,12 +428,12 @@ public class AddListFragment extends Fragment {
 				fetchPharmacyType();
 			else if(categoryId == 21)
 				fetchPharmacyType();
-			else if(categoryId == 24)
+			else if(categoryId == 23)
 				fetchRestaurantType();
-			else if(categoryId == 26)
+			else if(categoryId == 25)
 				fetchEventType();
-		}else if(categoryId == 5 ||  categoryId ==19 || categoryId == 23 || categoryId ==30 || 
-				categoryId== 31 || categoryId ==32){
+		}else if(categoryId == 5 ||  categoryId ==19 || categoryId == 22 || categoryId ==29 || 
+				categoryId== 30 || categoryId ==31){
 			rootView = inflater.inflate(R.layout.fragment_add_list_three, container, false);
 			sp_type_one = (Spinner) rootView.findViewById(R.id.type_one);
 			sp_type_two = (Spinner) rootView.findViewById(R.id.type_two);
@@ -321,16 +443,16 @@ public class AddListFragment extends Fragment {
 			}else if(categoryId == 19){
 				fetchPharmacyType();
 				fetchGarageServiceType();
-			}else if(categoryId == 23){
+			}else if(categoryId == 22){
 				fetchMachine();
 				fetchMaterial();
-			}else if(categoryId == 30){
+			}else if(categoryId == 29){
 				fetchElectronicCategory();
 				fetchService();
-			}else if(categoryId == 31){
+			}else if(categoryId == 30){
 				fetchFurnitureType();
 				fetchFurniturePlace();
-			}else if(categoryId == 32){
+			}else if(categoryId == 31){
 				fetchAccessoryType();
 				fetchService();
 			}
@@ -379,8 +501,7 @@ public class AddListFragment extends Fragment {
 	        @Override
 	        public void run()
 	        {        	
-
-
+	        	updateAddList();
 	        }
 	    };
 	    return runnable;
@@ -392,15 +513,7 @@ public class AddListFragment extends Fragment {
 	        @Override
 	        public void run()
 	        {        	
-	        	if(txtTitle.getText().toString().equals("") ||
-	        			txtDiscription.getText().toString().equals("") ||
-	        			txtImageName.getText().toString().equals("") ||
-	        			sp_location.getSelectedItem().toString().equals("All Location")){
-	        		
-	        	}else{
-	        		saveAddList();
-	        		clearFields();
-	        	}
+	        	updateAddList();
 	        }
 	    };
 	    return runnable;
@@ -593,10 +706,10 @@ public class AddListFragment extends Fragment {
 		typeList = Select.from(RestaurantType.class).orderBy("Restaurant_Type_Name ASC").list();
 
 		listOfType.add("Select Restaurant Type");
-		typeHashMap.put("Select Restaurant Type", 0L);
+		restaurantTypeHashMap.put("Select Restaurant Type", 0L);
 		for (RestaurantType type : typeList) {
 			listOfType.add(type.getRestaurantTypeName());
-			typeHashMap.put(type.getRestaurantTypeName(), type.getRestaurantTypeId());
+			restaurantTypeHashMap.put(type.getRestaurantTypeName(), type.getRestaurantTypeId());
         }
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -717,8 +830,8 @@ public class AddListFragment extends Fragment {
 		listOfType.add("Ethiopian");		
 		listOfType.add("Imported");
 
-		furnitureTypeHashMap.put("Ethiopian", "ethiopian");
-		furnitureTypeHashMap.put("Imported", "imported");
+		furniturePlaceHashMap.put("Ethiopian", "ethiopian");
+		furniturePlaceHashMap.put("Imported", "imported");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -904,7 +1017,7 @@ public class AddListFragment extends Fragment {
     	AddList newAddList = new AddList();
     	newAddList.setTitle(txtTitle.getText().toString());
     	newAddList.setDiscription(txtDiscription.getText().toString());
-    	newAddList.setCategory(category);
+    	newAddList.setCategory(String.valueOf(categoryId));
     	newAddList.setItemType1(itemType1);
     	newAddList.setItemType2(itemType2);
     	newAddList.setItemType3(itemType3);
@@ -914,6 +1027,8 @@ public class AddListFragment extends Fragment {
     	newAddList.setUserId(userName);
     	
     	newAddList.save();
+    	Toast.makeText(getActivity(), "Data Saved Successfully", Toast.LENGTH_SHORT).show();
+    	clearFields();
     }
     
     private void clearFields(){
@@ -926,7 +1041,7 @@ public class AddListFragment extends Fragment {
     
     private String getImageName(){
     	String imageName = "";
-    	String[] imgs = txtImageName.getText().toString().split("/");
+    	String[] imgs = itemImage.split("/");
     	if(imgs.length > 0){
     		imageName = imgs[imgs.length - 1];
     	}    	
@@ -940,9 +1055,22 @@ public class AddListFragment extends Fragment {
         API.insertAddListService.insertAddList(statment, new Callback<String>() {
                 @Override
                 public void success(String insert, Response response) {
-    	        	String imgFile = txtImageName.getText().toString();
-                	File f = new File(imgFile);
-                	uploadImage(f);                  	
+    	        	String imgFile = txtImageName.getText().toString(); 
+                	Bitmap bMap= BitmapFactory.decodeFile(imgFile);
+                	Bitmap out = Bitmap.createScaledBitmap(bMap, 250, 250, false);
+                	File file = new File(imgFile);
+                    
+                    OutputStream fOut=null;
+                    try {
+                        fOut = new BufferedOutputStream(new FileOutputStream(file));
+                        out.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                        fOut.flush();
+                        fOut.close();
+                        bMap.recycle();
+                        out.recycle();
+
+                    } catch (Exception e) {}
+                	uploadImage(file);                 	
                 }
 
                 @Override
@@ -958,13 +1086,15 @@ public class AddListFragment extends Fragment {
 			  new TypedFile("application/octet-stream", jpgFile), new Callback<String>() {
 	              @Override
 	              public void success(String success, Response response) {
-	                  Toast.makeText(getActivity(), "Client image updated", Toast.LENGTH_SHORT).show();
+	                  Toast.makeText(getActivity(), "Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
+	                  clearFields();
 	                  safeUIBlockingUtility.safelyUnBlockUI();
 	              }
 	
 	              @Override
 	              public void failure(RetrofitError retrofitError) {
-	                  Toast.makeText(getActivity(), "Failed to update image", Toast.LENGTH_SHORT).show();
+	                  Toast.makeText(getActivity(), "Failed to upload data", Toast.LENGTH_SHORT).show();
+	                  clearFields();
 	                  safeUIBlockingUtility.safelyUnBlockUI();
 	              }
 	          }
@@ -975,9 +1105,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO decorators(DecoratorName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Op1, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '', 0)";
+    		insertStms = "INSERT INTO decorators(DecoratorName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Op1)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -988,9 +1118,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO caterersnpastries(CnPIdName, ServiceType, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, caterersnpastriesPic, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', '', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO caterersnpastries(CnPIdName, ServiceType, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, caterersnpastriesPic, Image)" + 
+    					  " VALUES('" + itemTitle + "', '', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1001,9 +1131,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO weddingcar(weddingCarName, CarTypeId, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', '" + itemType1 + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO weddingcar(weddingCarName, CarTypeId, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', '" + itemType1 + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1014,9 +1144,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO band(BandName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO band(BandName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1027,9 +1157,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO weddingcardringprotocol(WeddingCRPName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO weddingcardringprotocol(WeddingCRPName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1040,9 +1170,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO weddingcloth(WeddingClothName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, Cloth_Type, Service_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0 , '" + itemType1 + "', '" + itemType2 + "')";
+    		insertStms = "INSERT INTO weddingcloth(WeddingClothName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Cloth_Type, Service_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1053,9 +1183,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO beautysaloons(beautysaloonsName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, beautysaloonsType)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0 , '" + itemType1 + "')";
+    		insertStms = "INSERT INTO beautysaloons(beautysaloonsName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, beautysaloonsType)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1066,48 +1196,48 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO dj(DjName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO dj(DjName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + txtTitle.getText().toString() + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
     	}
     }
     
-    public void uploaHoneyMoonDestination(){
+    public void uploadHoneyMoonDestination(){
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO hdnta(HDnTAName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO hdnta(HDnTAName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
     	}
     }
     
-    public void uploaPhotoVideo(){
+    public void uploadPhotoVideo(){
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO photovideo(PhotoVideoName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, PhotoVideoPics, WorkType)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '', '')";
+    		insertStms = "INSERT INTO photovideo(PhotoVideoName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, PhotoVideoPics, WorkType)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '', '')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
     	}
     }
     
-    public void uploaCarListing(String isSale){
+    public void uploadCarListing(String isSale){
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO carlisting(CarName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, CarTypeId, Year, isCarSale, CarPictures)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, " + itemType1 + ", " +itemType2 + "," + isSale + ", '')";
+    		insertStms = "INSERT INTO carlisting(CarName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, CarTypeId, Year, isCarSale, CarPictures)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ", " +itemType2 + "," + isSale + ", '')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1118,9 +1248,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO houselisting(House_Name, LocationId, HousePrice, HouseDiscription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, HouseTypeId, NoRooms, LotSize, HouseImages, isSale, IsBusiness)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, " + itemType1 + ", " +itemType2 + ", '" + itemType3 + "', '', " +isSale + ", " + isBusiness + ")";
+    		insertStms = "INSERT INTO houselisting(House_Name, LocationId, HousePrice, HouseDiscription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, HouseTypeId, NoRooms, LotSize, HouseImages, isSale, IsBusiness)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ", " +itemType2 + ", '" + itemType3 + "', '', " +isSale + ", " + isBusiness + ")";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1131,9 +1261,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO guesthouse(GuestHouseName, LocationId, Price, GuestHouseDiscripton, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, NoRooms)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, " + itemType1 + ")";
+    		insertStms = "INSERT INTO guesthouse(GuestHouseName, LocationId, Price, GuestHouseDiscripton, isFeatured, Latitude, Longitude, User_Name, Image, NoRooms)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ")";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1144,9 +1274,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO useditems(UsedItemName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, UsedItemTypeId, itemPics)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, " + itemType1 + ", '')";
+    		insertStms = "INSERT INTO useditems(UsedItemName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, UsedItemTypeId, itemPics)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ", '')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1157,9 +1287,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO garage(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Garage_Type, Job_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '" + itemType1 + "')";
+    		insertStms = "INSERT INTO garage(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Garage_Type, Job_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1170,9 +1300,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO clinic(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Clinic_Type, Job_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', " + itemType2 + ")";
+    		insertStms = "INSERT INTO clinic(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Clinic_Type, Job_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', 0)";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1183,9 +1313,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO pharma(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Pharma_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "')";
+    		insertStms = "INSERT INTO pharma(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Pharma_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1196,9 +1326,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO constructionssns(ConstructionTitle, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Profession, ConstructionMachineId, ConstructionMaterialId)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '0', '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', " + itemType2 + ", '" + itemType3 + ")";
+    		insertStms = "INSERT INTO constructionssns(ConstructionTitle, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Profession, ConstructionMachineId, ConstructionMaterialId)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', " + itemType2 + ", '" + itemType3 + ")";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1209,9 +1339,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO handy(Item_Name, LocationId, Discription, isFeatured, User_Name, Image, Is_Removed, Category)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "')";
+    		insertStms = "INSERT INTO handy(Item_Name, LocationId, Discription, isFeatured, User_Name, Image, Category)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1222,9 +1352,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO restaurant(Item_Name, LocationId, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, RestaurantTypeId)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, " + itemType1 + ")";
+    		insertStms = "INSERT INTO restaurant(Item_Name, LocationId, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, RestaurantTypeId)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', " + itemType1 + ")";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1235,9 +1365,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO travel_agent(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '0', '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO travel_agent(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1248,9 +1378,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO event(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Event_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '0', '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "')";
+    		insertStms = "INSERT INTO event(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Event_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1261,9 +1391,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO night_club(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO night_club(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1274,9 +1404,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO resort(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0)";
+    		insertStms = "INSERT INTO resort(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1287,9 +1417,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_cloth(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Catagory, Type, Color, Size)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", '0', '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "', '" + itemType4 + "')";
+    		insertStms = "INSERT INTO shop_cloth(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Catagory, Type, Color, Size)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", '0', '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "', '" + itemType4 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1300,9 +1430,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_electronics(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Brand_Name, Service_Type, Catagory)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
+    		insertStms = "INSERT INTO shop_electronics(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Catagory)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1313,9 +1443,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_furniture(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Country, Item_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '" + itemType2 + "')";
+    		insertStms = "INSERT INTO shop_furniture(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Country, Item_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1326,9 +1456,9 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO shop_computer(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Is_Removed, Brand_Name, Service_Type, Item_Type)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
+    		insertStms = "INSERT INTO shop_computer(Item_Name, LocationId, Price, Discription, isFeatured, Latitude, Longitude, User_Name, Image, Brand_Name, Service_Type, Item_Type)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '" + itemType1 + "', '" + itemType2 + "', '" + itemType3 + "')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
@@ -1339,12 +1469,332 @@ public class AddListFragment extends Fragment {
     	String insertStms = "";
     	String imgUrl = "img/" + userName + "/" + getImageName();
     	if (Network.isOnline(getActivity())) {
-    		insertStms = "INSERT INTO weddinghalls(WeddingHallName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, Is_Removed, ServiceType, dateAvailable, weddingHallsPics, Hall_Type, Break_Fast, Lunch, Dinner)" + 
-    					  " VALUES('" + txtTitle.getText().toString() + "', " + locationHashMap.get(sp_location.getSelectedItem().toString()) + ", 0, '" + txtDiscription.getText().toString() + 
-    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', 0, '" + itemType1 + "', '', '', '" + itemType2 + "', '', '', '')";
+    		insertStms = "INSERT INTO weddinghalls(WeddingHallName, LocationId, Price, Discription, isFeatured, MemberId, Latitude, Longitude, User_Name, Image, ServiceType, dateAvailable, weddingHallsPics, Hall_Type, Break_Fast, Lunch, Dinner)" + 
+    					  " VALUES('" + itemTitle + "', " + itemLocation + ", 0, '" + itemDiscription + 
+    					  "', 0, 0, '0.0', '0.0', '" + userName + "', '" + imgUrl + "', '', '', '', '" + itemType1 + "', '', '', '')";
     		callService(insertStms); 		
     	}else{
     		saveAddList();
+    	}
+    }
+    
+    public Runnable ok(){
+        return new Runnable() {
+            public void run() {
+                return;
+            }
+        };
+    }
+    
+    private void updateAddList(){
+    	itemTitle = txtTitle.getText().toString();
+    	itemDiscription = txtDiscription.getText().toString();
+    	itemImage = txtImageName.getText().toString();
+    	itemLocation = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
+    	
+    	if(categoryId == 0){    		
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{
+    			uploadCatererPasteries();
+    		}
+    	}else if(categoryId == 1){
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{
+    			uploadDecorator();
+    		}    		
+    	}else if(categoryId == 2){
+			itemType1 = String.valueOf(carTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.toString().equals("Select Car Type")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());   			
+    		}else{
+    			uploadWeddingCar();
+    		}      		
+    	}else if(categoryId == 3){
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());      			
+    		}else{
+    			uploadBand();
+    		}    		
+    	}else if(categoryId == 4){
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());      			
+    		}else{
+    			uploadWeddingCRP();
+    		}
+    	}else if(categoryId == 5){
+			itemType1 = String.valueOf(weddingClothTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+			itemType2 = String.valueOf(weddingServiceHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Cloth Type")
+    				|| itemType2.toString().equals("Select Service")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{
+    			uploadWeddingGownToxido();
+    		}
+    	}else if(categoryId == 6){
+			itemType1 = String.valueOf(hallTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Hall Type")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{
+    			uploadWeddingHall();
+    		}    		
+    	}else if (categoryId == 7){
+			itemType1 = String.valueOf(saloonTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Type")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{
+    			uploadBeautySaloon();
+    		}     		
+    	}else if(categoryId == 8){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{
+    			uploadHoneyMoonDestination();
+    		}     		
+    	}else if(categoryId == 9){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{
+    			uploadDJ();
+    		}    		
+    	}else if(categoryId == 10){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{
+    			uploadPhotoVideo();
+    		}     		
+    	}else if(categoryId == 11){
+    		itemType1 = String.valueOf(carTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadCarListing("1");
+    		}     		
+    	}else if(categoryId == 12){
+    		itemType1 = String.valueOf(usedItemTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadUsedItem();
+    		}      		
+    	}else if(categoryId == 13){
+    		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(noRoomsTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		itemType3 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
+    				|| itemType2.equals("") || itemType3.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadHouseListing("1", "0");
+    		}      		
+    	}else if(categoryId == 14){
+    		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(noRoomsTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		itemType3 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
+    				|| itemType2.equals("") || itemType3.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadHouseListing("1", "1");
+    		}     		
+    	}else if(categoryId == 15){
+    		itemType1 = String.valueOf(carTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());      			
+    		}else{    			
+    			uploadCarListing("0");
+    		}     		
+    	}else if(categoryId == 16){
+    		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(noRoomsTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		itemType3 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
+    				|| itemType2.equals("") || itemType3.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadHouseListing("0", "0");
+    		}     		
+    	}else if(categoryId == 17){
+    		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadGuestHouse();
+    		}       		
+    	}else if(categoryId == 18){
+    		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(noRoomsTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		itemType3 = item_text_one.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
+    				|| itemType2.equals("") || itemType3.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());  			
+    		}else{    			
+    			uploadHouseListing("0", "1");
+    		}     		
+    	}else if(categoryId == 19){
+    		itemType1 = String.valueOf(pharmacyTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(garageServiceTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());   			
+    		}else{    			
+    			uploadGarage();
+    		}     		
+    	}else if(categoryId == 20){
+    		itemType1 = String.valueOf(pharmacyTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());  			
+    		}else{    			
+    			uploadPharmacy();
+    		}     		
+    	}else if(categoryId == 21){
+    		itemType1 = String.valueOf(pharmacyTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());      			
+    		}else{    			
+    			uploadClinic();
+    		}       		
+    	}else if(categoryId == 22){
+    		itemType1 = String.valueOf(conMachineHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(conMaterialHashMap.get(sp_type_two.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadConstruction();
+    		}      		
+    	}else if(categoryId == 23){
+    		itemType1 = String.valueOf(restaurantTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadRestaurant();
+    		}      		
+    	}else if(categoryId == 24){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());   			
+    		}else{    			
+    			uploadTravelAgent();
+    		}     		
+    	}else if(categoryId == 25){
+    		itemType1 = String.valueOf(eventTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadEvent();
+    		}     		
+    	}else if(categoryId == 26){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadNightClub();
+    		}     		
+    	}else if (categoryId == 27){
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadResort();
+    		}    		
+    	}else if(categoryId == 28){
+    		itemType1 = String.valueOf(shopCatHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
+    		itemType3= item_text_one.getText().toString();
+    		itemType4= item_text_two.getText().toString();
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") 
+    				|| itemType2.equals("") || itemType3.equals("") || itemType4.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());    			
+    		}else{    			
+    			uploadShopCloth();
+    		}    		
+    	}else if(categoryId == 29){
+    		itemType1 = String.valueOf(electronicCategoryHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadShopElectronics();
+    		}     		
+    	}else if(categoryId == 30){
+    		itemType1 = String.valueOf(furnitureTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(furniturePlaceHashMap.get(sp_type_two.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadShopFurniture();
+    		}    		
+    	}else{
+    		itemType1 = String.valueOf(accessoryTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
+    		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadShopComputers();
+    		}      		
     	}
     }
 }
