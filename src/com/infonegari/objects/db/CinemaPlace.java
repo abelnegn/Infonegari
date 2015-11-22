@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class CinemaPlace extends SugarRecord<CinemaPlace>{
 	private long cp_id;
 	private String Cinema_Name;
+	private String Cinema_Name_am;
 	
     public boolean isNew() {
         long count = Select.from(CinemaPlace.class).where(Condition.prop("id").eq(id)).count();
@@ -29,6 +30,14 @@ public class CinemaPlace extends SugarRecord<CinemaPlace>{
 
 	public void setCinema_Name(String cinema_Name) {
 		Cinema_Name = cinema_Name;
+	}
+
+	public String getCinema_Name_am() {
+		return Cinema_Name_am;
+	}
+
+	public void setCinema_Name_am(String cinema_Name_am) {
+		Cinema_Name_am = cinema_Name_am;
 	}
 
 	@Override

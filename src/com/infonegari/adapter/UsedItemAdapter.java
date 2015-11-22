@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UsedItem;
 import com.infonegari.objects.db.UsedItemType;
@@ -79,11 +80,19 @@ public class UsedItemAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(usedItems.get(position).getUsedItemName());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(usedItems.get(position).getDiscription());
-        if(type != null)
-        	txtType.setText(type.getUsedItemTypeName());
+        if(type != null){
+        	if(SplashScreen.localization == 1)
+        		txtType.setText(type.getUsedItemTypeName_am());
+        	else
+        		txtType.setText(type.getUsedItemTypeName());
+        }
         txtPrice.setText(String.valueOf(usedItems.get(position).getPrice()));
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number()); 

@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.Restaurant;
 import com.infonegari.objects.db.RestaurantType;
@@ -79,11 +80,19 @@ public class RestaurantAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(restaurants.get(position).getItem_Name());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(restaurants.get(position).getDiscription());
-        if(type != null)
-        	txtType.setText(type.getRestaurantTypeName());
+        if(type != null){
+        	if(SplashScreen.localization == 1)
+        		txtType.setText(type.getRestaurantTypeName_am());
+        	else
+        		txtType.setText(type.getRestaurantTypeName());
+        }
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());
 	       	 txtEmail.setText(userSite.getE_mail());

@@ -34,8 +34,18 @@
     <string name="txt_location">Location</string>
     <string name="txt_localization">Select Language</string>
     <string name="txt_title">Title</string>
-    <string name="txt_discription">Discription</string>
+    <string name="txt_discription">Description</string>
     <string name="txt_category">Category</string>
+    <string name="txt_min_price">Minimum Price</string>
+    <string name="txt_min_post_date">Post Date</string>
+    <string name="txt_dead_line">Submission Deadline</string>
+    <string name="txt_opening_date">Opening Date</string>
+    <string name="txt_post_date">Post Date</string>
+    <string name="txt_date_available">Date Available</string>
+    <string name="txt_break_fast">Break Fast</string>
+    <string name="txt_lunch">Lunch</string>
+    <string name="txt_dinner">Dinner</string>
+    <string name="txt_branch">Branch</string>
     <string name="m_back">Back</string>
     <string name="documents">Document</string>
     <string name="identifiers">Identifiers</string>
@@ -46,10 +56,35 @@
     <string name="txt_material">Material</string>
     <string name="txt_show_time">Show Time</string>
     <string name="txt_show_date">Show Date</string>
+    <string name="txt_no_rooms">No Rooms</string>
+    <string name="txt_lot_size">Lot Size</string>
     <string name="txt_car_year">Year</string>
+    <string name="txt_movie_type">Movie Type</string>
     <string name="txt_city">City</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_price">Price</string>
+    <string name="txt_email">Email</string> 
+    <string name="txt_phone_no">Phone No</string>  
+    <string name="txt_clinic_type">Clinic Type</string>
     <string name="txt_main_category">Category</string>
     <string name="txt_level">Level</string>
+    <string name="txt_profession">Profession</string>
+    <string name="txt_garage_type">Garage Type</string>
+    <string name="txt_job_type">Job Type</string>
+    <string name="txt_job_category">Job Category</string>
+    <string name="txt_education_level">Education Level</string>
+    <string name="txt_qualification">Qualification</string>
+    <string name="txt_responsibility">Responsibility</string>
+    <string name="txt_hall_type">Hall Type</string>
+    <string name="txt_experience">Experience</string>
+    <string name="txt_salary">Salary</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_work_place">Work Place</string>
+    <string name="txt_work_type">Work Type</string>
+    <string name="txt_job_duration">Job Duration</string>
+    <string name="txt_colore">Colore</string>
+    <string name="txt_size">Size</string>
+    <string name="txt_brand_name">Brand Name</string>
     <string name="title_activity_short_message">Short Message</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="dlg_header_update">Update now?</string>
@@ -57,7 +92,7 @@
     <string name="dlg_upload_message">Please upload the information. The upload requires internet connection.</string>
     <string name="txt_sms_description">Try with the following option</string>
     <string name="dlg_listing_category">Listing Categories</string>
-    <string name="txt_register">If you are a new user please register at www.infonegari.com/register.php</string>
+    <string name="txt_register">If you are a new user please register in www.infonegari.com/register.php</string>
 
 	<!--     Dashboard -->
 	<string name="db_notification">Notify Me</string>
@@ -94,6 +129,7 @@
 	<string name="menu_house_rent">House for Rent</string>
 	<string name="menu_house_sale">House for Sale</string>
 	<string name="menu_job">Job Vacancy</string>
+	<string name="menu_handy_man">Handy Man</string>
 	<string name="menu_language">Language</string>
 	<string name="menu_leisure">Leisure</string>
 	<string name="menu_night_club">Night Club</string>
@@ -119,8 +155,39 @@
 	<string name="menu_wedding_hall">Wedding Halls</string>
 	<string name="sms_request_header">Send SMS</string>
 	<string name="sms_request_detail">Are you shure you want to request name for</string>
-	<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+	<string name="sp_all_location">All Location</string>
+	<string name="sp_all_category">All Category</string>
+	<string name="sp_all_gener">All Movie Type</string>
+	<string name="sp_all_cinema_hall">All Cinema Hall</string>
+	<string name="sp_all_machine">All Machine</string>
+	<string name="sp_all_material">All Material</string>
+	<string name="sp_all_education_level">All Education Level</string>
+	<string name="sp_all_type">All Type</string>
+	<string name="sp_female">Female</string>
+	<string name="sp_male">male</string>
+	<string name="sp_both">Both</string>
+	<string name="sp_female_cloth">Female Cloth</string>
+	<string name="sp_male_cloth">Male Cloth</string>
+	<string name="sp_kids_cloth">Kids Cloth</string>
+	<string name="sp_cloth_designer">Cloth Designer</string>
+	<string name="sp_all_cloth_type">All Cloth Type</string>
+	<string name="sp_modern">Modern</string>
+	<string name="sp_traditional">Traditional</string>
+	<string name="sp_brand_new">Brand New</string>
+	<string name="sp_assembled">Assembled</string>
+	<string name="sp_used">Used</string>
+	<string name="sp_all_service">All Service</string>
+	<string name="sp_sell">Sell</string>
+	<string name="sp_maintenance">Maintenance</string>
+	<string name="sp_all_electronics">All Electronics</string>
+	<string name="sp_tv">TV,DVD,Tape</string>
+	<string name="sp_refrigrator">Refrigrator</string>
+	<string name="sp_mobiles">Mobiles</string>
+	<string name="sp_all_furniture">All Furniture</string>
+	<string name="sp_home">Home</string>
+	<string name="sp_office">Office</string>
+	<string name="sp_rental">Rental</string>
 	
 	<!-- 	Error message -->
 	<string name="msg_mandatory_validation">All Fields are mandatory please add all fields.</string>
@@ -158,7 +225,8 @@
 		<item>Cloths</item>
 		<item>Electronics</item>
 		<item>Furniture</item>
-		<item>Computer Accessories</item>			
+		<item>Computer Accessories</item>
+		<item>Handy Man</item>			
 	</string-array>	
 			
 	<!-- 	Short message -->	
@@ -203,6 +271,7 @@
         <item>Buy Auction</item>
         <item>Tender</item>
         <item>Garage</item>
+        <item>Handy Man</item>
         <item>Clinic</item>
         <item>Pharmacy</item>
         <item>Bank</item>

@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.CarType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -80,10 +81,18 @@ public class WeddingCarAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(weddingCars.get(position).getWeddingCarName());
-        if(carType != null)
-        	txtCarType.setText(carType.getCarTypeName());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(carType != null){
+        	if(SplashScreen.localization == 1)
+        		txtCarType.setText(carType.getCarTypeName_am());
+        	else
+        		txtCarType.setText(carType.getCarTypeName());
+        }
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(weddingCars.get(position).getPrice()));
         txtDiscription.setText(weddingCars.get(position).getDiscription());
         if(userSite != null){

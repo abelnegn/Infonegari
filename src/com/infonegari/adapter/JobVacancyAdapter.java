@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.EducationCategory;
 import com.infonegari.objects.db.JobCategory;
 import com.infonegari.objects.db.Jobs;
@@ -95,12 +96,23 @@ public class JobVacancyAdapter extends BaseAdapter{
                  
         txtTitle.setText(jobVacancy.get(position).getJob_Title());
         if(category != null){
-            txtCategory.setText(category.getCategory_Name());        	
+        	if(SplashScreen.localization == 1)
+        		txtCategory.setText(category.getCategory_Name_am());
+        	else
+        		txtCategory.setText(category.getCategory_Name());
         }       
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
-        if(eduLevel != null)
-        	txtEducationLevel.setText(eduLevel.getEducation_Level());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
+        if(eduLevel != null){
+        	if(SplashScreen.localization == 1)
+        		txtEducationLevel.setText(eduLevel.getEducation_Level_am());
+        	else
+        		txtEducationLevel.setText(eduLevel.getEducation_Level());
+        }
         txtQualification.setText(jobVacancy.get(position).getQualification());
         txtResponsibility.setText(jobVacancy.get(position).getResponsibility());
         txtExperience.setText(jobVacancy.get(position).getExperiance());

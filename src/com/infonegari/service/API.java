@@ -40,6 +40,7 @@ import com.infonegari.objects.db.FemaleCloth;
 import com.infonegari.objects.db.Guarage;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HallType;
+import com.infonegari.objects.db.HandyCategory;
 import com.infonegari.objects.db.HandyMan;
 import com.infonegari.objects.db.Hdnta;
 import com.infonegari.objects.db.HouseListing;
@@ -135,6 +136,7 @@ public class API {
     public static GuestHouseService guestHouseService;
     public static HallTypeService hallTypeService;
     public static HandyManService handyManService;
+    public static HandyCategoryService handyCategoryService;
     public static HdntaService hdntaService;
     public static HouseListingService houseListingService;
     public static PhotoVideoService photoVideoService;
@@ -216,6 +218,7 @@ public class API {
     	guestHouseService = sRestAdapter.create(GuestHouseService.class);
     	hallTypeService = sRestAdapter.create(HallTypeService.class);
     	handyManService = sRestAdapter.create(HandyManService.class);
+    	handyCategoryService = sRestAdapter.create(HandyCategoryService.class);
     	hdntaService = sRestAdapter.create(HdntaService.class);
     	houseListingService = sRestAdapter.create(HouseListingService.class);
     	photoVideoService = sRestAdapter.create(PhotoVideoService.class);
@@ -596,6 +599,13 @@ public class API {
         public void getHandyMan(@Query("hm_id") long hmId, 
         		Callback<List<HandyMan>> callback);
     }	
+
+	public interface HandyCategoryService{
+        @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})
+        @GET(APIEndPoint.HANDY_CATEGORY)
+        public void getHandyCategory(@Query("hc_id") long hcId, 
+        		Callback<List<HandyCategory>> callback);
+    }
 	
 	public interface HdntaService{
         @Headers({ACCEPT_JSON, CONTENT_TYPE_JSON})

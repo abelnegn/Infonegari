@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.NightClub;
 import com.infonegari.objects.db.UserSite;
@@ -70,8 +71,12 @@ public class NightClubAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(nightClubs.get(position).getItem_Name());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(nightClubs.get(position).getDiscription());
         txtPrice.setText(String.valueOf(nightClubs.get(position).getPrice()));
         if(userSite != null){

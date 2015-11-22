@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.ShopElectronicsAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopElectronic;
@@ -131,12 +132,19 @@ public class ShopElectronicsFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -148,15 +156,15 @@ public class ShopElectronicsFragment extends Fragment{
 	private void fetchElectronicCategory(){
 		List<String> listOfElectronicCat = new ArrayList<String>();
 
-		listOfElectronicCat.add("All Electronics");
-		listOfElectronicCat.add("TV,DVD,Tape");		
-		listOfElectronicCat.add("Refrigrator");
-		listOfElectronicCat.add("Mobiles");
+		listOfElectronicCat.add(getString(R.string.sp_all_electronics));
+		listOfElectronicCat.add(getString(R.string.sp_tv));		
+		listOfElectronicCat.add(getString(R.string.sp_refrigrator));
+		listOfElectronicCat.add(getString(R.string.sp_mobiles));
 
-		categoryHashMap.put("All Electronics", "0");
-		categoryHashMap.put("TV,DVD,Tape", "tv");
-		categoryHashMap.put("Refrigrator", "refrigrator");
-		categoryHashMap.put("Mobiles", "mobile");
+		categoryHashMap.put(getString(R.string.sp_all_electronics), "0");
+		categoryHashMap.put(getString(R.string.sp_tv), "tv");
+		categoryHashMap.put(getString(R.string.sp_refrigrator), "refrigirator");
+		categoryHashMap.put(getString(R.string.sp_mobiles), "mobile");
 		
         ArrayAdapter<String> serviceTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfElectronicCat);
@@ -169,13 +177,13 @@ public class ShopElectronicsFragment extends Fragment{
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("All Service");
-		listOfService.add("Buy");		
-		listOfService.add("Maintenance");
+		listOfService.add(getString(R.string.sp_all_service));
+		listOfService.add(getString(R.string.sp_sell));		
+		listOfService.add(getString(R.string.sp_maintenance));
 
-		serviceHashMap.put("All Service", "0");
-		serviceHashMap.put("Buy", "sell");
-		serviceHashMap.put("Maintenance", "maintenance");
+		serviceHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceHashMap.put(getString(R.string.sp_sell), "sell");
+		serviceHashMap.put(getString(R.string.sp_maintenance), "maintenance");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

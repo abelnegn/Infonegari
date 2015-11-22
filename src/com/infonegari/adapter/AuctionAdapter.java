@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.UserSite;
@@ -77,8 +78,12 @@ public class AuctionAdapter extends BaseAdapter{
         txtPostDate.setText(auctions.get(position).getPost_Date());
         txtSubmissionDeadline.setText(auctions.get(position).getSubmission_Deadline());
         txtOpeningDate.setText(auctions.get(position).getOpening_Date());
-        if(category != null)
-        	txtCategory.setText(category.getCatagory_Name());
+        if(category != null){
+        	if(SplashScreen.localization == 1)
+        		txtCategory.setText(category.getCatagory_Name_am());
+        	else
+        		txtCategory.setText(category.getCatagory_Name());
+        }        	
         txtDiscription.setText(auctions.get(position).getDescription());
         txtMinPrice.setText(String.valueOf(auctions.get(position).getMinimum_Price()));    
         txtSource.setText(auctions.get(position).getSource());

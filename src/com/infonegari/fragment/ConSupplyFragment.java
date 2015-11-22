@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.ConSupplyAdapter;
 import com.infonegari.objects.db.Construction;
 import com.infonegari.objects.db.ConstructionMachine;
@@ -134,12 +135,19 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -152,12 +160,19 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfMachines = new ArrayList<String>();
 		conMachineList = Select.from(ConstructionMachine.class).orderBy("Machine ASC").list();
 
-		listOfMachines.add("All Machine");
-		conMachineHashMap.put("All Machine", 0L);
-		for (ConstructionMachine machine : conMachineList) {
-			listOfMachines.add(machine.getMachine());
-			conMachineHashMap.put(machine.getMachine(), machine.getCmId());
-        }
+		listOfMachines.add(getString(R.string.sp_all_machine));
+		conMachineHashMap.put(getString(R.string.sp_all_machine), 0L);
+		if(SplashScreen.localization == 1){
+			for (ConstructionMachine machine : conMachineList) {
+				listOfMachines.add(machine.getMachine_am());
+				conMachineHashMap.put(machine.getMachine_am(), machine.getCmId());
+	        }			
+		}else{
+			for (ConstructionMachine machine : conMachineList) {
+				listOfMachines.add(machine.getMachine());
+				conMachineHashMap.put(machine.getMachine(), machine.getCmId());
+	        }
+		}
         ArrayAdapter<String> machineAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMachines);
 
@@ -170,12 +185,19 @@ public class ConSupplyFragment extends Fragment{
 		List<String> listOfMaterials = new ArrayList<String>();
 		conMaterialList = Select.from(ConstructionMaterial.class).orderBy("Materials ASC").list();
 
-		listOfMaterials.add("All Material");
-		conMaterialHashMap.put("All Material", 0L);
-		for (ConstructionMaterial material : conMaterialList) {
-			listOfMaterials.add(material.getMaterials());
-			conMaterialHashMap.put(material.getMaterials(), material.getCm_id());
-        }
+		listOfMaterials.add(getString(R.string.sp_all_material));
+		conMaterialHashMap.put(getString(R.string.sp_all_material), 0L);
+		if(SplashScreen.localization == 1){
+			for (ConstructionMaterial material : conMaterialList) {
+				listOfMaterials.add(material.getMaterials_am());
+				conMaterialHashMap.put(material.getMaterials_am(), material.getCm_id());
+	        }			
+		}else{
+			for (ConstructionMaterial material : conMaterialList) {
+				listOfMaterials.add(material.getMaterials());
+				conMaterialHashMap.put(material.getMaterials(), material.getCm_id());
+	        }
+		}
         ArrayAdapter<String> materialAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMaterials);
 

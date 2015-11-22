@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.ShopClothAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopCloth;
@@ -131,12 +132,19 @@ public class ShopClothFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -148,17 +156,17 @@ public class ShopClothFragment extends Fragment{
 	private void fetchClothCategory(){
 		List<String> listOfClothCat = new ArrayList<String>();
 
-		listOfClothCat.add("All Category");		
-		listOfClothCat.add("Female Cloth");
-		listOfClothCat.add("Male Cloth");
-		listOfClothCat.add("Kids Cloth");
-		listOfClothCat.add("Cloth Designer");
+		listOfClothCat.add(getString(R.string.sp_all_category));		
+		listOfClothCat.add(getString(R.string.sp_female_cloth));
+		listOfClothCat.add(getString(R.string.sp_male_cloth));
+		listOfClothCat.add(getString(R.string.sp_kids_cloth));
+		listOfClothCat.add(getString(R.string.sp_cloth_designer));
 			
-		shopCatHashMap.put("All Category", "0");
-		shopCatHashMap.put("Female Cloth", "female_cloth");
-		shopCatHashMap.put("Male Cloth", "Male_cloth");
-		shopCatHashMap.put("Kids Cloth", "Kids_cloth");
-		shopCatHashMap.put("Cloth Designer", "cloth_designer");
+		shopCatHashMap.put(getString(R.string.sp_all_category), "0");
+		shopCatHashMap.put(getString(R.string.sp_female_cloth), "female_cloth");
+		shopCatHashMap.put(getString(R.string.sp_male_cloth), "Male_cloth");
+		shopCatHashMap.put(getString(R.string.sp_kids_cloth), "Kids_cloth");
+		shopCatHashMap.put(getString(R.string.sp_cloth_designer), "cloth_designer");
 		
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothCat);
@@ -171,13 +179,13 @@ public class ShopClothFragment extends Fragment{
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("All Cloth Type");		
-		listOfClothType.add("Modern");
-		listOfClothType.add("Traditional");
+		listOfClothType.add(getString(R.string.sp_all_cloth_type));		
+		listOfClothType.add(getString(R.string.sp_modern));
+		listOfClothType.add(getString(R.string.sp_traditional));
 			
-		shopTypeHashMap.put("All Cloth Type", "0");
-		shopTypeHashMap.put("Modern", "modern");
-		shopTypeHashMap.put("Traditional", "traditional");
+		shopTypeHashMap.put(getString(R.string.sp_all_cloth_type), "0");
+		shopTypeHashMap.put(getString(R.string.sp_modern), "modern");
+		shopTypeHashMap.put(getString(R.string.sp_traditional), "traditional");
 		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);

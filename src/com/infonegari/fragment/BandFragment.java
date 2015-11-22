@@ -3,8 +3,8 @@ package com.infonegari.fragment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.BandAdapter;
 import com.infonegari.objects.db.Band;
 import com.infonegari.objects.db.Location;
@@ -113,8 +113,6 @@ public class BandFragment extends Fragment{
 			}
 		});
 		
-		//saveBand();
-		
 		fetchLocation();
 		
 		init();
@@ -126,12 +124,19 @@ public class BandFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 

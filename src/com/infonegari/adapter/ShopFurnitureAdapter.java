@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopFurniture;
 import com.infonegari.objects.db.UserSite;
@@ -66,18 +67,25 @@ public class ShopFurnitureAdapter extends BaseAdapter{
         TextView txtPrice = (TextView) convertView.findViewById(R.id.price);
         TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
         TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
-        TextView txtCountry = (TextView)convertView.findViewById(R.id.country);
         TextView txtType = (TextView)convertView.findViewById(R.id.item_type);
         TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(shopFurniture.get(position).getItem_Name());
         txtPrice.setText(String.valueOf(shopFurniture.get(position).getPrice()));
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
-        txtDiscription.setText(shopFurniture.get(position).getDiscription());  
-        txtCountry.setText(shopFurniture.get(position).getCountry());
-        txtType.setText(shopFurniture.get(position).getItem_Type());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
+        txtDiscription.setText(shopFurniture.get(position).getDiscription()); 
+        if(shopFurniture.get(position).getItem_Type().equals("home"))
+        	txtType.setText(R.string.sp_home);
+        else if(shopFurniture.get(position).getItem_Type().equals("office"))
+        	txtType.setText(R.string.sp_home);
+        else
+        	txtType.setText(R.string.sp_all_furniture);
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());  
 	       	 txtEmail.setText(userSite.getE_mail());

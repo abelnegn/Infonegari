@@ -57,6 +57,7 @@ public class APIEndPoint {
     public static final String GUEST_HOUSE = "/guest_house.php";
     public static final String HALL_TYPE = "/hall_type.php";
     public static final String HANDY_MAN = "/handy_man.php";
+    public static final String HANDY_CATEGORY = "/handy_category.php";
     public static final String HDNTA = "/hdnta.php";
     public static final String HOUSE_LISTING = "/house_listing.php";
     public static final String PHOTO_VIDEO = "/photo_video.php";

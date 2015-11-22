@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.Pharmacy;
 import com.infonegari.objects.db.UserSite;
@@ -71,8 +72,12 @@ public class PharmacyAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(pharmacies.get(position).getItem_Name());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(pharmacies.get(position).getDiscription());
         txtPrice.setText(String.valueOf(pharmacies.get(position).getPrice()));
         txtPharmacyType.setText(pharmacies.get(position).getPharma_Type());

@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.BeautySaloon;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -69,12 +70,20 @@ public class BeautySaloonAdapter extends BaseAdapter{
         TextView txtPrice = (TextView) convertView.findViewById(R.id.price);
         TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
-        
         txtName.setText(beautySaloons.get(position).getBeautysaloonsName());
-        txtType.setText(beautySaloons.get(position).getBeautysaloonsType());
+        if(beautySaloons.get(position).getBeautysaloonsType().equals("1"))
+        	txtType.setText(R.string.sp_female);
+        else if(beautySaloons.get(position).getBeautysaloonsType().equals("2"))
+        	txtType.setText(R.string.sp_male);
+        else
+        	txtType.setText(R.string.sp_both);
         txtDiscription.setText(beautySaloons.get(position).getDiscription());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(beautySaloons.get(position).getPrice()));      
         if(userSite != null){
        	 	txtPhoneNo.setText(userSite.getPhone_Number());

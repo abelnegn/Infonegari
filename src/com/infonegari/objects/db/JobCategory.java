@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class JobCategory extends SugarRecord<JobCategory>{
 	private long jcId;
 	private String Category_Name;
+	private String Category_Name_am;
 	
     public boolean isNew() {
         long count = Select.from(JobCategory.class).where(Condition.prop("id").eq(id)).count();
@@ -30,6 +31,14 @@ public class JobCategory extends SugarRecord<JobCategory>{
 		Category_Name = category_Name;
 	}
     
+	public String getCategory_Name_am() {
+		return Category_Name_am;
+	}
+
+	public void setCategory_Name_am(String category_Name_am) {
+		Category_Name_am = category_Name_am;
+	}
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

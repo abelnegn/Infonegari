@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Cinema;
 import com.infonegari.objects.db.CinemaPlace;
 import com.infonegari.objects.db.Location;
@@ -89,15 +90,27 @@ public class CinemaAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(cinemas.get(position).getCinemaTitle());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(cinemas.get(position).getDiscription());
-        if(type != null)
-        	txtType.setText(type.getMovie_Type());
+        if(type != null){
+        	if(SplashScreen.localization == 1)
+        		txtType.setText(type.getMovie_Type_am());
+        	else
+        		txtType.setText(type.getMovie_Type());
+        }
         txtShowTime.setText(cinemas.get(position).getShowTime());
         txtShowDate.setText(cinemas.get(position).getShowDate());
-        if(hall != null)
-        	txtHall.setText(hall.getCinema_Name());
+        if(hall != null){
+        	if(SplashScreen.localization == 1)
+        		txtHall.setText(hall.getCinema_Name_am());
+        	else
+        		txtHall.setText(hall.getCinema_Name());
+        }
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());  
 	       	 txtEmail.setText(userSite.getE_mail());

@@ -27,6 +27,7 @@ import com.infonegari.objects.db.FemaleCloth;
 import com.infonegari.objects.db.Guarage;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HallType;
+import com.infonegari.objects.db.HandyCategory;
 import com.infonegari.objects.db.HandyMan;
 import com.infonegari.objects.db.Hdnta;
 import com.infonegari.objects.db.HouseListing;
@@ -101,6 +102,7 @@ public class OfflineDataHelper {
     	AuctionCategory newAc = new AuctionCategory();
     	newAc.setAc_id(ac.getId());
     	newAc.setCatagory_Name(ac.getCatagory_Name());
+    	newAc.setCatagory_Name_am(ac.getCatagory_Name_am());
     	
     	newAc.save();
     }
@@ -109,6 +111,7 @@ public class OfflineDataHelper {
     	CarType newCarType = new CarType();
     	newCarType.setCarTypeId(carType.getCarTypeId());
     	newCarType.setCarTypeName(carType.getCarTypeName());
+    	newCarType.setCarTypeName_am(carType.getCarTypeName_am());
 	  	
     	newCarType.save();
     }
@@ -117,6 +120,7 @@ public class OfflineDataHelper {
     	CinemaPlace newCinemaPlace = new CinemaPlace();
     	newCinemaPlace.setCp_id(cinemaPlace.getId());
     	newCinemaPlace.setCinema_Name(cinemaPlace.getCinema_Name());
+    	newCinemaPlace.setCinema_Name_am(cinemaPlace.getCinema_Name_am());
 	  	
     	newCinemaPlace.save();
     }
@@ -148,6 +152,7 @@ public class OfflineDataHelper {
     	HouseType newHouseType = new HouseType();
     	newHouseType.setHouseTypeId(houseType.getHouseTypeId());
     	newHouseType.setHouseTypeName(houseType.getHouseTypeName());
+    	newHouseType.setHouseTypeName_am(houseType.getHouseTypeName_am());
 	  	
     	newHouseType.save();
     }
@@ -156,6 +161,7 @@ public class OfflineDataHelper {
     	JobCategory newJc = new JobCategory();
     	newJc.setJcId(jc.getId());
     	newJc.setCategory_Name(jc.getCategory_Name());
+    	newJc.setCategory_Name_am(jc.getCategory_Name_am());
 	  	
     	newJc.save();
     }
@@ -186,6 +192,7 @@ public class OfflineDataHelper {
     	newLocation.setLocationId(location.getLocationId());
     	newLocation.setLocationName(location.getLocationName());
     	newLocation.setCityId(location.getCityId());
+    	newLocation.setLocationName_am(location.getLocationName_am());
 	  	
     	newLocation.save();
     }
@@ -230,6 +237,7 @@ public class OfflineDataHelper {
     	MovieType newMt = new MovieType();
     	newMt.setMtId(mt.getId());
     	newMt.setMovie_Type(mt.getMovie_Type());
+    	newMt.setMovie_Type_am(mt.getMovie_Type_am());
 	  	
     	newMt.save();
     }
@@ -275,6 +283,7 @@ public class OfflineDataHelper {
     	RestaurantType newRestaurantType = new RestaurantType();
     	newRestaurantType.setRestaurantTypeId(restaurantType.getRestaurantTypeId());
     	newRestaurantType.setRestaurantTypeName(restaurantType.getRestaurantTypeName());
+    	newRestaurantType.setRestaurantTypeName_am(restaurantType.getRestaurantTypeName_am());
 	  	
     	newRestaurantType.save();
     }
@@ -291,6 +300,7 @@ public class OfflineDataHelper {
     	TenderCategory newTenderCategory = new TenderCategory();
     	newTenderCategory.setTc_id(tenderCategory.getId());
     	newTenderCategory.setCatagory_Name(tenderCategory.getCatagory_Name());
+    	newTenderCategory.setCatagory_Name_am(tenderCategory.getCatagory_Name_am());
 	  	
     	newTenderCategory.save();
     }
@@ -447,6 +457,7 @@ public class OfflineDataHelper {
     	ConstructionMachine newCm = new ConstructionMachine();
     	newCm.setCmId(cm.getId());
     	newCm.setMachine(cm.getMachine());
+    	newCm.setMachine_am(cm.getMachine_am());
 	  	
     	newCm.save();
     }
@@ -455,6 +466,7 @@ public class OfflineDataHelper {
     	ConstructionMaterial newCm = new ConstructionMaterial();
     	newCm.setCm_id(cm.getId());
     	newCm.setMaterials(cm.getMaterials());
+    	newCm.setMaterials_am(cm.getMaterials_am());
 	  	
     	newCm.save();
     }
@@ -491,6 +503,7 @@ public class OfflineDataHelper {
     	EducationCategory newEc = new EducationCategory();
     	newEc.setEcId(ec.getId());
     	newEc.setEducation_Level(ec.getEducation_Level());
+    	newEc.setEducation_Level_am(ec.getEducation_Level_am());
     	
     	newEc.save();
     }
@@ -564,6 +577,7 @@ public class OfflineDataHelper {
     	HallType newHt = new HallType();
     	newHt.setHtId(ht.getId());
     	newHt.setHall_Type(ht.getHall_Type());
+    	newHt.setHall_Type_am(ht.getHall_Type_am());
     	
     	newHt.save();
     }
@@ -580,6 +594,15 @@ public class OfflineDataHelper {
     	newHandyMan.setIsFeatured(handyMan.getIsFeatured());
     	
     	newHandyMan.save();
+    }
+    
+    public void saveHandyCategory(HandyCategory hc){
+    	HandyCategory newHc = new HandyCategory();
+    	newHc.setHcId(hc.getId());
+    	newHc.setCategory(hc.getCategory());
+    	newHc.setCategory_am(hc.getCategory_am());
+    	
+    	newHc.save();
     }
     
     public void saveHdntaData(Hdnta hdnta){

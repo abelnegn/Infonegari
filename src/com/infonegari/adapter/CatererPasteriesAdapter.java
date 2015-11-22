@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.CaterersPasteries;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -72,8 +73,12 @@ public class CatererPasteriesAdapter extends BaseAdapter{
         
         txtName.setText(catererPasteries.get(position).getCnPIdName());
         txtServiceType.setText(catererPasteries.get(position).getServiceType());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(catererPasteries.get(position).getPrice()));
         txtDiscription.setText(catererPasteries.get(position).getDiscription());
         if(userSite != null){

@@ -3,7 +3,9 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.GuestHouse;
+import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
 import com.orm.query.Condition;
@@ -71,8 +73,12 @@ public class GuestHouseAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(guestHouses.get(position).getGuestHouseName());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+    		if(SplashScreen.localization == 1)
+    			txtLocation.setText(location.getLocationName_am());
+    		else
+    			txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(guestHouses.get(position).getGuestHouseDiscripton());
         txtPrice.setText(String.valueOf(guestHouses.get(position).getPrice()));
         txtNoRooms.setText(guestHouses.get(position).getNoRooms());

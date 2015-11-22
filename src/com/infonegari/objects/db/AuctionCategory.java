@@ -9,6 +9,7 @@ public class AuctionCategory extends SugarRecord<AuctionCategory>{
 
 	private long ac_id;
 	private String Catagory_Name;
+	private String Catagory_Name_am;
 	
     public boolean isNew() {
         long count = Select.from(AuctionCategory.class).where(Condition.prop("id").eq(id)).count();
@@ -30,6 +31,14 @@ public class AuctionCategory extends SugarRecord<AuctionCategory>{
 
 	public void setCatagory_Name(String catagory_Name) {
 		Catagory_Name = catagory_Name;
+	}
+
+	public String getCatagory_Name_am() {
+		return Catagory_Name_am;
+	}
+
+	public void setCatagory_Name_am(String catagory_Name_am) {
+		Catagory_Name_am = catagory_Name_am;
 	}
 
 	@Override

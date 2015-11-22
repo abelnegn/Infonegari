@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.HouseListing;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
@@ -82,12 +83,20 @@ public class HouseRentAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(houseListings.get(position).getHouse_Name());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(houseListings.get(position).getHouseDiscription());
         txtPrice.setText(String.valueOf(houseListings.get(position).getHousePrice()));
-        if(houseType != null)
-        	txtHouseType.setText(houseType.getHouseTypeName());
+        if(houseType != null){
+        	if(SplashScreen.localization == 1)
+        		txtHouseType.setText(houseType.getHouseTypeName_am());
+        	else
+        		txtHouseType.setText(houseType.getHouseTypeName());
+        }
         txtNoRooms.setText(String.valueOf(houseListings.get(position).getNoRooms()));
         txtLotSize.setText(houseListings.get(position).getLotSize());
         if(userSite != null){

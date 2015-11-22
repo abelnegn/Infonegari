@@ -98,14 +98,16 @@ public class BusinessFragment extends Fragment{
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
 		// Garage
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+		// Handy Man
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1)));
 		// Clinic
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(3, -1)));
 		// Pharmacy
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(4, -1)));
 		// Banks
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(5, -1)));
 		// Taxi
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
 		
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -147,15 +149,18 @@ public class BusinessFragment extends Fragment{
 			fragment = new GarageFragment();
 			break;
 		case 3:
+			fragment = new HandyManFragment();
+			break;			
+		case 4:
 			fragment = new ClinicFragment();
 			break;
-		case 4:
+		case 5:
 			fragment = new PharmacyFragment();
 			break;
-		case 5:
+		case 6:
 			fragment = new BankFragment();
 			break;
-		case 6:
+		case 7:
 			fragment = new TaxiFragment();
 			break;
 		default:

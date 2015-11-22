@@ -13,7 +13,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceLarge"
 	        android:textColor="@color/list_item_title"
-	        android:text="Name"/>
+	        android:text="@string/txt_name"/>
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Location"/>    	
+	        android:text="@string/txt_location"/>    	
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Discription"/>	    	      
+	        android:text="@string/txt_discription"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Price"/>	    	      
+	        android:text="@string/txt_price"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Garage Type"/>	    	      
+	        android:text="@string/txt_garage_type"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Job Type"/>	    	      
+	        android:text="@string/txt_job_type"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Email"/>	    	      
+	        android:text="@string/txt_email"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
 	        android:layout_height="wrap_content"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/list_item_title"
-	        android:text="Phone No"/>	    	      
+	        android:text="@string/txt_phone_no"/>	    	      
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class EducationCategory extends SugarRecord<EducationCategory>{
 	private long ecId;
 	private String Education_Level;
+	private String Education_Level_am;
 	
     public boolean isNew() {
         long count = Select.from(EducationCategory.class).where(Condition.prop("id").eq(id)).count();
@@ -30,6 +31,13 @@ public class EducationCategory extends SugarRecord<EducationCategory>{
 		Education_Level = education_Level;
 	}
 
+	public String getEducation_Level_am() {
+		return Education_Level_am;
+	}
+
+	public void setEducation_Level_am(String education_Level_am) {
+		Education_Level_am = education_Level_am;
+	}
 
 	@Override
     public String toString() {

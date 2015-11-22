@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopElectronic;
 import com.infonegari.objects.db.UserSite;
@@ -68,18 +69,32 @@ public class ShopElectronicsAdapter extends BaseAdapter{
         TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
         TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
         TextView txtPrice = (TextView) convertView.findViewById(R.id.price);
-        TextView txtBrand = (TextView) convertView.findViewById(R.id.brand_name);
         TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(shopElectronics.get(position).getItem_Name());
-        txtCategory.setText(shopElectronics.get(position).getCatagory());
-        txtServiceType.setText(shopElectronics.get(position).getService_Type());
+        if(shopElectronics.get(position).getCatagory().equals("tv"))
+        	txtCategory.setText(R.string.sp_tv);
+        else if(shopElectronics.get(position).getCatagory().equals("refrigirator"))
+        	txtCategory.setText(R.string.sp_refrigrator);
+        else if(shopElectronics.get(position).getCatagory().equals("mobile"))
+        	txtCategory.setText(R.string.sp_mobiles);
+        else
+        	txtCategory.setText(R.string.sp_all_electronics);
+        if(shopElectronics.get(position).getService_Type().equals("sell"))
+        	txtServiceType.setText(R.string.sp_sell);
+        else if(shopElectronics.get(position).getService_Type().equals("maintenance"))
+        	txtServiceType.setText(R.string.sp_maintenance);
+        else
+        	txtServiceType.setText(R.string.sp_all_service);
         txtDiscription.setText(shopElectronics.get(position).getDiscription());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(shopElectronics.get(position).getPrice()));
-        txtBrand.setText(shopElectronics.get(position).getBrand_Name());
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());  
 	       	 txtEmail.setText(userSite.getE_mail());

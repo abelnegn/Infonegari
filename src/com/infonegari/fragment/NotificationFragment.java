@@ -90,8 +90,6 @@ public class NotificationFragment extends DialogFragment{
 			@Override
 			public void onClick(View arg0) {
 				getNotify();
-				updateNotifyData();
-				getDialog().dismiss();
 			}
 		});
 		
@@ -115,8 +113,8 @@ public class NotificationFragment extends DialogFragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
+		listOfLocations.add("Select Location");
+		locationHashMap.put("Select Location", 0L);
 		for (Location location : locationList) {
 			listOfLocations.add(location.getLocationName());
 			locationHashMap.put(location.getLocationName(), location.getLocationId());
@@ -133,8 +131,8 @@ public class NotificationFragment extends DialogFragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(JobCategory.class).orderBy("CategoryName ASC").list();
 
-		listOfCategories.add("All Category");
-		categoryHashMap.put("All Category", 0L);
+		listOfCategories.add("Select Category");
+		categoryHashMap.put("Select Category", 0L);
 		for (JobCategory jobCategory : categoryList) {
 			listOfCategories.add(jobCategory.getCategory_Name());
 			categoryHashMap.put(jobCategory.getCategory_Name(), jobCategory.getJcId());
@@ -213,8 +211,14 @@ public class NotificationFragment extends DialogFragment{
     }
     
     private void getNotify(){
-    	if(cbJob.isChecked())
-    		notify = notify + "5";
+    	if(cbJob.isChecked()){
+    		if(categoryHashMap.get(sp_category.getSelectedItem().toString()) != 0){
+    			notify = notify + "5";		
+    		}else{
+    			Toast.makeText(getActivity(), "Please select job category", Toast.LENGTH_SHORT).show();
+    			return;
+    		}
+    	}
     	if(cbCarSell.isChecked())
     		if(notify.equals(""))
     			notify = "17";
@@ -225,37 +229,71 @@ public class NotificationFragment extends DialogFragment{
     			notify = "18";
     		else
     			notify = notify + ",18";
-    	if(cbHouseSell.isChecked())
-    		if(notify.equals(""))
-    			notify = "19";
-    		else
-    			notify = notify + ",19";
-    	if(cbBusinessSell.isChecked())
-    		if(notify.equals(""))
-    			notify = "20";
-    		else
-    			notify = notify + ",20";
-    	if(cbRentCar.isChecked())
-    		if(notify.equals(""))
-    			notify = "21";
-    		else
-    			notify = notify + ",21";
-    	if(cbHouseRent.isChecked())
-    		if(notify.equals(""))
-    			notify = "22";
-    		else
-    			notify = notify + ",22";
+    	if(cbHouseSell.isChecked()){
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "19";
+        		else
+        			notify = notify + ",19";	
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;
+    		}    		
+    	}
+    	if(cbBusinessSell.isChecked()){
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "20";
+        		else
+        			notify = notify + ",20";    			
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;
+    		}
+    	}
+    	if(cbRentCar.isChecked()){
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "21";
+        		else
+        			notify = notify + ",21";    			
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;    			
+    		}
+    	}
+    	if(cbHouseRent.isChecked()){
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "22";
+        		else
+        			notify = notify + ",22";    			
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;    			
+    		}
+    	}
     	if(cbBusinessRent.isChecked()){
-    		if(notify.equals(""))
-    			notify = "24";
-    		else
-    			notify = notify + ",24";
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "24";
+        		else
+        			notify = notify + ",24";   			
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;    			
+    		}
     	}
     	if(cbCinema.isChecked()){
-    		if(notify.equals(""))
-    			notify = "31";
-    		else
-    			notify = notify + ",31";
+    		if(locationHashMap.get(sp_location.getSelectedItem().toString()) != 0){
+        		if(notify.equals(""))
+        			notify = "31";
+        		else
+        			notify = notify + ",31";    			
+    		}else{
+    			Toast.makeText(getActivity(), "Please select Location", Toast.LENGTH_SHORT).show();
+    			return;    			
+    		}
     	}
     	if(cbEvent.isChecked()){
     		if(notify.equals(""))
@@ -263,6 +301,8 @@ public class NotificationFragment extends DialogFragment{
     		else
     			notify = notify + ",34";
     	}
+		updateNotifyData();
+		getDialog().dismiss();
     }
     
     private void updateNotifyData(){

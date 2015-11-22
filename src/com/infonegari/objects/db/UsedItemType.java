@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class UsedItemType extends SugarRecord<UsedItemType>{
 	private long UsedItemTypeId;
 	private String UsedItemTypeName;
+	private String UsedItemTypeName_am;
 	
     public boolean isNew() {
         long count = Select.from(UsedItemType.class).where(Condition.prop("id").eq(id)).count();
@@ -22,9 +23,6 @@ public class UsedItemType extends SugarRecord<UsedItemType>{
 		UsedItemTypeId = usedItemTypeId;
 	}
 
-
-
-
 	public String getUsedItemTypeName() {
 		return UsedItemTypeName;
 	}
@@ -34,6 +32,13 @@ public class UsedItemType extends SugarRecord<UsedItemType>{
 		UsedItemTypeName = usedItemTypeName;
 	}
 
+	public String getUsedItemTypeName_am() {
+		return UsedItemTypeName_am;
+	}
+
+	public void setUsedItemTypeName_am(String usedItemTypeName_am) {
+		UsedItemTypeName_am = usedItemTypeName_am;
+	}
 
 	@Override
     public String toString() {

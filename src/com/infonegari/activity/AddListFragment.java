@@ -20,6 +20,7 @@ import com.infonegari.objects.db.CarType;
 import com.infonegari.objects.db.ConstructionMachine;
 import com.infonegari.objects.db.ConstructionMaterial;
 import com.infonegari.objects.db.HallType;
+import com.infonegari.objects.db.HandyCategory;
 import com.infonegari.objects.db.HouseType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.RestaurantType;
@@ -101,6 +102,8 @@ public class AddListFragment extends Fragment {
 	List<RestaurantType> typeList;
 	List<ConstructionMachine> conMachineList;
 	List<ConstructionMaterial> conMaterialList;
+	List<HandyCategory> handyCategoryList;
+	HashMap<String, Long> handyCategoryHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> conMachineHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> conMaterialHashMap = new HashMap<String, Long>();
 	HashMap<String, Long> restaurantTypeHashMap = new HashMap<String, Long>();
@@ -397,6 +400,8 @@ public class AddListFragment extends Fragment {
     				uploadShopFurniture();
     			}else if(adds.getCategory().equals("31")){
     				uploadShopComputers();
+    			}else if(adds.getCategory().equals("32")){
+    				uploadHandyMan();
     			}
     			adds.delete();
     		}
@@ -411,7 +416,7 @@ public class AddListFragment extends Fragment {
 				categoryId == 22 || categoryId == 26 || categoryId == 27){
 			rootView = inflater.inflate(R.layout.fragment_add_list_one, container, false);
 		}else if(categoryId== 2 || categoryId == 6 || categoryId==7 || categoryId == 12 || categoryId == 17 || 
-				categoryId ==20 || categoryId == 21 || categoryId == 23 || categoryId == 25){
+				categoryId ==20 || categoryId == 21 || categoryId == 23 || categoryId == 25 || categoryId == 32){
 			rootView = inflater.inflate(R.layout.fragment_add_list_two, container, false);
 			sp_type_one = (Spinner) rootView.findViewById(R.id.type_one);	
 			if(categoryId== 2)			
@@ -432,6 +437,9 @@ public class AddListFragment extends Fragment {
 				fetchRestaurantType();
 			else if(categoryId == 25)
 				fetchEventType();
+			else if(categoryId == 32){
+				fetchHandyCategory();
+			}
 		}else if(categoryId == 5 ||  categoryId ==19 || categoryId == 22 || categoryId ==29 || 
 				categoryId== 30 || categoryId ==31){
 			rootView = inflater.inflate(R.layout.fragment_add_list_three, container, false);
@@ -571,12 +579,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("Select Location");
-		locationHashMap.put("Select Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -589,12 +604,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfCarType = new ArrayList<String>();
 		carTypeList = Select.from(CarType.class).orderBy("Car_Type_Name ASC").list();
 
-		listOfCarType.add("Select Car Type");
-		carTypeHashMap.put("Select Car Type", 0L);
-		for (CarType carType : carTypeList) {
-			listOfCarType.add(carType.getCarTypeName());
-			carTypeHashMap.put(carType.getCarTypeName(), carType.getCarTypeId());
-        }
+		listOfCarType.add(getString(R.string.sp_all_type));
+		carTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (CarType type : carTypeList) {
+				listOfCarType.add(type.getCarTypeName_am());
+				carTypeHashMap.put(type.getCarTypeName_am(), type.getCarTypeId());
+	        }			
+		}else{
+			for (CarType type : carTypeList) {
+				listOfCarType.add(type.getCarTypeName());
+				carTypeHashMap.put(type.getCarTypeName(), type.getCarTypeId());
+	        }
+		}
         ArrayAdapter<String> carTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfCarType);
 
@@ -608,12 +630,19 @@ public class AddListFragment extends Fragment {
 
 		hallList = Select.from(HallType.class).orderBy("HallType ASC").list();
 
-		listOfType.add("Select Hall Type");
-		hallTypeHashMap.put("Select Hall Type", 0L);
-		for (HallType type : hallList) {
-			listOfType.add(type.getHall_Type());
-			hallTypeHashMap.put(type.getHall_Type(), type.getHtId());
-        }
+		listOfType.add(getString(R.string.sp_all_type));
+		hallTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (HallType type : hallList) {
+				listOfType.add(type.getHall_Type_am());
+				hallTypeHashMap.put(type.getHall_Type_am(), type.getHtId());
+	        }			
+		}else{
+			for (HallType type : hallList) {
+				listOfType.add(type.getHall_Type());
+				hallTypeHashMap.put(type.getHall_Type(), type.getHtId());
+	        }
+		}
 			
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -626,15 +655,15 @@ public class AddListFragment extends Fragment {
 	private void fetchSaloonType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Type");		
-		listOfType.add("Female");
-		listOfType.add("Male");
-		listOfType.add("Both");
-			
-		saloonTypeHashMap.put("Select Type", 0L);
-		saloonTypeHashMap.put("Female", 1L);
-		saloonTypeHashMap.put("Male", 2L);
-		saloonTypeHashMap.put("Both", 3L);
+		listOfType.add(getString(R.string.sp_all_type));		
+		listOfType.add(getString(R.string.sp_female));
+		listOfType.add(getString(R.string.sp_male));
+		listOfType.add(getString(R.string.sp_both));
+
+		saloonTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		saloonTypeHashMap.put(getString(R.string.sp_female), 1L);
+		saloonTypeHashMap.put(getString(R.string.sp_male), 2L);
+		saloonTypeHashMap.put(getString(R.string.sp_both), 3L);
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -648,12 +677,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfType = new ArrayList<String>();
 		usedItemTypeList = Select.from(UsedItemType.class).orderBy("Used_Item_Type_Name ASC").list();
 
-		listOfType.add("Select Type");
-		usedItemTypeHashMap.put("Select Type", 0L);
-		for (UsedItemType type : usedItemTypeList) {
-			listOfType.add(type.getUsedItemTypeName());
-			usedItemTypeHashMap.put(type.getUsedItemTypeName(), type.getUsedItemTypeId());
-        }
+		listOfType.add(getString(R.string.sp_all_type));
+		usedItemTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (UsedItemType type : usedItemTypeList) {
+				listOfType.add(type.getUsedItemTypeName_am());
+				usedItemTypeHashMap.put(type.getUsedItemTypeName_am(), type.getUsedItemTypeId());
+	        }			
+		}else{
+			for (UsedItemType type : usedItemTypeList) {
+				listOfType.add(type.getUsedItemTypeName());
+				usedItemTypeHashMap.put(type.getUsedItemTypeName(), type.getUsedItemTypeId());
+	        }
+		}
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
@@ -666,12 +702,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfHouseTypes = new ArrayList<String>();
 		houseTypeList = Select.from(HouseType.class).orderBy("House_Type_Name ASC").list();
 
-		listOfHouseTypes.add("Select House Type");
-		houseTypeHashMap.put("Select House Type", 0L);
-		for (HouseType type : houseTypeList) {
-			listOfHouseTypes.add(type.getHouseTypeName());
-			houseTypeHashMap.put(type.getHouseTypeName(), type.getHouseTypeId());
-        }
+		listOfHouseTypes.add(getString(R.string.sp_all_type));
+		houseTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (HouseType type : houseTypeList) {
+				listOfHouseTypes.add(type.getHouseTypeName_am());
+				houseTypeHashMap.put(type.getHouseTypeName_am(), type.getHouseTypeId());
+	        }			
+		}else{
+			for (HouseType type : houseTypeList) {
+				listOfHouseTypes.add(type.getHouseTypeName());
+				houseTypeHashMap.put(type.getHouseTypeName(), type.getHouseTypeId());
+	        }
+		}
         ArrayAdapter<String> houseTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfHouseTypes);
 
@@ -705,12 +748,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfType = new ArrayList<String>();
 		typeList = Select.from(RestaurantType.class).orderBy("Restaurant_Type_Name ASC").list();
 
-		listOfType.add("Select Restaurant Type");
-		restaurantTypeHashMap.put("Select Restaurant Type", 0L);
-		for (RestaurantType type : typeList) {
-			listOfType.add(type.getRestaurantTypeName());
-			restaurantTypeHashMap.put(type.getRestaurantTypeName(), type.getRestaurantTypeId());
-        }
+		listOfType.add(getString(R.string.sp_all_type));
+		restaurantTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (RestaurantType type : typeList) {
+				listOfType.add(type.getRestaurantTypeName_am());
+				restaurantTypeHashMap.put(type.getRestaurantTypeName_am(), type.getRestaurantTypeId());
+	        }			
+		}else{
+			for (RestaurantType type : typeList) {
+				listOfType.add(type.getRestaurantTypeName());
+				restaurantTypeHashMap.put(type.getRestaurantTypeName(), type.getRestaurantTypeId());
+	        }
+		}
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
@@ -745,13 +795,13 @@ public class AddListFragment extends Fragment {
 	private void fetchWeddingClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("Select Cloth Type");		
-		listOfClothType.add("Modern");
-		listOfClothType.add("Traditional");
+		listOfClothType.add(getString(R.string.sp_all_cloth_type));		
+		listOfClothType.add(getString(R.string.sp_modern));
+		listOfClothType.add(getString(R.string.sp_traditional));
 			
-		weddingClothTypeHashMap.put("Select Cloth Type", "0");
-		weddingClothTypeHashMap.put("Modern", "modern");
-		weddingClothTypeHashMap.put("Traditional", "traditional");
+		weddingClothTypeHashMap.put(getString(R.string.sp_all_cloth_type), "0");
+		weddingClothTypeHashMap.put(getString(R.string.sp_modern), "modern");
+		weddingClothTypeHashMap.put(getString(R.string.sp_traditional), "traditional");
 		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);
@@ -764,15 +814,13 @@ public class AddListFragment extends Fragment {
 	private void fetchWeddingService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("Select Service");		
-		listOfService.add("Buy");
-		listOfService.add("Rent");
-		listOfService.add("Sell");
+		listOfService.add(getString(R.string.sp_all_service));
+		listOfService.add(getString(R.string.sp_rental));
+		listOfService.add(getString(R.string.sp_sell));
 			
-		weddingServiceHashMap.put("Select Service", "0");
-		weddingServiceHashMap.put("Buy", "buy");
-		weddingServiceHashMap.put("Rent", "rent");
-		weddingServiceHashMap.put("Sell", "sell");
+		serviceHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceHashMap.put(getString(R.string.sp_rental), "rental");
+		serviceHashMap.put(getString(R.string.sp_sell), "sell");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);
@@ -808,13 +856,13 @@ public class AddListFragment extends Fragment {
 	private void fetchFurnitureType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Furniture");
-		listOfType.add("Home");		
-		listOfType.add("Office");
+		listOfType.add(getString(R.string.sp_all_furniture));
+		listOfType.add(getString(R.string.sp_home));		
+		listOfType.add(getString(R.string.sp_office));
 
-		furnitureTypeHashMap.put("Select Furniture", "0");
-		furnitureTypeHashMap.put("Home", "home");
-		furnitureTypeHashMap.put("Office", "office");
+		furnitureTypeHashMap.put(getString(R.string.sp_all_furniture), "0");
+		furnitureTypeHashMap.put(getString(R.string.sp_home), "home");
+		furnitureTypeHashMap.put(getString(R.string.sp_office), "office");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -864,12 +912,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfMachines = new ArrayList<String>();
 		conMachineList = Select.from(ConstructionMachine.class).orderBy("Machine ASC").list();
 
-		listOfMachines.add("Select Machine");
-		conMachineHashMap.put("Select Machine", 0L);
-		for (ConstructionMachine machine : conMachineList) {
-			listOfMachines.add(machine.getMachine());
-			conMachineHashMap.put(machine.getMachine(), machine.getCmId());
-        }
+		listOfMachines.add(getString(R.string.sp_all_machine));
+		conMachineHashMap.put(getString(R.string.sp_all_machine), 0L);
+		if(SplashScreen.localization == 1){
+			for (ConstructionMachine machine : conMachineList) {
+				listOfMachines.add(machine.getMachine_am());
+				conMachineHashMap.put(machine.getMachine_am(), machine.getCmId());
+	        }			
+		}else{
+			for (ConstructionMachine machine : conMachineList) {
+				listOfMachines.add(machine.getMachine());
+				conMachineHashMap.put(machine.getMachine(), machine.getCmId());
+	        }
+		}
         ArrayAdapter<String> machineAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMachines);
 
@@ -882,12 +937,19 @@ public class AddListFragment extends Fragment {
 		List<String> listOfMaterials = new ArrayList<String>();
 		conMaterialList = Select.from(ConstructionMaterial.class).orderBy("Materials ASC").list();
 
-		listOfMaterials.add("Select Material");
-		conMaterialHashMap.put("Select Material", 0L);
-		for (ConstructionMaterial material : conMaterialList) {
-			listOfMaterials.add(material.getMaterials());
-			conMaterialHashMap.put(material.getMaterials(), material.getCm_id());
-        }
+		listOfMaterials.add(getString(R.string.sp_all_material));
+		conMaterialHashMap.put(getString(R.string.sp_all_material), 0L);
+		if(SplashScreen.localization == 1){
+			for (ConstructionMaterial material : conMaterialList) {
+				listOfMaterials.add(material.getMaterials_am());
+				conMaterialHashMap.put(material.getMaterials_am(), material.getCm_id());
+	        }			
+		}else{
+			for (ConstructionMaterial material : conMaterialList) {
+				listOfMaterials.add(material.getMaterials());
+				conMaterialHashMap.put(material.getMaterials(), material.getCm_id());
+	        }
+		}
         ArrayAdapter<String> materialAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMaterials);
 
@@ -895,19 +957,44 @@ public class AddListFragment extends Fragment {
         sp_type_two.setAdapter(materialAdapter);
         sp_type_two.setSelection(0);
 	}
+
+	private void fetchHandyCategory(){
+		List<String> listOfCategories = new ArrayList<String>();
+		handyCategoryList = Select.from(HandyCategory.class).orderBy("Category ASC").list();
+
+		listOfCategories.add(getString(R.string.sp_all_category));
+		handyCategoryHashMap.put(getString(R.string.sp_all_category), 0L);
+		if(SplashScreen.localization == 1){
+			for (HandyCategory hc : handyCategoryList) {
+				listOfCategories.add(hc.getCategory_am());
+				handyCategoryHashMap.put(hc.getCategory_am(), hc.getHcId());
+	        }			
+		}else{
+			for (HandyCategory hc : handyCategoryList) {
+				listOfCategories.add(hc.getCategory());
+				handyCategoryHashMap.put(hc.getCategory(), hc.getHcId());
+	        }
+		}
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, listOfCategories);
+
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_type_one.setAdapter(categoryAdapter);
+        sp_type_one.setSelection(0);
+	}
 	
 	private void fetchElectronicCategory(){
 		List<String> listOfElectronicCat = new ArrayList<String>();
 
-		listOfElectronicCat.add("Select Electronics");
-		listOfElectronicCat.add("TV,DVD,Tape");		
-		listOfElectronicCat.add("Refrigrator");
-		listOfElectronicCat.add("Mobiles");
+		listOfElectronicCat.add(getString(R.string.sp_all_electronics));
+		listOfElectronicCat.add(getString(R.string.sp_tv));		
+		listOfElectronicCat.add(getString(R.string.sp_refrigrator));
+		listOfElectronicCat.add(getString(R.string.sp_mobiles));
 
-		electronicCategoryHashMap.put("Select Electronics", "0");
-		electronicCategoryHashMap.put("TV,DVD,Tape", "tv");
-		electronicCategoryHashMap.put("Refrigrator", "refrigrator");
-		electronicCategoryHashMap.put("Mobiles", "mobile");
+		electronicCategoryHashMap.put(getString(R.string.sp_all_electronics), "0");
+		electronicCategoryHashMap.put(getString(R.string.sp_tv), "tv");
+		electronicCategoryHashMap.put(getString(R.string.sp_refrigrator), "refrigirator");
+		electronicCategoryHashMap.put(getString(R.string.sp_mobiles), "mobile");
 		
         ArrayAdapter<String> serviceTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfElectronicCat);
@@ -920,13 +1007,13 @@ public class AddListFragment extends Fragment {
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("Select Service");
-		listOfService.add("Buy");		
-		listOfService.add("Maintenance");
+		listOfService.add(getString(R.string.sp_all_service));
+		listOfService.add(getString(R.string.sp_sell));		
+		listOfService.add(getString(R.string.sp_maintenance));
 
-		serviceHashMap.put("Select Service", "0");
-		serviceHashMap.put("Buy", "sell");
-		serviceHashMap.put("Maintenance", "maintenance");
+		serviceHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceHashMap.put(getString(R.string.sp_sell), "sell");
+		serviceHashMap.put(getString(R.string.sp_maintenance), "maintenance");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);
@@ -939,15 +1026,15 @@ public class AddListFragment extends Fragment {
 	private void fetchAccessoryType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Type");
-		listOfType.add("Brand New");		
-		listOfType.add("Assembled");
-		listOfType.add("Used");
+		listOfType.add(getString(R.string.sp_all_type));
+		listOfType.add(getString(R.string.sp_brand_new));		
+		listOfType.add(getString(R.string.sp_assembled));
+		listOfType.add(getString(R.string.sp_used));
 
-		accessoryTypeHashMap.put("Select Type", "0");
-		accessoryTypeHashMap.put("Brand New", "new");
-		accessoryTypeHashMap.put("Assembled", "assembled");
-		accessoryTypeHashMap.put("Used", "used");
+		accessoryTypeHashMap.put(getString(R.string.sp_all_type), "0");
+		accessoryTypeHashMap.put(getString(R.string.sp_brand_new), "new");
+		accessoryTypeHashMap.put(getString(R.string.sp_assembled), "assembled");
+
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -960,17 +1047,17 @@ public class AddListFragment extends Fragment {
 	private void fetchClothCategory(){
 		List<String> listOfClothCat = new ArrayList<String>();
 
-		listOfClothCat.add("Select Category");		
-		listOfClothCat.add("Female Cloth");
-		listOfClothCat.add("Male Cloth");
-		listOfClothCat.add("Kids Cloth");
-		listOfClothCat.add("Cloth Designer");
+		listOfClothCat.add(getString(R.string.sp_all_category));		
+		listOfClothCat.add(getString(R.string.sp_female_cloth));
+		listOfClothCat.add(getString(R.string.sp_male_cloth));
+		listOfClothCat.add(getString(R.string.sp_kids_cloth));
+		listOfClothCat.add(getString(R.string.sp_cloth_designer));
 			
-		shopCatHashMap.put("Select Category", "0");
-		shopCatHashMap.put("Female Cloth", "female_cloth");
-		shopCatHashMap.put("Male Cloth", "Male_cloth");
-		shopCatHashMap.put("Kids Cloth", "Kids_cloth");
-		shopCatHashMap.put("Cloth Designer", "cloth_designer");
+		shopCatHashMap.put(getString(R.string.sp_all_category), "0");
+		shopCatHashMap.put(getString(R.string.sp_female_cloth), "female_cloth");
+		shopCatHashMap.put(getString(R.string.sp_male_cloth), "Male_cloth");
+		shopCatHashMap.put(getString(R.string.sp_kids_cloth), "Kids_cloth");
+		shopCatHashMap.put(getString(R.string.sp_cloth_designer), "cloth_designer");
 		
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothCat);
@@ -1785,7 +1872,7 @@ public class AddListFragment extends Fragment {
     		}else{    			
     			uploadShopFurniture();
     		}    		
-    	}else{
+    	}else if(categoryId == 31){
     		itemType1 = String.valueOf(accessoryTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
     		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
@@ -1795,6 +1882,15 @@ public class AddListFragment extends Fragment {
     		}else{    			
     			uploadShopComputers();
     		}      		
+    	}else if(categoryId == 32){
+    		itemType1 = String.valueOf(handyCategoryHashMap.get(sp_type_one.getSelectedItem().toString()));
+       		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
+    				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
+    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
+    		            null, "Ok", null, ok());     			
+    		}else{    			
+    			uploadHandyMan();
+    		}    		
     	}
     }
 }

@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopCloth;
 import com.infonegari.objects.db.UserSite;
@@ -74,11 +75,30 @@ public class ShopClothAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(shopCloths.get(position).getItem_Name());
-        txtCategory.setText(shopCloths.get(position).getCatagory());
-        txtType.setText(shopCloths.get(position).getType());
+        if(shopCloths.get(position).getCatagory().equals("female_cloth"))
+        	txtCategory.setText(R.string.sp_female_cloth);
+        else if(shopCloths.get(position).getCatagory().equals("Male_cloth"))
+        	txtCategory.setText(R.string.sp_male_cloth);
+        else if(shopCloths.get(position).getCatagory().equals("Kids_cloth"))
+        	txtCategory.setText(R.string.sp_kids_cloth);
+        else if(shopCloths.get(position).getCatagory().equals("cloth_designer"))
+        	txtCategory.setText(R.string.sp_cloth_designer);
+        else
+        	txtCategory.setText(R.string.sp_all_category);
+        
+        if(shopCloths.get(position).getType().equals("modern"))
+        	txtType.setText(R.string.sp_modern);
+        else if(shopCloths.get(position).getType().equals("traditional"))
+        	txtType.setText(R.string.sp_traditional);
+        else
+        	txtType.setText(R.string.sp_all_cloth_type);
         txtDiscription.setText(shopCloths.get(position).getDiscription());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(shopCloths.get(position).getPrice()));
         txtColor.setText(shopCloths.get(position).getColor());
         txtSize.setText(shopCloths.get(position).getSize());

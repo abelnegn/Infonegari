@@ -4,10 +4,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import com.infonegari.activity.AddListFragment;
 import com.infonegari.activity.R;
-import com.infonegari.objects.db.AddList;
 import com.infonegari.objects.db.Ads;
 import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
@@ -32,6 +29,8 @@ import com.infonegari.objects.db.Event;
 import com.infonegari.objects.db.Guarage;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HallType;
+import com.infonegari.objects.db.HandyCategory;
+import com.infonegari.objects.db.HandyMan;
 import com.infonegari.objects.db.Hdnta;
 import com.infonegari.objects.db.HouseListing;
 import com.infonegari.objects.db.HouseType;
@@ -123,6 +122,8 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
             saveGuarageData();
             saveGuestHouseData();
             saveHallTypeData();
+            saveHandyManData();
+            saveHandyCategoryData();
             saveHdntaData();
             saveHouseListingData();
             saveHouseTypeData();
@@ -961,6 +962,72 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                                 OfflineDataHelper helper = new OfflineDataHelper();
                                 helper.setOfflineDataSaveListener(DownloadDataFragment.this);
                                 helper.saveHallTypeData(hallType);
+                            }
+                        }
+                        
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                    	
+                    }
+
+                });
+        }
+    }
+
+    private void saveHandyManData(){
+        if (Network.isOnline(this.getActivity())) {
+    		
+        	long hmId = 0;
+        	List<HandyMan> hmList= HandyMan.findWithQuery(HandyMan.class, 
+        			"SELECT * FROM  Handy_Man WHERE handy_Man_Id = " +
+        			"(SELECT max(handy_Man_Id) FROM  Handy_Man)");
+        	if(hmList.size() > 0)
+        		hmId = hmList.get(0).getHandyManId();
+        	
+            API.handyManService.getHandyMan(hmId,
+                new Callback<List<HandyMan>>() {
+                    @Override
+                    public void success(List<HandyMan> handyList, Response response) {
+                        for (HandyMan handy : handyList) {
+                            if (handy != null) {
+                                OfflineDataHelper helper = new OfflineDataHelper();
+                                helper.setOfflineDataSaveListener(DownloadDataFragment.this);
+                                helper.saveHandyManData(handy);
+                            }
+                        }
+                        
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                    	
+                    }
+
+                });
+        }
+    }
+
+    private void saveHandyCategoryData(){
+        if (Network.isOnline(this.getActivity())) {
+    		
+        	long hcId = 0;
+        	List<HandyCategory> hcList= HandyCategory.findWithQuery(HandyCategory.class, 
+        			"SELECT * FROM  Handy_Category WHERE hc_Id = " +
+        			"(SELECT max(hc_Id) FROM  Handy_Category)");
+        	if(hcList.size() > 0)
+        		hcId = hcList.get(0).getHcId();
+        	
+            API.handyCategoryService.getHandyCategory(hcId,
+                new Callback<List<HandyCategory>>() {
+                    @Override
+                    public void success(List<HandyCategory> handyList, Response response) {
+                        for (HandyCategory handy : handyList) {
+                            if (handy != null) {
+                                OfflineDataHelper helper = new OfflineDataHelper();
+                                helper.setOfflineDataSaveListener(DownloadDataFragment.this);
+                                helper.saveHandyCategory(handy);
                             }
                         }
                         

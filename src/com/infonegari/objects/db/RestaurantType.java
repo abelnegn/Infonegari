@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class RestaurantType extends SugarRecord<RestaurantType>{
 	private long RestaurantTypeId;
 	private String RestaurantTypeName;
+	private String RestaurantTypeName_am;
 
     public boolean isNew() {
         long count = Select.from(RestaurantType.class).where(Condition.prop("id").eq(id)).count();
@@ -33,6 +34,16 @@ public class RestaurantType extends SugarRecord<RestaurantType>{
 		RestaurantTypeName = restaurantTypeName;
 	}
     
+	public String getRestaurantTypeName_am() {
+		return RestaurantTypeName_am;
+	}
+
+
+	public void setRestaurantTypeName_am(String restaurantTypeName_am) {
+		RestaurantTypeName_am = restaurantTypeName_am;
+	}
+
+
 	@Override
     public String toString() {
         return new Gson().toJson(this);

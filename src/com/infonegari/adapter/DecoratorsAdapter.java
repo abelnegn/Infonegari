@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Decorators;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -70,8 +71,12 @@ public class DecoratorsAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(decorators.get(position).getDecoratorName());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(decorators.get(position).getPrice()));
         txtDiscription.setText(decorators.get(position).getDiscription());
         if(userSite != null){

@@ -23,6 +23,9 @@ public class SplashScreen extends Activity {
  
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 3000;
+    public static int localization = 0;
+    
+    public SplashScreen(){}
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class SplashScreen extends Activity {
             	adsView.getGarageImages();
             	adsView.getGuestHouseImages();
             	adsView.getHmdtaImages();
+            	adsView.getHandyManImages();
             	adsView.getHouseRentImages();
             	adsView.getHouseSellImages();
             	adsView.getJobVacancyImages();
@@ -114,12 +118,15 @@ public class SplashScreen extends Activity {
 	       			Configuration config = new Configuration();
 	       			if(locValue[1].equals("True")){	       				
 					    if(locValue[0].equals("Amharic")){
-					    	config.locale = Locale.CANADA;					    	
+					    	config.locale = Locale.CANADA;
+					    	localization = 1;
 					    }else if(locValue[0].equals("English")){
 					    	config.locale = Locale.ENGLISH;
+					    	localization = 2;
 					    }
 					}else{
 						config.locale = Locale.ENGLISH;
+						localization = 2;
 					}
 				    getResources().updateConfiguration(config, null);
 	    			Intent intent = new Intent(SplashScreen.this, MainActivity.class);

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.CinemaAdapter;
 import com.infonegari.objects.db.Cinema;
 import com.infonegari.objects.db.CinemaPlace;
@@ -127,8 +128,6 @@ public class CinemaFragment extends Fragment{
 			}
 		});
 		
-//		saveCinema();
-		
 		fetchGener();
 		fetchHall();
 		
@@ -150,12 +149,19 @@ public class CinemaFragment extends Fragment{
 		List<String> listOfHall = new ArrayList<String>();
 		cinemaHallList = Select.from(CinemaPlace.class).orderBy("CinemaName ASC").list();
 
-		listOfHall.add("All Cinema Hall");
-		cinemaHallHashMap.put("All Cinema Hall", 0L);
-		for (CinemaPlace hall : cinemaHallList) {
-			listOfHall.add(hall.getCinema_Name());
-			cinemaHallHashMap.put(hall.getCinema_Name(), hall.getCp_id());
-        }
+		listOfHall.add(getString(R.string.sp_all_cinema_hall));
+		cinemaHallHashMap.put(getString(R.string.sp_all_cinema_hall), 0L);
+		if(SplashScreen.localization == 1){
+			for (CinemaPlace hall : cinemaHallList) {
+				listOfHall.add(hall.getCinema_Name_am());
+				cinemaHallHashMap.put(hall.getCinema_Name_am(), hall.getCp_id());
+	        }			
+		}else{
+			for (CinemaPlace hall : cinemaHallList) {
+				listOfHall.add(hall.getCinema_Name());
+				cinemaHallHashMap.put(hall.getCinema_Name(), hall.getCp_id());
+	        }
+		}
         ArrayAdapter<String> hallAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfHall);
 
@@ -168,12 +174,19 @@ public class CinemaFragment extends Fragment{
 		List<String> listOfMovieType = new ArrayList<String>();
 		movieTypeList = Select.from(MovieType.class).orderBy("MovieType ASC").list();
 
-		listOfMovieType.add("All Movie Type");
-		movieTypeHashMap.put("All Movie Type", 0L);
-		for (MovieType movieType : movieTypeList) {
-			listOfMovieType.add(movieType.getMovie_Type());
-			movieTypeHashMap.put(movieType.getMovie_Type(), movieType.getMtId());
-        }
+		listOfMovieType.add(getString(R.string.sp_all_category));
+		movieTypeHashMap.put(getString(R.string.sp_all_category), 0L);
+		if(SplashScreen.localization == 1){
+			for (MovieType movieType : movieTypeList) {
+				listOfMovieType.add(movieType.getMovie_Type_am());
+				movieTypeHashMap.put(movieType.getMovie_Type_am(), movieType.getMtId());
+	        }			
+		}else{
+			for (MovieType movieType : movieTypeList) {
+				listOfMovieType.add(movieType.getMovie_Type());
+				movieTypeHashMap.put(movieType.getMovie_Type(), movieType.getMtId());
+	        }
+		}
         ArrayAdapter<String> movieTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfMovieType);
 

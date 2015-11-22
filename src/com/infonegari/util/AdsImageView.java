@@ -50,6 +50,7 @@ public class AdsImageView {
     public static ArrayList<Drawable> adsEventImages;
     public static ArrayList<Drawable> adsGarageImages;
     public static ArrayList<Drawable> adsGuestHouseImages;
+    public static ArrayList<Drawable> adsHandyManImages;
     public static ArrayList<Drawable> adsHmdtaImages;
     public static ArrayList<Drawable> adsHouseRentImages;
     public static ArrayList<Drawable> adsHouseSellImages;
@@ -536,6 +537,30 @@ public class AdsImageView {
 			      			Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 			      	    	Drawable adsDrawable = new BitmapDrawable(myBitmap);
 			      	    	adsHmdtaImages.add(adsDrawable);
+			      		}	       				
+	       			}	       			
+	       		}
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+
+    public void getHandyManImages(){
+    	try {
+    		List<Ads> adsList = Select.from(Ads.class).where(Condition.
+    				prop("Category").eq("const")).list();  		
+    		adsHandyManImages = new ArrayList<Drawable>();
+        	if(adsList.size() > 0){
+	       		for(Ads ads : adsList) {
+	       			if(!ads.getImage_mob().equals("0")){
+			       		String[] imageName = ads.getImage_mob().split("/");
+		       			String imagePath = context.getFilesDir() + "/" + imageName[2];
+		       			File imageFile = new File(imagePath);
+			      		if (imageFile.exists()) {
+			      			Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+			      	    	Drawable adsDrawable = new BitmapDrawable(myBitmap);
+			      	    	adsHandyManImages.add(adsDrawable);
 			      		}	       				
 	       			}	       			
 	       		}

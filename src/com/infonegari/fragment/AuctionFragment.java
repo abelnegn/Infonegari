@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.AuctionAdapter;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
@@ -123,12 +124,19 @@ public class AuctionFragment extends Fragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(AuctionCategory.class).orderBy("CatagoryName ASC").list();
 
-		listOfCategories.add("All Category");
+		listOfCategories.add(getString(R.string.sp_all_category));
 		categoryHashMap.put("All Category", 0L);
-		for (AuctionCategory cat : categoryList) {
-			listOfCategories.add(cat.getCatagory_Name());
-			categoryHashMap.put(cat.getCatagory_Name(), cat.getAc_id());
-        }
+		if(SplashScreen.localization == 1){
+			for (AuctionCategory cat : categoryList) {
+				listOfCategories.add(cat.getCatagory_Name_am());
+				categoryHashMap.put(cat.getCatagory_Name_am(), cat.getAc_id());
+	        }			
+		}else{
+			for (AuctionCategory cat : categoryList) {
+				listOfCategories.add(cat.getCatagory_Name());
+				categoryHashMap.put(cat.getCatagory_Name(), cat.getAc_id());
+	        }
+		}
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfCategories);
 

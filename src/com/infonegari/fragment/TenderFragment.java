@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.TenderAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.Tender;
@@ -126,12 +127,19 @@ public class TenderFragment extends Fragment{
 		List<String> listOfCategories = new ArrayList<String>();
 		categoryList = Select.from(TenderCategory.class).orderBy("CatagoryName ASC").list();
 
-		listOfCategories.add("All Category");
-		categoryHashMap.put("All Category", 0L);
-		for (TenderCategory cat : categoryList) {
-			listOfCategories.add(cat.getCatagory_Name());
-			categoryHashMap.put(cat.getCatagory_Name(), cat.getTc_id());
-        }
+		listOfCategories.add(getString(R.string.sp_all_category));
+		categoryHashMap.put(getString(R.string.sp_all_category), 0L);
+		if(SplashScreen.localization == 1){
+			for (TenderCategory cat : categoryList) {
+				listOfCategories.add(cat.getCatagory_Name_am());
+				categoryHashMap.put(cat.getCatagory_Name_am(), cat.getTc_id());
+	        }			
+		}else{
+			for (TenderCategory cat : categoryList) {
+				listOfCategories.add(cat.getCatagory_Name());
+				categoryHashMap.put(cat.getCatagory_Name(), cat.getTc_id());
+	        }
+		}
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfCategories);
 

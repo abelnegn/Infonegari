@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Construction;
 import com.infonegari.objects.db.ConstructionMachine;
 import com.infonegari.objects.db.ConstructionMaterial;
@@ -89,15 +90,27 @@ public class ConSupplyAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(constructions.get(position).getConstructionTitle());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(constructions.get(position).getPrice()));
         txtDiscription.setText(constructions.get(position).getDiscription());
         txtProfession.setText(constructions.get(position).getProfession());
-        if(machine != null)
-        	txtMachine.setText(machine.getMachine());
-        if(material != null)
-        	txtMaterial.setText(material.getMaterials());
+        if(machine != null){
+        	if(SplashScreen.localization == 1)
+        		txtMachine.setText(machine.getMachine_am());
+        	else
+        		txtMachine.setText(machine.getMachine());
+        }
+        if(material != null){
+        	if(SplashScreen.localization == 1)
+        		txtMaterial.setText(material.getMaterials_am());
+        	else
+        		txtMaterial.setText(material.getMaterials());
+        }
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());
 	       	 txtEmail.setText(userSite.getE_mail());

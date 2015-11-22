@@ -36,6 +36,11 @@
     <string name="txt_title">ርእስ</string>
     <string name="txt_discription">ማብራሪያ</string>
     <string name="txt_category">ምድብ</string>
+    <string name="txt_min_price">ዝቅተኛ ዋጋ</string>
+    <string name="txt_post_date">የወጣበት ቀን  </string>    
+    <string name="txt_branch">ቅርንጫፍ</string>
+    <string name="txt_dead_line">የማስገቢያ ቀን</string>
+    <string name="txt_opening_date">የሚከፈትበት ቀን</string>
 	<string name="m_back">ተመለስ</string>
 	<string name="documents">መረጃ</string>
     <string name="identifiers">መለያ</string>
@@ -45,11 +50,40 @@
     <string name="txt_machine">ማሽን</string>
     <string name="txt_material">ግብአት</string>
     <string name="txt_show_time">ሰአት</string>
-    <string name="txt_show_date">ቀን</string>
+    <string name="txt_show_date">ቀን</string>  
+    <string name="txt_date_available">ክፍት የሆነበት ቀን</string> 
+    <string name="txt_break_fast">ቁርስ</string>
+    <string name="txt_lunch">ምሳ</string>
+    <string name="txt_dinner">እራት</string> 
+    <string name="txt_no_rooms">የክፍል ብዛት</string>
+    <string name="txt_lot_size">የመሬት ስፋት</string>
     <string name="txt_car_year">አመት</string>
-    <string name="txt_city">City</string>
+    <string name="txt_movie_type">የፊልሙ አይነት</string>
+    <string name="txt_city">ከተማ</string>
+    <string name="txt_name">ስም</string>
+    <string name="txt_price">ዋጋ</string>   
+    <string name="txt_email">ኢሜል</string> 
+    <string name="txt_phone_no">ስልክ ቁጥር</string>
+    <string name="txt_clinic_type">የክሊኒኩ አይነት</string>
     <string name="txt_main_category">ምድብ</string>
     <string name="txt_level">ደረጃ</string>
+    <string name="txt_profession">"ሙያ"</string>
+    <string name="txt_hall_type">የቤት አይነት</string>
+    <string name="txt_garage_type">የጋራጅ አይነት</string>
+    <string name="txt_job_type">የስራው አይነት</string>
+    <string name="txt_job_category">የስራው አይነት</string>
+    <string name="txt_education_level">የትምህት ደረጃ</string>
+    <string name="txt_qualification">የስራው መስፈርት</string>
+    <string name="txt_experience">የስራ ልምድ</string>
+    <string name="txt_salary">ደመወዝ</string>
+    <string name="txt_address">አድራሻ</string>
+    <string name="txt_work_place">የስራ ቦታ</string>
+    <string name="txt_work_type">የስራው አይነት</string>
+    <string name="txt_responsibility">ሃላፊነት</string>
+    <string name="txt_job_duration">የስራው ቆይታ</string>
+    <string name="txt_colore">ቀለም</string>
+    <string name="txt_size">መጠን</string>
+    <string name="txt_brand_name">የእቃው መለያ</string>
     <string name="title_activity_short_message">አጭር የጽሁፍ መልእክት</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="dlg_header_update">አዲስ መረጃ?</string>
@@ -95,6 +129,7 @@
 	<string name="menu_house_rent">የሚከራይ ቤት</string>
 	<string name="menu_house_sale">የሚሸጥ ቤት</string>
 	<string name="menu_job">ክፍት ስራ</string>
+	<string name="menu_handy_man">የእጅ ባለሙያ</string>
 	<string name="menu_language">ቋንቋ</string>
 	<string name="menu_leisure">መዝናኛ</string>
 	<string name="menu_night_club">የምሽት ክበብ</string>
@@ -120,6 +155,39 @@
 	<string name="menu_wedding_hall">የሠርግ አዳራሽ</string>
 	<string name="sms_request_header">አጭር የፅሀፍ መልክት ላክ</string>
 	<string name="sms_request_detail">ስም መጠየቅ ይፈልጋሉ</string>
+	 
+	<string name="sp_all_location">ሁሉም አካባቢ</string>
+	<string name="sp_all_category">ሁሉም ምድብ</string>
+	<string name="sp_all_gener">ሁሉም የፊልም አይነት</string>
+	<string name="sp_all_cinema_hall">ሁሉም የፊልም ቤት</string>
+	<string name="sp_all_machine">ሁሉም ማሽን</string>
+	<string name="sp_all_material">ሁሉም ግብአት</string>
+	<string name="sp_all_type">ሁሉም አይነት</string>
+	<string name="sp_all_education_level">ሁሉም  የትምህርት ደረጃ</string>
+	<string name="sp_female">ሴት</string>
+	<string name="sp_male">ወንድ</string>
+	<string name="sp_both">ሁለቱም</string>
+	<string name="sp_female_cloth">የሴት ልብስ</string>
+	<string name="sp_male_cloth">የወንድ ልብስ</string>
+	<string name="sp_kids_cloth">የህፃን ልብስ</string>
+	<string name="sp_cloth_designer">የልብስ ሞዴል አውጪ</string>
+	<string name="sp_all_cloth_type">ሁሉም የልብስ አይነት</string>
+	<string name="sp_modern">ዘመናዊ</string>
+	<string name="sp_traditional">ባህላዊ</string>
+	<string name="sp_brand_new">አዲስ</string>
+	<string name="sp_assembled">የተገጣጠመ</string>
+	<string name="sp_used">ያገለገለ</string>
+	<string name="sp_all_service">ሁሉም አገልግሎት</string>
+	<string name="sp_sell">ሽያጭ</string>
+	<string name="sp_maintenance">ጥገና</string>
+	<string name="sp_all_electronics">ሁሉም ኤሌክትሮኒክስ</string>
+	<string name="sp_tv">ቲቪ፣ዲቪዲ፣ቴፕ</string>
+	<string name="sp_refrigrator">ፍሪጅ</string>
+	<string name="sp_mobiles">ሞባይል</string>
+	<string name="sp_all_furniture">ሁሉም አይነት እቃ</string>
+	<string name="sp_home">የቤት እቃ</string>
+	<string name="sp_office">የቢሮ እቃ</string>
+	<string name="sp_rental">ኪራይ</string>
 	
 		<!-- 	Error message -->
 	<string name="msg_mandatory_validation">እባክዎ ሁሉንም መረጃ ያስገቡ.</string>
@@ -157,7 +225,8 @@
 		<item>የልብስ ሱቅ</item>
 		<item>ኤሌክትሮኒክስ</item>
 		<item>የቤትና የቢሮ እቃ</item>
-		<item>የኮምፒዩተር ዕቃዎች</item>			
+		<item>የኮምፒዩተር ዕቃዎች</item>		
+		<item>የእጅ ባለሙያ</item>			
 	</string-array>	
 	
 	<!-- 	Short message -->	
@@ -201,7 +270,8 @@
     <string-array name="nav_bussiness_items">
         <item>የግዥ ጨረታ</item>
         <item>የሽያጭ ጨረታ</item>
-        <item>ጋራዥ</item>                
+        <item>ጋራዥ</item>  
+        <item>የእጅ ባለሙያ</item>              
         <item>ክሊኒክ</item>
         <item>ፋርማሲ</item>
         <item>ባንክ</item>

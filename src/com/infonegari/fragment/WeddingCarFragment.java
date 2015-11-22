@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.WeddingCarAdapter;
 import com.infonegari.objects.db.CarType;
 import com.infonegari.objects.db.Location;
@@ -130,12 +131,19 @@ public class WeddingCarFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -148,12 +156,19 @@ public class WeddingCarFragment extends Fragment{
 		List<String> listOfCarType = new ArrayList<String>();
 		carTypeList = Select.from(CarType.class).orderBy("Car_Type_Name ASC").list();
 
-		listOfCarType.add("All Car Type");
-		carTypeHashMap.put("All Car Type", 0L);
-		for (CarType carType : carTypeList) {
-			listOfCarType.add(carType.getCarTypeName());
-			carTypeHashMap.put(carType.getCarTypeName(), carType.getCarTypeId());
-        }
+		listOfCarType.add(getString(R.string.sp_all_type));
+		carTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (CarType carType : carTypeList) {
+				listOfCarType.add(carType.getCarTypeName_am());
+				carTypeHashMap.put(carType.getCarTypeName_am(), carType.getCarTypeId());
+	        }			
+		}else{
+			for (CarType carType : carTypeList) {
+				listOfCarType.add(carType.getCarTypeName());
+				carTypeHashMap.put(carType.getCarTypeName(), carType.getCarTypeId());
+	        }
+		}
         ArrayAdapter<String> carTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfCarType);
 

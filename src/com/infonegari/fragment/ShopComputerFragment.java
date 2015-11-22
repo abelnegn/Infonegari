@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.ShopComputerAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopComputer;
@@ -131,12 +132,19 @@ public class ShopComputerFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -148,15 +156,15 @@ public class ShopComputerFragment extends Fragment{
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("All Type");
-		listOfType.add("Brand New");		
-		listOfType.add("Assembled");
-		listOfType.add("Used");
+		listOfType.add(getString(R.string.sp_all_type));
+		listOfType.add(getString(R.string.sp_brand_new));		
+		listOfType.add(getString(R.string.sp_assembled));
+		listOfType.add(getString(R.string.sp_used));
 
-		itemTypeHashMap.put("All Type", "0");
-		itemTypeHashMap.put("Brand New", "new");
-		itemTypeHashMap.put("Assembled", "assembled");
-		itemTypeHashMap.put("Used", "used");
+		itemTypeHashMap.put(getString(R.string.sp_all_type), "0");
+		itemTypeHashMap.put(getString(R.string.sp_brand_new), "new");
+		itemTypeHashMap.put(getString(R.string.sp_assembled), "assembled");
+		itemTypeHashMap.put(getString(R.string.sp_used), "used");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -169,13 +177,13 @@ public class ShopComputerFragment extends Fragment{
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("All Service");
-		listOfService.add("Buy");
-		listOfService.add("Maintenance");
+		listOfService.add(getString(R.string.sp_all_service));
+		listOfService.add(getString(R.string.sp_sell));
+		listOfService.add(getString(R.string.sp_maintenance));
 
-		serviceTypeHashMap.put("All Service", "0");
-		serviceTypeHashMap.put("Buy", "buy");
-		serviceTypeHashMap.put("Maintenance", "maintenance");
+		serviceTypeHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceTypeHashMap.put(getString(R.string.sp_sell), "sell");
+		serviceTypeHashMap.put(getString(R.string.sp_maintenance), "maintenance");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

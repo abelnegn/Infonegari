@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.GuestHouseAdapter;
 import com.infonegari.objects.db.GuestHouse;
 import com.infonegari.objects.db.HouseType;
@@ -42,7 +43,7 @@ public class GuestHouseFragment extends Fragment{
 	List<GuestHouse> houseList;
 	private ListView mHouseList;
 	private GuestHouseAdapter adapter;
-	private Spinner sp_location, sp_houseType;
+	private Spinner sp_location;
 	private Button btnSearch;
 	private EditText txtTitle;
 	SafeUIBlockingUtility safeUIBlockingUtility;
@@ -98,7 +99,6 @@ public class GuestHouseFragment extends Fragment{
 		getActivity().setTitle(getString(R.string.menu_guest_house));
 		
 		mHouseList = (ListView)rootView.findViewById(R.id.list_guest_house);
-		sp_houseType = (Spinner)rootView.findViewById(R.id.house_type);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
@@ -116,8 +116,7 @@ public class GuestHouseFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-		fetchHouseType();
+
 		fetchLocation();
 		
 		init();
@@ -129,36 +128,25 @@ public class GuestHouseFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_location.setAdapter(locationAdapter);
         sp_location.setSelection(0);
-	}
-
-	private void fetchHouseType(){
-		List<String> listOfHouseTypes = new ArrayList<String>();
-		houseTypeList = Select.from(HouseType.class).orderBy("House_Type_Name ASC").list();
-
-		listOfHouseTypes.add("All House Type");
-		houseTypeHashMap.put("All House Type", 0L);
-		for (HouseType type : houseTypeList) {
-			listOfHouseTypes.add(type.getHouseTypeName());
-			houseTypeHashMap.put(type.getHouseTypeName(), type.getHouseTypeId());
-        }
-        ArrayAdapter<String> houseTypeAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, listOfHouseTypes);
-
-        houseTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_houseType.setAdapter(houseTypeAdapter);
-        sp_houseType.setSelection(0);
 	}
 	
 	private void init(){

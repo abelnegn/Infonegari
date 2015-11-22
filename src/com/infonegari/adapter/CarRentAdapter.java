@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.CarListing;
 import com.infonegari.objects.db.CarType;
 import com.infonegari.objects.db.Location;
@@ -80,12 +81,20 @@ public class CarRentAdapter extends BaseAdapter{
         TextView txtPhoneNo = (TextView)convertView.findViewById(R.id.phone_no);
         
         txtName.setText(carListings.get(position).getCarName());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(carListings.get(position).getDiscription());
         txtPrice.setText(String.valueOf(carListings.get(position).getCarPrice()));
-        if(carType != null)
-        	txtCarType.setText(carType.getCarTypeName());
+        if(carType != null){
+        	if(SplashScreen.localization == 1)
+        		txtCarType.setText(carType.getCarTypeName_am());
+        	else
+        		txtCarType.setText(carType.getCarTypeName());
+        }
         txtYear.setText(String.valueOf(carListings.get(position).getYear()));
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number()); 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.WeddingClothAdapter;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.WeddingCloth;
@@ -131,12 +132,19 @@ public class WeddingClothFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -148,13 +156,13 @@ public class WeddingClothFragment extends Fragment{
 	private void fetchClothType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("All Cloth Type");		
-		listOfClothType.add("Modern");
-		listOfClothType.add("Traditional");
+		listOfClothType.add(getString(R.string.sp_all_cloth_type));		
+		listOfClothType.add(getString(R.string.sp_modern));
+		listOfClothType.add(getString(R.string.sp_traditional));
 			
-		typeHashMap.put("All Cloth Type", "0");
-		typeHashMap.put("Modern", "modern");
-		typeHashMap.put("Traditional", "traditional");
+		typeHashMap.put(getString(R.string.sp_all_cloth_type), "0");
+		typeHashMap.put(getString(R.string.sp_modern), "modern");
+		typeHashMap.put(getString(R.string.sp_traditional), "traditional");
 		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);
@@ -167,15 +175,13 @@ public class WeddingClothFragment extends Fragment{
 	private void fetchService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("All Service");		
-		listOfService.add("Buy");
-		listOfService.add("Rent");
-		listOfService.add("Sell");
+		listOfService.add(getString(R.string.sp_all_service));
+		listOfService.add(getString(R.string.sp_rental));
+		listOfService.add(getString(R.string.sp_sell));
 			
-		serviceHashMap.put("All Service", "0");
-		serviceHashMap.put("Buy", "buy");
-		serviceHashMap.put("Rent", "rent");
-		serviceHashMap.put("Sell", "sell");
+		serviceHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceHashMap.put(getString(R.string.sp_rental), "rental");
+		serviceHashMap.put(getString(R.string.sp_sell), "sell");
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

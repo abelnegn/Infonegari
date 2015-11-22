@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.ShopComputer;
 import com.infonegari.objects.db.UserSite;
@@ -66,7 +67,6 @@ public class ShopComputerAdapter extends BaseAdapter{
         TextView txtPrice = (TextView) convertView.findViewById(R.id.price);
         TextView txtLocation = (TextView) convertView.findViewById(R.id.location);
         TextView txtDiscription = (TextView) convertView.findViewById(R.id.discription);
-        TextView txtBrandName = (TextView)convertView.findViewById(R.id.brand_name);
         TextView txtService = (TextView)convertView.findViewById(R.id.service_type);
         TextView txtType = (TextView)convertView.findViewById(R.id.item_type);
         TextView txtEmail = (TextView)convertView.findViewById(R.id.email);
@@ -74,12 +74,27 @@ public class ShopComputerAdapter extends BaseAdapter{
         
         txtName.setText(shopComputer.get(position).getItem_Name());
         txtPrice.setText(String.valueOf(shopComputer.get(position).getPrice()));
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtDiscription.setText(shopComputer.get(position).getDiscription());  
-        txtBrandName.setText(shopComputer.get(position).getBrand_Name());
-        txtService.setText(shopComputer.get(position).getService_Type());
-        txtType.setText(shopComputer.get(position).getItem_Type());
+        if(shopComputer.get(position).getService_Type().equals("sell"))
+        	txtService.setText(R.string.sp_sell);
+        else if(shopComputer.get(position).getService_Type().equals("maintenance"))
+        	txtService.setText(R.string.sp_maintenance);
+        else
+        	txtService.setText(R.string.sp_all_service);
+        if(shopComputer.get(position).getItem_Type().equals("new"))
+        	txtType.setText(R.string.sp_brand_new);
+        else if(shopComputer.get(position).getItem_Type().equals("assembled"))
+        	txtType.setText(R.string.sp_assembled);
+        else if(shopComputer.get(position).getItem_Type().equals("used"))
+        	txtType.setText(R.string.sp_used);
+        else
+        	txtType.setText(R.string.sp_all_type);
         if(userSite != null){
 	       	 txtPhoneNo.setText(userSite.getPhone_Number());  
 	       	 txtEmail.setText(userSite.getE_mail());

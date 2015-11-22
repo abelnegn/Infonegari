@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.WeddingHallAdapter;
 import com.infonegari.objects.db.HallType;
 import com.infonegari.objects.db.Location;
@@ -130,12 +131,19 @@ public class WeddingHallFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -149,12 +157,19 @@ public class WeddingHallFragment extends Fragment{
 
 		hallList = Select.from(HallType.class).orderBy("HallType ASC").list();
 
-		listOfType.add("All Hall Type");
-		hallTypeHashMap.put("All Hall Type", 0L);
-		for (HallType type : hallList) {
-			listOfType.add(type.getHall_Type());
-			hallTypeHashMap.put(type.getHall_Type(), type.getHtId());
-        }
+		listOfType.add(getString(R.string.sp_all_type));
+		hallTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		if(SplashScreen.localization == 1){
+			for (HallType type : hallList) {
+				listOfType.add(type.getHall_Type_am());
+				hallTypeHashMap.put(type.getHall_Type_am(), type.getHtId());
+	        }			
+		}else{
+			for (HallType type : hallList) {
+				listOfType.add(type.getHall_Type());
+				hallTypeHashMap.put(type.getHall_Type(), type.getHtId());
+	        }
+		}
 			
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);

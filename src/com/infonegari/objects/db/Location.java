@@ -9,6 +9,7 @@ public class Location extends SugarRecord<Location>{
 	private long LocationId;
 	private long CityId;
 	private String LocationName;
+	private String LocationName_am;
 	
     public boolean isNew() {
         long count = Select.from(Location.class).where(Condition.prop("id").eq(id)).count();
@@ -44,6 +45,14 @@ public class Location extends SugarRecord<Location>{
 
 	public void setLocationName(String locationName) {
 		LocationName = locationName;
+	}
+
+	public String getLocationName_am() {
+		return LocationName_am;
+	}
+
+	public void setLocationName_am(String locationName_am) {
+		LocationName_am = locationName_am;
 	}
 
 	@Override

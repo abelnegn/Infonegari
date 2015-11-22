@@ -3,6 +3,7 @@ package com.infonegari.adapter;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.HallType;
 import com.infonegari.objects.db.Location;
 import com.infonegari.objects.db.UserSite;
@@ -87,12 +88,20 @@ public class WeddingHallAdapter extends BaseAdapter{
         txtName.setText(weddingHalls.get(position).getWeddingHallName());
         txtServiceType.setText(weddingHalls.get(position).getServiceType());
         txtDateAvailable.setText(weddingHalls.get(position).getDateAvailable());
-        if(location != null)
-        	txtLocation.setText(location.getLocationName());
+        if(location != null){
+        	if(SplashScreen.localization == 1)
+        		txtLocation.setText(location.getLocationName_am());
+        	else
+        		txtLocation.setText(location.getLocationName());
+        }
         txtPrice.setText(String.valueOf(weddingHalls.get(position).getPrice()));  
         txtDiscription.setText(weddingHalls.get(position).getDiscription());
-        if(hallType != null)
-        	txtHallType.setText(hallType.getHall_Type());
+        if(hallType != null){
+        	if(SplashScreen.localization == 1)
+        		txtHallType.setText(hallType.getHall_Type_am());
+        	else
+        		txtHallType.setText(hallType.getHall_Type());
+        }
         txtBreakFast.setText(weddingHalls.get(position).getBreak_Fast());
         txtLunch.setText(weddingHalls.get(position).getLunch());
         txtDinner.setText(weddingHalls.get(position).getDinner());

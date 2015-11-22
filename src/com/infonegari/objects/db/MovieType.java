@@ -8,6 +8,7 @@ import com.orm.query.Select;
 public class MovieType extends SugarRecord<MovieType>{
 	private long mtId;
 	private String Movie_Type;
+	private String Movie_Type_am;;
 	
     public boolean isNew() {
         long count = Select.from(MovieType.class).where(Condition.prop("id").eq(id)).count();
@@ -28,6 +29,14 @@ public class MovieType extends SugarRecord<MovieType>{
 
 	public void setMovie_Type(String movie_Type) {
 		Movie_Type = movie_Type;
+	}
+
+	public String getMovie_Type_am() {
+		return Movie_Type_am;
+	}
+
+	public void setMovie_Type_am(String movie_Type_am) {
+		Movie_Type_am = movie_Type_am;
 	}
 
 	@Override

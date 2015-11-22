@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infonegari.activity.R;
+import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.BeautySaloonAdapter;
 import com.infonegari.objects.db.BeautySaloon;
 import com.infonegari.objects.db.Location;
@@ -115,8 +116,7 @@ public class BeautySaloonFragment extends Fragment{
 				btnSearch();
 			}
 		});
-		
-//		saveSaloon();
+
 		fetchLocation();
 		fetchType();
 		
@@ -129,12 +129,19 @@ public class BeautySaloonFragment extends Fragment{
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
 
-		listOfLocations.add("All Location");
-		locationHashMap.put("All Location", 0L);
-		for (Location location : locationList) {
-			listOfLocations.add(location.getLocationName());
-			locationHashMap.put(location.getLocationName(), location.getLocationId());
-        }
+		listOfLocations.add(getString(R.string.sp_all_location));
+		locationHashMap.put(getString(R.string.sp_all_location), 0L);
+		if(SplashScreen.localization == 1){
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName_am());
+				locationHashMap.put(location.getLocationName_am(), location.getLocationId());
+	        }			
+		}else{
+			for (Location location : locationList) {
+				listOfLocations.add(location.getLocationName());
+				locationHashMap.put(location.getLocationName(), location.getLocationId());
+	        }			
+		}
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfLocations);
 
@@ -146,15 +153,15 @@ public class BeautySaloonFragment extends Fragment{
 	private void fetchType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("All Type");		
-		listOfType.add("Female");
-		listOfType.add("Male");
-		listOfType.add("Both");
-			
-		saloonTypeHashMap.put("All Type", 0L);
-		saloonTypeHashMap.put("Female", 1L);
-		saloonTypeHashMap.put("Male", 2L);
-		saloonTypeHashMap.put("Both", 3L);
+		listOfType.add(getString(R.string.sp_all_type));		
+		listOfType.add(getString(R.string.sp_female));
+		listOfType.add(getString(R.string.sp_male));
+		listOfType.add(getString(R.string.sp_both));
+
+		saloonTypeHashMap.put(getString(R.string.sp_all_type), 0L);
+		saloonTypeHashMap.put(getString(R.string.sp_female), 1L);
+		saloonTypeHashMap.put(getString(R.string.sp_male), 2L);
+		saloonTypeHashMap.put(getString(R.string.sp_both), 3L);			
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
