@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment{
         
         Button btn_download = (Button) rootView.findViewById(R.id.btn_download);
         
-        Button btn_about = (Button) rootView.findViewById(R.id.btn_about);
+        Button btn_emergency_call = (Button) rootView.findViewById(R.id.btn_emergency_call);
         
         //Short Notification button click
         btn_notify.setOnClickListener(new View.OnClickListener() {
@@ -133,13 +133,13 @@ public class HomeFragment extends Fragment{
 			}
 		});
         
-        // Listening About button click
-        btn_about.setOnClickListener(new View.OnClickListener() {
+        // Listening Emergency Call button click
+        btn_emergency_call.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
 				FragmentManager fragmentManager = getFragmentManager();
-				AboutFragment fragment = new AboutFragment();
+				EmergencyCallFragment fragment = new EmergencyCallFragment();
 				fragmentManager.beginTransaction()
 						.replace(R.id.frame_container, fragment).commit();
 			}

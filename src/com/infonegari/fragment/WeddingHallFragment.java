@@ -16,6 +16,7 @@ import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 import com.orm.query.Select;
 
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Build;
@@ -29,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ListView;
@@ -37,15 +39,14 @@ import android.widget.Spinner;
 public class WeddingHallFragment extends Fragment{
 	View rootView;
 	List<Location> locationList;
-	List<HallType> hallList;
 	HashMap<String, Long> locationHashMap = new HashMap<String, Long>();
-	HashMap<String, Long> hallTypeHashMap = new HashMap<String, Long>();
+	HashMap<String, String> serviceTypeHashMap = new HashMap<String, String>();
 	List<WeddingHall> weddingHallList;
 	private ListView mWeddingHallList;
 	private WeddingHallAdapter adapter;
-	private Spinner sp_location, sp_type;
-	private Button btnSearch;
-	private EditText txtTitle;
+	private Spinner sp_location, sp_service;
+	private Button btnSearch, btnSelect;
+	private EditText txtTitle, txtExactDate;
 	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
 	private static final int MENU_ITEM_BACK = 2000;
@@ -101,9 +102,11 @@ public class WeddingHallFragment extends Fragment{
 		
 		mWeddingHallList = (ListView)rootView.findViewById(R.id.list_wedding_hall);
 		sp_location = (Spinner)rootView.findViewById(R.id.location);
-		sp_type = (Spinner)rootView.findViewById(R.id.type);
+		sp_service = (Spinner)rootView.findViewById(R.id.service);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);
+		txtExactDate = (EditText)rootView.findViewById(R.id.exact_date);
+		btnSelect = (Button)rootView.findViewById(R.id.button_select);
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
 				"Progress", "Please Wait...");
@@ -119,14 +122,32 @@ public class WeddingHallFragment extends Fragment{
 			}
 		});
 		
+		btnSelect.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View arg0) {
+			    DatePickerFragment dpf = new DatePickerFragment().newInstance();
+                dpf.setCallBack(onDate);
+                dpf.show(getFragmentManager().beginTransaction(), "DatePickerFragment");
+			}
+		});
+		
 		fetchLocation();
-		fetchType();
+		fetchService();
 		
 		init();
 		
 		return rootView;
 	}
 	
+	DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+        	txtExactDate.setText(String.format("%02d",monthOfYear + 1) + "/" + String.format("%02d", dayOfMonth)
+                    + "/" + String.valueOf(year));
+        }
+    };
+    
 	private void fetchLocation(){
 		List<String> listOfLocations = new ArrayList<String>();
 		locationList = Select.from(Location.class).orderBy("Location_Name ASC").list();
@@ -152,31 +173,26 @@ public class WeddingHallFragment extends Fragment{
         sp_location.setSelection(0);
 	}
     
-	private void fetchType(){
+	private void fetchService(){
 		List<String> listOfType = new ArrayList<String>();
 
-		hallList = Select.from(HallType.class).orderBy("HallType ASC").list();
-
-		listOfType.add(getString(R.string.sp_all_type));
-		hallTypeHashMap.put(getString(R.string.sp_all_type), 0L);
-		if(SplashScreen.localization == 1){
-			for (HallType type : hallList) {
-				listOfType.add(type.getHall_Type_am());
-				hallTypeHashMap.put(type.getHall_Type_am(), type.getHtId());
-	        }			
-		}else{
-			for (HallType type : hallList) {
-				listOfType.add(type.getHall_Type());
-				hallTypeHashMap.put(type.getHall_Type(), type.getHtId());
-	        }
-		}
+		listOfType.add(getString(R.string.sp_all_service));
+		listOfType.add(getString(R.string.txt_break_fast));
+		listOfType.add(getString(R.string.txt_lunch));
+		listOfType.add(getString(R.string.txt_dinner));
+		
+		serviceTypeHashMap.put(getString(R.string.sp_all_service), "0");
+		serviceTypeHashMap.put(getString(R.string.txt_break_fast), "BreakFast");
+		serviceTypeHashMap.put(getString(R.string.txt_lunch), "Lunch");
+		serviceTypeHashMap.put(getString(R.string.txt_dinner), "Dinner");
+		
 			
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
 
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_type.setAdapter(typeAdapter);
-        sp_type.setSelection(0);
+        sp_service.setAdapter(typeAdapter);
+        sp_service.setSelection(0);
 	}
 	
 	private void init(){
@@ -193,11 +209,15 @@ public class WeddingHallFragment extends Fragment{
 			locationId = "Location_Id";
 		}
 
-		String typeId = String.valueOf(hallTypeHashMap.get(sp_type.getSelectedItem().toString()));
-		if(typeId.equals("0")){
-			typeId = "HallType";
+		String exactDate = txtExactDate.getText().toString();
+		String serviceId = String.valueOf(serviceTypeHashMap.get(sp_service.getSelectedItem().toString()));
+		if(serviceId.equals("0")){
+			serviceId = "BreakFast = BreakFast and Lunch = Lunch and Dinner = Dinner";
+			exactDate = "";
+		}else if(exactDate.equals("")){
+			exactDate = "=" + serviceId + "";
 		}else{
-			typeId = "'" + typeId + "'";
+			exactDate = " NOT LIKE '%" + exactDate + "%'";
 		}
 		
 		String title = txtTitle.getText().toString();
@@ -210,7 +230,7 @@ public class WeddingHallFragment extends Fragment{
 		weddingHallList = WeddingHall.findWithQuery(WeddingHall.class, 
     			"SELECT * FROM  Wedding_Hall WHERE Wedding_Hall_Name LIKE " +
     					title + " AND Location_Id = " + locationId + 
-    					" AND HallType = " + typeId + " ORDER BY is_Featured Desc, id Desc");
+    					" AND " + serviceId + exactDate + " ORDER BY is_Featured Desc, id Desc");
 
 		adapter = new WeddingHallAdapter(getActivity(), weddingHallList);
 		mWeddingHallList.setAdapter(adapter);

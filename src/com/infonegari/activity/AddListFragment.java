@@ -246,7 +246,7 @@ public class AddListFragment extends Fragment {
 	       
         userName = getArguments().getString("User_Name");
         
-		getActivity().setTitle("Add " + category);
+		getActivity().setTitle(category);
 		
 		fetchLocation();
 		
@@ -468,14 +468,14 @@ public class AddListFragment extends Fragment {
 			rootView = inflater.inflate(R.layout.fragment_add_list_four, container, false);
 			sp_type_one = (Spinner) rootView.findViewById(R.id.type_one);
 			item_text_one = (EditText) rootView.findViewById(R.id.item_text);
-			item_text_one.setHint("Year/Model");
+			item_text_one.setHint(getString(R.string.txt_car_year));
 			fetchCarType();
 		}else if(categoryId == 13 || categoryId ==14 || categoryId == 16 || categoryId == 18){
 			rootView = inflater.inflate(R.layout.fragment_add_list_five, container, false);
 			sp_type_one = (Spinner) rootView.findViewById(R.id.type_one);
 			sp_type_two = (Spinner) rootView.findViewById(R.id.type_two);
 			item_text_one = (EditText) rootView.findViewById(R.id.item_text);
-			item_text_one.setHint("Lot Size");
+			item_text_one.setHint(getString(R.string.txt_lot_size));
 			fetchHouseType();
 			fetchNoRoomsService();
 		}else{
@@ -484,8 +484,8 @@ public class AddListFragment extends Fragment {
 			sp_type_two = (Spinner) rootView.findViewById(R.id.type_two);
 			item_text_one = (EditText) rootView.findViewById(R.id.item_text_one);
 			item_text_two = (EditText) rootView.findViewById(R.id.item_text_two);
-			item_text_one.setHint("Color");
-			item_text_two.setHint("Size");
+			item_text_one.setHint(getString(R.string.txt_colore));
+			item_text_two.setHint(getString(R.string.txt_size));
 			fetchClothCategory();
 			fetchService();
 		}
@@ -726,15 +726,15 @@ public class AddListFragment extends Fragment {
 	private void fetchPharmacyType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Type");		
-		listOfType.add("Higher");
-		listOfType.add("Meddium");
-		listOfType.add("Small");
+		listOfType.add(getString(R.string.sp_all_type));		
+		listOfType.add(getString(R.string.sp_higher));
+		listOfType.add(getString(R.string.sp_meddium));
+		listOfType.add(getString(R.string.sp_small));
 			
-		pharmacyTypeHashMap.put("Select Type", "0");
-		pharmacyTypeHashMap.put("Higher", "Heavy");
-		pharmacyTypeHashMap.put("Meddium", "Meddium");
-		pharmacyTypeHashMap.put("Small", "Small");
+		pharmacyTypeHashMap.put(getString(R.string.sp_all_type), "0");
+		pharmacyTypeHashMap.put(getString(R.string.sp_higher), "Heavy");
+		pharmacyTypeHashMap.put(getString(R.string.sp_meddium), "Meddium");
+		pharmacyTypeHashMap.put(getString(R.string.sp_small), "Small");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -772,17 +772,17 @@ public class AddListFragment extends Fragment {
 	private void fetchEventType(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Select Event Type");		
-		listOfType.add("Art Exhibitions");
-		listOfType.add("Music Concert");
-		listOfType.add("Exhibition");
-		listOfType.add("Festival");
+		listOfType.add(getString(R.string.sp_select_event_type));		
+		listOfType.add(getString(R.string.sp_art_exhibitions));
+		listOfType.add(getString(R.string.sp_music_concert));
+		listOfType.add(getString(R.string.sp_exhibitions));
+		listOfType.add(getString(R.string.sp_festival));
 			
-		eventTypeHashMap.put("Select  Event Type", "0");
-		eventTypeHashMap.put("Art Exhibitions", "1");
-		eventTypeHashMap.put("Music Concert", "2");
-		eventTypeHashMap.put("Exhibition", "3");
-		eventTypeHashMap.put("Festival", "4");
+		eventTypeHashMap.put(getString(R.string.sp_select_event_type), "0");
+		eventTypeHashMap.put(getString(R.string.sp_art_exhibitions), "1");
+		eventTypeHashMap.put(getString(R.string.sp_music_concert), "2");
+		eventTypeHashMap.put(getString(R.string.sp_exhibitions), "3");
+		eventTypeHashMap.put(getString(R.string.sp_festival), "4");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -833,17 +833,17 @@ public class AddListFragment extends Fragment {
 	private void fetchGarageServiceType(){
 		List<String> listOfClothType = new ArrayList<String>();
 
-		listOfClothType.add("Select Service Type");		
-		listOfClothType.add("Electricity");
-		listOfClothType.add("Mechanical");
-		listOfClothType.add("Body Part");
-		listOfClothType.add("All");
+		listOfClothType.add(getString(R.string.sp_all_service));		
+		listOfClothType.add(getString(R.string.sp_electriccity));
+		listOfClothType.add(getString(R.string.sp_mechanical));
+		listOfClothType.add(getString(R.string.sp_body_part));
+		listOfClothType.add(getString(R.string.sp_all));
 			
-		garageServiceTypeHashMap.put("Select Service Type", "0");
-		garageServiceTypeHashMap.put("Electriccity", "Electriccity");
-		garageServiceTypeHashMap.put("Mechanical", "Mechanical");
-		garageServiceTypeHashMap.put("Body Part", "BodyPart");
-		garageServiceTypeHashMap.put("All", "All");
+		garageServiceTypeHashMap.put(getString(R.string.sp_all_service), "0");
+		garageServiceTypeHashMap.put(getString(R.string.sp_electriccity), "Electriccity");
+		garageServiceTypeHashMap.put(getString(R.string.sp_mechanical), "Mechanical");
+		garageServiceTypeHashMap.put(getString(R.string.sp_body_part), "BodyPart");
+		garageServiceTypeHashMap.put(getString(R.string.sp_all), "All");
 		
         ArrayAdapter<String> clothTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfClothType);
@@ -875,11 +875,11 @@ public class AddListFragment extends Fragment {
 	private void fetchFurniturePlace(){
 		List<String> listOfType = new ArrayList<String>();
 
-		listOfType.add("Ethiopian");		
-		listOfType.add("Imported");
+		listOfType.add(getString(R.string.sp_ethiopian));		
+		listOfType.add(getString(R.string.sp_imported));
 
-		furniturePlaceHashMap.put("Ethiopian", "ethiopian");
-		furniturePlaceHashMap.put("Imported", "imported");
+		furniturePlaceHashMap.put(getString(R.string.sp_ethiopian), "ethiopian");
+		furniturePlaceHashMap.put(getString(R.string.sp_imported), "imported");
 		
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfType);
@@ -892,13 +892,13 @@ public class AddListFragment extends Fragment {
 	private void fetchNoRoomsService(){
 		List<String> listOfService = new ArrayList<String>();
 
-		listOfService.add("Select No Rooms");		
-		noRoomsTypeHashMap.put("Select No Rooms", "0");
+		listOfService.add(getString(R.string.sp_no_rooms));		
+		noRoomsTypeHashMap.put(getString(R.string.sp_no_rooms), "0");
 		
 		for(int i =1; i< 20; i++){
-			listOfService.add(String.valueOf(i) + " Rooms");
-			noRoomsTypeHashMap.put(String.valueOf(i) + " Rooms",String.valueOf(i));
-		}
+			listOfService.add(String.valueOf(i) + " " + getString(R.string.sp_rooms));
+			noRoomsTypeHashMap.put(String.valueOf(i) + " " + getString(R.string.sp_rooms),String.valueOf(i));
+		}			
 		
         ArrayAdapter<String> serviceAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, listOfService);

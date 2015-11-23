@@ -45,7 +45,7 @@ public class CinemaFragment extends Fragment{
 	private ListView mCinemaList;
 	private CinemaAdapter adapter;
 	private Spinner sp_movie_type, sp_hall;
-	private Button btnSearch;
+	private Button btnSearch, btnSelect;
 	private EditText txtTitle, txtShowDate;
 	private ImageSwitcher imageSwitcher;
 	SafeUIBlockingUtility safeUIBlockingUtility;
@@ -104,6 +104,7 @@ public class CinemaFragment extends Fragment{
 		sp_movie_type = (Spinner)rootView.findViewById(R.id.movie_type);
 		txtTitle = (EditText)rootView.findViewById(R.id.title);
 		txtShowDate = (EditText)rootView.findViewById(R.id.show_date);
+		btnSelect = (Button)rootView.findViewById(R.id.button_select);
 		btnSearch = (Button)rootView.findViewById(R.id.search_button);	
 		imageSwitcher = (ImageSwitcher)rootView.findViewById(R.id.item_imageSwitcher);
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
@@ -119,7 +120,7 @@ public class CinemaFragment extends Fragment{
 			}
 		});
 		
-		txtShowDate.setOnClickListener(new OnClickListener() {			
+		btnSelect.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
 			    DatePickerFragment dpf = new DatePickerFragment().newInstance();

@@ -114,12 +114,18 @@ public class LoginFragment extends DialogFragment implements OfflineDataHelper.O
     }
 
     private void callNotify(){
+    	Bundle arguments = new Bundle();
+    	arguments.putString("User_Name", txtUserName.getText().toString());
         NotificationFragment notifyFragment = new NotificationFragment().newInstance();
+        notifyFragment.setArguments(arguments);
         notifyFragment.show(getFragmentManager().beginTransaction(), "NotificationFragment");					
     }
 
     private void callAddList(){
+    	Bundle arguments = new Bundle();
+    	arguments.putString("User_Name", txtUserName.getText().toString());
         ListingCategoryDialog listFragment = new ListingCategoryDialog().newInstance();
+        listFragment.setArguments(arguments);
         listFragment.show(getFragmentManager().beginTransaction(), "ListDialogFragment");					
     }
     

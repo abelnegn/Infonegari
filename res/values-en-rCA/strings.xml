@@ -50,7 +50,8 @@
     <string name="txt_machine">ማሽን</string>
     <string name="txt_material">ግብአት</string>
     <string name="txt_show_time">ሰአት</string>
-    <string name="txt_show_date">ቀን</string>  
+    <string name="txt_show_date">ቀን</string>       
+    <string name="txt_exact_date">የእለቱ ለት</string>
     <string name="txt_date_available">ክፍት የሆነበት ቀን</string> 
     <string name="txt_break_fast">ቁርስ</string>
     <string name="txt_lunch">ምሳ</string>
@@ -83,6 +84,7 @@
     <string name="txt_job_duration">የስራው ቆይታ</string>
     <string name="txt_colore">ቀለም</string>
     <string name="txt_size">መጠን</string>
+    <string name="txt_select">ምረጥ</string>    
     <string name="txt_brand_name">የእቃው መለያ</string>
     <string name="title_activity_short_message">አጭር የጽሁፍ መልእክት</string>
     <string name="desc_list_item_icon">Item Icon</string>
@@ -100,6 +102,7 @@
 	<string name="db_language">ቋንቋ ቀይር</string>
 	<string name="db_download">አዲስ መረጃ አግኝ</string>
 	<string name="db_about">ስለ ፕሮግራሙ</string>
+	<string name="db_emergency_call">የአደጋ ጊዜ ጥሪ</string>
 
 	
 	<!--  Menu item name-->
@@ -188,6 +191,22 @@
 	<string name="sp_home">የቤት እቃ</string>
 	<string name="sp_office">የቢሮ እቃ</string>
 	<string name="sp_rental">ኪራይ</string>
+	<string name="sp_higher">ከፍተኛ</string>	
+	<string name="sp_meddium">መካከለኛ</string>	
+	<string name="sp_small">አነስተኛ</string>		
+	<string name="sp_select_event_type">ልዩ ዝግጅቶች ምረጥ</string>
+	<string name="sp_art_exhibitions">የስዕል አውደርእይ</string>
+	<string name="sp_music_concert">የሙዚቃ ኮንሰርት</string>	    
+	<string name="sp_exhibitions">አውደርእይ</string>
+	<string name="sp_festival">ክብረ በዓል</string>	
+	<string name="sp_electriccity">ኤሌክትሪክሲቲ</string>
+	<string name="sp_mechanical">መካኒካል</string>	
+	<string name="sp_body_part">ቦዲ ፓርት</string>
+	<string name="sp_all">ሁሉም</string>	
+	<string name="sp_ethiopian">የኢትዮጵያ</string>	
+	<string name="sp_imported">ወደ ሀገር ውስጥ የገባ</string>	
+	<string name="sp_rooms">ክፍል</string>
+	<string name="sp_no_rooms">የክፍል ብዛት ምረጥ</string>
 	
 		<!-- 	Error message -->
 	<string name="msg_mandatory_validation">እባክዎ ሁሉንም መረጃ ያስገቡ.</string>

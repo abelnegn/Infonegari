@@ -15,11 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class AboutFragment extends Fragment{
+public class EmergencyCallFragment extends Fragment{
 	private static final int MENU_ITEM_BACK = 2000;
 	View rootView;
 
-	public AboutFragment(){
+	public EmergencyCallFragment(){
 	}
 	
     @Override
@@ -31,11 +31,9 @@ public class AboutFragment extends Fragment{
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.fragment_about, container, false);
+		rootView = inflater.inflate(R.layout.fragment_emergency_call, container, false);
 		
-		getActivity().setTitle(getString(R.string.menu_about));
-		
-		getActivity().setTitle(getString(R.string.menu_about));
+		getActivity().setTitle(getString(R.string.db_emergency_call));
 		
 		return rootView;
 	}
