@@ -19,6 +19,7 @@ import com.orm.query.Select;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -84,6 +86,7 @@ public class HouseRentFragment extends Fragment{
         int id = item.getItemId();
 
         if (id == MENU_ITEM_BACK) {
+        	hideKeyboard();
 			FragmentManager fragmentManager = getFragmentManager();
 			RentFragment fragment = new RentFragment();
 			fragmentManager.beginTransaction()
@@ -187,6 +190,7 @@ public class HouseRentFragment extends Fragment{
 	
 	private void btnSearch(){
 		safeUIBlockingUtility.safelyBlockUI();
+		hideKeyboard();
 		String locationId = String.valueOf(locationHashMap.get(sp_location.getSelectedItem().toString()));
 		if(locationId.equals("0")){
 			locationId = "Location_Id";
@@ -215,4 +219,9 @@ public class HouseRentFragment extends Fragment{
 
 	}
 
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+    }
 }

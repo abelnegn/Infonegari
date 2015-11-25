@@ -22,6 +22,7 @@
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_No">No</string>
+    <string name="btn_call">Call</string>
     <string name="btn_later">Later</string>
     <string name="txt_user_name">User Name</string>
     <string name="txt_password">Password</string>
@@ -103,7 +104,7 @@
 	<string name="db_language">Language</string>
 	<string name="db_download">Update</string>
 	<string name="db_about">About</string>
-	<string name="db_emergency_call">Emergency Call</string>
+	<string name="db_important_info">Important Info</string>
 	
 	<!--  Menu item name-->
 	<string name="menu_login">Login</string>
@@ -333,6 +334,81 @@
         <item>Construction Supplies</item>
     </string-array>
     
+    <!-- Nav Drawer Police information -->
+    <string-array name="nav_important_info">
+        <item>Ambulance</item>
+        <item>Police</item>
+        <item>Federal  police commission</item>
+        <item>A.A police commission</item>
+        <item>Lideta sub city police station</item>
+        <item>Chirkos sub city police station</item>
+        <item>Arada sub city police station</item>
+        <item>Yeka sub city police station</item>
+        <item>Nefas silk lafto sub city police station</item>
+        <item>Kolfe keranio sub city police station</item>
+        <item>Akaki kaliti sub city police station</item>
+        <item>Bole sub city police station</item>
+        <item>Addis ketema sub city police station</item>
+        <item>Gulele sub city police station</item>
+        <item>Addis Ababa Traffic police station</item>
+        <item>1st station Menilik 2 square</item>
+        <item>2nd station Addisu kera</item>
+        <item>3rd station Mesalemia</item>
+        <item>4th station Nifas Silk</item>
+        <item>5th station Akaki</item>
+        <item>6th station Megenagna</item>
+        <item>7th station Bole</item>
+        <item>Free call information</item>
+        <item>International calls</item>
+        <item>National operator</item>
+        <item>Fault Report</item>
+        <item>Dial Up internet</item>
+        <item>Pre paid mobile service</item>
+        <item>Broad Band customer Service</item>
+        <item>PSTN service</item>
+        <item>Number change information</item>
+        <item>Voice Mail</item>
+        <item>Lost Mobile Registration</item>
+        <item>Bill Inquiry</item>        
+    </string-array>
+    
+    <string-array name="nav_important_info_phone">
+        <item>907</item>
+        <item>991</item>
+        <item>916</item>
+        <item>1572121</item>
+        <item>5153760</item>
+        <item>5504940</item>
+        <item>1573426</item>
+        <item>6181339</item>
+        <item>4431529</item>
+        <item>3494115</item>
+        <item>4341438</item>
+        <item></item>
+        <item>2788706</item>
+        <item>1575059</item>
+        <item>6628222</item>
+        <item>1567040</item>
+        <item>4663420</item>
+        <item>2769146</item>
+        <item>4425563</item>
+        <item>4340096</item>
+        <item>6630373</item>
+        <item>6648580</item>
+        <item>997</item>
+        <item>998</item>
+        <item>998</item>
+        <item>994</item>
+        <item>900</item>
+        <item>994</item>
+        <item>980</item>
+        <item>985</item>
+        <item>994</item>
+        <item>908</item>
+        <item>994</item>
+        <item>994</item>
+    </string-array>
+        
     <!-- Nav Drawer List Item Icons English-->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
@@ -344,6 +420,7 @@
         <item>@drawable/ic_photos</item>
         <item>@drawable/shop</item> 
         <item>@drawable/job_vacancy</item> 
+        <item>@drawable/call_icon</item>
     </array>
 
     <!-- Nav Drawer List Item Icon -->

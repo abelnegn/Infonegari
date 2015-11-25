@@ -27,10 +27,10 @@
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "110dp"/>       
         <EditText 
-            android:layout_height= "wrap_content"
+            android:layout_height= "40dp"
 			android:layout_width= "fill_parent"
 			android:textColor="#000000"
-			android:background="#FFFFFF"
+			android:background="@android:drawable/edit_text"
 	        android:id="@+id/title"/>
     </LinearLayout>     
     <LinearLayout 

@@ -21,7 +21,8 @@
     <string name="btn_login">ይግቡ</string>
     <string name="btn_cancel">ሰርዝ</string>
     <string name="btn_yes">አዎ</string>
-    <string name="btn_No">አይደለም</string>
+    <string name="btn_No">አይደለም</string>    
+    <string name="btn_call">ደውል</string>
     <string name="btn_later">በኋላ</string>      
     <string name="txt_user_name">መገልገያ ስም</string>
     <string name="txt_password"> የይለፍ ቁጥር</string>
@@ -102,11 +103,10 @@
 	<string name="db_language">ቋንቋ ቀይር</string>
 	<string name="db_download">አዲስ መረጃ አግኝ</string>
 	<string name="db_about">ስለ ፕሮግራሙ</string>
-	<string name="db_emergency_call">የአደጋ ጊዜ ጥሪ</string>
-
+	<string name="db_important_info">ጠቃሚ መረጃ</string>
 	
 	<!--  Menu item name-->
-	<string name="menu_login">Login</string>
+	<string name="menu_login">ይግቡ</string>
 	<string name="menu_auction">የግዥ ጨረታ</string>
 	<string name="menu_about">ስለ ፕሮግራሙ</string>
 	<string name="menu_band">የዘፈን ባንድ</string>
@@ -332,6 +332,80 @@
         <item>የግንባታ አቅርቦትና አገልግሎቶች</item>
     </string-array>
         
+    <!-- Nav Drawer Police information -->
+    <string-array name="nav_important_info">
+        <item>አምቡላንስ</item>
+        <item>ፖሊስ</item>
+        <item>ፌደራል ፓሊስ ኮሚሽን</item>
+        <item>አዲስ አበባ ፓሊስ ኮሚሽን</item>
+        <item>ልደታ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>ቂርቆስ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>አራዳ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>የካ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>ንፋስ ስልክ ላፍቶ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>ኮልፌ ቀራንዮ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>አቃቂ ቃሊቲ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>ቦሌ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>አዲስ ከተማ ፖ/ጣቢያ</item>
+        <item>ጉለሌ ክ/ከተማ ፖ/ጣቢያ</item>
+        <item>አዲስ አበባ ትራፊክ ፖሊስ</item>
+        <item>1ኛ ጣቢያ ምኒልክ አደባባይ</item>
+        <item>2ኛ ጣቢያ አዲሱ ቄራ</item>
+        <item>3ኛ ጣቢያ መሳለሚያ</item>
+        <item>4ኛ ጣቢያ ንፋስ ስልክ</item>
+        <item>5ኛ ጣቢያ አቃቂ</item>
+        <item>6ኛ ጣቢያ መገናኛ</item>
+        <item>7ኛ ጣቢያ ቦሌ</item>
+        <item>ነፃ ጥሪ መረጃ</item>
+        <item>ዓለም አቀፍ ጥሪ</item>
+        <item>የአገር ውስጥ ጥሪ</item>
+        <item>ብልሽት መንገሪያ</item>
+        <item>መደበኛ (ዳይል አፕ) ኢንተርኔት</item>
+        <item>የቅድመ ክፍያ ሞባይል አገልግሎት</item>
+        <item>የብሮድባንድ ደንበኞች አገልግሎት</item>
+        <item>የፒኤስቲኤን አገልግሎት</item>
+        <item>ለቁጥር ለውጥ መረጃ</item>
+        <item>ለድምጽ መልእክት አገልግሎት</item>
+        <item>ሞባይል ሲጠፋ ማሳወቂያ</item>
+        <item>የአገልግሎት ሒሳብ መጠየቂያ</item>
+    </string-array>
+    <string-array name="nav_important_info_phone">
+        <item>907</item>
+        <item>991</item>
+        <item>916</item>
+        <item>1572121</item>
+        <item>5153760</item>
+        <item>5504940</item>
+        <item>1573426</item>
+        <item>6181339</item>
+        <item>4431529</item>
+        <item>3494115</item>
+        <item>4341438</item>
+        <item></item>
+        <item>2788706</item>
+        <item>1575059</item>
+        <item>6628222</item>
+        <item>1567040</item>
+        <item>4663420</item>
+        <item>2769146</item>
+        <item>4425563</item>
+        <item>4340096</item>
+        <item>6630373</item>
+        <item>6648580</item>
+        <item>997</item>
+        <item>998</item>
+        <item>998</item>
+        <item>994</item>
+        <item>900</item>
+        <item>994</item>
+        <item>980</item>
+        <item>985</item>
+        <item>994</item>
+        <item>908</item>
+        <item>994</item>
+        <item>994</item>        
+    </string-array>
+        
     <!-- Nav Drawer List Item Icons Amharic -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
@@ -343,6 +417,7 @@
         <item>@drawable/ic_photos</item>
         <item>@drawable/shop</item> 
         <item>@drawable/job_vacancy</item> 
+        <item>@drawable/call_icon</item>
     </array>
 
     <!-- Nav Drawer List Item Icon -->

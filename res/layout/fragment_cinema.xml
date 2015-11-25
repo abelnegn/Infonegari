@@ -27,10 +27,10 @@
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "110dp"/>       
         <EditText 
-            android:layout_height= "wrap_content"
+            android:layout_height= "40dp"
 			android:layout_width= "fill_parent"
 			android:textColor="#000000"
-			android:background="#FFFFFF"
+			android:background="@android:drawable/edit_text"
 	        android:id="@+id/title"/>
     </LinearLayout>
     <LinearLayout 
@@ -77,18 +77,18 @@
 	        android:layout_height= "wrap_content"
 	        android:layout_width= "110dp"/>       
         <EditText 
-            android:layout_height= "28dp"
+            android:layout_height= "40dp"
 			android:layout_width= "150dp"
 			android:textColor="#000000"
-			android:background="#FFFFFF"
-			android:enabled="false"
+			android:background="@android:drawable/edit_text"
+			android:inputType="date"
 	        android:id="@+id/show_date"/> 
 	        
         <Button
             android:id="@+id/button_select"
             style="@style/Button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:text="@string/txt_select"/>        
 	</LinearLayout>  	 
     <LinearLayout 

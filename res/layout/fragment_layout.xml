@@ -39,6 +39,6 @@
         android:id="@+id/btn_emergency_call"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/btn_emergency_call"
-        android:text="@string/db_emergency_call" />
+        android:text="@string/db_important_info" />
 
 </com.infonegari.activity.DashboardLayout>

@@ -17,6 +17,7 @@ import com.orm.query.Select;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -84,6 +86,7 @@ public class CinemaFragment extends Fragment{
         int id = item.getItemId();
 
         if (id == MENU_ITEM_BACK) {
+        	hideKeyboard();
 			FragmentManager fragmentManager = getFragmentManager();
 			LeisureFragment fragment = new LeisureFragment();
 			fragmentManager.beginTransaction()
@@ -241,6 +244,7 @@ public class CinemaFragment extends Fragment{
 	
 	private void btnSearch(){
 		safeUIBlockingUtility.safelyBlockUI();
+		hideKeyboard();
 		String calHall = String.valueOf(cinemaHallHashMap.get(sp_hall.getSelectedItem().toString()));
 
 		String typeId = String.valueOf(movieTypeHashMap.get(sp_movie_type.getSelectedItem().toString()));
@@ -297,4 +301,10 @@ public class CinemaFragment extends Fragment{
 		safeUIBlockingUtility.safelyUnBlockUI();
 	
 	}
+	
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+    }
 }

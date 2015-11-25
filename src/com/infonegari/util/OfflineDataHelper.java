@@ -309,6 +309,7 @@ public class OfflineDataHelper {
     	UsedItemType newUsedItemType = new UsedItemType();
     	newUsedItemType.setUsedItemTypeId(usedItemType.getUsedItemTypeId());
     	newUsedItemType.setUsedItemTypeName(usedItemType.getUsedItemTypeName());
+    	newUsedItemType.setUsedItemTypeName_am(usedItemType.getUsedItemTypeName_am());
 	  	
     	newUsedItemType.save();
     }

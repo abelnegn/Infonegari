@@ -52,6 +52,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -1092,6 +1093,7 @@ public class AddListFragment extends Fragment {
         int id = item.getItemId();
 
         if (id == MENU_ITEM_BACK) {
+        	hideKeyboard();
 			FragmentManager fragmentManager = getFragmentManager();
 			HomeFragment fragment = new HomeFragment();
 			fragmentManager.beginTransaction()
@@ -1892,5 +1894,11 @@ public class AddListFragment extends Fragment {
     			uploadHandyMan();
     		}    		
     	}
+    }
+    
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 }
