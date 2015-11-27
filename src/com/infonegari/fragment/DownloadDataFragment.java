@@ -99,7 +99,6 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
    		safeUIBlockingUtility.safelyBlockUI();
         if (Network.isOnline(this.getActivity())) {            
             saveAdsData();
-            saveAllCategoryData();
             saveAuctionData();
             saveAuctionCategoryData();
             saveBandData();
@@ -220,38 +219,6 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
                         }
 
                     }); 		
-    	}
-    }
-    
-    private void saveAllCategoryData(){
-    	if (Network.isOnline(this.getActivity())) {   		
-        	long acId = 0;
-        	List<AllCategory> acList= AllCategory.findWithQuery(AllCategory.class, 
-        			"SELECT * FROM  All_Category WHERE ac_Id = " +
-        			"(SELECT max(ac_Id) FROM  All_Category)");
-        	if(acList.size() > 0)
-        		acId = acList.get(0).getAcId();    
-        	
-            API.allCategoryService.getAllCategories(acId,
-                    new Callback<List<AllCategory>>() {
-                        @Override
-                        public void success(List<AllCategory> allCategories, Response response) {
-                            for (AllCategory allCategory : allCategories) {
-                                if (allCategory != null) {
-                                    OfflineDataHelper helper = new OfflineDataHelper();
-                                    helper.setOfflineDataSaveListener(DownloadDataFragment.this);
-                                    helper.saveAllCategoryData(allCategory);
-                                }
-                            }
-                            
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                        	
-                        }
-
-                    });        	
     	}
     }
     
