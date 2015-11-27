@@ -6,7 +6,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import com.infonegari.activity.R;
 import com.infonegari.objects.db.Ads;
-import com.infonegari.objects.db.AllCategory;
 import com.infonegari.objects.db.Auction;
 import com.infonegari.objects.db.AuctionCategory;
 import com.infonegari.objects.db.Band;

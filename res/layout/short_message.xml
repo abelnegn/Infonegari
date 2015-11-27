@@ -1,20 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/list_background">
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">      
-          
-        <ImageSwitcher
-	        android:id="@+id/item_imageSwitcher"
-	        android:layout_width="match_parent"
-	        android:layout_height="50dp" />
-        
-    </LinearLayout>       
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#D5CED5"
+    android:orientation="vertical" >
+     
      <ListView
         android:id="@+id/list_sms_menu"
         android:layout_width="match_parent"

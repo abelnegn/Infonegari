@@ -244,7 +244,7 @@ public class MainActivity extends FragmentActivity {
 			Log.e("MainActivity", "Error in creating fragment");
 		}
 	}
-
+	
 	@Override
 	public void setTitle(CharSequence title) {
 		mTitle = title;

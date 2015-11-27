@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -274,8 +275,8 @@ public class AddListFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 	    		dlgHandler = new DialogHandler();
-	    		dlgHandler.Confirm(getActivity(), getString(R.string.dlg_header_update), getString(R.string.dlg_detail_message), 
-	    				getString(R.string.btn_upload_now), getString(R.string.btn_upload_later), updateNow(), updateLater());
+	    		dlgHandler.Confirm(getActivity(),  getString(R.string.btn_upload_now) + "?", getString(R.string.dlg_upload_message), 
+	    				getString(R.string.btn_later), getString(R.string.btn_ok), updateNow(), updateLater());
 
 			}
 		});
@@ -1093,13 +1094,34 @@ public class AddListFragment extends Fragment {
         int id = item.getItemId();
 
         if (id == MENU_ITEM_BACK) {
-        	hideKeyboard();
 			FragmentManager fragmentManager = getFragmentManager();
 			HomeFragment fragment = new HomeFragment();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    public void onResume() {
+       super.onResume();
+
+       getView().setFocusableInTouchMode(true);
+       getView().requestFocus();
+       getView().setOnKeyListener(new View.OnKeyListener() {
+          @Override
+          public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+              if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+    			FragmentManager fragmentManager = getFragmentManager();
+    			HomeFragment fragment = new HomeFragment();
+    			fragmentManager.beginTransaction()
+    					.replace(R.id.frame_container, fragment).commit();
+                   return true;
+               }
+               return false;
+           }
+       });
     }
     
     private void saveAddList(){
@@ -1894,11 +1916,5 @@ public class AddListFragment extends Fragment {
     			uploadHandyMan();
     		}    		
     	}
-    }
-    
-    private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 }

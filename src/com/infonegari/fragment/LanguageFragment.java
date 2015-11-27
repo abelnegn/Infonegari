@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -128,6 +129,25 @@ public class LanguageFragment extends Fragment{
     private void refreshMenu(){
 		Intent backIntent = new Intent(getActivity(), SplashScreen.class);
 		startActivity(backIntent);
+    }
+    
+    @Override
+    public void onResume() {
+       super.onResume();
+
+       getView().setFocusableInTouchMode(true);
+       getView().requestFocus();
+       getView().setOnKeyListener(new View.OnKeyListener() {
+          @Override
+          public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+              if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+            	   backMenu();
+                   return true;
+               }
+               return false;
+           }
+       });
     }
     
     @Override

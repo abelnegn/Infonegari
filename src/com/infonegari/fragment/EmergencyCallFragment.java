@@ -16,6 +16,7 @@ import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -183,4 +184,25 @@ public class EmergencyCallFragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onResume() {
+       super.onResume();
+
+       getView().setFocusableInTouchMode(true);
+       getView().requestFocus();
+       getView().setOnKeyListener(new View.OnKeyListener() {
+          @Override
+          public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+              if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+      			FragmentManager fragmentManager = getFragmentManager();
+    			HomeFragment fragment = new HomeFragment();
+    			fragmentManager.beginTransaction()
+    					.replace(R.id.frame_container, fragment).commit();
+                   return true;
+               }
+               return false;
+           }
+       });
+    }
 }
