@@ -3,7 +3,6 @@ package com.infonegari.fragment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.infonegari.activity.R;
 import com.infonegari.activity.SplashScreen;
 import com.infonegari.adapter.HandyManAdapter;

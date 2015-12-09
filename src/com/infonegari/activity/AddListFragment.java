@@ -14,6 +14,8 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedFile;
+
+import com.infonegari.activity.R;
 import com.infonegari.fragment.HomeFragment;
 import com.infonegari.objects.db.AddList;
 import com.infonegari.objects.db.CarType;

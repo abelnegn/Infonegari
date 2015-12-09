@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Locale;
 
+import com.infonegari.activity.R;
 import com.infonegari.util.AdsImageView;
 
 import android.app.Activity;

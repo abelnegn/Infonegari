@@ -2,6 +2,7 @@ package com.infonegari.activity;
 
 import java.util.ArrayList;
 
+import com.infonegari.activity.R;
 import com.infonegari.adapter.NavDrawerListAdapter;
 import com.infonegari.fragment.BusinessFragment;
 import com.infonegari.fragment.DownloadDataFragment;

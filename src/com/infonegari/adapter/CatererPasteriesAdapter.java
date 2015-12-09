@@ -1,7 +1,6 @@
 package com.infonegari.adapter;
 
 import java.util.List;
-
 import com.infonegari.activity.R;
 import com.infonegari.activity.SplashScreen;
 import com.infonegari.objects.db.CaterersPasteries;
