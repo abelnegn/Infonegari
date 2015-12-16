@@ -91,7 +91,7 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="dlg_header_update">አዲስ መረጃ?</string>
     <string name="dlg_detail_message">እባኮ አዲስ የ ኢነፎነጋሪ መረጃ አሁኑኑ ያውርዱ. አዲስ መረጃ ለማውረድ ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
-    <string name="dlg_upload_message">Please upload the information. The upload requires internet connection.</string>
+    <string name="dlg_upload_message">እባኮ መረጃውን ይጫኑ. መረጃውን ለመጫን ኢንተርኔት ኮኔክሽን ያስፈልጋል.</string>
     <string name="txt_sms_description">የሚከተሉትን አማራጮች በመጠቀም እንደገና ይሞክሩ</string>
     <string name="dlg_listing_category">ዝርዝሮች</string>
     <string name="txt_register">አዲስ ተጠቃሚ ከሆኑ እባክዎ www.infonegari.com/register.php ላይ ይመዝገቡ</string>
@@ -210,7 +210,9 @@
 	
 		<!-- 	Error message -->
 	<string name="msg_mandatory_validation">እባክዎ ሁሉንም መረጃ ያስገቡ.</string>
-	
+	<string name="msg_mandatory_header">አስፈላጊ መረጃ</string>
+	<string name="msg_updating">አዲስ መረጃ</string>
+	<string name="msg_please_wait">እባኮ ትንሽ ይጠብቁ</string>	
 	<!-- Add list category -->	
 	<string-array name="nav_drawer_add_list">
 		<item>ምግብ ዝግጅትና ኬክ</item>

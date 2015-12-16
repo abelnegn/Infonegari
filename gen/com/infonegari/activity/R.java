@@ -606,10 +606,13 @@ public final class R {
         public static final int menu_wedding_cloths=0x7f060094;
         public static final int menu_wedding_crp=0x7f060095;
         public static final int menu_wedding_hall=0x7f060097;
+        public static final int msg_mandatory_header=0x7f0600cb;
         /**  	Error message 
  	Error message 
          */
         public static final int msg_mandatory_validation=0x7f0600ca;
+        public static final int msg_please_wait=0x7f0600cd;
+        public static final int msg_updating=0x7f0600cc;
         public static final int sms_request_detail=0x7f060099;
         public static final int sms_request_header=0x7f060098;
         public static final int sp_all=0x7f0600c5;

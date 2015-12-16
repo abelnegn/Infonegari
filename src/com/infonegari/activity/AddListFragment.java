@@ -55,7 +55,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -1163,7 +1162,7 @@ public class AddListFragment extends Fragment {
     
     private void callService(String statment){       
 		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
-				"Updating", "Please Wait...");
+				getString(R.string.msg_updating), getString(R.string.msg_please_wait) + "...");
 		safeUIBlockingUtility.safelyBlockUI();
         API.insertAddListService.insertAddList(statment, new Callback<String>() {
                 @Override
@@ -1608,16 +1607,16 @@ public class AddListFragment extends Fragment {
     	if(categoryId == 0){    		
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{
     			uploadCatererPasteries();
     		}
     	}else if(categoryId == 1){
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{
     			uploadDecorator();
     		}    		
@@ -1625,24 +1624,24 @@ public class AddListFragment extends Fragment {
 			itemType1 = String.valueOf(carTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.toString().equals("Select Car Type")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());   			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());   			
     		}else{
     			uploadWeddingCar();
     		}      		
     	}else if(categoryId == 3){
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());      			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());      			
     		}else{
     			uploadBand();
     		}    		
     	}else if(categoryId == 4){
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());      			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());      			
     		}else{
     			uploadWeddingCRP();
     		}
@@ -1652,8 +1651,8 @@ public class AddListFragment extends Fragment {
     		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Cloth Type")
     				|| itemType2.toString().equals("Select Service")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{
     			uploadWeddingGownToxido();
     		}
@@ -1661,8 +1660,8 @@ public class AddListFragment extends Fragment {
 			itemType1 = String.valueOf(hallTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Hall Type")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{
     			uploadWeddingHall();
     		}    		
@@ -1670,32 +1669,32 @@ public class AddListFragment extends Fragment {
 			itemType1 = String.valueOf(saloonTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("Select Type")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{
     			uploadBeautySaloon();
     		}     		
     	}else if(categoryId == 8){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{
     			uploadHoneyMoonDestination();
     		}     		
     	}else if(categoryId == 9){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{
     			uploadDJ();
     		}    		
     	}else if(categoryId == 10){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{
     			uploadPhotoVideo();
     		}     		
@@ -1704,8 +1703,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = item_text_one.getText().toString();
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadCarListing("1");
     		}     		
@@ -1713,8 +1712,8 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(usedItemTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadUsedItem();
     		}      		
@@ -1725,8 +1724,8 @@ public class AddListFragment extends Fragment {
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
     				|| itemType2.equals("") || itemType3.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadHouseListing("1", "0");
     		}      		
@@ -1737,8 +1736,8 @@ public class AddListFragment extends Fragment {
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
     				|| itemType2.equals("") || itemType3.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadHouseListing("1", "1");
     		}     		
@@ -1747,8 +1746,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = item_text_one.getText().toString();
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());      			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());      			
     		}else{    			
     			uploadCarListing("0");
     		}     		
@@ -1759,8 +1758,8 @@ public class AddListFragment extends Fragment {
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
     				|| itemType2.equals("") || itemType3.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadHouseListing("0", "0");
     		}     		
@@ -1768,8 +1767,8 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(houseTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadGuestHouse();
     		}       		
@@ -1780,8 +1779,8 @@ public class AddListFragment extends Fragment {
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")
     				|| itemType2.equals("") || itemType3.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());  			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());  			
     		}else{    			
     			uploadHouseListing("0", "1");
     		}     		
@@ -1790,8 +1789,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = String.valueOf(garageServiceTypeHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());   			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());   			
     		}else{    			
     			uploadGarage();
     		}     		
@@ -1799,8 +1798,8 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(pharmacyTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());  			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());  			
     		}else{    			
     			uploadPharmacy();
     		}     		
@@ -1808,8 +1807,8 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(pharmacyTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());      			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());      			
     		}else{    			
     			uploadClinic();
     		}       		
@@ -1818,8 +1817,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = String.valueOf(conMaterialHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadConstruction();
     		}      		
@@ -1827,16 +1826,16 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(restaurantTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadRestaurant();
     		}      		
     	}else if(categoryId == 24){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());   			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());   			
     		}else{    			
     			uploadTravelAgent();
     		}     		
@@ -1844,24 +1843,24 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(eventTypeHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadEvent();
     		}     		
     	}else if(categoryId == 26){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadNightClub();
     		}     		
     	}else if (categoryId == 27){
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadResort();
     		}    		
@@ -1873,8 +1872,8 @@ public class AddListFragment extends Fragment {
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") 
     				|| itemType2.equals("") || itemType3.equals("") || itemType4.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());    			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());    			
     		}else{    			
     			uploadShopCloth();
     		}    		
@@ -1883,8 +1882,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadShopElectronics();
     		}     		
@@ -1893,8 +1892,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = String.valueOf(furniturePlaceHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadShopFurniture();
     		}    		
@@ -1903,8 +1902,8 @@ public class AddListFragment extends Fragment {
     		itemType2 = String.valueOf(serviceHashMap.get(sp_type_two.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("") || itemType2.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadShopComputers();
     		}      		
@@ -1912,8 +1911,8 @@ public class AddListFragment extends Fragment {
     		itemType1 = String.valueOf(handyCategoryHashMap.get(sp_type_one.getSelectedItem().toString()));
        		if(txtTitle.getText().toString().equals("") || txtDiscription.getText().toString().equals("")
     				|| txtImageName.getText().toString().equals("") || itemType1.equals("")){
-    		    boolean dlg = appdialog.Confirm(getActivity(), "Mandatory Validation", getString(R.string.msg_mandatory_validation),
-    		            null, "Ok", null, ok());     			
+    		    boolean dlg = appdialog.Confirm(getActivity(), getString(R.string.msg_mandatory_header), getString(R.string.msg_mandatory_validation),
+    		            null, getString(R.string.btn_ok), null, ok());     			
     		}else{    			
     			uploadHandyMan();
     		}    		

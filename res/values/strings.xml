@@ -212,6 +212,9 @@
 	
 	<!-- 	Error message -->
 	<string name="msg_mandatory_validation">All Fields are mandatory please add all fields.</string>
+	<string name="msg_mandatory_header">Mandatory Validation</string>
+	<string name="msg_updating">Updating</string>
+	<string name="msg_please_wait">Please Wait</string>
 	
 	<!-- Add list category -->	
 	<string-array name="nav_drawer_add_list">

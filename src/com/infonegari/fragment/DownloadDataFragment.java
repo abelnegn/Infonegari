@@ -93,8 +93,8 @@ public class DownloadDataFragment extends Fragment implements OfflineDataHelper.
         rootView = inflater.inflate(R.layout.fragment_home, null);
 
         activity = (FragmentActivity) getActivity();       
-   		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
-				"Updating", "Please Wait...");
+		safeUIBlockingUtility = new SafeUIBlockingUtility(getActivity(), 
+				getString(R.string.msg_updating), getString(R.string.msg_please_wait) + "...");
    		safeUIBlockingUtility.safelyBlockUI();
         if (Network.isOnline(this.getActivity())) {            
             saveAdsData();
