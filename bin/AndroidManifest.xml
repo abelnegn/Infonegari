@@ -43,5 +43,11 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.zaworat.objects.db" />
                   
+        <receiver android:name="com.zaworat.activity.SmsReceiver"> 
+            <intent-filter> 
+                <action android:name=
+                    "android.provider.Telephony.SMS_RECEIVED" /> 
+            </intent-filter> 
+        </receiver>          
     </application>
 </manifest>

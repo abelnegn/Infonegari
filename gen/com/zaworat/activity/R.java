@@ -74,23 +74,25 @@ public final class R {
         public static final int zaworat_icon=0x7f020025;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int btn_add_list=0x7f090004;
-        public static final int btn_download=0x7f090007;
-        public static final int btn_emergency_call=0x7f090008;
-        public static final int btn_language=0x7f090006;
-        public static final int btn_notify=0x7f090003;
-        public static final int btn_short_sms=0x7f090005;
+        public static final int action_settings=0x7f09000a;
+        public static final int btn_add_list=0x7f090005;
+        public static final int btn_download=0x7f090008;
+        public static final int btn_emergency_call=0x7f090009;
+        public static final int btn_language=0x7f090007;
+        public static final int btn_notify=0x7f090004;
+        public static final int btn_short_sms=0x7f090006;
         public static final int frame_container=0x7f090001;
-        public static final int home_root=0x7f090002;
+        public static final int graphBalance=0x7f090002;
+        public static final int home_root=0x7f090003;
         public static final int short_number_txt=0x7f090000;
     }
     public static final class layout {
         public static final int actionbar_layout=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int footer_layout=0x7f030002;
-        public static final int fragment_home=0x7f030003;
-        public static final int fragment_layout=0x7f030004;
+        public static final int balance_by_graph=0x7f030002;
+        public static final int footer_layout=0x7f030003;
+        public static final int fragment_home=0x7f030004;
+        public static final int fragment_layout=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;
