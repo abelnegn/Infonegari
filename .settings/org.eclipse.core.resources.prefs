@@ -1,4 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/com/infonegari/activity/MainActivity.java=UTF-8
-encoding//src/com/infonegari/objects/db/HallType.java=UTF-8
-encoding//src/com/infonegari/util/OfflineDataHelper.java=UTF-8
+encoding//src/com/zaworat/activity/MainActivity.java=UTF-8
+encoding//src/com/zaworat/util/OfflineDataHelper.java=UTF-8
