@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.Legend.LegendDirection;
 import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -131,7 +130,7 @@ public class GraphBalance extends Activity {
 		mChart.highlightValues(null);
 		
 		//update pie chart
-		mChart.invalidate();
+		mChart.invalidate();		
 		
 	}
 	

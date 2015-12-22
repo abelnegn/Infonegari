@@ -5,17 +5,18 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-public class ZaworatBalance extends SugarRecord<ZaworatBalance>{
+public class ZaworatBalance extends SugarRecord<ZaworatBalance> {
 
 	private String branch;
-	private String quantity;
-	private String amount;
+	private long quantity;
+	private long amount;
 	private String balanceDate;
-	
-    public boolean isNew() {
-        long count = Select.from(ZaworatBalance.class).where(Condition.prop("id").eq(id)).count();
-        return count == 0;
-    }
+
+	public boolean isNew() {
+		long count = Select.from(ZaworatBalance.class)
+				.where(Condition.prop("id").eq(id)).count();
+		return count == 0;
+	}
 
 	public String getBranch() {
 		return branch;
@@ -25,19 +26,19 @@ public class ZaworatBalance extends SugarRecord<ZaworatBalance>{
 		this.branch = branch;
 	}
 
-	public String getQuantity() {
+	public long getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 
@@ -50,8 +51,8 @@ public class ZaworatBalance extends SugarRecord<ZaworatBalance>{
 	}
 
 	@Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
-	
+	public String toString() {
+		return new Gson().toJson(this);
+	}
+
 }

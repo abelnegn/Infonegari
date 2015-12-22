@@ -8,7 +8,7 @@ import com.orm.query.Select;
 public class CustomerBalance extends SugarRecord<CustomerBalance>{
 
 	private String customerName;
-	private String amount;
+	private long amount;
 	private String balanceDate;
 	
     public boolean isNew() {
@@ -20,37 +20,26 @@ public class CustomerBalance extends SugarRecord<CustomerBalance>{
 		return customerName;
 	}
 
-
-
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
 
 
-
-	public String getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-
-
-	public void setAmount(String amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
-
-
 
 	public String getBalanceDate() {
 		return balanceDate;
 	}
 
-
-
 	public void setBalanceDate(String balanceDate) {
 		this.balanceDate = balanceDate;
 	}
-
-
 
 	@Override
     public String toString() {

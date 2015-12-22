@@ -3,10 +3,10 @@ package com.zaworat.fragment;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 import com.zaworat.activity.R;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,7 +50,9 @@ public class HomeFragment extends Fragment{
 			
 			@Override
 			public void onClick(View view) {
-
+				FragmentManager fragmentManager = getFragmentManager();
+				GraphBalanceFragment gbFragment = new GraphBalanceFragment();
+				fragmentManager.beginTransaction().replace(R.id.frame_container, gbFragment).commit();
 			}
 		});
 
@@ -59,7 +61,9 @@ public class HomeFragment extends Fragment{
 			
 			@Override
 			public void onClick(View view) {
-				
+				FragmentManager fragmentManager = getFragmentManager();
+				LineChartBalance lcFragment = new LineChartBalance();
+				fragmentManager.beginTransaction().replace(R.id.frame_container, lcFragment).commit();				
 			}
 		});
         
@@ -68,7 +72,9 @@ public class HomeFragment extends Fragment{
 			
 			@Override
 			public void onClick(View view) {
-
+				FragmentManager fragmentManager = getFragmentManager();
+				AllBalanceFragment allFragment = new AllBalanceFragment();
+				fragmentManager.beginTransaction().replace(R.id.frame_container, allFragment).commit();	
 			}
 		});
 
@@ -130,27 +136,4 @@ public class HomeFragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }
     
-	private Runnable ok(){
-		Runnable runnable = new Runnable()
-	    {
-	        @Override
-	        public void run()
-	        {
-
-	        }
-	    };
-	    return runnable;
-	}
-	
-	private Runnable cancel(){
-		Runnable runnable = new Runnable()
-	    {
-	        @Override
-	        public void run()
-	        {        	
-	        }
-	    };
-	    return runnable;
-	}
-	
 }
