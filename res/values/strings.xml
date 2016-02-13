@@ -1,17 +1,493 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Zaworat</string>
-	<string name="txt_header_info">Zaworat Plastic Factory</string>
-	<string name="action_settings">Settings</string>
-  
+    <string name="app_name">InfoNegari</string>
+    <string name="action_settings">Settings</string>
+	<string name="album_name">InfonegariPic</string>
+	<string name="cannot">Cannot</string>
+	<string name="txt_header_info">Information at hand</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="btn_search">Search</string>
+    <string name="btn_add_list">Add to My List</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_choose_photo">Choose Photo</string>
+    <string name="btn_take_photo">Take Photo</string>
+    <string name="btn_select">Select</string>
+    <string name="btn_upload_later">Save</string>
+    <string name="btn_upload_now">Upload Now</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_No">No</string>
+    <string name="btn_call">Call</string>
+    <string name="btn_later">Later</string>
+    <string name="txt_user_name">User Name</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_type">Type</string>
+    <string name="txt_cinema">Cinema</string>
+    <string name="txt_house_type">House Type</string>
+    <string name="txt_source">Source</string>
+    <string name="txt_car_type">Car Type</string>
+    <string name="txt_item_type">Item Type</string>
+    <string name="txt_location">Location</string>
+    <string name="txt_localization">Select Language</string>
+    <string name="txt_title">Title</string>
+    <string name="txt_discription">Description</string>
+    <string name="txt_category">Category</string>
+    <string name="txt_min_price">Minimum Price</string>
+    <string name="txt_dead_line">Submission Deadline</string>
+    <string name="txt_opening_date">Opening Date</string>
+    <string name="txt_post_date">Post Date</string>
+    <string name="txt_date_available">Date Available</string>
+    <string name="txt_break_fast">Break Fast</string>
+    <string name="txt_lunch">Lunch</string>
+    <string name="txt_dinner">Dinner</string>
+    <string name="txt_branch">Branch</string>
+    <string name="m_back">Back</string>
+    <string name="documents">Document</string>
+    <string name="identifiers">Identifiers</string>
+    <string name="txt_cloth_type">Cloth Type</string>
+    <string name="txt_service_type">Service Type</string>
+    <string name="txt_service">Service</string>
+    <string name="txt_machine">Machine</string>
+    <string name="txt_material">Material</string>
+    <string name="txt_show_time">Show Time</string>
+    <string name="txt_show_date">Show Date</string>
+    <string name="txt_exact_date">Exact Date</string>
+    <string name="txt_no_rooms">No Rooms</string>
+    <string name="txt_lot_size">Lot Size</string>
+    <string name="txt_car_year">Year</string>
+    <string name="txt_movie_type">Movie Type</string>
+    <string name="txt_city">City</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_price">Price</string>
+    <string name="txt_email">Email</string> 
+    <string name="txt_phone_no">Phone No</string>  
+    <string name="txt_clinic_type">Clinic Type</string>
+    <string name="txt_main_category">Category</string>
+    <string name="txt_level">Level</string>
+    <string name="txt_profession">Profession</string>
+    <string name="txt_garage_type">Garage Type</string>
+    <string name="txt_job_type">Job Type</string>
+    <string name="txt_job_category">Job Category</string>
+    <string name="txt_education_level">Education Level</string>
+    <string name="txt_qualification">Qualification</string>
+    <string name="txt_responsibility">Responsibility</string>
+    <string name="txt_hall_type">Hall Type</string>
+    <string name="txt_experience">Experience</string>
+    <string name="txt_salary">Salary</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_work_place">Work Place</string>
+    <string name="txt_work_type">Work Type</string>
+    <string name="txt_job_duration">Job Duration</string>
+    <string name="txt_colore">Colore</string>
+    <string name="txt_size">Size</string>
+    <string name="txt_select">Select</string>    
+    <string name="txt_brand_name">Brand Name</string>
+    <string name="title_activity_short_message">Baby Name</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="dlg_header_update">Update now?</string>
+    <string name="dlg_detail_message">Please update the information. The update requires internet connection.</string>
+    <string name="dlg_upload_message">Please upload the information. The upload requires internet connection.</string>
+    <string name="txt_sms_description">Try with the following option</string>
+    <string name="dlg_listing_category">Listing Categories</string>
+    <string name="txt_register">If you are a new user please register in www.infonegari.com/register.php</string>
+
 	<!--     Dashboard -->
 	<string name="db_notification">Notify Me</string>
 	<string name="db_addlist">Add List</string>
-	<string name="db_short_message">Short Message</string>
+	<string name="db_short_message">Baby Name</string>
 	<string name="db_language">Language</string>
 	<string name="db_download">Update</string>
 	<string name="db_about">About</string>
 	<string name="db_important_info">Important Info</string>
 	
+	<!--  Menu item name-->
+	<string name="menu_login">Login</string>
+	<string name="menu_auction">Auction</string>
+	<string name="menu_about">About</string>
+	<string name="menu_band">Music Band</string>
+	<string name="menu_bank">Bank</string>
+	<string name="menu_beauty_saloon">Beauty Saloon</string>
+	<string name="menu_business_lease">Business for Lease</string>
+	<string name="menu_business_sale">Business for Sale</string>
+	<string name="menu_business">Business and Needs</string>
+	<string name="menu_car_rent">Car for Rent</string>
+	<string name="menu_car_sale">Car for Sale</string>
+	<string name="menu_caterer_pasteries">Caterers and Pastries</string>
+	<string name="menu_cinema">Cinema Schedule</string>
+	<string name="menu_clinic">Clinic</string>
+	<string name="menu_con_supply">Construction Supplies</string>
+	<string name="menu_decorator">Decorators</string>
+	<string name="menu_dj">DJ</string>
+	<string name="menu_event">Event</string>
+	<string name="menu_garage">Garage</string>
+	<string name="menu_guest_house">Guest House</string>
+	<string name="menu_help">Help</string>
+	<string name="menu_hmdta">Honeymoon Destinations</string>
+	<string name="menu_home">Main Menu</string>
+	<string name="menu_house_rent">House for Rent</string>
+	<string name="menu_house_sale">House for Sale</string>
+	<string name="menu_job">Job Vacancy</string>
+	<string name="menu_handy_man">Handy Man</string>
+	<string name="menu_language">Language</string>
+	<string name="menu_leisure">Leisure</string>
+	<string name="menu_night_club">Night Club</string>
+	<string name="menu_pharmacy">Pharmacy</string>
+	<string name="menu_photo_video">Photo and Video</string>
+	<string name="menu_rent">Rent</string>
+	<string name="menu_resort">Resort</string>
+	<string name="menu_restaurant">Restaurant</string>
+	<string name="menu_sales">Sales</string>
+	<string name="menu_shops">Shops</string>
+	<string name="menu_shop_cloth">Cloths</string>
+	<string name="menu_shop_computer">Computer Accessories</string>
+	<string name="menu_shop_electronics">Electronics</string>
+	<string name="menu_shop_furniture">Furniture</string>
+	<string name="menu_taxi">Taxi</string>
+	<string name="menu_tender">Tender</string>
+	<string name="menu_travel_agent">Travel Agent</string>
+	<string name="menu_used_item">Used Items for Sale</string>
+	<string name="menu_wedding_Car">Wedding Cars</string>
+	<string name="menu_wedding_cloths">Wedding Gown/Tuxedos</string>
+	<string name="menu_wedding_crp">Wedding Card/Ring/Protocol</string>
+	<string name="menu_wedding">Wedding</string>
+	<string name="menu_wedding_hall">Wedding Halls</string>
+	<string name="sms_request_header">Send SMS</string>
+	<string name="sms_request_detail">Are you shure you want to request name for</string>
+
+	<string name="sp_all_location">All Location</string>
+	<string name="sp_all_category">All Category</string>
+	<string name="sp_all_gener">All Movie Type</string>
+	<string name="sp_all_cinema_hall">All Cinema Hall</string>
+	<string name="sp_all_machine">All Machine</string>
+	<string name="sp_all_material">All Material</string>
+	<string name="sp_all_education_level">All Education Level</string>
+	<string name="sp_all_type">All Type</string>
+	<string name="sp_female">Female</string>
+	<string name="sp_male">male</string>
+	<string name="sp_both">Both</string>
+	<string name="sp_female_cloth">Female Cloth</string>
+	<string name="sp_male_cloth">Male Cloth</string>
+	<string name="sp_kids_cloth">Kids Cloth</string>
+	<string name="sp_cloth_designer">Cloth Designer</string>
+	<string name="sp_all_cloth_type">All Cloth Type</string>
+	<string name="sp_modern">Modern</string>
+	<string name="sp_traditional">Traditional</string>
+	<string name="sp_brand_new">Brand New</string>
+	<string name="sp_assembled">Assembled</string>
+	<string name="sp_used">Used</string>
+	<string name="sp_all_service">All Service</string>
+	<string name="sp_sell">Sell</string>
+	<string name="sp_maintenance">Maintenance</string>
+	<string name="sp_all_electronics">All Electronics</string>
+	<string name="sp_tv">TV,DVD,Tape</string>
+	<string name="sp_refrigrator">Refrigrator</string>
+	<string name="sp_mobiles">Mobiles</string>
+	<string name="sp_all_furniture">All Furniture</string>
+	<string name="sp_home">Home</string>
+	<string name="sp_office">Office</string>
+	<string name="sp_rental">Rental</string>
+	<string name="sp_higher">Higher</string>
+	<string name="sp_meddium">Meddium</string>
+	<string name="sp_small">Small</string>
+	<string name="sp_select_event_type">Select Event Type</string>
+	<string name="sp_art_exhibitions">Art Exhibitions</string>
+	<string name="sp_music_concert">Music Concert</string>
+	<string name="sp_exhibitions">Exhibition</string>
+	<string name="sp_festival">Festival</string>
+	<string name="sp_electriccity">Electriccity</string>
+	<string name="sp_mechanical">Mechanical</string>
+	<string name="sp_body_part">Body Part</string>
+	<string name="sp_all">All</string>
+	<string name="sp_ethiopian">Ethiopian</string>
+	<string name="sp_imported">Imported</string>
+	<string name="sp_rooms">Rooms</string>
+	<string name="sp_no_rooms">Select No Rooms</string>
+	
+	
+	<!-- 	Error message -->
+	<string name="msg_mandatory_validation">All Fields are mandatory please add all fields.</string>
+	<string name="msg_mandatory_header">Mandatory Validation</string>
+	<string name="msg_updating">Updating</string>
+	<string name="msg_please_wait">Please Wait</string>
+	
+	<!-- Add list category -->	
+	<string-array name="nav_drawer_add_list">
+		<item>Catering and Pastery</item>
+		<item>Wedding Decorators</item>
+		<item>Wedding Car</item>
+		<item>Music Band</item>
+		<item>Wedding Cards, Ring and Protocol</item>
+		<item>Wedding Cloths</item>	
+		<item>Beauty Saloons</item>
+		<item>Honey Moon Destination and Travel Agent</item>
+		<item>DJ</item>
+		<item>Photo and Video</item>
+		<item>Car for Sale</item>
+		<item>Used Items</item>
+		<item>House for Sale</item>
+		<item>Business for Sale</item>
+		<item>Rental Car</item>
+		<item>Rental House</item>
+		<item>Guest House</item>    
+		<item>Rental Buisness</item>
+		<item>Garage</item>
+		<item>Pharmacy</item>
+		<item>Clinic</item>
+		<item>Construction</item>
+		<item>Restaurant</item>
+		<item>Travel Agent</item> 
+		<item>Event</item>    
+		<item>Night Club</item>
+		<item>Resort</item>
+		<item>Cloths</item>
+		<item>Electronics</item>
+		<item>Furniture</item>
+		<item>Computer Accessories</item>
+		<item>Handy Man</item>			
+	</string-array>	
+			
+	<!-- 	Short message -->	
+	<string-array name="nav_drawer_sms">
+		<item>Christian Girl(CG)</item>
+		<item>Christian Boy(CB)</item>
+		<item>Muslim Girl(MG)</item>
+		<item>Muslim Boy(MB)</item>
+		<item>Hagerigna Girl(HG)</item>
+		<item>Hagerigna Boy(HB)</item>	    
+	</string-array>
+    
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Menu</item>
+        <item>Wedding</item>
+        <item>Sales</item>
+        <item>Rent</item>
+        <item>Business and Need</item>      
+        <item>Leisure</item>
+        <item>Shops</item>
+        <item>Job Vacancy</item>
+    </string-array>
+
+    <!-- Nav Drawer wedding Items -->
+    <string-array name="nav_wedding_items">
+        <item>Caterers and Pastries</item>
+        <item>Decorators</item>
+        <item>Wedding Cars</item>
+        <item>Wedding Gown/Tuxedos</item>
+        <item>Wedding Halls</item>
+        <item>Wedding Card/Ring/Protocol</item>
+        <item>Beauty Saloons</item>
+        <item>Music Band</item>
+        <item>Honeymoon Destinations</item>
+        <item>DJ</item>
+        <item>Photo and Video</item>       
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Items -->
+    <string-array name="nav_bussiness_items">
+        <item>Buy Auction</item>
+        <item>Tender</item>
+        <item>Garage</item>
+        <item>Handy Man</item>
+        <item>Clinic</item>
+        <item>Pharmacy</item>
+        <item>Bank</item>
+        <item>Taxi</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Items -->
+    <string-array name="nav_rent_items">
+        <item>Car Rent</item>
+        <item>House Rental</item>
+        <item>Business for lease</item>
+        <item>Guest House</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Items -->
+    <string-array name="nav_sales_items">
+        <item>Car For Sale</item>
+        <item>House For Sale</item>
+        <item>Business For Sale</item>
+        <item>Used Items For Sale</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Items -->
+    <string-array name="nav_leisure_items">
+        <item>Restaurant</item>
+        <item>Cinema Schedule</item>
+        <item>Travel Agent</item>
+        <item>Event</item>
+        <item>Night Club</item>
+        <item>Resort</item>
+    </string-array>
+
+    <!-- Nav Drawer Shops Items -->
+    <string-array name="nav_shop_items">
+        <item>Cloths</item>
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Computer Accessories</item>
+        <item>Construction Supplies</item>
+    </string-array>
+    
+    <!-- Nav Drawer Police information -->
+    <string-array name="nav_important_info">
+        <item>Ambulance</item>
+        <item>Police</item>
+        <item>Federal  police commission</item>
+        <item>A.A police commission</item>
+        <item>Lideta sub city police station</item>
+        <item>Chirkos sub city police station</item>
+        <item>Arada sub city police station</item>
+        <item>Yeka sub city police station</item>
+        <item>Nefas silk lafto sub city police station</item>
+        <item>Kolfe keranio sub city police station</item>
+        <item>Akaki kaliti sub city police station</item>
+        <item>Bole sub city police station</item>
+        <item>Addis ketema sub city police station</item>
+        <item>Gulele sub city police station</item>
+        <item>Addis Ababa Traffic police station</item>
+        <item>1st station Menilik 2 square</item>
+        <item>2nd station Addisu kera</item>
+        <item>3rd station Mesalemia</item>
+        <item>4th station Nifas Silk</item>
+        <item>5th station Akaki</item>
+        <item>6th station Megenagna</item>
+        <item>7th station Bole</item>
+        <item>Free call information</item>
+        <item>International calls</item>
+        <item>National operator</item>
+        <item>Fault Report</item>
+        <item>Dial Up internet</item>
+        <item>Pre paid mobile service</item>
+        <item>Broad Band customer Service</item>
+        <item>PSTN service</item>
+        <item>Number change information</item>
+        <item>Voice Mail</item>
+        <item>Lost Mobile Registration</item>
+        <item>Bill Inquiry</item>        
+    </string-array>
+    
+    <string-array name="nav_important_info_phone">
+        <item>907</item>
+        <item>991</item>
+        <item>916</item>
+        <item>0111572121</item>
+        <item>0115153760</item>
+        <item>0115504940</item>
+        <item>0111573426</item>
+        <item>0116181339</item>
+        <item>0114431529</item>
+        <item>0113494115</item>
+        <item>0114341438</item>
+        <item>0114341438</item>
+        <item>0112788706</item>
+        <item>0111575059</item>
+        <item>0116628222</item>
+        <item>0111567040</item>
+        <item>0114663420</item>
+        <item>0112769146</item>
+        <item>0114425563</item>
+        <item>0114340096</item>
+        <item>0116630373</item>
+        <item>0116648580</item>
+        <item>997</item>
+        <item>998</item>
+        <item>998</item>
+        <item>994</item>
+        <item>900</item>
+        <item>994</item>
+        <item>980</item>
+        <item>985</item>
+        <item>994</item>
+        <item>908</item>
+        <item>994</item>
+        <item>994</item>
+    </string-array>
+        
+    <!-- Nav Drawer List Item Icons English-->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/wedding</item>
+        <item>@drawable/for_sale</item>
+        <item>@drawable/for_rent</item>
+        <item>@drawable/bussiness_needs</item>      
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/shop</item> 
+        <item>@drawable/job_vacancy</item> 
+        <item>@drawable/call_icon</item>
+    </array>
+
+    <!-- Nav Drawer List Item Icon -->
+    <string-array name="nav_wedding_icon">
+        <item>@drawable/cattering</item>
+        <item>@drawable/decorators</item>
+        <item>@drawable/wedding_car</item>
+        <item>@drawable/wedding_dress</item>
+        <item>@drawable/wedding_hall</item>
+        <item>@drawable/wedding_protocol</item>
+        <item>@drawable/beauty_salon</item>
+        <item>@drawable/music_band</item>
+        <item>@drawable/honey_moon</item>
+        <item>@drawable/dj_icon</item>
+        <item>@drawable/photo_video</item>
+    </string-array>
+
+    <!-- Nav Drawer Bussiness Icons -->
+    <string-array name="nav_bussiness_icon">
+        <item>@drawable/handy_man</item>
+        <item>@drawable/tender</item>
+        <item>@drawable/garage</item>
+        <item>@drawable/clinic</item>
+        <item>@drawable/pharmacy</item>
+        <item>@drawable/bank</item>
+        <item>@drawable/taxi</item>
+    </string-array>
+
+    <!-- Nav Drawer For rent Icon -->
+    <string-array name="nav_rent_icon">
+        <item>@drawable/rent_car</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/bussiness_needs</item>
+        <item>@drawable/guest_house</item>
+    </string-array>
+
+    <!-- Nav Drawer For Sale Icon -->
+    <string-array name="nav_sales_icon">
+        <item>@drawable/sale_car</item>
+        <item>@drawable/guest_house</item>
+        <item>@drawable/bussiness_needs</item>
+          <item>@drawable/furniture_rent</item>
+    </string-array>
+
+    <!-- Nav Drawer Leisure Icon -->
+    <string-array name="nav_leisure_icon">
+        <item>@drawable/restaurant</item>
+        <item>@drawable/movie</item>
+        <item>@drawable/travel_agent</item>
+        <item>@drawable/events</item>
+        <item>@drawable/night_club</item>
+        <item>@drawable/resort</item>
+    </string-array>
+    
+    <!-- Nav Drawer Shop Icons -->
+    <string-array name="nav_shop_icon">
+        <item>@drawable/cloths</item>
+        <item>@drawable/electronics</item>
+        <item>@drawable/furniture</item>
+        <item>@drawable/comaccess</item>
+        <item>@drawable/construction</item>
+    </string-array>
+    
+    <!-- Nav Drawer SMS Icons -->
+    <string-array name="nav_sms_icon">
+        <item>@drawable/boy</item>
+        <item>@drawable/girl</item>
+    </string-array>    
 </resources>

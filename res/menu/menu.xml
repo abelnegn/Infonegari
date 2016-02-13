@@ -4,6 +4,6 @@
   -->
 
 <menu xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.zaworat.activity.MainActivity">
+    tools:context="com.infonegari.activity.MainActivity">
         
 </menu>
